@@ -15,7 +15,10 @@ export interface Config {
     media: Media;
     "payload-preferences": PayloadPreference;
     "payload-migrations": PayloadMigration;
+    "payload-locked-documents": PayloadLockedDocument;
   };
+  collectionsJoins: {};
+
   db: {
     defaultIDType: string;
   };
@@ -49,6 +52,8 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: string;
+  name?: string | null;
+  roles?: ("admin" | "user")[] | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -59,7 +64,6 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
-  role: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -124,4 +128,19 @@ export interface Auth {
 
 declare module "payload" {
   export interface GeneratedTypes extends Config {}
+}
+
+export interface PayloadLockedDocument {
+  id: string;
+  document?: {
+    relationTo: "users";
+    value: string | User;
+  } | null;
+  globalSlug?: string | null;
+  user: {
+    relationTo: "users";
+    value: string | User;
+  };
+  updatedAt: string;
+  createdAt: string;
 }

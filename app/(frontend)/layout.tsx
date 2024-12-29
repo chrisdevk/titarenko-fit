@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "../globals.css";
 import { cn, roboto } from "@/lib/utils";
 import { MainNavigation } from "@/components/main-navigation/main-navigation";
+import Providers from "../providers";
 
 export const metadata: Metadata = {
   title: "Alya Titarenko",
@@ -18,8 +19,10 @@ export default function RootLayout({
       <body
         className={cn("bg-off-white font-sans text-off-black", roboto.variable)}
       >
-        <MainNavigation />
-        {children}
+        <Providers>
+          <MainNavigation />
+          {children}
+        </Providers>
       </body>
     </html>
   );
