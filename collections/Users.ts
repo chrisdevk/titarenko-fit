@@ -1,9 +1,9 @@
 import type { CollectionConfig } from "payload";
-import { protectRoles } from "./hooks/perotectRoles";
-import adminsAndUser from "./access/adminsAndUser";
+import { protectRoles } from "./hooks/protect-roles";
+import adminsAndUser from "./access/admins-and-user";
 import { anyone } from "./access/anyone";
 import { admins } from "./access/admins";
-import { checkRole } from "./access/checkRole";
+import { checkRole } from "./access/check-role";
 
 export const Users: CollectionConfig = {
   slug: "users",

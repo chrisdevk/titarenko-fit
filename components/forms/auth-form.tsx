@@ -17,7 +17,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { getSession } from "@/services/session";
+import { getCurrentUser } from "@/services/user-service";
 import { login, signup } from "@/services/auth-service";
 
 type SignupFormValues = z.infer<typeof signupSchema>;
@@ -31,12 +31,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
   const isSignup = isSignupVariant(variant);
   const authSchema = isSignup ? signupSchema : loginSchema;
 
-  const queryCLient = useQueryClient();
-
-  const user = useQuery({
-    queryKey: ["session"],
-    queryFn: getSession,
-  }).data?.user;
+  const queryClient = useQueryClient();
 
   const form = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
@@ -55,9 +50,15 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
         ? signup(data as SignupFormValues)
         : login(data as LoginFormValues);
     },
-    onSuccess: () => {
+    onSuccess: async () => {
       toast(isSignup ? "Account created!" : "Logged in!");
-      if (user?.roles?.includes("admin")) {
+
+      const currentUser = await queryClient.fetchQuery({
+        queryKey: ["user"],
+        queryFn: getCurrentUser,
+      });
+
+      if (currentUser?.roles?.includes("admin")) {
         router.push("/admin");
       } else {
         router.push("/");

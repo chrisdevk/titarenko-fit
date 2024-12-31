@@ -1,4 +1,3 @@
-// /lib/api/auth.ts
 export const signup = async (data: {
   name: string;
   email: string;
@@ -51,5 +50,9 @@ export const logout = async () => {
     throw new Error("Logout failed");
   }
 
-  return response.json();
+  if (response.status !== 204) {
+    return await response.json();
+  }
+
+  return null;
 };
