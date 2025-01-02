@@ -2,10 +2,10 @@
 
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
-import { LanguagePopover } from "./language-popover";
-import { useMutation, useQuery } from "@tanstack/react-query";
-import { logout } from "@/services/auth-service";
+import { LanguageSelect } from "./language-select";
+import { useQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "@/services/user-service";
+import { useTranslations } from "next-intl";
 
 const navlinks = [
   {
@@ -22,7 +22,9 @@ const navlinks = [
   },
 ];
 
-export const MainNavigation = () => {
+export const MainNavigation = ({ locale }: { locale: string }) => {
+  const t = useTranslations("MainNavigation");
+
   const currentUser = useQuery({
     queryKey: ["user"],
     queryFn: getCurrentUser,
@@ -38,29 +40,29 @@ export const MainNavigation = () => {
           {navlinks.map((link) => (
             <li key={link.text}>
               <Link
-                href={link.path}
+                href={locale + link.path}
                 className="hover:opacity-80 transition-opacity"
               >
-                {link.text}
+                {t(link.text)}
               </Link>
             </li>
           ))}
         </ul>
         <div className="flex gap-x-4 items-center">
-          <LanguagePopover />
+          <LanguageSelect locale={locale} />
           {currentUser ? (
             <Link
-              href="/dashboard"
+              href={`${locale}/dashboard`}
               className={buttonVariants({ variant: "default" })}
             >
-              Dashboard
+              {t("Dashboard")}
             </Link>
           ) : (
             <Link
-              href="/auth"
+              href={`${locale}/auth`}
               className={buttonVariants({ variant: "default" })}
             >
-              Log in
+              {t("Log in")}
             </Link>
           )}
         </div>

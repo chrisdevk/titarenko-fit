@@ -1,10 +1,24 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+import createMiddleware from "next-intl/middleware";
+import { routing } from "./i18n/routing";
+
+// Create the internationalization middleware
+const intlMiddleware = createMiddleware(routing);
+
 export function middleware(request: NextRequest) {
+  const response = intlMiddleware(request);
+  if (response) {
+    return response;
+  }
+
   const token = request.cookies.get("payload-token")?.value;
 
-  if (!token) {
+  const pathname = request.nextUrl.pathname;
+
+  const isDashboard = /^\/(en|de)\/dashboard(\/|$)/.test(pathname);
+  if (isDashboard && !token) {
     return NextResponse.redirect(new URL("/auth", request.url));
   }
 
@@ -12,5 +26,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/boards/:path*", "/chats/:path*"],
+  matcher: ["/(en|ru)", "/(en|ru)/:path*", "/(en|ru)/dashboard/:path*"],
 };

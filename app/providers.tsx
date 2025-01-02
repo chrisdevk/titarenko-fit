@@ -1,14 +1,24 @@
 import { Toaster } from "@/components/ui/sonner";
 import { LanguageContextProvider } from "@/context/language-context";
 import QueryProvider from "@/lib/query-provider";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 
-export default function Providers({ children }: { children: React.ReactNode }) {
+export default async function Providers({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  const messages = await getMessages();
+
   return (
     <QueryProvider>
-      <LanguageContextProvider>
-        <Toaster />
-        {children}
-      </LanguageContextProvider>
+      <NextIntlClientProvider messages={messages}>
+        <LanguageContextProvider>
+          <Toaster />
+          {children}
+        </LanguageContextProvider>
+      </NextIntlClientProvider>
     </QueryProvider>
   );
 }

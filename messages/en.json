@@ -1,0 +1,16 @@
+{
+    "MainNavigation": {
+        "About me": "About me",
+        "Programs": "Programs",
+        "Blogs": "Blogs",
+        "Dashboard": "Dashboard",
+        "Log in": "Log in"
+    },
+    "HomePage": {
+        "hero": {
+            "heading": "You are stronger than you think",
+            "paragraph": "FIT – it's about being in shape via your health. My trainings will get you to your goal using exactly this path – being FIT and feeling great!",
+            "button": "Test training"
+        }
+    }
+}
