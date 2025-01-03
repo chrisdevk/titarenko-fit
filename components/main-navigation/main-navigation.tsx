@@ -31,23 +31,25 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
   }).data;
 
   return (
-    <nav className="bg-off-white fixed top-0 left-0 w-full py-4 z-50">
+    <header className="bg-off-white fixed top-0 left-0 w-full py-4 z-50">
       <div className="flex items-center justify-between w-11/12 mx-auto">
         <Link href="/" className="font-bold text-xl">
           ALYA TITARENKO
         </Link>
-        <ul className="flex items-center gap-4 absolute left-1/2 -translate-x-1/2">
-          {navlinks.map((link) => (
-            <li key={link.text}>
-              <Link
-                href={locale + link.path}
-                className="hover:opacity-80 transition-opacity"
-              >
-                {t(link.text)}
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <nav className="absolute left-1/2 -translate-x-1/2">
+          <ul className="flex items-center gap-4">
+            {navlinks.map((link) => (
+              <li key={link.text}>
+                <Link
+                  href={locale + link.path}
+                  className="hover:opacity-80 transition-opacity"
+                >
+                  {t(link.text)}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </nav>
         <div className="flex gap-x-4 items-center">
           <LanguageSelect locale={locale} />
           {currentUser ? (
@@ -67,6 +69,6 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
           )}
         </div>
       </div>
-    </nav>
+    </header>
   );
 };
