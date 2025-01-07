@@ -27,7 +27,7 @@ export const Hero = () => {
     });
 
   return (
-    <section className="w-11/12 mx-auto mt-[90px] h-fit flex flex-col gap-y-24 px-8 pt-24 pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
+    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-24 px-8 pt-24 pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
       <div className="flex flex-col gap-y-10 max-w-[692px]">
         <motion.h1
           initial={{ opacity: 0 }}

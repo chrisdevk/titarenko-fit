@@ -28,7 +28,7 @@ export const Awards = () => {
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative w-1/2 h-[487px]"
+          className="relative w-1/2 h-auto flex-grow"
         >
           <Image
             src="/images/awards-img.png"
