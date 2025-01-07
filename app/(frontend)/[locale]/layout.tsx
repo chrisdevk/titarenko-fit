@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: "en" | "ru" };
 }
 
 export default async function RootLayout({
@@ -23,7 +23,7 @@ export default async function RootLayout({
 }: Readonly<RootLayoutProps>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale as any)) {
+  if (!routing.locales.includes(locale)) {
     notFound();
   }
 
