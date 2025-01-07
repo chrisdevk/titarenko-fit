@@ -41,7 +41,7 @@ const reasonsItems = [
 
 export const Reasons = () => {
   return (
-    <article className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 py-16 px-32 mt-24 bg-baby-slate rounded-3xl">
+    <article className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 py-16 px-12 2xl:px-32 mt-24 bg-baby-slate rounded-3xl">
       <motion.h3
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -52,7 +52,7 @@ export const Reasons = () => {
         Мои программы направления Женский Фитнес онлайн я создала для нас,
         прекрасных женщин! ПОЧЕМУ?
       </motion.h3>
-      <section className="flex flex-wrap w-full justify-between gap-y-10">
+      <section className="flex flex-wrap w-full justify-between gap-10">
         {reasonsItems.map((item, index) => (
           <motion.div
             key={index}
@@ -60,6 +60,7 @@ export const Reasons = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
+            className="w-[30%]"
           >
             <ReasonsCard icon={item.icon} text={item.text} />
           </motion.div>

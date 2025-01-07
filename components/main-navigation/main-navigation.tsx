@@ -8,21 +8,7 @@ import { getCurrentUser } from "@/services/user-service";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-
-const navlinks = [
-  {
-    text: "About me",
-    path: "/about",
-  },
-  {
-    text: "Programs",
-    path: "/programs",
-  },
-  {
-    text: "Blogs",
-    path: "/blogs",
-  },
-];
+import { navlinks } from "@/lib/constants";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);

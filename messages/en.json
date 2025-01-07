@@ -1,51 +1,81 @@
 {
-    "MainNavigation": {
-        "About me": "About me",
-        "Programs": "Programs",
-        "Blogs": "Blogs",
-        "Dashboard": "Dashboard",
-        "Log in": "Log in"
+  "MainNavigation": {
+    "About me": "About me",
+    "Programs": "Programs",
+    "Blogs": "Blogs",
+    "Dashboard": "Dashboard",
+    "Log in": "Log in"
+  },
+  "HomePage": {
+    "hero": {
+      "heading": "You are stronger than you think",
+      "paragraph": "FIT – it's about being in shape via your health. My trainings will get you to your goal using exactly this path – being FIT and feeling great!",
+      "button": "Test training"
     },
-    "HomePage": {
-        "hero": {
-            "heading": "You are stronger than you think",
-            "paragraph": "FIT – it's about being in shape via your health. My trainings will get you to your goal using exactly this path – being FIT and feeling great!",
-            "button": "Test training"
+    "awards": {
+      "heading": "Author of programs",
+      "heading-span": "Alevtyna titarenko",
+      "achievements": "Achievements & Awards",
+      "achievements-paragraph": "2 x Overall World & European Champion in Fitness • 2 x Overall Arnold Classic Champion in Fitness • Athlete PRO Fitness • 2 x World & European Champion is Sports Acrobatics • World Games Champion (Fitness) • Honored Master of Sports of Ukraine (Bodybuilding) • International Master of Sports in Sports Acrobatics • “Medal for courage “ awarded by President of Ukraine",
+      "experience": "Experience",
+      "experience-paragraph": "Artist of Cirque Du SOLEIL (22 years) • NASM – National Academy of Sports Medicine . Specialist • Stunt Actress . SAG Award • Author of Fitness programs based on over 30 years of education/ trainings competitions and show business • Mother",
+      "button": "Learn more"
+    },
+    "reasons": {
+      "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
+      "card_one": "Because we have time for everyone in the family except for us!",
+      "card_two": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
+      "card_three": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
+      "card_four": "All programs are different in time and content",
+      "card_five": "Trainer's room in your house with full body training",
+      "card_six": "We train in quality and safety"
+    },
+    "categories": {
+      "heading": "I offer you 6 training categories",
+      "button": "Learn more",
+      "cards": {
+        "card_one": {
+          "title": "CARDIO programs",
+          "description": "2 courses of cardio training, stimulating the heart and lungs. Smooth and not too heavy. Training for the heart and lungs, the heart and lungs, the heart and lungs"
         },
-        "awards": {
-            "heading": "Author of programs",
-            "heading-span": "Alevtyna titarenko",
-            "achievements": "Achievements & Awards",
-            "achievements-paragraph": "2 x Overall World & European Champion in Fitness • 2 x Overall Arnold Classic Champion in Fitness • Athlete PRO Fitness • 2 x World & European Champion is Sports Acrobatics • World Games Champion (Fitness) • Honored Master of Sports of Ukraine (Bodybuilding) • International Master of Sports in Sports Acrobatics • “Medal for courage “ awarded by President of Ukraine",
-            "experience": "Experience",
-            "experience-paragraph": "Artist of Cirque Du SOLEIL (22 years) • NASM – National Academy of Sports Medicine . Specialist • Stunt Actress . SAG Award • Author of Fitness programs based on over 30 years of education/ trainings competitions and show business • Mother",
-            "button": "Learn more"
+        "card_two": {
+          "title": "THEMATIC training",
+          "description": "Several creative thematic complex training, which your body receives new stimulation. Positive changes in your body are guaranteed"
         },
-        "reasons": {
-            "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
-            "card_one": "Because we have time for everyone in the family except for us!",
-            "card_two": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
-            "card_three": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
-            "card_four": "All programs are different in time and content",
-            "card_five": "Trainer's room in your house with full body training",
-            "card_six": "We train in quality and safety"
+        "card_three": {
+          "title": "MARATHONS",
+          "description": "2 courses of round training for the whole body. Level 1 and level 2. All training are absolutely different, all around, entertaining and effective. You get a lot of good and pleasure from training"
+        },
+        "card_four": {
+          "title": "TRAINING BY ZONES",
+          "description": "Training course, in which the muscles are divided into zones. Each training is directed to the specific zone. More deep work of each group of muscles"
+        },
+        "card_five": {
+          "title": "INTENSIVE TRAINING",
+          "description": "6 most important topics, uncovered in the educational format. These intensive trainings provide you with a huge amount of rehabilitation information and exercises"
+        },
+        "card_six": {
+          "title": "DAY PROGRAMS",
+          "description": "2 courses of training programs ideal for those who want to start exercising and gradually move to the next level of complexity. With detailed explanations of the technique of execution."
         }
-    },
-    "AuthPage": {
-        "login": {
-            "heading": "Welcome back",
-            "email": "Email",
-            "password": "Password",
-            "button": "Log in"
-        },
-        "signup": {
-            "heading": "Welcome!",
-            "name": "Name",
-            "email": "Email",
-            "password": "Password",
-            "button": "Sign up"
-        },
-        "loginTab": "Log in",
-        "signupTab": "Sign up"
+      }
     }
+  },
+  "AuthPage": {
+    "login": {
+      "heading": "Welcome back",
+      "email": "Email",
+      "password": "Password",
+      "button": "Log in"
+    },
+    "signup": {
+      "heading": "Welcome!",
+      "name": "Name",
+      "email": "Email",
+      "password": "Password",
+      "button": "Sign up"
+    },
+    "loginTab": "Log in",
+    "signupTab": "Sign up"
+  }
 }

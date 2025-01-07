@@ -5,6 +5,7 @@ import { MainNavigation } from "@/components/main-navigation/main-navigation";
 import Providers from "@/app/providers";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
+import { Footer } from "@/components/footer";
 
 export const metadata: Metadata = {
   title: "Alya Titarenko",
@@ -34,6 +35,7 @@ export default async function RootLayout({
         <Providers>
           <MainNavigation locale={locale} />
           {children}
+          <Footer locale={locale} />
         </Providers>
       </body>
     </html>
