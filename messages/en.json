@@ -11,6 +11,41 @@
             "heading": "You are stronger than you think",
             "paragraph": "FIT – it's about being in shape via your health. My trainings will get you to your goal using exactly this path – being FIT and feeling great!",
             "button": "Test training"
+        },
+        "awards": {
+            "heading": "Author of programs",
+            "heading-span": "Alevtyna titarenko",
+            "achievements": "Achievements & Awards",
+            "achievements-paragraph": "2 x Overall World & European Champion in Fitness • 2 x Overall Arnold Classic Champion in Fitness • Athlete PRO Fitness • 2 x World & European Champion is Sports Acrobatics • World Games Champion (Fitness) • Honored Master of Sports of Ukraine (Bodybuilding) • International Master of Sports in Sports Acrobatics • “Medal for courage “ awarded by President of Ukraine",
+            "experience": "Experience",
+            "experience-paragraph": "Artist of Cirque Du SOLEIL (22 years) • NASM – National Academy of Sports Medicine . Specialist • Stunt Actress . SAG Award • Author of Fitness programs based on over 30 years of education/ trainings competitions and show business • Mother",
+            "button": "Learn more"
+        },
+        "reasons": {
+            "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
+            "card_one": "Because we have time for everyone in the family except for us!",
+            "card_two": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
+            "card_three": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
+            "card_four": "All programs are different in time and content",
+            "card_five": "Trainer's room in your house with full body training",
+            "card_six": "We train in quality and safety"
         }
+    },
+    "AuthPage": {
+        "login": {
+            "heading": "Welcome back",
+            "email": "Email",
+            "password": "Password",
+            "button": "Log in"
+        },
+        "signup": {
+            "heading": "Welcome!",
+            "name": "Name",
+            "email": "Email",
+            "password": "Password",
+            "button": "Sign up"
+        },
+        "loginTab": "Log in",
+        "signupTab": "Sign up"
     }
 }

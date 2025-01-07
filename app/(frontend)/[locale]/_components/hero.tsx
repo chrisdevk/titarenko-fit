@@ -1,3 +1,5 @@
+"use client";
+
 import { buttonVariants } from "@/components/ui/button";
 import { Socials } from "@/components/ui/socials";
 import { cn } from "@/lib/utils";
@@ -5,6 +7,7 @@ import { MoveUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
+import { motion } from "motion/react";
 
 export const Hero = () => {
   const t = useTranslations("HomePage.hero");
@@ -24,12 +27,24 @@ export const Hero = () => {
     });
 
   return (
-    <section className="w-11/12 mx-auto mt-[90px] h-fit flex flex-col gap-y-40 px-8 pt-24 pb-8 relative">
+    <section className="w-11/12 mx-auto mt-[90px] h-fit flex flex-col gap-y-24 px-8 pt-24 pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
       <div className="flex flex-col gap-y-10 max-w-[692px]">
-        <h1 className="uppercase font-semibold text-[4rem] leading-tight">
+        <motion.h1
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
           {heading}
-        </h1>
-        <p className="text-xl max-w-[480px]">{t("paragraph")}</p>
+        </motion.h1>
+        <motion.p
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.2 }}
+          className="text-xl max-w-[480px]"
+        >
+          {t("paragraph")}
+        </motion.p>
         <Link
           href="/"
           className={cn(

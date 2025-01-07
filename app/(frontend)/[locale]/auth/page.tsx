@@ -6,9 +6,12 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { motion } from "motion/react";
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 
 export default function AuthPage() {
   const [variant, setVariant] = useState<"signup" | "login">("login");
+
+  const t = useTranslations("AuthPage");
 
   return (
     <div className="flex items-center gap-x-20 w-11/12 max-w-[1296px] mx-auto h-screen">
@@ -22,7 +25,7 @@ export default function AuthPage() {
       </div>
       <div className="flex flex-col items-center gap-y-9 w-1/2">
         <h1 className="text-5xl font-semibold">
-          {variant === "login" ? "Welcome back" : "Welcome!"}
+          {variant === "login" ? t("login.heading") : t("signup.heading")}
         </h1>
         <div className="space-y-8 w-full">
           <div className="flex gap-x-6 border-b border-b-neutral-500 w-full pl-3">
@@ -35,7 +38,7 @@ export default function AuthPage() {
                 variant === "login" ? "text-off-black" : "text-neutral-500"
               )}
             >
-              Log in
+              {t("loginTab")}
               {variant === "login" && (
                 <motion.div
                   layoutId="underline"
@@ -53,7 +56,7 @@ export default function AuthPage() {
                 variant === "signup" ? "text-off-black" : "text-neutral-500"
               )}
             >
-              Sign up
+              {t("signupTab")}
               {variant === "signup" && (
                 <motion.div
                   layoutId="underline"

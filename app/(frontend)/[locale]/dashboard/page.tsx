@@ -21,7 +21,7 @@ export default function DashboardPage() {
     mutationFn: logout,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["user"] });
-      router.push("/auth");
+      router.push("/en/auth");
     },
   });
 

@@ -9,12 +9,17 @@ export default {
   ],
   theme: {
     extend: {
+      fontSize: {
+        base: "1.063rem",
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "off-white": "#EEF2F5",
+        "off-white": "#F4F4F4",
         "indigo-custom": "#4945FF",
         "off-black": "#32324D",
+        "grey-custom": "#666687",
+        "baby-slate": "#F6F6FF",
       },
       fontFamily: {
         sans: ["var(--font-roboto)"],
@@ -24,6 +29,11 @@ export default {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+    },
+  },
+  variants: {
+    extend: {
+      before: ["hover"],
     },
   },
   plugins: [require("tailwindcss-animate")],

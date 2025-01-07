@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { getCurrentUser } from "@/services/user-service";
 import { login, signup } from "@/services/auth-service";
+import { useTranslations } from "next-intl";
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -30,6 +31,8 @@ const isSignupVariant = (variant: string): variant is "signup" =>
 export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
   const isSignup = isSignupVariant(variant);
   const authSchema = isSignup ? signupSchema : loginSchema;
+
+  const t = useTranslations("AuthPage");
 
   const queryClient = useQueryClient();
 
@@ -84,7 +87,9 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
               name="name"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-base">Name</FormLabel>
+                  <FormLabel className="text-base">
+                    {t("signup.name")}
+                  </FormLabel>
                   <FormControl>
                     <Input
                       placeholder="E.g. John Smith"
@@ -102,7 +107,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="text-base">Email</FormLabel>
+                <FormLabel className="text-base">{t("signup.email")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="email@example.com"
@@ -120,7 +125,9 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">Password</FormLabel>
+              <FormLabel className="text-base">
+                {t("signup.password")}
+              </FormLabel>
               <FormControl>
                 <Input
                   type="password"
@@ -134,7 +141,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
           )}
         />
         <Button type="submit" className="w-full text-xl py-3 h-fit">
-          {isSignup ? "Sign up" : "Log in"}
+          {isSignup ? t("signup.button") : t("login.button")}
         </Button>
       </form>
     </Form>

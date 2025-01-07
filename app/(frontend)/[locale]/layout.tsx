@@ -29,7 +29,7 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={cn("bg-off-white font-sans text-off-black", roboto.variable)}
+        className={cn("bg-white font-sans text-off-black", roboto.variable)}
       >
         <Providers>
           <MainNavigation locale={locale} />

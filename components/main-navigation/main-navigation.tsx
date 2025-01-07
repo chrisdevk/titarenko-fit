@@ -6,6 +6,8 @@ import { LanguageSelect } from "./language-select";
 import { useQuery } from "@tanstack/react-query";
 import { getCurrentUser } from "@/services/user-service";
 import { useTranslations } from "next-intl";
+import { useEffect, useState } from "react";
+import { cn } from "@/lib/utils";
 
 const navlinks = [
   {
@@ -23,6 +25,14 @@ const navlinks = [
 ];
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 0);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const t = useTranslations("MainNavigation");
 
   const currentUser = useQuery({
@@ -31,8 +41,13 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
   }).data;
 
   return (
-    <header className="bg-off-white fixed top-0 left-0 w-full py-4 z-50">
-      <div className="flex items-center justify-between w-11/12 mx-auto">
+    <header
+      className={cn(
+        "bg-white fixed top-0 left-0 w-full py-4 z-50 transition-shadow duration-300",
+        scrolled && "shadow-lg"
+      )}
+    >
+      <div className="flex items-center justify-between w-11/12 mx-auto max-w-[1200px] 2xl:max-w-[1440px]">
         <Link href="/" className="font-bold text-xl">
           ALYA TITARENKO
         </Link>
@@ -42,7 +57,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               <li key={link.text}>
                 <Link
                   href={locale + link.path}
-                  className="hover:opacity-80 transition-opacity"
+                  className="transition-all hover:bg-baby-slate p-1 rounded-sm"
                 >
                   {t(link.text)}
                 </Link>

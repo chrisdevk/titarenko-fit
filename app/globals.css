@@ -10,6 +10,15 @@ body {
   :root {
     --radius: 0.5rem;
   }
+  h1 {
+    @apply uppercase font-semibold text-[4rem] leading-tight;
+  }
+  h2 {
+    @apply text-4xl font-medium;
+  }
+  h3 {
+    @apply text-2xl font-medium leading-[30px];
+  }
 }
 
 ::-webkit-scrollbar {
