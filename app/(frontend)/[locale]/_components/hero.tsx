@@ -73,13 +73,11 @@ export const Hero = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.3 }}
+          className="w-fit mx-auto md:mx-0"
         >
           <Link
             href="/"
-            className={cn(
-              "w-fit mx-auto md:mx-0",
-              buttonVariants({ variant: "default", size: "lg" })
-            )}
+            className={cn(buttonVariants({ variant: "default", size: "lg" }))}
           >
             <span>{t("button")}</span>
             <MoveUpRight size={24} />
