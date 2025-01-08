@@ -15,7 +15,7 @@ export const Categories = () => {
   const locale = pathname.split("/")[1];
 
   return (
-    <article className="w-11/12 max-w-[1440px] mx-auto space-y-10 mt-24">
+    <article className="w-11/12 max-w-[1440px] mx-auto space-y-10 mt-[120px]">
       <h2>{t("heading")}</h2>
       <section className="flex flex-wrap justify-between gap-y-4 md:gap-x-2.5 lg:gap-x-0">
         {Object.entries(cards).map(([key, card]) => (
