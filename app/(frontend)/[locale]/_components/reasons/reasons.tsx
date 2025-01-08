@@ -1,13 +1,5 @@
 "use client";
 
-import {
-  Clock11,
-  Dumbbell,
-  Heart,
-  House,
-  Notebook,
-  Shield,
-} from "lucide-react";
 import { ReasonsCard } from "./reasons-card";
 
 import { motion } from "motion/react";
