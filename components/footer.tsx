@@ -9,7 +9,7 @@ export const Footer = ({ locale }: { locale: string }) => {
   const t = useTranslations("MainNavigation");
 
   return (
-    <footer className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-7 mt-[120px] pb-3">
+    <footer className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-7 mt-24 lg:mt-[120px] pb-3">
       <div className="flex flex-col items-center gap-y-3 w-full">
         <ul className="flex items-center gap-x-5">
           {navlinks.map((link) => (

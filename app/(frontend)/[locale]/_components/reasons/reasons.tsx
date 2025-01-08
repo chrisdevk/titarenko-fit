@@ -8,7 +8,7 @@ import { createElement } from "react";
 
 export const Reasons = () => {
   return (
-    <article className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 py-6 md:py-16 px-3 md:px-12 2xl:px-32 mt-[120px] bg-baby-slate rounded-3xl">
+    <article className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 py-6 md:py-16 px-3 md:px-12 2xl:px-32 mt-24 lg:mt-[120px] bg-baby-slate rounded-3xl">
       <motion.h3
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}

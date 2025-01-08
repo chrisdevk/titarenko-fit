@@ -11,7 +11,7 @@ import { motion } from "motion/react";
 export const Awards = () => {
   const t = useTranslations("HomePage.awards");
   return (
-    <section className="w-11/12 max-w-[1200px] 2xl:max-w-[1440px] mx-auto space-y-5 md:space-y-10 mt-[120px]">
+    <section className="w-11/12 max-w-[1200px] 2xl:max-w-[1440px] mx-auto space-y-5 md:space-y-10 mt-24 lg:mt-[120px]">
       <motion.h2
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
