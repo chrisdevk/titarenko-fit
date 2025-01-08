@@ -58,7 +58,7 @@ export const Awards = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="leading-[30px] text-base text-grey-custom md:line-clamp-3 lg:line-clamp-none"
+              className="leading-[30px] text-base text-grey-custom line-clamp-4 md:line-clamp-3 lg:line-clamp-none"
             >
               {t("achievements-paragraph")}
             </motion.p>
@@ -84,7 +84,7 @@ export const Awards = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="leading-[30px] text-base text-grey-custom md:line-clamp-4 lg:line-clamp-none"
+              className="leading-[30px] text-base text-grey-custom line-clamp-5 md:line-clamp-4 lg:line-clamp-none"
             >
               {t("experience-paragraph")}
             </motion.p>

@@ -5,7 +5,7 @@ import { listItems } from "@/lib/constants";
 export const ProgramList = () => {
   return (
     <section className="w-11/12 max-w-[1440px] mx-auto mt-24 space-y-2">
-      <div className="flex-wrap justify-center gap-4 w-full lg:flex hidden">
+      <div className="flex-col lg:flex-wrap justify-center gap-4 w-full flex md:hidden">
         {listItems.map((item, index) => (
           <div key={index} className="flex items-center gap-x-4">
             <Image
