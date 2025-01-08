@@ -24,7 +24,7 @@ export default function AuthPage() {
         />
       </div>
       <div className="flex flex-col items-center gap-y-9 lg:w-1/2">
-        <h1 className="font-semibold">
+        <h1 className="font-semibold lg:text-5xl">
           {variant === "login" ? t("login.heading") : t("signup.heading")}
         </h1>
         <div className="space-y-8 w-full">
