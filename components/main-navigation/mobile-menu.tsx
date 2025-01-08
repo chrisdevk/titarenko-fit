@@ -6,7 +6,12 @@ import { useTranslations } from "next-intl";
 import { navlinks } from "@/lib/constants";
 import { LanguageSelect } from "./language-select";
 
-export const MobileMenu = ({ locale }: { locale: string }) => {
+interface MobileMenuProps {
+  locale: string;
+  setOpen: (open: boolean) => void;
+}
+
+export const MobileMenu = ({ locale, setOpen }: MobileMenuProps) => {
   const t = useTranslations("MainNavigation");
 
   return (
@@ -16,6 +21,7 @@ export const MobileMenu = ({ locale }: { locale: string }) => {
           <li key={link.text}>
             <Link
               href={locale + link.path}
+              onClick={() => setOpen(false)}
               className="transition-all hover:bg-baby-slate p-1 rounded-sm"
             >
               {t(link.text)}
@@ -29,6 +35,7 @@ export const MobileMenu = ({ locale }: { locale: string }) => {
       <Separator className="bg-off-black" />
       <Link
         href={`/${locale}/auth`}
+        onClick={() => setOpen(false)}
         className={cn("w-full", buttonVariants({ variant: "default" }))}
       >
         {t("Log in")}

@@ -47,7 +47,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
           scrolled && "shadow-lg"
         )}
       >
-        <div className="flex items-center justify-between w-2/3 ml-auto md:mx-auto max-w-[1200px] 2xl:max-w-[1440px]">
+        <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1200px] 2xl:max-w-[1440px]">
           <Link href="/" className="font-bold text-xl">
             ALYA TITARENKO
           </Link>
@@ -104,7 +104,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               exit={{ opacity: 0, y: -40 }}
               transition={{ delay: 0.2 }}
             >
-              <MobileMenu locale={locale} />
+              <MobileMenu locale={locale} setOpen={setIsOpen} />
             </motion.div>
           </motion.div>
         )}
