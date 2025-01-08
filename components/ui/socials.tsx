@@ -9,8 +9,8 @@ export const Socials = () => {
     <ul className="flex items-center gap-x-8 md:gap-x-10 gap-y-8">
       {socialLinks.map((social, index) => (
         <motion.li
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.9 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           key={social.name}
           transition={{ delay: index * 0.1 }}

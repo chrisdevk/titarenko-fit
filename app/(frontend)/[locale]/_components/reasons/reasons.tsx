@@ -23,10 +23,10 @@ export const Reasons = () => {
         {reasonsItems.map((item, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
+            transition={{ delay: index * 0.1, duration: 0.5 }}
             className="w-full md:w-[46%] lg:w-[30%]"
           >
             <ReasonsCard

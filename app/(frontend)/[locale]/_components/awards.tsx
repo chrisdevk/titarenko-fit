@@ -57,7 +57,7 @@ export const Awards = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
+              transition={{ delay: 0.1, duration: 0.5 }}
               className="leading-[30px] text-base text-grey-custom line-clamp-4 md:line-clamp-3 lg:line-clamp-none"
             >
               {t("achievements-paragraph")}
@@ -68,7 +68,7 @@ export const Awards = () => {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
               className="uppercase flex items-center gap-x-2"
             >
               {t("experience")}
@@ -89,16 +89,23 @@ export const Awards = () => {
               {t("experience-paragraph")}
             </motion.p>
           </div>
-          <Link
-            href="/"
-            className={cn(
-              "w-fit",
-              buttonVariants({ variant: "secondary", size: "lg" })
-            )}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4 }}
           >
-            <span>{t("button")}</span>
-            <MoveUpRight size={24} />
-          </Link>
+            <Link
+              href="/"
+              className={cn(
+                "w-fit",
+                buttonVariants({ variant: "secondary", size: "lg" })
+              )}
+            >
+              <span>{t("button")}</span>
+              <MoveUpRight size={24} />
+            </Link>
+          </motion.div>
         </div>
       </div>
     </section>
