@@ -27,8 +27,8 @@ export const Hero = () => {
     });
 
   return (
-    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-24 px-8 pt-24 pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
-      <div className="flex flex-col gap-y-10 max-w-[692px]">
+    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-44 lg:gap-y-24 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
+      <div className="flex flex-col gap-y-10 md:max-w-[451px] lg:max-w-[692px]">
         <motion.h1
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -59,9 +59,19 @@ export const Hero = () => {
       <div>
         <Socials />
       </div>
-      <div className="absolute left-0 top-0 w-full h-full -z-10">
+      <div className="absolute left-0 top-0 w-full h-full -z-10 hidden lg:block">
         <Image
           src="/images/hero-bg.webp"
+          alt="Hero image"
+          fill
+          quality={100}
+          priority
+          className="object-cover overflow-hidden rounded-3xl"
+        />
+      </div>
+      <div className="absolute left-0 top-0 w-full h-full -z-10 hidden md:block lg:hidden">
+        <Image
+          src="/images/hero-tablet.png"
           alt="Hero image"
           fill
           quality={100}

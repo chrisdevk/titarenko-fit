@@ -14,8 +14,8 @@ export default function AuthPage() {
   const t = useTranslations("AuthPage");
 
   return (
-    <div className="flex items-center gap-x-20 w-11/12 max-w-[1296px] mx-auto h-screen">
-      <div className="relative w-1/2 h-full">
+    <div className="flex flex-col lg:flex-row items-center md:justify-center lg:justify-normal gap-x-20 w-11/12 max-w-[1296px] mx-auto md:h-[70vh] lg:h-screen">
+      <div className="relative lg:w-1/2 h-full hidden lg:block">
         <Image
           src="/images/auth-image.png"
           alt="Gymnastic auth"
@@ -23,7 +23,7 @@ export default function AuthPage() {
           className="object-contain"
         />
       </div>
-      <div className="flex flex-col items-center gap-y-9 w-1/2">
+      <div className="flex flex-col items-center gap-y-9 lg:w-1/2">
         <h1 className="text-5xl font-semibold">
           {variant === "login" ? t("login.heading") : t("signup.heading")}
         </h1>

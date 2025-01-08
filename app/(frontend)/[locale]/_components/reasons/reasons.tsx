@@ -11,33 +11,8 @@ import {
 import { ReasonsCard } from "./reasons-card";
 
 import { motion } from "motion/react";
-
-const reasonsItems = [
-  {
-    icon: <Clock11 className="size-9 text-white" />,
-    text: "Потому что у нас женщин есть время для всех в семье, кроме себя!",
-  },
-  {
-    icon: <House className="size-9 text-white" />,
-    text: "Вам не нужно никуда идти, мы будем заниматься в уюте вашего дома, в удобное для вас время.",
-  },
-  {
-    icon: <Heart className="size-9 text-white" />,
-    text: "Пора полюбить себя и уделить себе и своему здоровью 10-40 минут в день",
-  },
-  {
-    icon: <Notebook className="size-9 text-white" />,
-    text: "Все программы разные по времени и содержанию",
-  },
-  {
-    icon: <Dumbbell className="size-9 text-white" />,
-    text: "Тренажерный зал у вас дома с полноценными тренировками",
-  },
-  {
-    icon: <Shield className="size-9 text-white" />,
-    text: "Мы тренируемся качественно и безопасно",
-  },
-];
+import { reasonsItems } from "@/lib/constants";
+import { createElement } from "react";
 
 export const Reasons = () => {
   return (
@@ -60,9 +35,16 @@ export const Reasons = () => {
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
             transition={{ delay: index * 0.1 }}
-            className="w-[30%]"
+            className="md:w-[46%] lg:w-[30%]"
           >
-            <ReasonsCard icon={item.icon} text={item.text} />
+            <ReasonsCard
+              icon={createElement(
+                item.icon,
+                { size: 36, color: "white" },
+                null
+              )}
+              text={item.text}
+            />
           </motion.div>
         ))}
       </section>

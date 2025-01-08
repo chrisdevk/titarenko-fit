@@ -1,4 +1,12 @@
 import {
+  Clock11,
+  Dumbbell,
+  Heart,
+  House,
+  Notebook,
+  Shield,
+} from "lucide-react";
+import {
   FaInstagram,
   FaFacebook,
   FaTelegram,
@@ -47,4 +55,41 @@ export const socialLinks = [
     link: "https://www.youtube.com/channel/UChovPG9aAxOmormhdjQWSbg",
     icon: FaYoutube,
   },
+];
+
+export const reasonsItems = [
+  {
+    icon: Clock11,
+    text: "Потому что у нас женщин есть время для всех в семье, кроме себя!",
+  },
+  {
+    icon: House,
+    text: "Вам не нужно никуда идти, мы будем заниматься в уюте вашего дома, в удобное для вас время.",
+  },
+  {
+    icon: Heart,
+    text: "Пора полюбить себя и уделить себе и своему здоровью 10-40 минут в день",
+  },
+  {
+    icon: Notebook,
+    text: "Все программы разные по времени и содержанию",
+  },
+  {
+    icon: Dumbbell,
+    text: "Тренажерный зал у вас дома с полноценными тренировками",
+  },
+  {
+    icon: Shield,
+    text: "Мы тренируемся качественно и безопасно",
+  },
+];
+
+export const listItems = [
+  "Учитывают разный уровень фитнеса",
+  "Адаптированы для Фитнеса Дома",
+  "Разнообразны и необычно созданы",
+  "Полноценны",
+  "Я объясняю возможные ошибки и как их избежать",
+  "Уникальны в подборе упражнений",
+  "Вам не нужно ничего придумывать! За вас это сделала Я.",
 ];

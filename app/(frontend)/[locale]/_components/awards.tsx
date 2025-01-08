@@ -22,7 +22,7 @@ export const Awards = () => {
         {t("heading")} <span className="px-3">• </span>
         <span className="text-indigo-custom">{t("heading-span")}</span>
       </motion.h2>
-      <div className="flex gap-x-11">
+      <div className="flex gap-x-11 md:max-h-[380px] lg:max-h-none">
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
@@ -38,7 +38,7 @@ export const Awards = () => {
           />
         </motion.div>
         <div className="space-y-6 w-1/2">
-          <div className="space-y-2">
+          <div className="space-y-2 md:max-h-[128px] lg:max-h-none">
             <motion.h3
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -58,12 +58,12 @@ export const Awards = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="leading-[30px] text-base text-grey-custom"
+              className="leading-[30px] text-base text-grey-custom md:line-clamp-3 lg:line-clamp-none"
             >
               {t("achievements-paragraph")}
             </motion.p>
           </div>
-          <div className="space-y-2">
+          <div className="space-y-2 md:max-h-[158px] lg:max-h-none">
             <motion.h3
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
@@ -84,7 +84,7 @@ export const Awards = () => {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="leading-[30px] text-base text-grey-custom"
+              className="leading-[30px] text-base text-grey-custom md:line-clamp-4 lg:line-clamp-none"
             >
               {t("experience-paragraph")}
             </motion.p>

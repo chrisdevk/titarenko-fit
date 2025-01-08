@@ -17,7 +17,7 @@ export const Categories = () => {
   return (
     <article className="w-11/12 max-w-[1440px] mx-auto space-y-10 mt-24">
       <h2>{t("heading")}</h2>
-      <section className="flex flex-wrap justify-between gap-y-4">
+      <section className="flex flex-wrap justify-between gap-y-4 md:gap-x-2.5 lg:gap-x-0">
         {Object.entries(cards).map(([key, card]) => (
           <CategoryCard
             key={key}
@@ -27,11 +27,11 @@ export const Categories = () => {
             link={`/${locale}/${key}`}
             className={cn(
               (key === "card_one" || key === "card_six") &&
-                "w-[32%] xl:w-[30%]",
+                "md:w-[49%] lg:w-[32%] xl:w-[30%]",
               (key === "card_two" || key === "card_five") &&
-                "w-[32%] xl:w-[29%] 2xl:w-[27%]",
+                "md:w-[49%] lg:w-[32%] xl:w-[29%] 2xl:w-[27%]",
               (key === "card_three" || key === "card_four") &&
-                "w-[32%] xl:w-[39%] 2xl:w-5/12"
+                "md:w-[49%] lg:w-[32%] xl:w-[39%] 2xl:w-5/12"
             )}
           />
         ))}
