@@ -27,12 +27,13 @@ export const Hero = () => {
     });
 
   return (
-    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-44 lg:gap-y-24 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1200px] 2xl:max-w-[1440px]">
-      <div className="flex flex-col gap-y-10 md:max-w-[451px] lg:max-w-[692px]">
+    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24 py-9 px-2.5 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1200px] 2xl:max-w-[1440px] bg-[#DCDCDC] md:bg-transparent rounded-3xl">
+      <div className="flex flex-col gap-y-6 md:gap-y-10 md:max-w-[451px] lg:max-w-[692px]">
         <motion.h1
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
+          className="text-center md:text-start"
         >
           {heading}
         </motion.h1>
@@ -41,14 +42,14 @@ export const Hero = () => {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-xl max-w-[480px]"
+          className="text-base md:text-xl max-w-[480px] text-center md:text-start"
         >
           {t("paragraph")}
         </motion.p>
         <Link
           href="/"
           className={cn(
-            "w-fit",
+            "w-fit mx-auto md:mx-0",
             buttonVariants({ variant: "default", size: "lg" })
           )}
         >
@@ -56,10 +57,10 @@ export const Hero = () => {
           <MoveUpRight size={24} />
         </Link>
       </div>
-      <div>
+      <div className="flex justify-center md:justify-start">
         <Socials />
       </div>
-      <div className="absolute left-0 top-0 w-full h-full -z-10 hidden lg:block">
+      <div className="absolute left-0 top-0 size-full -z-10 hidden lg:block">
         <Image
           src="/images/hero-bg.webp"
           alt="Hero image"
@@ -69,7 +70,7 @@ export const Hero = () => {
           className="object-cover overflow-hidden rounded-3xl"
         />
       </div>
-      <div className="absolute left-0 top-0 w-full h-full -z-10 hidden md:block lg:hidden">
+      <div className="absolute left-0 top-0 size-full -z-10 hidden md:block lg:hidden">
         <Image
           src="/images/hero-tablet.png"
           alt="Hero image"

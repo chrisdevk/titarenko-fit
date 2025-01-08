@@ -11,7 +11,7 @@ import { motion } from "motion/react";
 export const Awards = () => {
   const t = useTranslations("HomePage.awards");
   return (
-    <section className="w-11/12 max-w-[1200px] 2xl:max-w-[1440px] mx-auto space-y-10 mt-24">
+    <section className="w-11/12 max-w-[1200px] 2xl:max-w-[1440px] mx-auto space-y-5 md:space-y-10 mt-24">
       <motion.h2
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -19,16 +19,16 @@ export const Awards = () => {
         transition={{ duration: 0.5 }}
         className="uppercase text-center"
       >
-        {t("heading")} <span className="px-3">• </span>
+        {t("heading")} <span className="px-2 md:px-3">• </span>
         <span className="text-indigo-custom">{t("heading-span")}</span>
       </motion.h2>
-      <div className="flex gap-x-11 md:max-h-[380px] lg:max-h-none">
+      <div className="flex flex-col md:flex-row gap-x-11 gap-y-5 md:max-h-[380px] lg:max-h-none">
         <motion.div
           initial={{ x: -30, opacity: 0 }}
           whileInView={{ x: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
-          className="relative w-1/2 h-auto flex-grow"
+          className="relative w-full md:w-1/2 h-[280px] md:h-auto flex-grow"
         >
           <Image
             src="/images/awards-img.png"
@@ -37,7 +37,7 @@ export const Awards = () => {
             className="object-cover rounded-3xl"
           />
         </motion.div>
-        <div className="space-y-6 w-1/2">
+        <div className="space-y-6 md:w-1/2">
           <div className="space-y-2 md:max-h-[128px] lg:max-h-none">
             <motion.h3
               initial={{ opacity: 0 }}

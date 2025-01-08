@@ -11,16 +11,16 @@ body {
     --radius: 0.5rem;
   }
   h1 {
-    @apply uppercase font-semibold md:text-5xl lg:text-[4rem] leading-tight;
+    @apply uppercase font-semibold text-[2rem] md:text-5xl lg:text-[4rem] leading-tight;
   }
   h2 {
-    @apply text-2xl lg:text-3xl font-medium;
+    @apply text-xl md:text-2xl lg:text-3xl font-medium;
   }
   h3 {
     @apply text-xl font-medium leading-[30px];
   }
   p {
-    @apply text-base
+    @apply md:text-base;
   }
 }
 

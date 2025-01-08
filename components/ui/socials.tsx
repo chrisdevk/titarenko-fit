@@ -6,7 +6,7 @@ import { createElement } from "react";
 
 export const Socials = () => {
   return (
-    <ul className="flex items-center gap-x-10">
+    <ul className="flex items-center gap-x-8 md:gap-x-10 gap-y-8">
       {socialLinks.map((social, index) => (
         <motion.li
           initial={{ opacity: 0 }}
@@ -15,8 +15,17 @@ export const Socials = () => {
           key={social.name}
           transition={{ delay: index * 0.1 }}
         >
-          <a href={social.link} className="hover:opacity-80 transition-opacity">
+          <a
+            href={social.link}
+            className="hover:opacity-80 transition-opacity hidden md:block"
+          >
             {createElement(social.icon, { size: 35 }, null)}
+          </a>
+          <a
+            href={social.link}
+            className="hover:opacity-80 transition-opacity md:hidden"
+          >
+            {createElement(social.icon, { size: 24 }, null)}
           </a>
         </motion.li>
       ))}

@@ -14,7 +14,7 @@ export default function AuthPage() {
   const t = useTranslations("AuthPage");
 
   return (
-    <div className="flex flex-col lg:flex-row items-center md:justify-center lg:justify-normal gap-x-20 w-11/12 max-w-[1296px] mx-auto md:h-[70vh] lg:h-screen">
+    <div className="flex flex-col lg:flex-row items-center justify-center lg:justify-normal gap-x-20 w-11/12 max-w-[1296px] mx-auto h-screen md:h-[70vh] lg:h-screen">
       <div className="relative lg:w-1/2 h-full hidden lg:block">
         <Image
           src="/images/auth-image.png"
@@ -24,7 +24,7 @@ export default function AuthPage() {
         />
       </div>
       <div className="flex flex-col items-center gap-y-9 lg:w-1/2">
-        <h1 className="text-5xl font-semibold">
+        <h1 className="font-semibold">
           {variant === "login" ? t("login.heading") : t("signup.heading")}
         </h1>
         <div className="space-y-8 w-full">
