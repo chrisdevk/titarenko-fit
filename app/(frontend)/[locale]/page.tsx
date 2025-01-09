@@ -3,6 +3,7 @@ import { Categories } from "./_components/categories/categories";
 import { Hero } from "./_components/hero";
 import { ProgramList } from "./_components/program-list/program-list";
 import { Reasons } from "./_components/reasons/reasons";
+import { Testimonials } from "./_components/testimonials/testimonials";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <Reasons />
       <ProgramList />
       <Categories />
+      <Testimonials />
     </main>
   );
 }

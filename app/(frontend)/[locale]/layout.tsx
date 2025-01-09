@@ -30,7 +30,10 @@ export default async function RootLayout({
   return (
     <html lang={locale}>
       <body
-        className={cn("bg-white font-sans text-off-black", roboto.variable)}
+        className={cn(
+          "bg-white font-sans text-off-black overflow-x-hidden",
+          roboto.variable
+        )}
       >
         <Providers>
           <MainNavigation locale={locale} />

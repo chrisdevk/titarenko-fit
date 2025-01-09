@@ -23,38 +23,38 @@
     },
     "reasons": {
       "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
-      "card_one": "Because we have time for everyone in the family except for us!",
-      "card_two": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
-      "card_three": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
-      "card_four": "All programs are different in time and content",
-      "card_five": "Trainer's room in your house with full body training",
-      "card_six": "We train in quality and safety"
+      "cardio_programs": "Because we have time for everyone in the family except for us!",
+      "thematic_programs": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
+      "marathons": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
+      "zone_training": "All programs are different in time and content",
+      "intensives": "Trainer's room in your house with full body training",
+      "programs_of_the_day": "We train in quality and safety"
     },
     "categories": {
       "heading": "I offer you 6 training categories",
       "button": "Learn more",
       "cards": {
-        "card_one": {
+        "cardio_programs": {
           "title": "CARDIO programs",
           "description": "2 courses of cardio training, stimulating the heart and lungs. Smooth and not too heavy. Training for the heart and lungs, the heart and lungs, the heart and lungs"
         },
-        "card_two": {
+        "thematic_programs": {
           "title": "THEMATIC training",
           "description": "Several creative thematic complex training, which your body receives new stimulation. Positive changes in your body are guaranteed"
         },
-        "card_three": {
+        "marathons": {
           "title": "MARATHONS",
           "description": "2 courses of round training for the whole body. Level 1 and level 2. All training are absolutely different, all around, entertaining and effective. You get a lot of good and pleasure from training"
         },
-        "card_four": {
+        "zone_training": {
           "title": "TRAINING BY ZONES",
           "description": "Training course, in which the muscles are divided into zones. Each training is directed to the specific zone. More deep work of each group of muscles"
         },
-        "card_five": {
+        "intensives": {
           "title": "INTENSIVE TRAINING",
           "description": "6 most important topics, uncovered in the educational format. These intensive trainings provide you with a huge amount of rehabilitation information and exercises"
         },
-        "card_six": {
+        "programs_of_the_day": {
           "title": "DAY PROGRAMS",
           "description": "2 courses of training programs ideal for those who want to start exercising and gradually move to the next level of complexity. With detailed explanations of the technique of execution."
         }

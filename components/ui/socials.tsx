@@ -17,14 +17,11 @@ export const Socials = () => {
         >
           <a
             href={social.link}
-            className="hover:opacity-80 transition-opacity hidden md:block"
+            className="hover:scale-110 duration-300 transition-all hidden md:block"
           >
             {createElement(social.icon, { size: 35 }, null)}
           </a>
-          <a
-            href={social.link}
-            className="hover:opacity-80 transition-opacity md:hidden"
-          >
+          <a href={social.link} className="md:hidden">
             {createElement(social.icon, { size: 24 }, null)}
           </a>
         </motion.li>

@@ -24,7 +24,10 @@ export const CategoryCard = ({
 
   return (
     <div
-      className={cn("flex flex-col gap-y-5 rounded-3xl shadow-md", className)}
+      className={cn(
+        "flex flex-col gap-y-5 rounded-3xl shadow-md w-full h-full",
+        className
+      )}
     >
       <div className="relative w-full h-[262px]">
         <Image
