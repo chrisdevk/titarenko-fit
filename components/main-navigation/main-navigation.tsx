@@ -13,10 +13,13 @@ import Hamburger from "./hamburger";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { MobileMenu } from "./mobile-menu";
+import { usePathname } from "next/navigation";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -43,11 +46,11 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
     <>
       <header
         className={cn(
-          "bg-white fixed top-0 left-0 w-full py-4 z-50 transition-shadow duration-300",
+          "bg-off-white fixed top-0 left-0 w-full py-4 z-50 transition-shadow duration-300",
           scrolled && "shadow-lg"
         )}
       >
-        <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1200px] 2xl:max-w-[1440px]">
+        <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1440px]">
           <Link href="/" className="font-bold text-xl">
             ALYA TITARENKO
           </Link>
@@ -61,7 +64,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               {navlinks.map((link) => (
                 <li key={link.text}>
                   <Link
-                    href={locale + link.path}
+                    href={`/${locale}${link.path}`}
                     className="transition-all hover:bg-baby-slate p-1 rounded-sm"
                   >
                     {t(link.text)}

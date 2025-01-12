@@ -42,7 +42,7 @@ export const Hero = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24 py-9 px-2.5 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1200px] 2xl:max-w-[1440px] bg-[#DCDCDC] md:bg-transparent rounded-3xl">
+    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24 py-9 px-2.5 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1440px] bg-[#DCDCDC] md:bg-transparent rounded-3xl">
       <div className="flex flex-col gap-y-6 md:gap-y-10 md:max-w-[451px] lg:max-w-[692px]">
         <div className="flex flex-wrap justify-center md:justify-start">
           {heading.map((current, i) => (

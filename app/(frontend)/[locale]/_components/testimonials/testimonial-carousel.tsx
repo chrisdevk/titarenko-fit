@@ -10,7 +10,7 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 
 export const TestimonialCarousel = () => {
-  const t = useTranslations("HomePage.testimonials");
+  const t = useTranslations("HomePage.testimonials.carousel-items");
 
   return (
     <Carousel className="mt-9 relative">

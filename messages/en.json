@@ -32,6 +32,7 @@
     },
     "categories": {
       "heading": "I offer you 6 training categories",
+      "span": "Program categories",
       "button": "Learn more",
       "cards": {
         "cardio_programs": {
@@ -60,32 +61,36 @@
         }
       }
     },
-    "testimonials": [
-      {
-        "name": "TATIANA ROMAKH",
-        "review": "I really liked the whole package of short lessons - just what you need for beginners. Depending on the availability of time, you can take one or more classes at once or do a circuit training. Thank you and looking forward to the next more advanced course!"
-      },
-      {
-        "name": "OKSANA TKACHENKO",
-        "review": "I went through the entire course and realized that the entire left side was not working well. Thank you very much for understanding your problems. I continue on!!! The whole program is excellent, I especially like the progressive level! I feel warm and comfortable with my ego. Everything is better! I like everything!"
-      },
-      {
-        "name": "OLGA GEINITZ",
-        "review": "I have been working with Alya for several months now. I had a whole bunch of problems due to injury, sedentary work and flat feet. Before, I did everything with the wrong technique, and the wrong muscles worked. Alya shows dozens of different ways how to do it right."
-      },
-      {
-        "name": "SRIA ENGH",
-        "review": "Alya has changed my life - I am again able to go for long walks without experiencing pain in my knees. My level is a 40+ mom without sports training, and with Alya I not only become stronger, I even move differently. Thanks a lot!"
-      },
-      {
-        "name": "INNA KARIAKINA",
-        "review": "Hello, what you do is very valuable! I devote to training, usually 30 minutes a day, and the result is already visible not only in the mirror, but also on the scales. With minimal effort, losing 6 kg in three weeks is a very good result, I think. And most importantly, it is a pleasure to work with you!"
-      },
-      {
-        "name": "OLGA SHRUB",
-        "review": "Wonderful! Wonderful! Yesterday I did exercises with an elastic band - this is a workout for the whole body - my mood immediately improved. Charm! Such great and detailed explanations! Such coordination. And all this in 15 minutes! I didn't think I'd find this - it's fabulous!"
-      }
-    ]
+    "testimonials": {
+      "span": "Testimonials",
+      "heading": "What my awesome clients say",
+      "carousel-items": [
+        {
+          "name": "TATIANA ROMAKH",
+          "review": "I really liked the whole package of short lessons - just what you need for beginners. Depending on the availability of time, you can take one or more classes at once or do a circuit training. Thank you and looking forward to the next more advanced course!"
+        },
+        {
+          "name": "OKSANA TKACHENKO",
+          "review": "I went through the entire course and realized that the entire left side was not working well. Thank you very much for understanding your problems. I continue on!!! The whole program is excellent, I especially like the progressive level! I feel warm and comfortable with my ego. Everything is better! I like everything!"
+        },
+        {
+          "name": "OLGA GEINITZ",
+          "review": "I have been working with Alya for several months now. I had a whole bunch of problems due to injury, sedentary work and flat feet. Before, I did everything with the wrong technique, and the wrong muscles worked. Alya shows dozens of different ways how to do it right."
+        },
+        {
+          "name": "SRIA ENGH",
+          "review": "Alya has changed my life - I am again able to go for long walks without experiencing pain in my knees. My level is a 40+ mom without sports training, and with Alya I not only become stronger, I even move differently. Thanks a lot!"
+        },
+        {
+          "name": "INNA KARIAKINA",
+          "review": "Hello, what you do is very valuable! I devote to training, usually 30 minutes a day, and the result is already visible not only in the mirror, but also on the scales. With minimal effort, losing 6 kg in three weeks is a very good result, I think. And most importantly, it is a pleasure to work with you!"
+        },
+        {
+          "name": "OLGA SHRUB",
+          "review": "Wonderful! Wonderful! Yesterday I did exercises with an elastic band - this is a workout for the whole body - my mood immediately improved. Charm! Such great and detailed explanations! Such coordination. And all this in 15 minutes! I didn't think I'd find this - it's fabulous!"
+        }
+      ]
+    }
   },
   "AuthPage": {
     "login": {
@@ -103,5 +108,9 @@
     },
     "loginTab": "Log in",
     "signupTab": "Sign up"
+  },
+  "BlogsPage": {
+    "heading": "Movement towards your goals: health and fitness blog",
+    "button": "Read more"
   }
 }

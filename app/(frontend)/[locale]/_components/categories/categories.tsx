@@ -17,7 +17,12 @@ export const Categories = () => {
 
   return (
     <article className="w-11/12 max-w-[1440px] mx-auto space-y-10 mt-24 lg:mt-[120px]">
-      <h2>{t("heading")}</h2>
+      <div className="space-y-2.5">
+        <span className="bg-violet-500/20 text-violet-900 rounded-3xl px-3 py-2">
+          {t("span")}
+        </span>
+        <h2>{t("heading")}</h2>
+      </div>
       <section className="flex flex-wrap justify-between gap-y-4 md:gap-x-2.5 lg:gap-x-0">
         {Object.entries(cards).map(([key, card], index) => (
           <motion.div
