@@ -2,11 +2,11 @@ import { Blog } from "@/payload-types";
 import { getBlog } from "@/services/blog-service";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
-interface BlogPageProps {
-  params: { blogId: string; locale: string };
-}
-
-export default async function BlogPage({ params }: BlogPageProps) {
+export default async function BlogPage({
+  params,
+}: {
+  params: Promise<{ blogId: string; locale: string }>;
+}) {
   const { blogId, locale } = await params;
 
   const blog: Blog = await getBlog({ id: blogId, locale: locale });
