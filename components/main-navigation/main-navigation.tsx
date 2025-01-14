@@ -74,14 +74,14 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
             <LanguageSelect locale={locale} />
             {currentUser ? (
               <Link
-                href={`${locale}/dashboard`}
+                href={`/${locale}/dashboard`}
                 className={buttonVariants({ variant: "default" })}
               >
                 {t("Dashboard")}
               </Link>
             ) : (
               <Link
-                href={`${locale}/auth`}
+                href={`/${locale}/auth`}
                 className={buttonVariants({ variant: "default" })}
               >
                 {t("Log in")}
