@@ -13,13 +13,10 @@ import Hamburger from "./hamburger";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { MobileMenu } from "./mobile-menu";
-import { usePathname } from "next/navigation";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-
-  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
