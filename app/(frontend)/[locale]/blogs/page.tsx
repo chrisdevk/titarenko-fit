@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 export default async function BlogsPage({
   params,
 }: {
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "BlogsPage" });
