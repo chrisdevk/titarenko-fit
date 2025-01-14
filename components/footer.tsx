@@ -26,7 +26,7 @@ export const Footer = ({ locale }: { locale: string }) => {
         <Separator className="bg-indigo-custom" />
       </div>
       <Socials />
-      <p className="text-grey-custom text-xs md:text-base">
+      <p className="text-grey-custom text-xs md:text-lg">
         ALYA TITARENKO © Copyright 2025. All rights reserved.
       </p>
     </footer>

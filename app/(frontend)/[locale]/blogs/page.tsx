@@ -38,12 +38,14 @@ export default async function BlogsPage({
                 : null;
 
             return (
-              <BlogCard
-                key={blog.id}
-                title={blog.title}
-                imgSrc={imgSrc || "/default-thumbnail.jpg"}
-                path={`/${locale}/blogs/${blog.id}`}
-              />
+              blog.title !== undefined && (
+                <BlogCard
+                  key={blog.id}
+                  title={blog.title}
+                  imgSrc={imgSrc!}
+                  path={`/${locale}/blogs/${blog.id}`}
+                />
+              )
             );
           })}
         </article>

@@ -64,7 +64,7 @@ export const Hero = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2 }}
-          className="text-base md:text-xl max-w-[480px] text-center md:text-start"
+          className="text-lg md:text-xl max-w-[480px] text-center md:text-start"
         >
           {t("paragraph")}
         </motion.p>

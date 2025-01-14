@@ -87,9 +87,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
               name="name"
               render={({ field }) => (
                 <FormItem className="w-full">
-                  <FormLabel className="text-base">
-                    {t("signup.name")}
-                  </FormLabel>
+                  <FormLabel className="text-lg">{t("signup.name")}</FormLabel>
                   <FormControl>
                     <Input
                       placeholder="E.g. John Smith"
@@ -107,7 +105,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
             name="email"
             render={({ field }) => (
               <FormItem className="w-full">
-                <FormLabel className="text-base">{t("signup.email")}</FormLabel>
+                <FormLabel className="text-lg">{t("signup.email")}</FormLabel>
                 <FormControl>
                   <Input
                     placeholder="email@example.com"
@@ -125,9 +123,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-base">
-                {t("signup.password")}
-              </FormLabel>
+              <FormLabel className="text-lg">{t("signup.password")}</FormLabel>
               <FormControl>
                 <Input
                   type="password"

@@ -11,7 +11,7 @@ export const ReasonsCard = ({ icon, text }: ReasonsCardProps) => {
       <div className="bg-violet-700 size-11 rounded-lg flex items-center justify-center relative z-10 p-1">
         {icon}
       </div>
-      <p className="text-base text-grey-custom text-center leading-tight relative z-10">
+      <p className="text-lg text-grey-custom text-center leading-tight relative z-10">
         {text}
       </p>
     </div>

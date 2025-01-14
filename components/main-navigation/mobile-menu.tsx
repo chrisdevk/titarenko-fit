@@ -16,7 +16,7 @@ export const MobileMenu = ({ locale, setOpen }: MobileMenuProps) => {
 
   return (
     <nav className="pt-24 pb-4 w-10/12 mx-auto space-y-4">
-      <ul className="font-semibold text-base text-off-black flex flex-col items-center gap-y-4">
+      <ul className="font-semibold text-lg text-off-black flex flex-col items-center gap-y-4">
         {navlinks.map((link) => (
           <li key={link.text}>
             <Link

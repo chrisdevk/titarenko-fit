@@ -20,7 +20,7 @@ body {
     @apply text-lg md:text-xl font-medium leading-[30px];
   }
   p {
-    @apply md:text-base;
+    @apply md:text-lg;
   }
 }
 
