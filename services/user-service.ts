@@ -1,4 +1,7 @@
+"use server";
+
 import { User } from "@/payload-types";
+import { cookies } from "next/headers";
 
 export interface UserResponse {
   user: User | null;
@@ -7,11 +10,22 @@ export interface UserResponse {
 
 export const getCurrentUser = async (): Promise<User | null> => {
   try {
-    const response = await fetch("/api/users/me", {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-      credentials: "include",
-    });
+    const cookieStore = await cookies();
+    const cookieHeader = cookieStore
+      .getAll()
+      .map((c) => `${c.name}=${c.value}`)
+      .join("; ");
+    const response = await fetch(
+      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/users/me`,
+      {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          cookie: cookieHeader,
+        },
+        credentials: "include",
+      }
+    );
 
     if (!response.ok) {
       console.error("Failed to fetch current user");

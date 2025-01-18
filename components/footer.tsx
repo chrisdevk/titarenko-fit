@@ -10,7 +10,19 @@ export const Footer = ({ locale }: { locale: string }) => {
 
   return (
     <footer className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-7 mt-24 lg:mt-[120px] pb-3">
-      <div className="flex flex-col items-center gap-y-3 w-full">
+      <div className="flex flex-col items-center gap-y-7 w-full">
+        <div className="flex items-center w-full justify-between">
+          <Link href="/" className="font-bold text-xl">
+            ALYA TITARENKO
+          </Link>
+          <Socials />
+        </div>
+        <Separator className="bg-indigo-custom" />
+      </div>
+      <div className="flex items-center w-full justify-between">
+        <p className="text-grey-custom text-xs md:text-sm">
+          ALYA TITARENKO © Copyright 2025. All rights reserved.
+        </p>
         <ul className="flex items-center gap-x-5">
           {navlinks.map((link) => (
             <li key={link.text}>
@@ -23,12 +35,7 @@ export const Footer = ({ locale }: { locale: string }) => {
             </li>
           ))}
         </ul>
-        <Separator className="bg-indigo-custom" />
       </div>
-      <Socials />
-      <p className="text-grey-custom text-xs md:text-lg">
-        ALYA TITARENKO © Copyright 2025. All rights reserved.
-      </p>
     </footer>
   );
 };

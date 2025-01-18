@@ -19,7 +19,7 @@ export const Socials = () => {
             href={social.link}
             className="hover:scale-110 duration-300 transition-all hidden md:block"
           >
-            {createElement(social.icon, { size: 35 }, null)}
+            {createElement(social.icon, { size: 24 }, null)}
           </a>
           <a href={social.link} className="md:hidden">
             {createElement(social.icon, { size: 24 }, null)}

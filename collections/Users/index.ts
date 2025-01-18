@@ -1,0 +1,97 @@
+import type { CollectionConfig } from "payload";
+import adminsAndUser from "./access/admins-and-user";
+import { anyone } from "./access/anyone";
+import { admins } from "./access/admins";
+import { checkRole } from "./access/check-role";
+import { ensureFirstUserIsAdmin } from "./hooks/ensure-first-user-is-admin";
+import { resolveDuplicatePurchases } from "./hooks/resolve-duplicate-purchases";
+import { createStripeCustomer } from "./hooks/create-stripe-customer";
+import { loginAfterCreate } from "./hooks/login-after-create";
+import { customerProxy } from "./endpoints/customer";
+
+export const Users: CollectionConfig = {
+  slug: "users",
+  admin: {
+    useAsTitle: "email",
+    defaultColumns: ["name", "email"],
+  },
+  auth: {
+    tokenExpiration: 28800,
+    cookies: {
+      sameSite: "None",
+      secure: true,
+      domain: process.env.COOKIE_DOMAIN,
+    },
+  },
+  access: {
+    read: adminsAndUser,
+    create: anyone,
+    update: adminsAndUser,
+    delete: admins,
+    admin: ({ req: { user } }) => checkRole(["admin"], user!),
+  },
+  hooks: {
+    beforeChange: [createStripeCustomer],
+    afterChange: [loginAfterCreate],
+  },
+  endpoints: [
+    {
+      handler: customerProxy,
+      method: "get",
+      path: "/:teamID/customer",
+    },
+    {
+      handler: customerProxy,
+      method: "patch",
+      path: "/:teamID/customer",
+    },
+  ],
+  fields: [
+    {
+      name: "name",
+      type: "text",
+    },
+    {
+      name: "roles",
+      type: "select",
+      hasMany: true,
+      defaultValue: ["customer"],
+      options: [
+        {
+          label: "admin",
+          value: "admin",
+        },
+        {
+          label: "customer",
+          value: "customer",
+        },
+      ],
+      hooks: {
+        beforeChange: [ensureFirstUserIsAdmin],
+      },
+      access: {
+        read: admins,
+        create: admins,
+        update: admins,
+      },
+    },
+    {
+      name: "purchases",
+      label: "Purchases",
+      type: "relationship",
+      relationTo: "products",
+      hasMany: true,
+      hooks: {
+        beforeChange: [resolveDuplicatePurchases],
+      },
+    },
+    {
+      name: "stripeCustomerID",
+      label: "Stripe Customer",
+      type: "text",
+      access: {
+        read: ({ req: { user } }) => checkRole(["admin"], user!),
+      },
+    },
+  ],
+};

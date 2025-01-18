@@ -3,6 +3,7 @@
     "About me": "About me",
     "Programs": "Programs",
     "Blogs": "Blogs",
+    "Contact": "Contact",
     "Dashboard": "Dashboard",
     "Log in": "Log in"
   },
@@ -90,6 +91,10 @@
           "review": "Wonderful! Wonderful! Yesterday I did exercises with an elastic band - this is a workout for the whole body - my mood immediately improved. Charm! Such great and detailed explanations! Such coordination. And all this in 15 minutes! I didn't think I'd find this - it's fabulous!"
         }
       ]
+    },
+    "form": {
+      "heading": "Questions? Let's solve them together!",
+      "paragraph": "Fill out the form, and I will gladly answer all your questions about training, programs or anything else related to fitness. Together we will find the best solution for you 😊"
     }
   },
   "AuthPage": {
@@ -112,5 +117,15 @@
   "BlogsPage": {
     "heading": "Movement towards your goals: health and fitness blog",
     "button": "Read more"
+  },
+  "ContactPage": {
+    "heading": "Questions? Let's solve them together!",
+    "paragraph": "Fill out the form, and I will gladly answer all your questions about training, programs or anything else related to fitness. Together we will find the best solution for you 😊",
+    "form": {
+      "name": "Name",
+      "email": "Email",
+      "message": "Message",
+      "button": "Send message"
+    }
   }
 }

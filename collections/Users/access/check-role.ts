@@ -1,8 +1,8 @@
-import type { User } from "../../payload-types";
+import { User } from "@/payload-types";
 
 export const checkRole = (
   allRoles: User["roles"] = [],
-  user: User
+  user?: User
 ): boolean => {
   if (user) {
     if (
@@ -11,9 +11,8 @@ export const checkRole = (
           return individualRole === role;
         });
       })
-    ) {
+    )
       return true;
-    }
   }
 
   return false;

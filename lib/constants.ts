@@ -27,6 +27,10 @@ export const navlinks = [
     text: "Blogs",
     path: "/blogs",
   },
+  {
+    text: "Contact",
+    path: "/contact",
+  },
 ];
 
 export const socialLinks = [
