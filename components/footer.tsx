@@ -11,15 +11,15 @@ export const Footer = ({ locale }: { locale: string }) => {
   return (
     <footer className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-7 mt-24 lg:mt-[120px] pb-3">
       <div className="flex flex-col items-center gap-y-7 w-full">
-        <div className="flex items-center w-full justify-between">
-          <Link href="/" className="font-bold text-xl">
+        <div className="flex flex-col md:flex-row gap-y-4 items-center w-full justify-between">
+          <Link href="/" className="font-bold text-xl hidden md:block">
             ALYA TITARENKO
           </Link>
           <Socials />
         </div>
         <Separator className="bg-indigo-custom" />
       </div>
-      <div className="flex items-center w-full justify-between">
+      <div className="flex flex-col-reverse md:flex-row gap-y-7 items-center w-full justify-between">
         <p className="text-grey-custom text-xs md:text-sm">
           ALYA TITARENKO © Copyright 2025. All rights reserved.
         </p>
