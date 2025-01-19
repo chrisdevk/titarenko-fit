@@ -12,7 +12,7 @@ export default async function ContactPage({
   const currentUser = await getCurrentUser();
 
   return (
-    <section className="w-11/12 mx-auto max-w-[1200px] flex gap-x-[86px] bg-baby-slate rounded-3xl py-8 px-3 md:px-10 mt-24 lg:mt-[120px]">
+    <section className="w-11/12 mx-auto max-w-[1440px] flex gap-x-[86px] bg-baby-slate rounded-3xl py-8 px-3 md:px-10 mt-24 lg:mt-[120px]">
       <div className="space-y-4 w-1/2">
         <h2>{t("heading")}</h2>
         <p>{t("paragraph")}</p>

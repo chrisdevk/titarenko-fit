@@ -124,8 +124,12 @@
     "form": {
       "name": "Name",
       "email": "Email",
+      "subject": "Subject",
+      "subject_placeholder": "Email subject",
       "message": "Message",
-      "button": "Send message"
+      "message_placeholder": "Your message",
+      "button": "Send message",
+      "success": "Message sent!"
     }
   }
 }

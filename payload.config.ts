@@ -7,6 +7,7 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { stripePlugin } from "@payloadcms/plugin-stripe";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 
 import { Media } from "./collections/Media";
 import { Blogs } from "./collections/Blogs";
@@ -38,6 +39,18 @@ export default buildConfig({
     },
   }),
   sharp,
+  email: nodemailerAdapter({
+    defaultFromAddress: process.env.SMTP_USER || "",
+    defaultFromName: "Titarenko Fit Website",
+    transportOptions: {
+      host: process.env.SMTP_HOST,
+      port: 587,
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    },
+  }),
   endpoints: [
     {
       handler: productsProxy,
