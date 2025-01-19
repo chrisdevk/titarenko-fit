@@ -80,10 +80,9 @@ export const customerProxy: PayloadHandler = async (req: PayloadRequest) => {
     if (req.method === "PATCH") {
       if (!req.body) throw new Error("No customer data provided");
       // TODO: lock down the spread `customer` object to only allow certain fields
-      // @ts-expect-error
       response = await stripe.customers.update(
         req.user.stripeCustomerID,
-        req.body
+        req.body as Stripe.CustomerUpdateParams
       );
     }
 
