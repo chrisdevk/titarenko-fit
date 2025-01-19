@@ -1,13 +1,13 @@
+import { checkRole } from "@/collections/Users/access/check-role";
+import type { Product } from "@/payload-types";
 import type { FieldAccess } from "payload";
-
-import { checkRole } from "@/collections/access/check-role";
 
 // we need to prevent access to documents behind a paywall
 // to do this we check the document against the user's list of active purchases
 export const checkUserPurchases: FieldAccess<Product> = async ({
   req: { user },
   doc,
-}) => {
+}): Promise<boolean> => {
   if (!user) {
     return false;
   }
@@ -16,10 +16,18 @@ export const checkUserPurchases: FieldAccess<Product> = async ({
     return true;
   }
 
-  if (doc && user && typeof user === "object" && user?.purchases?.length > 0) {
-    return user.purchases?.some(
-      (purchase) =>
-        doc.id === (typeof purchase === "object" ? purchase.id : purchase)
+  if (
+    doc &&
+    user &&
+    typeof user === "object" &&
+    Array.isArray(user?.purchases) &&
+    user.purchases.length > 0
+  ) {
+    return (
+      user.purchases?.some(
+        (purchase) =>
+          doc.id === (typeof purchase === "object" ? purchase.id : purchase)
+      ) ?? false
     );
   }
 
