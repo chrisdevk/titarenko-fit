@@ -1,4 +1,4 @@
-import { listItems } from "@/lib/constants";
+import { listItems } from "@/utils/constants";
 import Image from "next/image";
 import React from "react";
 

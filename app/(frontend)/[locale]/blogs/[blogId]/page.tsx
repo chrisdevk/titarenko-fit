@@ -1,5 +1,5 @@
 import { Blog } from "@/payload-types";
-import { getBlog } from "@/services/blog-service";
+import { getBlog } from "@/utils/data/blogs/get-blog";
 import { RichText } from "@payloadcms/richtext-lexical/react";
 
 export default async function BlogPage({

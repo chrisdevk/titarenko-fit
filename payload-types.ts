@@ -200,7 +200,7 @@ export interface Product {
   } | null;
   stripeProductID?: string | null;
   priceJSON?: string | null;
-  categories?: (number | null) | Category;
+  categories: number | Category;
   slug?: string | null;
   skipSync?: boolean | null;
   updatedAt: string;

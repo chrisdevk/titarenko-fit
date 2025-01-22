@@ -124,6 +124,8 @@ export const Products: CollectionConfig = {
       name: "categories",
       type: "relationship",
       relationTo: "categories",
+      required: true,
+      hasMany: false,
       admin: {
         position: "sidebar",
       },

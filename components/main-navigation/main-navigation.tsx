@@ -4,15 +4,15 @@ import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { LanguageSelect } from "./language-select";
 import { useQuery } from "@tanstack/react-query";
-import { getCurrentUser } from "@/services/user-service";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { navlinks } from "@/lib/constants";
+import { navlinks } from "@/utils/constants";
 import Hamburger from "./hamburger";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { MobileMenu } from "./mobile-menu";
+import { getCurrentUser } from "@/utils/data/get-current-user";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);

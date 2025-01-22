@@ -40,7 +40,7 @@ export const CategoryCard = ({
       <div className="flex flex-col justify-between h-1/2 px-4 pb-5">
         <div className="space-y-1">
           <h3 className="uppercase">{title}</h3>
-          <p className="text-grey-custom">{description}</p>
+          <p className="text-grey-custom leading-6">{description}</p>
         </div>
         <Link
           href={link}

@@ -5,7 +5,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { carouselItems } from "@/lib/constants";
+import { carouselItems } from "@/utils/constants";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 

@@ -1,8 +1,8 @@
-import { getBlogs } from "@/services/blog-service";
 import { BlogCard } from "./_components/blog-card";
 import { Blog } from "@/payload-types";
 import { getTranslations } from "next-intl/server";
 import { cn } from "@/lib/utils";
+import { getBlogs } from "@/utils/data/blogs/get-blogs";
 
 export default async function BlogsPage({
   params,

@@ -131,5 +131,10 @@
       "button": "Send message",
       "success": "Message sent!"
     }
+  },
+  "ProgramPage": {
+    "heading": "My programs",
+    "button": "Learn more",
+    "all": "All"
   }
 }

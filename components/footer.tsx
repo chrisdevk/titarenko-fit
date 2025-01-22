@@ -1,4 +1,4 @@
-import { navlinks } from "@/lib/constants";
+import { navlinks } from "@/utils/constants";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import React from "react";

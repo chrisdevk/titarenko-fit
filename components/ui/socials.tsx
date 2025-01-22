@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
-import { socialLinks } from "@/lib/constants";
+import { socialLinks } from "@/utils/constants";
 import { createElement } from "react";
 
 export const Socials = () => {

@@ -3,7 +3,7 @@ import { Separator } from "../ui/separator";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
 import { useTranslations } from "next-intl";
-import { navlinks } from "@/lib/constants";
+import { navlinks } from "@/utils/constants";
 import { LanguageSelect } from "./language-select";
 
 interface MobileMenuProps {

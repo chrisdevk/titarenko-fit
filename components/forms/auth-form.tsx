@@ -17,9 +17,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
-import { getCurrentUser } from "@/services/user-service";
-import { login, signup } from "@/services/auth-service";
 import { useTranslations } from "next-intl";
+import { signup } from "@/utils/actions/auth/sign-up";
+import { login } from "@/utils/actions/auth/login";
+import { getCurrentUser } from "@/utils/data/get-current-user";
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 type LoginFormValues = z.infer<typeof loginSchema>;

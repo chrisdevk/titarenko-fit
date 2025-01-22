@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { ProgramListTablet } from "./program-list-tablet";
-import { listItems } from "@/lib/constants";
+import { listItems } from "@/utils/constants";
 import { motion } from "motion/react";
 
 export const ProgramList = () => {

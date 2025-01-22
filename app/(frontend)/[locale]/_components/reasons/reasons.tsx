@@ -3,7 +3,7 @@
 import { ReasonsCard } from "./reasons-card";
 
 import { motion } from "motion/react";
-import { reasonsItems } from "@/lib/constants";
+import { reasonsItems } from "@/utils/constants";
 import { createElement } from "react";
 
 export const Reasons = () => {

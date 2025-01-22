@@ -1,8 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { logout } from "@/services/auth-service";
-import { getCurrentUser } from "@/services/user-service";
+import { logout } from "@/utils/actions/auth/logout";
+import { getCurrentUser } from "@/utils/data/get-current-user";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
