@@ -17,7 +17,11 @@ export default async function ProgramsPage({
   return (
     <main className="w-11/12 max-w-[1440px] mx-auto mt-36">
       <h1>{t("heading")}</h1>
-      <ProgramTabs programs={programs} categories={categories} />
+      <ProgramTabs
+        programs={programs}
+        categories={categories}
+        locale={locale}
+      />
     </main>
   );
 }

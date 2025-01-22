@@ -28,8 +28,14 @@ export const Products: CollectionConfig = {
     },
     {
       name: "product_description",
-      type: "richText",
+      type: "text",
       label: "Product Description",
+      localized: true,
+    },
+    {
+      name: "product_question",
+      type: "text",
+      label: "Product Question",
       localized: true,
     },
     {

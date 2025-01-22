@@ -91,21 +91,8 @@ export interface User {
 export interface Product {
   id: number;
   title: string;
-  product_description?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  product_description?: string | null;
+  product_question?: string | null;
   product_thumbnail?: (number | null) | Media;
   publishedOn?: string | null;
   'for whom'?: {
@@ -385,6 +372,7 @@ export interface BlogsSelect<T extends boolean = true> {
 export interface ProductsSelect<T extends boolean = true> {
   title?: T;
   product_description?: T;
+  product_question?: T;
   product_thumbnail?: T;
   publishedOn?: T;
   'for whom'?: T;

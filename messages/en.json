@@ -135,6 +135,7 @@
   "ProgramPage": {
     "heading": "My programs",
     "button": "Learn more",
-    "all": "All"
+    "all": "All",
+    "no-programs": "Programs not found or not yet created..."
   }
 }
