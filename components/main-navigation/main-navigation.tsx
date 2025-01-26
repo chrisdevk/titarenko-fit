@@ -44,12 +44,12 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
 
   return (
     <>
-      <header className="fixed top-0 left-0 w-full z-50 transition-shadow duration-300">
+      <header className="fixed left-0 top-0 z-50 w-full transition-shadow duration-300">
         {pathname === `/${locale}` && (
           <div
             className={cn(
-              "text-center text-white bg-turquoise-dark py-3.5 transition-all duration-300 absolute top-0 left-0 w-full hidden md:block",
-              scrolled && "scale-y-0 origin-top opacity-0"
+              "absolute left-0 top-0 hidden w-full bg-turquoise-dark py-3.5 text-center text-white transition-all duration-300 md:block",
+              scrolled && "origin-top scale-y-0 opacity-0",
             )}
           >
             {t("header-text")}
@@ -57,13 +57,13 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
         )}
         <div
           className={cn(
-            "bg-turquoise-light w-full py-4 transition-all duration-300",
+            "w-full bg-turquoise-light py-4 transition-all duration-300",
             pathname === `/${locale}` && !scrolled && "md:mt-12",
-            scrolled && "mt-0"
+            scrolled && "mt-0",
           )}
         >
-          <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1440px]">
-            <Link href="/" className="font-bold text-xl">
+          <div className="ml-auto flex w-2/3 max-w-[1440px] items-center justify-between md:mx-auto md:w-11/12">
+            <Link href="/" className="text-xl font-bold">
               ALYA TITARENKO
             </Link>
             <Hamburger
@@ -71,7 +71,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               setIsOpen={setIsOpen}
               setScrolled={setScrolled}
             />
-            <nav className="absolute left-1/2 -translate-x-1/2 hidden md:block">
+            <nav className="absolute left-1/2 hidden -translate-x-1/2 md:block">
               <ul className="flex items-center gap-4">
                 {navlinks.map((link) => (
                   <li key={link.text}>
@@ -80,7 +80,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 ))}
               </ul>
             </nav>
-            <div className="md:flex gap-x-4 items-center hidden">
+            <div className="hidden items-center gap-x-4 md:flex">
               <LanguageSelect locale={locale} />
               {currentUser ? (
                 <Link
@@ -107,7 +107,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
             initial={{ height: 0 }}
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
-            className="fixed top-0 left-0 z-40 bg-turquoise-light w-screen overflow-hidden shadow-md"
+            className="fixed left-0 top-0 z-40 w-screen overflow-hidden bg-turquoise-light shadow-md"
           >
             <motion.div
               initial={{ opacity: 0, y: -40 }}

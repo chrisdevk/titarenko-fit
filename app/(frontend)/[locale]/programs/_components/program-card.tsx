@@ -22,25 +22,25 @@ export const ProgramCard = ({
   const t = useTranslations("ProgramPage");
 
   return (
-    <div className="flex flex-col gap-y-4 h-[500px] rounded-3xl shadow-md bg-off-white w-full">
-      <div className="relative w-full h-[250px]">
+    <div className="flex h-[500px] w-full flex-col gap-y-4 rounded-3xl bg-off-white shadow-md">
+      <div className="relative h-[250px] w-full">
         <Image
           src={imgSrc}
           alt={title}
           fill
-          className="object-cover rounded-3xl"
+          className="rounded-3xl object-cover"
           quality={100}
         />
       </div>
-      <div className="flex flex-col justify-between h-1/2 px-4 pb-4">
+      <div className="flex h-1/2 flex-col justify-between px-4 pb-4">
         <h3>{title}</h3>
         <div className="space-y-2.5">
           {question && (
-            <p className="text-violet-600 font-semibold leading-snug">
+            <p className="font-semibold leading-snug text-violet-600">
               {question}
             </p>
           )}
-          <p className="text-grey-custom leading-snug">{description}</p>
+          <p className="leading-snug text-grey-custom">{description}</p>
         </div>
         <Link
           href={path}

@@ -34,8 +34,8 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
         className={cn(
-          "bg-off-white font-sans text-off-black overflow-x-hidden",
-          roboto.variable
+          "overflow-x-hidden bg-off-white font-sans text-off-black",
+          roboto.variable,
         )}
       >
         <Providers>

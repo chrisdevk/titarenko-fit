@@ -25,22 +25,22 @@ export const CategoryCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-y-5 rounded-3xl shadow-md w-full h-full bg-white relative z-10",
-        className
+        "relative z-10 flex h-full w-full flex-col gap-y-5 rounded-3xl bg-white shadow-md",
+        className,
       )}
     >
-      <div className="relative w-full h-[262px] overflow-hidden">
+      <div className="relative h-[262px] w-full overflow-hidden">
         <Image
           src={imgSrc}
           alt={title}
           fill
-          className="object-cover rounded-t-3xl"
+          className="rounded-t-3xl object-cover"
         />
       </div>
-      <div className="flex flex-col justify-between h-1/2 px-4 pb-5">
+      <div className="flex h-1/2 flex-col justify-between px-4 pb-5">
         <div className="space-y-1">
           <h3 className="uppercase">{title}</h3>
-          <p className="text-grey-custom leading-6">{description}</p>
+          <p className="leading-6 text-grey-custom">{description}</p>
         </div>
         <Link
           href={link}

@@ -15,7 +15,7 @@ export default async function ProgramsPage({
   const categories = await getCategories({ locale });
 
   return (
-    <main className="w-11/12 max-w-[1440px] mx-auto mt-36">
+    <main className="mx-auto mt-36 w-11/12 max-w-[1440px]">
       <h1>{t("heading")}</h1>
       <ProgramTabs
         programs={programs}

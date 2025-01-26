@@ -7,11 +7,11 @@ interface ReasonsCardProps {
 
 export const ReasonsCard = ({ icon, text }: ReasonsCardProps) => {
   return (
-    <div className="flex flex-col items-center justify-between w-full h-[168px] rounded-3xl py-6 px-8 before:absolute before:inset-0 before:rounded-3xl before:scale-100 hover:before:scale-105 before:bg-white/50 before:transition-transform before:duration-200 before:shadow-md relative">
-      <div className="bg-violet-700 size-11 rounded-lg flex items-center justify-center relative z-10 p-1">
+    <div className="relative flex h-[168px] w-full flex-col items-center justify-between rounded-3xl px-8 py-6 before:absolute before:inset-0 before:scale-100 before:rounded-3xl before:bg-white/50 before:shadow-md before:transition-transform before:duration-200 hover:before:scale-105">
+      <div className="relative z-10 flex size-11 items-center justify-center rounded-lg bg-violet-700 p-1">
         {icon}
       </div>
-      <p className="text-lg text-grey-custom text-center leading-tight relative z-10">
+      <p className="relative z-10 text-center text-lg leading-tight text-grey-custom">
         {text}
       </p>
     </div>

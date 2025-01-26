@@ -13,14 +13,14 @@ export default async function BlogPage({
 
   if (!blog) {
     return (
-      <main className="w-11/12 max-w-3xl mx-auto mt-36">
+      <main className="mx-auto mt-36 w-11/12 max-w-3xl">
         <p>Blog not found or not available in the current locale</p>
       </main>
     );
   }
 
   return (
-    <main className="w-11/12 max-w-3xl mx-auto mt-36">
+    <main className="mx-auto mt-36 w-11/12 max-w-3xl">
       <RichText data={blog.body} className="space-y-4" />
     </main>
   );

@@ -9,13 +9,13 @@ export const Footer = ({ locale }: { locale: string }) => {
   const t = useTranslations("MainNavigation");
 
   return (
-    <footer className="bg-turquoise-dark rounded-t-3xl py-6">
-      <div className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-7">
-        <div className="flex flex-col items-center gap-y-7 w-full">
-          <div className="flex flex-col md:flex-row gap-y-4 items-center w-full justify-between">
+    <footer className="rounded-t-3xl bg-turquoise-dark py-6">
+      <div className="mx-auto flex w-11/12 max-w-[1440px] flex-col items-center gap-y-7">
+        <div className="flex w-full flex-col items-center gap-y-7">
+          <div className="flex w-full flex-col items-center justify-between gap-y-4 md:flex-row">
             <Link
               href="/"
-              className="font-bold text-xl hidden md:block text-white"
+              className="hidden text-xl font-bold text-white md:block"
             >
               ALYA TITARENKO
             </Link>
@@ -23,8 +23,8 @@ export const Footer = ({ locale }: { locale: string }) => {
           </div>
           <Separator className="bg-white" />
         </div>
-        <div className="flex flex-col-reverse md:flex-row gap-y-7 items-center w-full justify-between">
-          <p className="text-white text-xs md:text-sm">
+        <div className="flex w-full flex-col-reverse items-center justify-between gap-y-7 md:flex-row">
+          <p className="text-xs text-white md:text-sm">
             ALYA TITARENKO © Copyright 2025. All rights reserved.
           </p>
           <ul className="flex items-center gap-x-5 text-white">
@@ -32,7 +32,7 @@ export const Footer = ({ locale }: { locale: string }) => {
               <li key={link.text}>
                 <Link
                   href={`/${locale}${link.path}`}
-                  className="transition-all hover:bg-baby-slate p-1 rounded-sm"
+                  className="rounded-sm p-1 transition-all hover:bg-baby-slate"
                 >
                   {t(link.text)}
                 </Link>

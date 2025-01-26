@@ -92,7 +92,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
                   <FormControl>
                     <Input
                       placeholder="E.g. John Smith"
-                      className="px-5 py-4 h-fit bg-transparent border"
+                      className="h-fit border bg-transparent px-5 py-4"
                       {...field}
                     />
                   </FormControl>
@@ -110,7 +110,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
                 <FormControl>
                   <Input
                     placeholder="email@example.com"
-                    className="px-5 py-4 h-fit bg-transparent border"
+                    className="h-fit border bg-transparent px-5 py-4"
                     {...field}
                   />
                 </FormControl>
@@ -129,7 +129,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
                 <Input
                   type="password"
                   placeholder="Password"
-                  className="px-5 py-4 h-fit bg-transparent border"
+                  className="h-fit border bg-transparent px-5 py-4"
                   {...field}
                 />
               </FormControl>
@@ -137,7 +137,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
             </FormItem>
           )}
         />
-        <Button type="submit" className="w-full text-xl py-3 h-fit">
+        <Button type="submit" className="h-fit w-full py-3 text-xl">
           {isSignup ? t("signup.button") : t("login.button")}
         </Button>
       </form>

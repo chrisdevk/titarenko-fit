@@ -26,21 +26,21 @@ export default async function ProgramPage({
   }
 
   return (
-    <main className="w-11/12 max-w-[1440px] mx-auto mt-36 flex justify-between">
-      <div className="flex flex-col gap-y-4 w-2/3">
+    <main className="mx-auto mt-36 flex w-11/12 max-w-[1440px] justify-between">
+      <div className="flex w-2/3 flex-col gap-y-4">
         <h1>{product?.title}</h1>
-        <div className="relative w-full h-[440px]">
+        <div className="relative h-[440px] w-full">
           {imgSrc ? (
             <Image
               src={imgSrc}
               alt={product.title || "Product image"}
               fill
-              className="object-cover rounded-3xl object-top"
+              className="rounded-3xl object-cover object-top"
               quality={100}
               priority
             />
           ) : (
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center rounded-3xl">
+            <div className="flex h-full w-full items-center justify-center rounded-3xl bg-gray-200">
               <p>No image available</p>
             </div>
           )}

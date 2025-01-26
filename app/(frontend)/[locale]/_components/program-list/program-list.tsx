@@ -7,8 +7,8 @@ import { motion } from "motion/react";
 
 export const ProgramList = () => {
   return (
-    <section className="w-11/12 max-w-[1440px] mx-auto mt-16 space-y-2">
-      <div className="flex-col lg:flex-wrap lg:flex-row justify-center gap-4 w-full flex md:hidden lg:flex">
+    <section className="mx-auto mt-16 w-11/12 max-w-[1440px] space-y-2">
+      <div className="flex w-full flex-col justify-center gap-4 md:hidden lg:flex lg:flex-row lg:flex-wrap">
         {listItems.map((item, index) => (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}

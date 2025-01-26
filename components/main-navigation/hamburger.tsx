@@ -26,14 +26,14 @@ const Hamburger = ({ isOpen, setIsOpen, setScrolled }: HamburgerProps) => {
       <div
         className={cn(
           hamburgerLine,
-          isOpen && "origin-center rotate-45 translate-y-2"
+          isOpen && "origin-center translate-y-2 rotate-45",
         )}
       />
       <div className={cn(hamburgerLine, isOpen && "opacity-0")} />
       <div
         className={cn(
           hamburgerLine,
-          isOpen && "origin-center -translate-y-3 -rotate-45"
+          isOpen && "origin-center -translate-y-3 -rotate-45",
         )}
       />
     </button>

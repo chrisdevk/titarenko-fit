@@ -57,7 +57,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="bg-white rounded-3xl py-6 px-4 md:p-8 md:w-1/2 space-y-4"
+        className="space-y-4 rounded-3xl bg-white px-4 py-6 md:w-1/2 md:p-8"
       >
         <FormField
           control={form.control}
@@ -68,7 +68,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
               <FormControl>
                 <Input
                   placeholder="E.g. John Smith"
-                  className="px-5 py-3 h-fit bg-transparent border border-neutral-200"
+                  className="h-fit border border-neutral-200 bg-transparent px-5 py-3"
                   {...field}
                 />
               </FormControl>
@@ -85,7 +85,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
               <FormControl>
                 <Input
                   placeholder="example@email.com"
-                  className="px-5 py-3 h-fit bg-transparent border border-neutral-200"
+                  className="h-fit border border-neutral-200 bg-transparent px-5 py-3"
                   {...field}
                 />
               </FormControl>
@@ -102,7 +102,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
               <FormControl>
                 <Input
                   placeholder={t("subject_placeholder")}
-                  className="px-5 py-3 h-fit bg-transparent border rounded-3xl border-neutral-200"
+                  className="h-fit rounded-3xl border border-neutral-200 bg-transparent px-5 py-3"
                   {...field}
                 />
               </FormControl>
@@ -119,7 +119,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
               <FormControl>
                 <Textarea
                   placeholder={t("message_placeholder")}
-                  className="px-5 py-3 h-fit bg-transparent border rounded-3xl border-neutral-200"
+                  className="h-fit rounded-3xl border border-neutral-200 bg-transparent px-5 py-3"
                   {...field}
                 />
               </FormControl>
@@ -128,17 +128,17 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
           )}
         />
         {isSuccess ? (
-          <div className="flex items-center justify-center gap-x-2 bg-baby-slate rounded-3xl py-2">
+          <div className="flex items-center justify-center gap-x-2 rounded-3xl bg-baby-slate py-2">
             <p>{t("success")}</p>
-            <CircleCheck className="text-indigo-custom size-5" />
+            <CircleCheck className="size-5 text-indigo-custom" />
           </div>
         ) : (
-          <Button type="submit" disabled={isLoading} className="w-full z-10">
+          <Button type="submit" disabled={isLoading} className="z-10 w-full">
             {isLoading ? (
               <>
                 <svg
                   aria-hidden="true"
-                  className="w-8 h-8 text-gray-200 animate-spin dark:text-gray-600 fill-blue-600"
+                  className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600"
                   viewBox="0 0 100 101"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"

@@ -14,16 +14,16 @@ export const BlogCard = ({ title, imgSrc, path }: BlogCardProps) => {
   const t = useTranslations();
 
   return (
-    <div className="flex flex-col gap-y-4 rounded-3xl shadow-md bg-white w-[31%]">
-      <div className="relative w-full h-[295px]">
+    <div className="flex w-[31%] flex-col gap-y-4 rounded-3xl bg-white shadow-md">
+      <div className="relative h-[295px] w-full">
         <Image
           src={imgSrc}
           alt={title}
           fill
-          className="object-cover rounded-3xl"
+          className="rounded-3xl object-cover"
         />
       </div>
-      <div className="px-4 pb-4 space-y-5">
+      <div className="space-y-5 px-4 pb-4">
         <h3>{title}</h3>
         <Link
           href={path}

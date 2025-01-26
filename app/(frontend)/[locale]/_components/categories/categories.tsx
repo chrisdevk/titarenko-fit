@@ -18,10 +18,10 @@ export const Categories = () => {
 
   return (
     <article className="bg-off-white">
-      <div className="bg-purple-custom rounded-t-3xl py-16 relative">
-        <div className="w-11/12 max-w-[1440px] mx-auto space-y-10">
+      <div className="relative rounded-t-3xl bg-purple-custom py-16">
+        <div className="mx-auto w-11/12 max-w-[1440px] space-y-10">
           <div className="space-y-3">
-            <span className="bg-white text-off-black rounded-3xl px-3 py-2">
+            <span className="rounded-3xl bg-white px-3 py-2 text-off-black">
               {t("span")}
             </span>
             <h2 className="text-white">{t("heading")}</h2>
@@ -41,7 +41,7 @@ export const Categories = () => {
                   (key === "thematic_programs" || key === "intensives") &&
                     "md:w-[49%] lg:w-[32%] xl:w-[29%] 2xl:w-[27%]",
                   (key === "marathons" || key === "zone_training") &&
-                    "md:w-[49%] lg:w-[32%] xl:w-[39%] 2xl:w-5/12"
+                    "md:w-[49%] lg:w-[32%] xl:w-[39%] 2xl:w-5/12",
                 )}
               >
                 <CategoryCard
@@ -55,7 +55,7 @@ export const Categories = () => {
             ))}
           </section>
         </div>
-        <div className="absolute top-0 right-0 w-[720px] h-[332px]">
+        <div className="absolute right-0 top-0 h-[332px] w-[720px]">
           <Image
             src="/images/icons/lines-turquoise.svg"
             alt="turquoise lines"

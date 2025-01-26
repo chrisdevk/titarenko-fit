@@ -25,9 +25,9 @@ export const PurchaseCard = ({
   const formattedPrice = `$${(price[0].unit_amount! / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`;
 
   return (
-    <div className="bg-off-white shadow-md rounded-3xl py-5 px-6 space-y-10">
+    <div className="space-y-10 rounded-3xl bg-off-white px-6 py-5 shadow-md">
       <h2>{t("details")}</h2>
-      <p className="text-grey-custom text-xl">{description}</p>
+      <p className="text-xl text-grey-custom">{description}</p>
       <ul className="space-y-4 text-lg font-medium">
         <li className="flex items-center gap-x-3.5">
           <Clock4 className="text-indigo-custom" />
@@ -46,7 +46,7 @@ export const PurchaseCard = ({
         </li>
       </ul>
       <h2 className="font-semibold">{formattedPrice}</h2>
-      <Button type="button" className="w-full z-10" size="lg">
+      <Button type="button" className="z-10 w-full" size="lg">
         {t("buy course")}
       </Button>
     </div>

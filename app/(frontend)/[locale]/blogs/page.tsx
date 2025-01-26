@@ -16,19 +16,19 @@ export default async function BlogsPage({
 
   if (!blogs) {
     return (
-      <main className="w-11/12 max-w-[1440px] mx-auto mt-36">
+      <main className="mx-auto mt-36 w-11/12 max-w-[1440px]">
         <h1 className="normal-case">{t("heading")}</h1>
         <p>No blogs found...</p>
       </main>
     );
   } else {
     return (
-      <main className="w-11/12 max-w-[1440px] mx-auto mt-36">
-        <h1 className="normal-case max-w-[900px]">{t("heading")}</h1>
+      <main className="mx-auto mt-36 w-11/12 max-w-[1440px]">
+        <h1 className="max-w-[900px] normal-case">{t("heading")}</h1>
         <article
           className={cn(
-            "flex flex-wrap justify-between gap-y-7 mt-10",
-            blogs.length < 3 && "gap-x-7 justify-normal"
+            "mt-10 flex flex-wrap justify-between gap-y-7",
+            blogs.length < 3 && "justify-normal gap-x-7",
           )}
         >
           {blogs.map((blog: Blog) => {

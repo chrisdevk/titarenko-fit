@@ -42,9 +42,9 @@ export const Hero = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="mt-20 h-fit py-9 px-2.5 md:py-9 md:px-0 md:pt-20 lg:mt-0 lg:px-8 lg:pt-40 lg:h-screen lg:pb-8 relative bg-[#DCDCDC] md:bg-transparent lg:flex lg:items-center">
-      <div className="w-11/12 max-w-[1440px] mx-auto flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24">
-        <div className="flex flex-col gap-y-6 md:gap-y-10 max-w-[692px]">
+    <section className="relative mt-20 h-fit bg-[#DCDCDC] px-2.5 py-9 md:bg-transparent md:px-0 md:py-9 md:pt-20 lg:mt-0 lg:flex lg:h-screen lg:items-center lg:px-8 lg:pb-8 lg:pt-40">
+      <div className="mx-auto flex w-11/12 max-w-[1440px] flex-col gap-y-20 md:gap-y-44 lg:gap-y-24">
+        <div className="flex max-w-[692px] flex-col gap-y-6 md:gap-y-10">
           <div className="flex flex-wrap justify-center md:justify-start">
             {heading.map((current, i) => (
               <motion.h1
@@ -54,7 +54,7 @@ export const Hero = () => {
                 initial="initial"
                 animate={isInView ? "animate" : ""}
                 custom={i}
-                className={cn("text-center md:text-start pr-2 text-off-black")}
+                className={cn("pr-2 text-center text-off-black md:text-start")}
               >
                 {current == "" ? <span>&nbsp;</span> : current}
               </motion.h1>
@@ -65,7 +65,7 @@ export const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-lg md:text-xl max-w-[480px] text-center md:text-start"
+            className="max-w-[480px] text-center text-lg md:text-start md:text-xl"
           >
             {t("paragraph")}
           </motion.p>
@@ -74,7 +74,7 @@ export const Hero = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.3 }}
-            className="w-fit mx-auto md:mx-0"
+            className="mx-auto w-fit md:mx-0"
           >
             <Link
               href="/"
@@ -89,24 +89,24 @@ export const Hero = () => {
           <Socials />
         </div>
       </div>
-      <div className="absolute left-0 top-0 size-full -z-10 hidden lg:block">
+      <div className="absolute left-0 top-0 -z-10 hidden size-full lg:block">
         <Image
           src="/images/hero-bg.webp"
           alt="Hero image"
           fill
           quality={100}
           priority
-          className="object-cover overflow-hidden"
+          className="overflow-hidden object-cover"
         />
       </div>
-      <div className="absolute left-0 top-0 size-full -z-10 hidden md:block lg:hidden">
+      <div className="absolute left-0 top-0 -z-10 hidden size-full md:block lg:hidden">
         <Image
           src="/images/hero-tablet.png"
           alt="Hero image"
           fill
           quality={100}
           priority
-          className="object-cover overflow-hidden rounded-3xl"
+          className="overflow-hidden rounded-3xl object-cover"
         />
       </div>
     </section>

@@ -6,7 +6,7 @@ import { createElement } from "react";
 
 export const Socials = ({ isFooter }: { isFooter?: boolean }) => {
   return (
-    <ul className="flex items-center gap-x-8 md:gap-x-10 gap-y-8">
+    <ul className="flex items-center gap-x-8 gap-y-8 md:gap-x-10">
       {socialLinks.map((social, index) => (
         <motion.li
           initial={{ opacity: 0, scale: 0.9 }}
@@ -17,7 +17,7 @@ export const Socials = ({ isFooter }: { isFooter?: boolean }) => {
         >
           <a
             href={social.link}
-            className="hover:scale-110 duration-300 transition-all hidden md:block"
+            className="hidden transition-all duration-300 hover:scale-110 md:block"
           >
             {createElement(
               social.icon,
@@ -25,14 +25,14 @@ export const Socials = ({ isFooter }: { isFooter?: boolean }) => {
                 size: isFooter ? 24 : 32,
                 color: isFooter ? "white" : "#32324D",
               },
-              null
+              null,
             )}
           </a>
           <a href={social.link} className="md:hidden">
             {createElement(
               social.icon,
               { size: 24, color: isFooter ? "white" : "#32324D" },
-              null
+              null,
             )}
           </a>
         </motion.li>

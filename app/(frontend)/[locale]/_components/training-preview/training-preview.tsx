@@ -7,12 +7,12 @@ export const TrainingPreview = () => {
 
   return (
     <article className="bg-turquoise-light">
-      <section className="bg-off-white rounded-t-3xl relative">
-        <div className="flex flex-col gap-y-10 py-16 w-11/12 max-w-[1440px] mx-auto z-10 relative">
-          <h2 className="uppercase text-center">{t("heading")}</h2>
+      <section className="relative rounded-t-3xl bg-off-white">
+        <div className="relative z-10 mx-auto flex w-11/12 max-w-[1440px] flex-col gap-y-10 py-16">
+          <h2 className="text-center uppercase">{t("heading")}</h2>
           <Videos />
         </div>
-        <div className="absolute w-[244px] h-[184px] top-0 left-0">
+        <div className="absolute left-0 top-0 h-[184px] w-[244px]">
           <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
         </div>
       </section>

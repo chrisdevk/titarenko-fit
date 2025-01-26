@@ -12,7 +12,7 @@ export default function Home() {
       <Hero />
       <Awards />
       <article className="bg-turquoise-dark">
-        <section className="bg-turquoise-light rounded-t-3xl py-16">
+        <section className="rounded-t-3xl bg-turquoise-light py-16">
           <Reasons />
           <ProgramList />
         </section>

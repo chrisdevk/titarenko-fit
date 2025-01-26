@@ -7,10 +7,10 @@ export const Testimonials = () => {
 
   return (
     <article className="bg-purple-custom">
-      <section className="bg-off-white rounded-t-3xl py-16">
-        <div className="w-11/12 max-w-[1440px] mx-auto">
-          <div className="space-y-3 max-w-[550px]">
-            <span className="bg-purple-custom text-white rounded-3xl px-3 py-2">
+      <section className="rounded-t-3xl bg-off-white py-16">
+        <div className="mx-auto w-11/12 max-w-[1440px]">
+          <div className="max-w-[550px] space-y-3">
+            <span className="rounded-3xl bg-purple-custom px-3 py-2 text-white">
               {t("span")}
             </span>
             <h2>{t("heading")}</h2>

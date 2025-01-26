@@ -25,7 +25,7 @@ export default function DashboardPage() {
   });
 
   return (
-    <div className="flex justify-center mt-20">
+    <div className="mt-20 flex justify-center">
       <h1>{currentUser?.name}</h1>
       <Button type="button" onClick={() => logoutMutation.mutate()}>
         Log out
