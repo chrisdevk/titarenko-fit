@@ -16,9 +16,9 @@ import { contactSchema } from "@/lib/zod-schemas";
 import { Textarea } from "../ui/textarea";
 import { Button } from "../ui/button";
 import { z } from "zod";
-import { sendEmail } from "@/services/email-service";
 import { useState } from "react";
 import { CircleCheck } from "lucide-react";
+import { sendEmail } from "@/utils/actions/send-email";
 
 interface ContactFormProps {
   user_name: string | null | undefined;

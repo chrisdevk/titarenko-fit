@@ -1,5 +1,5 @@
 import { ContactForm } from "@/components/forms/contact-form";
-import { getCurrentUser } from "@/services/user-service";
+import { getCurrentUser } from "@/utils/data/get-current-user";
 import { getTranslations } from "next-intl/server";
 
 export default async function ContactPage({
