@@ -30,14 +30,20 @@ export default async function ProgramPage({
       <div className="flex flex-col gap-y-4 w-2/3">
         <h1>{product?.title}</h1>
         <div className="relative w-full h-[440px]">
-          <Image
-            src={imgSrc!}
-            alt={product?.title!}
-            fill
-            className="object-cover rounded-3xl object-top"
-            quality={100}
-            priority
-          />
+          {imgSrc ? (
+            <Image
+              src={imgSrc}
+              alt={product.title || "Product image"}
+              fill
+              className="object-cover rounded-3xl object-top"
+              quality={100}
+              priority
+            />
+          ) : (
+            <div className="w-full h-full bg-gray-200 flex items-center justify-center rounded-3xl">
+              <p>No image available</p>
+            </div>
+          )}
         </div>
       </div>
       <div className="w-1/4">
