@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 @layer base {
   :root {
     --radius: 0.5rem;
@@ -14,7 +10,7 @@ body {
     @apply uppercase font-semibold text-[2rem] md:text-5xl lg:text-[4rem] leading-tight;
   }
   h2 {
-    @apply text-xl md:text-2xl lg:text-3xl font-medium;
+    @apply text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium;
   }
   h3 {
     @apply text-lg md:text-xl font-medium leading-[30px];

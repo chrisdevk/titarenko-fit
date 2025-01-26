@@ -22,7 +22,7 @@ export const ProgramCard = ({
   const t = useTranslations("ProgramPage");
 
   return (
-    <div className="flex flex-col gap-y-4 h-[500px] rounded-3xl shadow-md">
+    <div className="flex flex-col gap-y-4 h-[500px] rounded-3xl shadow-md bg-off-white w-full">
       <div className="relative w-full h-[250px]">
         <Image
           src={imgSrc}

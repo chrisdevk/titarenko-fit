@@ -8,7 +8,7 @@ import { createElement } from "react";
 
 export const Reasons = () => {
   return (
-    <article className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 py-6 md:py-16 px-3 md:px-12 2xl:px-32 mt-24 lg:mt-[120px] bg-baby-slate rounded-3xl">
+    <div className="w-11/12 max-w-[1440px] mx-auto flex flex-col items-center gap-y-10 px-3 md:px-12 2xl:px-32">
       <motion.h3
         initial={{ y: -20, opacity: 0 }}
         whileInView={{ y: 0, opacity: 1 }}
@@ -19,7 +19,7 @@ export const Reasons = () => {
         Мои программы направления Женский Фитнес онлайн я создала для нас,
         прекрасных женщин! ПОЧЕМУ?
       </motion.h3>
-      <section className="flex flex-wrap w-full justify-between gap-10">
+      <div className="flex flex-wrap w-full justify-between gap-10">
         {reasonsItems.map((item, index) => (
           <motion.div
             key={index}
@@ -39,7 +39,7 @@ export const Reasons = () => {
             />
           </motion.div>
         ))}
-      </section>
-    </article>
+      </div>
+    </div>
   );
 };

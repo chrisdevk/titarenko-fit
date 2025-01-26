@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 import { socialLinks } from "@/utils/constants";
 import { createElement } from "react";
 
-export const Socials = () => {
+export const Socials = ({ isFooter }: { isFooter?: boolean }) => {
   return (
     <ul className="flex items-center gap-x-8 md:gap-x-10 gap-y-8">
       {socialLinks.map((social, index) => (
@@ -19,10 +19,21 @@ export const Socials = () => {
             href={social.link}
             className="hover:scale-110 duration-300 transition-all hidden md:block"
           >
-            {createElement(social.icon, { size: 24 }, null)}
+            {createElement(
+              social.icon,
+              {
+                size: isFooter ? 24 : 32,
+                color: isFooter ? "white" : "#32324D",
+              },
+              null
+            )}
           </a>
           <a href={social.link} className="md:hidden">
-            {createElement(social.icon, { size: 24 }, null)}
+            {createElement(
+              social.icon,
+              { size: 24, color: isFooter ? "white" : "#32324D" },
+              null
+            )}
           </a>
         </motion.li>
       ))}

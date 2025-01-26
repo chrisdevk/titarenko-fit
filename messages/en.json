@@ -5,7 +5,8 @@
     "Blogs": "Blogs",
     "Contact": "Contact",
     "Dashboard": "Dashboard",
-    "Log in": "Log in"
+    "Log in": "Log in",
+    "header-text": "The best training in the comfort of your home."
   },
   "HomePage": {
     "hero": {
@@ -14,12 +15,14 @@
       "button": "Test training"
     },
     "awards": {
-      "heading": "Author of programs",
-      "heading-span": "Alevtyna titarenko",
-      "achievements": "Achievements & Awards",
-      "achievements-paragraph": "2 x Overall World & European Champion in Fitness • 2 x Overall Arnold Classic Champion in Fitness • Athlete PRO Fitness • 2 x World & European Champion is Sports Acrobatics • World Games Champion (Fitness) • Honored Master of Sports of Ukraine (Bodybuilding) • International Master of Sports in Sports Acrobatics • “Medal for courage “ awarded by President of Ukraine",
-      "experience": "Experience",
-      "experience-paragraph": "Artist of Cirque Du SOLEIL (22 years) • NASM – National Academy of Sports Medicine . Specialist • Stunt Actress . SAG Award • Author of Fitness programs based on over 30 years of education/ trainings competitions and show business • Mother",
+      "heading": "Author of programs • Alevtyna titarenko",
+      "achievements": {
+        "achievement_one": "2 x Overall World & European Champion in Fitness",
+        "achievement_two": "2 x Overall Arnold Classic Champion in Fitness",
+        "achievement_three": "Artist of Cirque Du SOLEIL (22 years)",
+        "achievement_four": "Stunt Actress SAG Award"
+      },
+
       "button": "Learn more"
     },
     "reasons": {
@@ -30,6 +33,9 @@
       "zone_training": "All programs are different in time and content",
       "intensives": "Trainer's room in your house with full body training",
       "programs_of_the_day": "We train in quality and safety"
+    },
+    "training-preview": {
+      "heading": "Course samples"
     },
     "categories": {
       "heading": "I offer you 6 training categories",
@@ -137,5 +143,13 @@
     "button": "Learn more",
     "all": "All",
     "no-programs": "Programs not found or not yet created..."
+  },
+  "SingleProgramPage": {
+    "details": "Details",
+    "duration": "Duration",
+    "intensity": "Intensity",
+    "fitness level": "Fitness level",
+    "buy course": "Buy course",
+    "month": "month"
   }
 }

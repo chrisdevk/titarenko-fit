@@ -20,10 +20,10 @@ export const TestimonialCarousel = () => {
             key={person.name}
             className="basis-full md:basis-1/2 lg:basis-1/3 pl-3 md:pl-4"
           >
-            <div className="bg-[#F6F3FE] rounded-3xl px-7 md:px-6 pb-5 pt-8 lg:pb-10 lg:pt-20 flex flex-col gap-y-2 lg:gap-y-3 relative h-full">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[202px] h-[29px]">
+            <div className="bg-white rounded-3xl px-7 md:px-6 pb-5 pt-8 lg:pb-10 lg:pt-20 flex flex-col gap-y-2 lg:gap-y-3 relative h-full">
+              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[194px] h-[29px]">
                 <Image
-                  src="/images/icons/card-decoration-mobile.svg"
+                  src="/images/icons/card-decoration.svg"
                   alt="card decoration"
                   fill
                 />

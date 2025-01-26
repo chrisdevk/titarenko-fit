@@ -103,119 +103,117 @@ export const ProgramTabs = ({
           </TabsTrigger>
         ))}
       </TabsList>
-      <TabsContent
-        value="all"
-        className="mt-10 bg-baby-slate rounded-3xl px-7 py-4"
-      >
-        <article className="space-y-5">
-          <h2 className="flex items-center gap-x-2">
-            {t("all")}{" "}
-            <span className="text-xl text-indigo-custom bg-off-white rounded-3xl px-1.5 w-11 text-center">
-              {programs.length}
-            </span>
-          </h2>
-          <section className="flex flex-wrap justify-between gap-y-5">
-            {productRows.map((row, rowIndex) => (
-              <div
-                key={rowIndex}
-                className={`flex flex-wrap gap-y-5 ${
-                  row.length === 3 ? "justify-between" : "justify-start gap-x-5"
-                }`}
-              >
-                {row.map((program, index) => {
-                  const imgSrc =
-                    typeof program.product_thumbnail === "object" &&
-                    program.product_thumbnail?.url
-                      ? program.product_thumbnail.url
-                      : null;
-
-                  return (
-                    <motion.div
-                      key={program.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.3, delay: index * 0.1 }}
-                      className="w-[32.5%]"
-                    >
-                      <ProgramCard
-                        title={program.title}
-                        question={program.product_question}
-                        description={program.product_description!}
-                        imgSrc={imgSrc!}
-                        path={`${locale}/programs/${program.slug}`}
-                      />
-                    </motion.div>
-                  );
-                })}
-              </div>
-            ))}
-          </section>
-        </article>
-      </TabsContent>
-      {currentCategory !== "all" && (
-        <TabsContent
-          value={currentCategory}
-          className="mt-10 bg-baby-slate rounded-3xl px-7 py-4"
-        >
+      <div className="mt-10 bg-baby-slate min-h-[500px] rounded-3xl px-7 py-4">
+        <TabsContent value="all">
           <article className="space-y-5">
             <h2 className="flex items-center gap-x-2">
-              {currentCategory}
+              {t("all")}{" "}
               <span className="text-xl text-indigo-custom bg-off-white rounded-3xl px-1.5 w-11 text-center">
-                {filteredPrograms.length}
+                {programs.length}
               </span>
             </h2>
-            <AnimatePresence mode="wait">
-              {filteredPrograms.length === 0 ? (
-                <p className="min-h-[500px]">{t("no-programs")}</p>
-              ) : (
-                <section className="gap-y-5">
-                  {filteredProductsRows.map((row, rowIndex) => (
-                    <div
-                      key={rowIndex}
-                      className={`flex flex-wrap gap-y-5 ${
-                        row.length === 3
-                          ? "justify-between"
-                          : "justify-start gap-x-5"
-                      }`}
-                    >
-                      {row.map((program, index) => {
-                        const imgSrc =
-                          typeof program.product_thumbnail === "object" &&
-                          program.product_thumbnail?.url
-                            ? program.product_thumbnail.url
-                            : null;
+            <section className="flex flex-wrap justify-between gap-y-5">
+              {productRows.map((row, rowIndex) => (
+                <div
+                  key={rowIndex}
+                  className={`flex flex-wrap gap-y-5 w-full ${
+                    row.length === 3
+                      ? "justify-between"
+                      : "justify-start gap-x-5"
+                  }`}
+                >
+                  {row.map((program, index) => {
+                    const imgSrc =
+                      typeof program.product_thumbnail === "object" &&
+                      program.product_thumbnail?.url
+                        ? program.product_thumbnail.url
+                        : null;
 
-                        return (
-                          <motion.div
-                            key={program.id}
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true }}
-                            transition={{
-                              duration: 0.3,
-                              delay: index * 0.1,
-                            }}
-                            className="w-[32.5%]"
-                          >
-                            <ProgramCard
-                              title={program.title}
-                              question={program.product_question}
-                              description={program.product_description!}
-                              imgSrc={imgSrc!}
-                              path={`${locale}/programs/${program.slug}`}
-                            />
-                          </motion.div>
-                        );
-                      })}
-                    </div>
-                  ))}
-                </section>
-              )}
-            </AnimatePresence>
+                    return (
+                      <motion.div
+                        key={program.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.3, delay: index * 0.1 }}
+                        className="w-[32.5%]"
+                      >
+                        <ProgramCard
+                          title={program.title}
+                          question={program.product_question}
+                          description={program.product_description!}
+                          imgSrc={imgSrc!}
+                          path={`/${locale}/programs/${program.id}`}
+                        />
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              ))}
+            </section>
           </article>
         </TabsContent>
-      )}
+        {currentCategory !== "all" && (
+          <TabsContent value={currentCategory}>
+            <article className="space-y-5">
+              <h2 className="flex items-center gap-x-2">
+                {currentCategory}
+                <span className="text-xl text-indigo-custom bg-off-white rounded-3xl px-1.5 w-11 text-center">
+                  {filteredPrograms.length}
+                </span>
+              </h2>
+              <AnimatePresence mode="wait">
+                {filteredPrograms.length === 0 ? (
+                  <p className="min-h-[500px]">{t("no-programs")}</p>
+                ) : (
+                  <section className="gap-y-5">
+                    {filteredProductsRows.map((row, rowIndex) => (
+                      <div
+                        key={rowIndex}
+                        className={`flex flex-wrap gap-y-5 ${
+                          row.length === 3
+                            ? "justify-between"
+                            : "justify-start gap-x-5"
+                        }`}
+                      >
+                        {row.map((program, index) => {
+                          const imgSrc =
+                            typeof program.product_thumbnail === "object" &&
+                            program.product_thumbnail?.url
+                              ? program.product_thumbnail.url
+                              : null;
+
+                          return (
+                            <motion.div
+                              key={program.id}
+                              initial={{ opacity: 0, y: 20 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{
+                                duration: 0.3,
+                                delay: index * 0.1,
+                              }}
+                              className="w-[32.5%]"
+                            >
+                              <ProgramCard
+                                title={program.title}
+                                question={program.product_question}
+                                description={program.product_description!}
+                                imgSrc={imgSrc!}
+                                path={`${locale}/programs/${program.slug}`}
+                              />
+                            </motion.div>
+                          );
+                        })}
+                      </div>
+                    ))}
+                  </section>
+                )}
+              </AnimatePresence>
+            </article>
+          </TabsContent>
+        )}
+      </div>
     </Tabs>
   );
 };

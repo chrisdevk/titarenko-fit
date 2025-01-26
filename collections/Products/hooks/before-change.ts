@@ -60,7 +60,7 @@ export const beforeProductChange: CollectionBeforeChangeHook = async ({
       limit: 100,
     });
 
-    newDoc.priceJSON = JSON.stringify(allPrices);
+    newDoc.priceJSON = JSON.stringify(allPrices.data);
   } catch (error: unknown) {
     payload.logger.error(`Error fetching prices from Stripe: ${error}`);
   }

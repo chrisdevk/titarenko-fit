@@ -25,16 +25,16 @@ export const CategoryCard = ({
   return (
     <div
       className={cn(
-        "flex flex-col gap-y-5 rounded-3xl shadow-md w-full h-full bg-off-white relative z-10",
+        "flex flex-col gap-y-5 rounded-3xl shadow-md w-full h-full bg-white relative z-10",
         className
       )}
     >
-      <div className="relative w-full h-[262px]">
+      <div className="relative w-full h-[262px] overflow-hidden">
         <Image
           src={imgSrc}
           alt={title}
           fill
-          className="object-cover rounded-3xl object"
+          className="object-cover rounded-t-3xl"
         />
       </div>
       <div className="flex flex-col justify-between h-1/2 px-4 pb-5">

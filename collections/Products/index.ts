@@ -31,6 +31,7 @@ export const Products: CollectionConfig = {
       type: "text",
       label: "Product Description",
       localized: true,
+      required: true,
     },
     {
       name: "product_question",
@@ -53,6 +54,27 @@ export const Products: CollectionConfig = {
           pickerAppearance: "dayAndTime",
         },
       },
+    },
+    {
+      name: "duration",
+      label: "Duration",
+      type: "text",
+      required: true,
+      localized: true,
+    },
+    {
+      name: "intensity",
+      label: "Intensity",
+      type: "text",
+      required: true,
+      localized: true,
+    },
+    {
+      name: "fitness_level",
+      label: "Fintess level",
+      type: "text",
+      required: true,
+      localized: true,
     },
     {
       type: "tabs",
@@ -114,12 +136,11 @@ export const Products: CollectionConfig = {
             },
             {
               name: "priceJSON",
-              label: "Price JSON",
+              label: "Price",
               type: "textarea",
               admin: {
                 readOnly: true,
                 hidden: true,
-                rows: 10,
               },
             },
           ],

@@ -19,7 +19,7 @@ export const Hero = () => {
       const trimmedWord = word.trim();
       if (/^(stronger|сильнее)$/i.test(trimmedWord)) {
         return (
-          <span key={index} className="text-indigo-custom ml-[-16px]">
+          <span key={index} className="text-purple-custom lg:ml-[-16px]">
             {trimmedWord}
           </span>
         );
@@ -42,50 +42,52 @@ export const Hero = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="w-11/12 mx-auto mt-20 h-fit flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24 py-9 px-2.5 md:py-9 md:px-6 lg:px-8 lg:pt-24 lg:pb-8 relative max-w-[1440px] bg-[#DCDCDC] md:bg-transparent rounded-3xl">
-      <div className="flex flex-col gap-y-6 md:gap-y-10 md:max-w-[451px] lg:max-w-[692px]">
-        <div className="flex flex-wrap justify-center md:justify-start">
-          {heading.map((current, i) => (
-            <motion.h1
-              key={i}
-              ref={ref}
-              variants={pullupVariant}
-              initial="initial"
-              animate={isInView ? "animate" : ""}
-              custom={i}
-              className={cn("text-center md:text-start pr-2 text-off-black")}
-            >
-              {current == "" ? <span>&nbsp;</span> : current}
-            </motion.h1>
-          ))}
-        </div>
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="text-lg md:text-xl max-w-[480px] text-center md:text-start"
-        >
-          {t("paragraph")}
-        </motion.p>
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="w-fit mx-auto md:mx-0"
-        >
-          <Link
-            href="/"
-            className={cn(buttonVariants({ variant: "default", size: "lg" }))}
+    <section className="mt-20 h-fit py-9 px-2.5 md:py-9 md:px-0 md:pt-20 lg:mt-0 lg:px-8 lg:pt-40 lg:h-screen lg:pb-8 relative bg-[#DCDCDC] md:bg-transparent lg:flex lg:items-center">
+      <div className="w-11/12 max-w-[1440px] mx-auto flex flex-col gap-y-20 md:gap-y-44 lg:gap-y-24">
+        <div className="flex flex-col gap-y-6 md:gap-y-10 max-w-[692px]">
+          <div className="flex flex-wrap justify-center md:justify-start">
+            {heading.map((current, i) => (
+              <motion.h1
+                key={i}
+                ref={ref}
+                variants={pullupVariant}
+                initial="initial"
+                animate={isInView ? "animate" : ""}
+                custom={i}
+                className={cn("text-center md:text-start pr-2 text-off-black")}
+              >
+                {current == "" ? <span>&nbsp;</span> : current}
+              </motion.h1>
+            ))}
+          </div>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-lg md:text-xl max-w-[480px] text-center md:text-start"
           >
-            <span>{t("button")}</span>
-            <MoveUpRight size={24} />
-          </Link>
-        </motion.div>
-      </div>
-      <div className="flex justify-center md:justify-start">
-        <Socials />
+            {t("paragraph")}
+          </motion.p>
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+            className="w-fit mx-auto md:mx-0"
+          >
+            <Link
+              href="/"
+              className={cn(buttonVariants({ variant: "default", size: "lg" }))}
+            >
+              <span>{t("button")}</span>
+              <MoveUpRight size={24} />
+            </Link>
+          </motion.div>
+        </div>
+        <div className="flex justify-center md:justify-start">
+          <Socials />
+        </div>
       </div>
       <div className="absolute left-0 top-0 size-full -z-10 hidden lg:block">
         <Image
@@ -94,7 +96,7 @@ export const Hero = () => {
           fill
           quality={100}
           priority
-          className="object-cover overflow-hidden rounded-3xl"
+          className="object-cover overflow-hidden"
         />
       </div>
       <div className="absolute left-0 top-0 size-full -z-10 hidden md:block lg:hidden">

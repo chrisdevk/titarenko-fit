@@ -91,10 +91,13 @@ export interface User {
 export interface Product {
   id: number;
   title: string;
-  product_description?: string | null;
+  product_description: string;
   product_question?: string | null;
   product_thumbnail?: (number | null) | Media;
   publishedOn?: string | null;
+  duration: string;
+  intensity: string;
+  fitness_level: string;
   'for whom'?: {
     root: {
       type: string;
@@ -375,6 +378,9 @@ export interface ProductsSelect<T extends boolean = true> {
   product_question?: T;
   product_thumbnail?: T;
   publishedOn?: T;
+  duration?: T;
+  intensity?: T;
+  fitness_level?: T;
   'for whom'?: T;
   program?: T;
   lessons?: T;

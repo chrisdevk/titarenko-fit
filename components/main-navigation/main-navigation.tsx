@@ -13,10 +13,13 @@ import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { MobileMenu } from "./mobile-menu";
 import { getCurrentUser } from "@/utils/data/get-current-user";
+import { usePathname } from "next/navigation";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 0);
@@ -41,52 +44,60 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
 
   return (
     <>
-      <header
-        className={cn(
-          "bg-off-white fixed top-0 left-0 w-full py-4 z-50 transition-shadow duration-300",
-          scrolled && "shadow-lg"
-        )}
-      >
-        <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1440px]">
-          <Link href="/" className="font-bold text-xl">
-            ALYA TITARENKO
-          </Link>
-          <Hamburger
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            setScrolled={setScrolled}
-          />
-          <nav className="absolute left-1/2 -translate-x-1/2 hidden md:block">
-            <ul className="flex items-center gap-4">
-              {navlinks.map((link) => (
-                <li key={link.text}>
-                  <Link
-                    href={`/${locale}${link.path}`}
-                    className="transition-all hover:bg-baby-slate p-1 rounded-sm"
-                  >
-                    {t(link.text)}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-          <div className="md:flex gap-x-4 items-center hidden">
-            <LanguageSelect locale={locale} />
-            {currentUser ? (
-              <Link
-                href={`/${locale}/dashboard`}
-                className={buttonVariants({ variant: "default" })}
-              >
-                {t("Dashboard")}
-              </Link>
-            ) : (
-              <Link
-                href={`/${locale}/auth`}
-                className={buttonVariants({ variant: "default" })}
-              >
-                {t("Log in")}
-              </Link>
+      <header className="fixed top-0 left-0 w-full z-50 transition-shadow duration-300">
+        {pathname === `/${locale}` && (
+          <div
+            className={cn(
+              "text-center text-white bg-turquoise-dark py-3.5 transition-all duration-300 absolute top-0 left-0 w-full hidden md:block",
+              scrolled && "scale-y-0 origin-top opacity-0"
             )}
+          >
+            {t("header-text")}
+          </div>
+        )}
+        <div
+          className={cn(
+            "bg-turquoise-light w-full py-4 transition-all duration-300",
+            pathname === `/${locale}` && !scrolled && "md:mt-12",
+            scrolled && "mt-0"
+          )}
+        >
+          <div className="flex items-center justify-between w-2/3 md:w-11/12 ml-auto md:mx-auto max-w-[1440px]">
+            <Link href="/" className="font-bold text-xl">
+              ALYA TITARENKO
+            </Link>
+            <Hamburger
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
+              setScrolled={setScrolled}
+            />
+            <nav className="absolute left-1/2 -translate-x-1/2 hidden md:block">
+              <ul className="flex items-center gap-4">
+                {navlinks.map((link) => (
+                  <li key={link.text}>
+                    <Link href={`/${locale}${link.path}`}>{t(link.text)}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+            <div className="md:flex gap-x-4 items-center hidden">
+              <LanguageSelect locale={locale} />
+              {currentUser ? (
+                <Link
+                  href={`/${locale}/dashboard`}
+                  className={buttonVariants({ variant: "default" })}
+                >
+                  {t("Dashboard")}
+                </Link>
+              ) : (
+                <Link
+                  href={`/${locale}/auth`}
+                  className={buttonVariants({ variant: "default" })}
+                >
+                  {t("Log in")}
+                </Link>
+              )}
+            </div>
           </div>
         </div>
       </header>
@@ -96,7 +107,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
             initial={{ height: 0 }}
             animate={{ height: "auto" }}
             exit={{ height: 0 }}
-            className="fixed top-0 left-0 z-40 bg-white w-screen overflow-hidden shadow-md"
+            className="fixed top-0 left-0 z-40 bg-turquoise-light w-screen overflow-hidden shadow-md"
           >
             <motion.div
               initial={{ opacity: 0, y: -40 }}

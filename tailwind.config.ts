@@ -15,11 +15,14 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        "off-white": "#FEFCFF",
+        "off-white": "#F2FBFF",
         "indigo-custom": "#4945FF",
         "off-black": "#32324D",
         "grey-custom": "#666687",
         "baby-slate": "#F6F6FF",
+        "turquoise-dark": "#179CAF",
+        "turquoise-light": "#C1EAF1",
+        "purple-custom": "#5E60CE",
       },
       fontFamily: {
         sans: ["var(--font-roboto)"],

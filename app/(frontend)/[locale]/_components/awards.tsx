@@ -7,105 +7,57 @@ import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
 import { motion } from "motion/react";
+import { usePathname } from "next/navigation";
 
 export const Awards = () => {
   const t = useTranslations("HomePage.awards");
+  const achievements = t.raw("achievements") as {
+    [key: string]: string;
+  };
+
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
+
   return (
-    <section className="w-11/12 max-w-[1440px] mx-auto space-y-5 md:space-y-10 mt-24 lg:mt-[120px]">
-      <motion.h2
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ y: 0, opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        className="uppercase text-center"
-      >
-        {t("heading")} <span className="px-2 md:px-3">• </span>
-        <span className="text-indigo-custom">{t("heading-span")}</span>
-      </motion.h2>
-      <div className="flex flex-col md:flex-row gap-x-11 gap-y-5 md:max-h-[380px] lg:max-h-none">
-        <motion.div
-          initial={{ x: -30, opacity: 0 }}
-          whileInView={{ x: 0, opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5 }}
-          className="relative w-full md:w-1/2 h-[280px] md:h-auto flex-grow"
-        >
-          <Image
-            src="/images/awards-img.png"
-            alt="Awards & Achievements"
-            fill
-            className="object-cover rounded-3xl"
-          />
-        </motion.div>
-        <div className="space-y-6 md:w-1/2">
-          <div className="space-y-2 md:max-h-[128px] lg:max-h-none">
-            <motion.h3
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              className="uppercase flex items-center gap-x-2"
-            >
-              {t("achievements")}{" "}
-              <Image
-                src="/images/icons/award-i.svg"
-                alt="Medal icon"
-                width={24}
-                height={24}
-              />
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1, duration: 0.5 }}
-              className="leading-[30px] text-lg text-grey-custom line-clamp-4 md:line-clamp-3 lg:line-clamp-none"
-            >
-              {t("achievements-paragraph")}
-            </motion.p>
-          </div>
-          <div className="space-y-2 md:max-h-[158px] lg:max-h-none">
-            <motion.h3
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="uppercase flex items-center gap-x-2"
-            >
-              {t("experience")}
-              <Image
-                src="/images/icons/pen-i.svg"
-                alt="Medal icon"
-                width={24}
-                height={24}
-              />
-            </motion.h3>
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="leading-[30px] text-lg text-grey-custom line-clamp-5 md:line-clamp-4 lg:line-clamp-none"
-            >
-              {t("experience-paragraph")}
-            </motion.p>
-          </div>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+    <section className="bg-gradient-to-r from-[#E1E2E5] to-[#D8D9DE]">
+      <div className="bg-turquoise-dark rounded-t-3xl relative">
+        <div className="w-11/12 max-w-[1440px] mx-auto space-y-5 md:space-y-10 py-16 flex flex-col items-center">
+          <motion.h2
+            initial={{ y: -20, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
+            transition={{ duration: 0.5 }}
+            className="uppercase text-center text-white"
           >
-            <Link
-              href="/"
-              className={cn(
-                "w-fit",
-                buttonVariants({ variant: "secondary", size: "lg" })
-              )}
-            >
-              <span>{t("button")}</span>
-              <MoveUpRight size={24} />
-            </Link>
-          </motion.div>
+            {t("heading")}
+          </motion.h2>
+          <div className="flex flex-wrap items-center justify-between z-10 gap-y-2">
+            {Object.entries(achievements).map(([key, value], index) => (
+              <motion.p
+                key={key}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="p-4 bg-turquoise-light rounded-3xl w-[49%] lg:w-[24%] h-[140px] lg:h-[140px] flex items-center"
+              >
+                {value}
+              </motion.p>
+            ))}
+          </div>
+          <Link
+            href={`/${locale}/awards`}
+            className={cn("z-10", buttonVariants({ size: "lg" }))}
+          >
+            {t("button")}
+            <MoveUpRight size={24} />
+          </Link>
+        </div>
+        <div className="absolute left-0 top-0 w-[226px] h-[160px]">
+          <Image src="/images/icons/lines.svg" alt="lines" fill />
+        </div>
+        <div className="absolute right-0 bottom-0 w-[226px] h-[160px] rotate-180">
+          <Image src="/images/icons/lines.svg" alt="lines" fill />
         </div>
       </div>
     </section>

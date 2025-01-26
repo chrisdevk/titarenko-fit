@@ -33,6 +33,8 @@ export const navlinks = [
   },
 ];
 
+export const awardsPreview = [""];
+
 export const socialLinks = [
   {
     name: "Instagram",
