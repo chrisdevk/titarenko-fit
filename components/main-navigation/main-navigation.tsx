@@ -62,8 +62,11 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
             scrolled && "mt-0",
           )}
         >
-          <div className="ml-auto flex w-2/3 max-w-[1440px] items-center justify-between md:mx-auto md:w-11/12">
-            <Link href="/" className="text-xl font-bold">
+          <div className="relative ml-auto flex w-full max-w-[1440px] items-center justify-end md:mx-auto md:w-11/12 md:justify-between">
+            <Link
+              href="/"
+              className="absolute left-1/2 -translate-x-1/2 text-xl font-bold"
+            >
               ALYA TITARENKO
             </Link>
             <Hamburger
