@@ -36,7 +36,7 @@ export const ProgramTabs = ({
     }).length,
   }));
 
-  let filteredPrograms = programs.filter((program) => {
+  const filteredPrograms = programs.filter((program) => {
     if (typeof program.categories === "number") {
       return (
         program.categories ===

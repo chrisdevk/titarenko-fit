@@ -12,12 +12,18 @@ export default async function ProgramPage({
 
   const product = await getProduct({ id: programId.toString(), locale });
 
-  const imgSrc = getImageSrc(product?.product_thumbnail, "product_thumbnail");
-
-  const price = JSON.parse(product?.priceJSON!);
-
   if (!product)
     return <p>Product not found or not available in the current locale</p>;
+
+  const imgSrc = getImageSrc(product?.product_thumbnail, "product_thumbnail");
+
+  let price;
+  try {
+    price = JSON.parse(product.priceJSON ?? "{}");
+  } catch (error) {
+    console.error("Error parsing price JSON:", error);
+    price = {};
+  }
 
   return (
     <main className="w-11/12 max-w-[1440px] mx-auto mt-36 flex justify-between">
