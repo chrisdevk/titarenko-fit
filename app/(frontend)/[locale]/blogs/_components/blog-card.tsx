@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MoveUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,11 +26,9 @@ export const BlogCard = ({ title, imgSrc, path }: BlogCardProps) => {
       </div>
       <div className="space-y-5 px-4 pb-4">
         <h3>{title}</h3>
-        <Link
-          href={path}
-          className={cn("z-10", buttonVariants({ variant: "secondary" }))}
-        >
+        <Link href={path} className={cn("z-10 w-full", buttonVariants())}>
           {t("BlogsPage.button")}
+          <MoveUpRight />
         </Link>
       </div>
     </div>

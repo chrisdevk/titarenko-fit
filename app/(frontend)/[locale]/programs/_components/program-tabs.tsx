@@ -64,21 +64,21 @@ export const ProgramTabs = ({
 
   return (
     <Tabs defaultValue="all" className="mt-10 w-full">
-      <TabsList className="w-full justify-between rounded-none border-b-2 border-b-baby-slate bg-transparent">
+      <TabsList className="w-full justify-between rounded-none border-b-2 border-b-turquoise-dark bg-transparent">
         <TabsTrigger
           value="all"
           onClick={() => setCurrentCategory("all")}
           className="relative flex items-center gap-x-2 rounded-none bg-transparent"
         >
           {t("all")}{" "}
-          <span className="rounded-3xl bg-baby-slate px-1.5 text-xs text-indigo-custom">
+          <span className="rounded-3xl bg-purple-custom px-1.5 text-xs text-white">
             {programs.length}
           </span>
           {currentCategory === "all" && (
             <motion.div
               layoutId="underline"
               id="underline"
-              className="absolute -bottom-1 left-0 h-0.5 w-full rounded-3xl bg-indigo-custom"
+              className="absolute -bottom-1 left-0 h-0.5 w-full rounded-3xl bg-purple-custom"
             />
           )}
         </TabsTrigger>
@@ -90,25 +90,25 @@ export const ProgramTabs = ({
             className="relative flex items-center gap-x-2"
           >
             {category.title}
-            <span className="rounded-3xl bg-baby-slate px-1.5 text-xs text-indigo-custom">
+            <span className="rounded-3xl bg-purple-custom px-1.5 text-xs text-white">
               {category.count}
             </span>
             {category.title === currentCategory && (
               <motion.div
                 layoutId="underline"
                 id="underline"
-                className="absolute -bottom-1 left-0 h-0.5 w-full rounded-3xl bg-indigo-custom"
+                className="absolute -bottom-1 left-0 h-0.5 w-full rounded-3xl bg-purple-custom"
               />
             )}
           </TabsTrigger>
         ))}
       </TabsList>
-      <div className="mt-10 min-h-[500px] rounded-3xl bg-baby-slate px-7 py-4">
+      <div className="min-h-[560px] py-8">
         <TabsContent value="all">
           <article className="space-y-5">
             <h2 className="flex items-center gap-x-2">
               {t("all")}{" "}
-              <span className="w-11 rounded-3xl bg-off-white px-1.5 text-center text-xl text-indigo-custom">
+              <span className="w-11 rounded-3xl bg-purple-custom px-1.5 text-center text-xl text-white">
                 {programs.length}
               </span>
             </h2>
@@ -158,7 +158,7 @@ export const ProgramTabs = ({
             <article className="space-y-5">
               <h2 className="flex items-center gap-x-2">
                 {currentCategory}
-                <span className="w-11 rounded-3xl bg-off-white px-1.5 text-center text-xl text-indigo-custom">
+                <span className="w-11 rounded-3xl bg-purple-custom px-1.5 text-center text-xl text-white">
                   {filteredPrograms.length}
                 </span>
               </h2>

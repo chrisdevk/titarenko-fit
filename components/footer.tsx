@@ -9,7 +9,7 @@ export const Footer = ({ locale }: { locale: string }) => {
   const t = useTranslations("MainNavigation");
 
   return (
-    <footer className="rounded-t-3xl bg-turquoise-dark py-6">
+    <footer className="bg-turquoise-dark py-6">
       <div className="mx-auto flex w-11/12 max-w-[1440px] flex-col items-center gap-y-7">
         <div className="flex w-full flex-col items-center gap-y-7">
           <div className="flex w-full flex-col items-center justify-between gap-y-4 md:flex-row">
