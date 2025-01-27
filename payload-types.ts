@@ -98,7 +98,7 @@ export interface Product {
   duration: string;
   intensity: string;
   fitness_level: string;
-  'for whom'?: {
+  for_whom: {
     root: {
       type: string;
       children: {
@@ -112,8 +112,8 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  program?: {
+  };
+  program: {
     root: {
       type: string;
       children: {
@@ -127,8 +127,8 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  lessons?: {
+  };
+  lessons: {
     root: {
       type: string;
       children: {
@@ -142,8 +142,8 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  equipment?: {
+  };
+  equipment: {
     root: {
       type: string;
       children: {
@@ -157,8 +157,8 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  contradictions?: {
+  };
+  contradictions: {
     root: {
       type: string;
       children: {
@@ -172,22 +172,7 @@ export interface Product {
       version: number;
     };
     [k: string]: unknown;
-  } | null;
-  faq?: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  } | null;
+  };
   stripeProductID?: string | null;
   priceJSON?: string | null;
   categories: number | Category;
@@ -381,12 +366,11 @@ export interface ProductsSelect<T extends boolean = true> {
   duration?: T;
   intensity?: T;
   fitness_level?: T;
-  'for whom'?: T;
+  for_whom?: T;
   program?: T;
   lessons?: T;
   equipment?: T;
   contradictions?: T;
-  faq?: T;
   stripeProductID?: T;
   priceJSON?: T;
   categories?: T;

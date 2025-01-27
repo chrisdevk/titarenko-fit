@@ -150,6 +150,36 @@
     "intensity": "Intensity",
     "fitness level": "Fitness level",
     "buy course": "Buy course",
-    "month": "month"
+    "month": "month",
+    "overview": {
+      "for_whom": "For whom",
+      "program": "Program",
+      "lessons": "Lessons",
+      "equipment": "Equipment",
+      "contradictions": "Contradictions"
+    },
+    "faq_heading": "Frequently asked questions",
+    "accordion": [
+      {
+        "question": "Do the workouts take place at certain times?",
+        "answer": "You can exercise when it’s convenient for you. You only need to set aside time during the day or evening and train regularly, repeating the exercises after the trainer and observing the correct execution technique."
+      },
+      {
+        "question": "I paid for the course, where can I access the course?",
+        "answer": "Immediately after making the payment, the course will appear in your client area."
+      },
+      {
+        "question": "I forgot my password, what should I do?",
+        "answer": "You can renew your password at any time on the Log in page (On the Log in page, select Forgot password?)"
+      },
+      {
+        "question": "Can I exercise if I have health problems?",
+        "answer": "The characteristics of your body are taken into account only in personal training. When exercising online, take into account the limitations of your body on your own, after consulting with your doctor, especially if you have acute inflammatory processes in the joints or problems of the cardiovascular system."
+      },
+      {
+        "question": "Is it possible to exercise during pregnancy or after childbirth?",
+        "answer": "Most of the course exercises will be useful for both. But! This is not a SPECIALIZED course for pregnant women, as well as post-pregnancy recovery, so please consult your doctor first."
+      }
+    ]
   }
 }
