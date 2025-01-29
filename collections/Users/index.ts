@@ -1,8 +1,8 @@
 import type { CollectionConfig } from "payload";
-import adminsAndUser from "./access/admins-and-user";
-import { anyone } from "./access/anyone";
-import { admins } from "./access/admins";
-import { checkRole } from "./access/check-role";
+import adminsAndUser from "../../access/admins-and-user";
+import { anyone } from "../../access/anyone";
+import { admins } from "../../access/admins";
+import { checkRole } from "../../access/check-role";
 import { ensureFirstUserIsAdmin } from "./hooks/ensure-first-user-is-admin";
 import { resolveDuplicatePurchases } from "./hooks/resolve-duplicate-purchases";
 import { createStripeCustomer } from "./hooks/create-stripe-customer";
@@ -76,13 +76,13 @@ export const Users: CollectionConfig = {
       },
     },
     {
-      name: "purchases",
-      label: "Purchases",
-      type: "relationship",
-      relationTo: "products",
-      hasMany: true,
-      hooks: {
-        beforeChange: [resolveDuplicatePurchases],
+      name: "orders",
+      type: "join",
+      collection: "orders",
+      on: "orderedBy",
+      admin: {
+        allowCreate: false,
+        defaultColumns: ["id", "createdAt", "total", "currency", "items"],
       },
     },
     {
@@ -93,5 +93,72 @@ export const Users: CollectionConfig = {
         read: ({ req: { user } }) => checkRole(["admin"], user!),
       },
     },
+    {
+      name: "cart",
+      type: "group",
+      fields: [
+        {
+          name: "items",
+          type: "array",
+          fields: [
+            {
+              type: "row",
+              fields: [
+                {
+                  name: "product",
+                  type: "relationship",
+                  relationTo: "products",
+                },
+                {
+                  name: "variantID",
+                  type: "text",
+                },
+                {
+                  name: "variant",
+                  type: "text",
+                },
+              ],
+            },
+            {
+              type: "row",
+              fields: [
+                {
+                  name: "unitPrice",
+                  type: "number",
+                  required: true,
+                },
+                {
+                  name: "quantity",
+                  type: "number",
+                  admin: {
+                    step: 1,
+                  },
+                  required: true,
+                  min: 0,
+                },
+              ],
+            },
+            {
+              name: "url",
+              type: "text",
+            },
+          ],
+          interfaceName: "CartItems",
+          label: "Items",
+        },
+      ],
+      label: "Cart",
+    },
+    {
+      name: "skipSync",
+      type: "checkbox",
+      admin: {
+        hidden: true,
+        position: "sidebar",
+        readOnly: true,
+      },
+      label: "Skip Sync",
+    },
   ],
+  timestamps: true,
 };

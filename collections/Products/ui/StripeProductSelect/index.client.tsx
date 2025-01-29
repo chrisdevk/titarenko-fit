@@ -1,6 +1,6 @@
 "use client";
 
-import type { OptionObject, StaticLabel } from "payload";
+import type { StaticLabel } from "payload";
 import type Stripe from "stripe";
 
 import {
@@ -56,7 +56,7 @@ export const Component: React.FC<Props> = (props) => {
         dispatchFields,
         infoField: fields[infoPath],
       };
-    }
+    },
   );
 
   const info = infoField?.value;
@@ -92,7 +92,7 @@ export const Component: React.FC<Props> = (props) => {
               label: "Select a product",
               value: "",
             },
-          ] as ProductOption[]
+          ] as ProductOption[],
         );
         setOptions(fetchedProducts);
       }
@@ -125,7 +125,7 @@ export const Component: React.FC<Props> = (props) => {
 
       setValue(newValue.value);
     },
-    [setValue, dispatchFields, options, info, infoPath]
+    [setValue, dispatchFields, options, info, infoPath],
   );
 
   const href = `${stripeBaseUrl}/products/${stripeProductID}`;

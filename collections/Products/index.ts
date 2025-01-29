@@ -2,7 +2,7 @@ import type { CollectionConfig } from "payload";
 
 import { beforeProductChange } from "./hooks/before-change";
 import { slugField } from "@/fields/slug";
-import { admins } from "../Users/access/admins";
+import { admins } from "../../access/admins";
 
 export const Products: CollectionConfig = {
   slug: "products",

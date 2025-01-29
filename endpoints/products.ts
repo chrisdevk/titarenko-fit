@@ -1,4 +1,4 @@
-import { checkRole } from "@/collections/Users/access/check-role";
+import { checkRole } from "@/access/check-role";
 import type { PayloadHandler, PayloadRequest } from "payload";
 
 import Stripe from "stripe";
@@ -9,9 +9,6 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
 
 const logs = process.env.LOGS_STRIPE_PROXY === "1";
 
-// use this handler to get all Stripe products
-// prevents unauthorized or non-admin users from accessing all Stripe products
-// GET /api/products
 export const productsProxy: PayloadHandler = async (req: PayloadRequest) => {
   if (!req.user || !checkRole(["admin"], req.user)) {
     if (logs)
@@ -21,7 +18,7 @@ export const productsProxy: PayloadHandler = async (req: PayloadRequest) => {
 
     return Response.json(
       { error: "You are not authorized to access products" },
-      { status: 401 }
+      { status: 401 },
     );
   }
 
@@ -40,7 +37,7 @@ export const productsProxy: PayloadHandler = async (req: PayloadRequest) => {
 
     return Response.json(
       { error: `Error using Stripe API: ${String(error)}` },
-      { status: 500 }
+      { status: 500 },
     );
   }
 };

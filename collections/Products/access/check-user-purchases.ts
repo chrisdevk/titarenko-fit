@@ -1,4 +1,4 @@
-import { checkRole } from "@/collections/Users/access/check-role";
+import { checkRole } from "@/access/check-role";
 import type { Product } from "@/payload-types";
 import type { FieldAccess } from "payload";
 
@@ -26,7 +26,7 @@ export const checkUserPurchases: FieldAccess<Product> = async ({
     return (
       user.purchases?.some(
         (purchase) =>
-          doc.id === (typeof purchase === "object" ? purchase.id : purchase)
+          doc.id === (typeof purchase === "object" ? purchase.id : purchase),
       ) ?? false
     );
   }

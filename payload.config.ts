@@ -16,6 +16,7 @@ import { Categories } from "./collections/Categories";
 import { Users } from "./collections/Users";
 import { productsProxy } from "./endpoints/products";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
+import { Orders } from "./collections/Orders";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -27,7 +28,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Media, Blogs, Products, Categories],
+  collections: [Users, Media, Blogs, Products, Categories, Orders],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {

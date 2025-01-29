@@ -6,6 +6,22 @@
  * and re-run `payload generate:types` to regenerate this file.
  */
 
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CartItems".
+ */
+export type CartItems =
+  | {
+      product?: (number | null) | Product;
+      variantID?: string | null;
+      variant?: string | null;
+      unitPrice: number;
+      quantity: number;
+      url?: string | null;
+      id?: string | null;
+    }[]
+  | null;
+
 export interface Config {
   auth: {
     users: UserAuthOperations;
@@ -16,17 +32,23 @@ export interface Config {
     blogs: Blog;
     products: Product;
     categories: Category;
+    orders: Order;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    users: {
+      orders: 'orders';
+    };
+  };
   collectionsSelect: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     blogs: BlogsSelect<false> | BlogsSelect<true>;
     products: ProductsSelect<false> | ProductsSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
+    orders: OrdersSelect<false> | OrdersSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -71,8 +93,15 @@ export interface User {
   id: number;
   name?: string | null;
   roles?: ('admin' | 'customer')[] | null;
-  purchases?: (number | Product)[] | null;
+  orders?: {
+    docs?: (number | Order)[] | null;
+    hasNextPage?: boolean | null;
+  } | null;
   stripeCustomerID?: string | null;
+  cart?: {
+    items?: CartItems;
+  };
+  skipSync?: boolean | null;
   updatedAt: string;
   createdAt: string;
   email: string;
@@ -83,6 +112,27 @@ export interface User {
   loginAttempts?: number | null;
   lockUntil?: string | null;
   password?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders".
+ */
+export interface Order {
+  id: number;
+  orderedBy?: (number | null) | User;
+  stripePaymentIntentID?: string | null;
+  total: number;
+  currency: string;
+  items?:
+    | {
+        product: number | Product;
+        variant?: string | null;
+        quantity?: number | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -262,6 +312,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'categories';
         value: number | Category;
+      } | null)
+    | ({
+        relationTo: 'orders';
+        value: number | Order;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -312,8 +366,14 @@ export interface PayloadMigration {
 export interface UsersSelect<T extends boolean = true> {
   name?: T;
   roles?: T;
-  purchases?: T;
+  orders?: T;
   stripeCustomerID?: T;
+  cart?:
+    | T
+    | {
+        items?: T | CartItemsSelect<T>;
+      };
+  skipSync?: T;
   updatedAt?: T;
   createdAt?: T;
   email?: T;
@@ -323,6 +383,19 @@ export interface UsersSelect<T extends boolean = true> {
   hash?: T;
   loginAttempts?: T;
   lockUntil?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "CartItems_select".
+ */
+export interface CartItemsSelect<T extends boolean = true> {
+  product?: T;
+  variantID?: T;
+  variant?: T;
+  unitPrice?: T;
+  quantity?: T;
+  url?: T;
+  id?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -385,6 +458,26 @@ export interface ProductsSelect<T extends boolean = true> {
  */
 export interface CategoriesSelect<T extends boolean = true> {
   title?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "orders_select".
+ */
+export interface OrdersSelect<T extends boolean = true> {
+  orderedBy?: T;
+  stripePaymentIntentID?: T;
+  total?: T;
+  currency?: T;
+  items?:
+    | T
+    | {
+        product?: T;
+        variant?: T;
+        quantity?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
