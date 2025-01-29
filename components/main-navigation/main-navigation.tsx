@@ -12,8 +12,10 @@ import Hamburger from "./hamburger";
 import { AnimatePresence } from "motion/react";
 import { motion } from "motion/react";
 import { MobileMenu } from "./mobile-menu";
-import { getCurrentUser } from "@/utils/data/get-current-user";
 import { usePathname } from "next/navigation";
+import { useAuth } from "@/context/auth-context";
+import { ShoppingBasket } from "lucide-react";
+import { useCart } from "@/context/cart";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,10 +39,8 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
 
   const t = useTranslations("MainNavigation");
 
-  const currentUser = useQuery({
-    queryKey: ["user"],
-    queryFn: getCurrentUser,
-  }).data;
+  const { user } = useAuth();
+  const { cart } = useCart();
 
   return (
     <>
@@ -84,8 +84,17 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               </ul>
             </nav>
             <div className="hidden items-center gap-x-4 md:flex">
+              <Link href={`/${locale}/checkout`} className="relative">
+                <ShoppingBasket />
+                {cart?.items?.length ??
+                  (0 >= 1 && (
+                    <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
+                      {cart?.items?.length ?? 0}
+                    </span>
+                  ))}
+              </Link>
               <LanguageSelect locale={locale} />
-              {currentUser ? (
+              {user ? (
                 <Link
                   href={`/${locale}/dashboard`}
                   className={buttonVariants({ variant: "default" })}

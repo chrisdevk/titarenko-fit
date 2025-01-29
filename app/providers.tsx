@@ -1,4 +1,6 @@
 import { Toaster } from "@/components/ui/sonner";
+import { AuthProvider } from "@/context/auth-context";
+import { CartProvider } from "@/context/cart";
 import QueryProvider from "@/lib/query-provider";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages } from "next-intl/server";
@@ -13,8 +15,12 @@ export default async function Providers({
   return (
     <QueryProvider>
       <NextIntlClientProvider messages={messages}>
-        <Toaster />
-        {children}
+        <AuthProvider>
+          <CartProvider>
+            <Toaster />
+          </CartProvider>
+          {children}
+        </AuthProvider>
       </NextIntlClientProvider>
     </QueryProvider>
   );

@@ -14,13 +14,11 @@ import { signupSchema, loginSchema } from "@/lib/zod-schemas";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { signup } from "@/utils/actions/auth/sign-up";
-import { login } from "@/utils/actions/auth/login";
-import { getCurrentUser } from "@/utils/data/get-current-user";
+import { useAuth } from "@/context/auth-context";
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -35,7 +33,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
 
   const t = useTranslations("AuthPage");
 
-  const queryClient = useQueryClient();
+  const { create, login, user } = useAuth();
 
   const form = useForm<AuthFormValues>({
     resolver: zodResolver(authSchema),
@@ -50,17 +48,16 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
 
   const mutation = useMutation({
     mutationFn: async (data: AuthFormValues) => {
-      return isSignup
-        ? signup(data as SignupFormValues)
-        : login(data as LoginFormValues);
+      if (isSignup) {
+        await create(data as SignupFormValues);
+      } else {
+        await login(data as LoginFormValues);
+      }
     },
     onSuccess: async () => {
       toast(isSignup ? "Account created!" : "Logged in!");
 
-      const currentUser = await queryClient.fetchQuery({
-        queryKey: ["user"],
-        queryFn: getCurrentUser,
-      });
+      const currentUser = user;
 
       if (currentUser?.roles?.includes("admin")) {
         router.push("/admin");
