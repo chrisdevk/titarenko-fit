@@ -1,6 +1,3 @@
-import type { StripeWebhookHandler } from "@payloadcms/plugin-stripe/types";
-import type Stripe from "stripe";
-
 const logs = true;
 
 interface CartItem {
