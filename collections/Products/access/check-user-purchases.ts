@@ -20,11 +20,11 @@ export const checkUserPurchases: FieldAccess<Product> = async ({
     doc &&
     user &&
     typeof user === "object" &&
-    Array.isArray(user?.purchases) &&
-    user.purchases.length > 0
+    Array.isArray(user?.orders) &&
+    user.orders.length > 0
   ) {
     return (
-      user.purchases?.some(
+      user.orders?.some(
         (purchase) =>
           doc.id === (typeof purchase === "object" ? purchase.id : purchase),
       ) ?? false
