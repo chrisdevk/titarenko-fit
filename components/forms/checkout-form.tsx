@@ -31,7 +31,7 @@ export const CheckoutForm: React.FC = () => {
       fetchOptions = {},
       delay = 750,
       tries = 3,
-    ): Promise<any> => {
+    ): Promise<Response> => {
       function onError(err: Error) {
         const triesLeft = tries - 1;
         if (!triesLeft) {
@@ -110,7 +110,7 @@ export const CheckoutForm: React.FC = () => {
               }
             }
           }
-        } catch (err: any) {
+        } catch (err: Error | unknown) {
           const msg =
             err instanceof Error ? err.message : "Something went wrong.";
           setError(`Error while submitting payment: ${msg}`);
