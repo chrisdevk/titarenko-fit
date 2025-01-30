@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { buttonVariants } from "../ui/button";
 import { LanguageSelect } from "./language-select";
-import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
 import { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";

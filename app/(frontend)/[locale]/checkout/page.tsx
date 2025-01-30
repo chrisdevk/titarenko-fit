@@ -9,7 +9,6 @@ import { Fragment, Suspense, useEffect, useRef, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { CheckoutForm } from "@/components/forms/checkout-form";
 import Image from "next/image";
-import { Product } from "@/payload-types";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 
@@ -18,23 +17,15 @@ const stripe = loadStripe(apiKey);
 
 export default function CheckoutPage() {
   const { user } = useAuth();
-  const router = useRouter();
   const [error, setError] = useState<null | string>(null);
   const [clientSecret, setClientSecret] = useState();
   const hasMadePaymentIntent = useRef(false);
-  const [email, setEmail] = useState("");
-  const [emailEditable, setEmailEditable] = useState(true);
 
-  const { cart, cartIsEmpty, cartTotal, clearCart, deleteItemFromCart } =
-    useCart();
+  const { cart, cartIsEmpty, cartTotal, deleteItemFromCart } = useCart();
   const t = useTranslations("CheckoutPage");
 
   useEffect(() => {
-    if (
-      cart &&
-      (user || (Boolean(email) && !emailEditable)) &&
-      hasMadePaymentIntent.current === false
-    ) {
+    if (cart && user && hasMadePaymentIntent.current === false) {
       hasMadePaymentIntent.current = true;
 
       const makeIntent = async () => {
@@ -42,7 +33,6 @@ export default function CheckoutPage() {
           const body = !user
             ? {
                 cart,
-                email,
               }
             : undefined;
 
@@ -71,14 +61,15 @@ export default function CheckoutPage() {
 
             setClientSecret(res.client_secret);
           }
-        } catch (e) {
+        } catch (error: any) {
           setError("Something went wrong.");
+          console.error("Error:", error);
         }
       };
 
       void makeIntent();
     }
-  }, [cart, user, emailEditable, email]);
+  }, [cart, user]);
 
   if (!stripe) return null;
 
@@ -122,7 +113,7 @@ export default function CheckoutPage() {
                   if (typeof item.product === "number") return null;
 
                   const {
-                    product: { id, product_thumbnail, title },
+                    product: { product_thumbnail, title },
                     unitPrice,
                   } = item;
 

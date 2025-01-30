@@ -77,6 +77,7 @@ export default buildConfig({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
       isTestKey: Boolean(process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY),
       logs: true,
+      stripeWebhooksEndpointSecret: process.env.STRIPE_WEBHOOKS_SIGNING_SECRET,
       webhooks: {
         "payment_intent.succeeded": paymentSucceeded,
       },

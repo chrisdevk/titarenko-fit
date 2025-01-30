@@ -1,6 +1,6 @@
 "use client";
 
-import type { Order } from "@/payload-types";
+// import type { Order } from "@/payload-types";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -8,7 +8,7 @@ import {
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-import Link from "next/link";
+// import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { useCart } from "@/context/cart";
@@ -19,7 +19,7 @@ export const CheckoutForm: React.FC = () => {
   const [error, setError] = React.useState<null | string>(null);
   const [isLoading, setIsLoading] = React.useState(false);
   const router = useRouter();
-  const { cart, cartTotal, clearCart } = useCart();
+  const { clearCart } = useCart();
 
   function wait(delay = 500) {
     return new Promise((resolve) => setTimeout(resolve, delay));
@@ -91,14 +91,14 @@ export const CheckoutForm: React.FC = () => {
                   method: "GET",
                 })
                   .then((res) => res.json())
-                  .then((data) => {
+                  .then((data: any) => {
                     console.log("received", data, "for payment", paymentIntent);
 
-                    const redirect = `/orders/${data.docs?.[0]?.id}?paymentId=${paymentIntent.id}`;
+                    // const redirect = `/orders/${data.docs?.[0]?.id}?paymentId=${paymentIntent.id}`;
                     clearCart();
                     // router.push(redirect);
                   })
-                  .catch((err) => {
+                  .catch((err: any) => {
                     throw new Error(err?.statusText || "Something went wrong.");
                   });
               }, 3000);
@@ -111,7 +111,7 @@ export const CheckoutForm: React.FC = () => {
               );
             }
           }
-        } catch (err) {
+        } catch (err: any) {
           const msg =
             err instanceof Error ? err.message : "Something went wrong.";
           setError(`Error while submitting payment: ${msg}`);
