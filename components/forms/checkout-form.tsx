@@ -32,7 +32,7 @@ export const CheckoutForm: React.FC = () => {
       delay = 750,
       tries = 3,
     ): Promise<any> => {
-      function onError(err: any) {
+      function onError(err: Error) {
         const triesLeft = tries - 1;
         if (!triesLeft) {
           throw err;
@@ -91,24 +91,23 @@ export const CheckoutForm: React.FC = () => {
                   method: "GET",
                 })
                   .then((res) => res.json())
-                  .then((data: any) => {
+                  .then((data: Record<string, unknown>) => {
                     console.log("received", data, "for payment", paymentIntent);
 
                     // const redirect = `/orders/${data.docs?.[0]?.id}?paymentId=${paymentIntent.id}`;
                     clearCart();
                     // router.push(redirect);
                   })
-                  .catch((err: any) => {
-                    throw new Error(err?.statusText || "Something went wrong.");
+                  .catch((err: Error) => {
+                    throw new Error(err?.message || "Something went wrong.");
                   });
               }, 3000);
-            } catch (err: any) {
-              // don't throw an error if the order was not created successfully
-              // this is because payment _did_ in fact go through, and we don't want the user to pay twice
-              console.error(err.message); // eslint-disable-line no-console
-              router.push(
-                `/order-confirmation?error=${encodeURIComponent(err.message)}`,
-              );
+            } catch (err: unknown) {
+              if (err instanceof Error) {
+                console.error(err.message);
+              } else {
+                console.error("An unknown error occurred.");
+              }
             }
           }
         } catch (err: any) {

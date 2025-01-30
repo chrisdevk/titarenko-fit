@@ -30,7 +30,7 @@ export const AddToCart = ({ product, locale, price }: AddToCartProps) => {
       url: productUrl,
       unitPrice,
     });
-  }, [addItemToCart, product, productUrl]);
+  }, [addItemToCart, product, productUrl, unitPrice]);
 
   return (
     <Button

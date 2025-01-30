@@ -4,7 +4,7 @@ import { useAuth } from "@/context/auth-context";
 import { useCart } from "@/context/cart";
 import { loadStripe } from "@stripe/stripe-js";
 import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+// import { useRouter } from "next/navigation";
 import { Fragment, Suspense, useEffect, useRef, useState } from "react";
 import { Elements } from "@stripe/react-stripe-js";
 import { CheckoutForm } from "@/components/forms/checkout-form";
@@ -61,7 +61,7 @@ export default function CheckoutPage() {
 
             setClientSecret(res.client_secret);
           }
-        } catch (error: any) {
+        } catch (error: unknown) {
           setError("Something went wrong.");
           console.error("Error:", error);
         }
