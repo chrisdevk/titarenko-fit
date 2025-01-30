@@ -1,3 +1,5 @@
+import { User } from "@/payload-types";
+
 const logs = true;
 
 interface CartItem {
@@ -24,7 +26,7 @@ export async function POST(req: Request) {
     ? JSON.parse(metadataFromObject.cart)
     : undefined;
 
-  let user: any | undefined;
+  let user: User | undefined;
 
   if (customer) {
     const users = await payload.find({
