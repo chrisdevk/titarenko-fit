@@ -1,22 +1,19 @@
-import type { Product, User } from "@/payload-types";
 import type { StripeWebhookHandler } from "@payloadcms/plugin-stripe/types";
 import type Stripe from "stripe";
 
 const logs = true;
 
 interface CartItem {
-  product: Product;
+  product: string;
   quantity: number;
   unitPrice: number;
   id?: string;
 }
 
-export const paymentSucceeded: StripeWebhookHandler<{
-  data: {
-    object: Stripe.PaymentIntent;
-  };
-}> = async (args) => {
-  const { event, payload } = args;
+export async function POST(req: Request) {
+  const event = await req.json(); // Parse the incoming webhook request
+
+  const { payload } = event;
 
   const {
     id: stripePaymentIntentID,
@@ -24,13 +21,13 @@ export const paymentSucceeded: StripeWebhookHandler<{
     currency,
     customer,
     metadata: metadataFromObject,
-  } = event.data.object;
+  } = payload.data.object;
 
   const cart = metadataFromObject.cart
     ? JSON.parse(metadataFromObject.cart)
     : undefined;
 
-  let user: User | undefined;
+  let user: any | undefined;
 
   if (customer) {
     const users = await payload.find({
@@ -55,7 +52,6 @@ export const paymentSucceeded: StripeWebhookHandler<{
 
   try {
     if (logs) payload.logger.info(`- Creating order...`);
-    console.log("- Creating order...", cart);
 
     await payload.create({
       collection: "orders",
@@ -75,7 +71,9 @@ export const paymentSucceeded: StripeWebhookHandler<{
     });
 
     if (logs) payload.logger.info(`✅ Successfully created order for payment.`);
+    return new Response("Webhook processed", { status: 200 });
   } catch (error: unknown) {
     payload.logger.error(`- Error creating order: ${error}`);
+    return new Response("Error processing webhook", { status: 500 });
   }
-};
+}
