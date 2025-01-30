@@ -74,8 +74,8 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               setIsOpen={setIsOpen}
               setScrolled={setScrolled}
             />
-            <nav className="absolute left-1/2 hidden -translate-x-1/2 md:block">
-              <ul className="flex items-center gap-4">
+            <nav className="hidden md:block lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+              <ul className="flex items-center gap-2 lg:gap-4">
                 {navlinks.map((link) => (
                   <li key={link.text}>
                     <Link href={`/${locale}${link.path}`}>{t(link.text)}</Link>
@@ -83,15 +83,14 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 ))}
               </ul>
             </nav>
-            <div className="hidden items-center gap-x-4 md:flex">
+            <div className="hidden items-center gap-x-1 md:flex lg:gap-x-4">
               <Link href={`/${locale}/checkout`} className="relative">
                 <ShoppingBasket />
-                {cart?.items?.length ??
-                  (0 >= 1 && (
-                    <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
-                      {cart?.items?.length ?? 0}
-                    </span>
-                  ))}
+                {cart?.items?.length !== 0 && (
+                  <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
+                    {cart?.items?.length}
+                  </span>
+                )}
               </Link>
               <LanguageSelect locale={locale} />
               {user ? (

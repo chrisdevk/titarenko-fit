@@ -13,8 +13,6 @@
 export type CartItems =
   | {
       product?: (number | null) | Product;
-      variantID?: string | null;
-      variant?: string | null;
       unitPrice: number;
       quantity: number;
       url?: string | null;
@@ -390,8 +388,6 @@ export interface UsersSelect<T extends boolean = true> {
  */
 export interface CartItemsSelect<T extends boolean = true> {
   product?: T;
-  variantID?: T;
-  variant?: T;
   unitPrice?: T;
   quantity?: T;
   url?: T;

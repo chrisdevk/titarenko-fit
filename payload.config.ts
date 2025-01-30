@@ -17,6 +17,7 @@ import { Users } from "./collections/Users";
 import { productsProxy } from "./endpoints/products";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
 import { Orders } from "./collections/Orders";
+import { paymentSucceeded } from "./stripe/webhooks/payment-succeded";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -73,7 +74,12 @@ export default buildConfig({
   plugins: [
     payloadCloudPlugin(),
     stripePlugin({
-      stripeSecretKey: process.env.STRIPE_SECRET_KEY ?? "",
+      stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
+      isTestKey: Boolean(process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY),
+      logs: true,
+      webhooks: {
+        "payment_intent.succeeded": paymentSucceeded,
+      },
     }),
   ],
   localization: {

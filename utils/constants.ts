@@ -138,3 +138,46 @@ export const carouselItems = [
     avatar: "/images/person-6.webp",
   },
 ];
+
+export const certificates = [
+  {
+    alt: "certificate-1",
+    src: "/images/International-Personal-Trainer-2025-1-1024x793.jpg",
+  },
+  {
+    alt: "certificate-2",
+    src: "/images/image.jpg",
+  },
+  {
+    alt: "certificate-3",
+    src: "/images/image-1.jpg",
+  },
+  {
+    alt: "certificate-4",
+    src: "/images/image-2.jpg",
+  },
+  {
+    alt: "certificate-5",
+    src: "/images/image-3.jpg",
+  },
+  {
+    alt: "certificate-6",
+    src: "/images/image-4.jpg",
+  },
+  {
+    alt: "certificate-7",
+    src: "/images/image-5.jpg",
+  },
+  {
+    alt: "certificate-8",
+    src: "/images/image-6.jpg",
+  },
+  {
+    alt: "certificate-9",
+    src: "/images/image-7.jpg",
+  },
+  {
+    alt: "certificate-10",
+    src: "/images/image-8.jpg",
+  },
+];

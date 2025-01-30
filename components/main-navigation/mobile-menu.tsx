@@ -20,7 +20,7 @@ export const MobileMenu = ({ locale, setOpen }: MobileMenuProps) => {
         {navlinks.map((link) => (
           <li key={link.text}>
             <Link
-              href={locale + link.path}
+              href={`/${locale}/${link.path}`}
               onClick={() => setOpen(false)}
               className="rounded-sm p-1 transition-all hover:bg-baby-slate"
             >

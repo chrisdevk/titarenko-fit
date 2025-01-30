@@ -149,7 +149,9 @@
     "duration": "Duration",
     "intensity": "Intensity",
     "fitness level": "Fitness level",
-    "buy course": "Buy course",
+    "add-to-cart": "Add to cart",
+    "login-check": "You need to log in or create an account to buy the course",
+    "login": "Log in",
     "month": "month",
     "overview": {
       "for_whom": "For whom",
@@ -181,5 +183,69 @@
         "answer": "Most of the course exercises will be useful for both. But! This is not a SPECIALIZED course for pregnant women, as well as post-pregnancy recovery, so please consult your doctor first."
       }
     ]
+  },
+  "CheckoutPage": {
+    "h1": "Checkout",
+    "cartIsEmpty": "Cart is empty",
+    "cart": "Cart"
+  },
+  "AboutPage": {
+    "achievements": {
+      "heading": "Achievements",
+      "achievement-subheading": "Sport excellence",
+      "award-subheading": "Awards",
+      "achievement-paragraph": "Master of sport in bodybuilding • Master of sport in international class of gymnastics • Order of Honor of manhood III degree, Ukraine • PRO-fitness sportsman",
+      "award-paragraph": "2-time World Champion in Sports Acrobatics • 2-time Absolute World Champion in Fitness • 2-time Absolute Champion of Arnold Classic in Fitness • Absolute European Champion in Fitness • European Champion in Sports Acrobatics • World Games Champion in Fitness"
+    },
+    "education": {
+      "heading": "Education",
+      "card-one": "Ukrainian State University of Physical Education and Sports (Sports Acrobatics / Olympic Sports). Bachelor's Degree.",
+      "card-two-paragraph": "American National Academy of Sports Medicine. Specialist:",
+      "card-two-list": [
+        "International Certified Personal Trainer",
+        "Rehabilitation",
+        "Professional sport",
+        "Women's fitness",
+        "Post-Operative Rehabilitation",
+        "Fitness for the elderly generation",
+        "Certified Trainer for Nutrition"
+      ],
+      "card-three-paragraph": "College of East Nevada. Foreign languages:",
+      "card-three-list": ["English", "German", "French"]
+    },
+    "career": {
+      "heading": "Career. SHOW BUSINESS CIRQUE DU SOLEIL",
+      "card-one-list": [
+        "Artist/Acrobat at Cirque Du Soleil (21 years)",
+        "Artist/Acrobat/Character in «Teatro Zinzanni»",
+        "Stunt Actress in the film Wonder Woman 84",
+        "Stunt Actress in the film Oscar and the Lady in Pink",
+        "Artistic Director of Cabaret",
+        "SAG Award for «Stunt Ensemble» in the film Wonder Woman 84",
+        "GRAMMY — Solo Performance representing The Beatles & Cirque Du Soleil"
+      ],
+      "card-two-list": [
+        "Show “O” (show creation): Sportswear, racquet, ring",
+        "Show “LOVE” (show creation): Solo Number on Air Balloons",
+        "Show “TOTEM” (show creation): Solo Number on Gymnastic Rings, Adagio",
+        "Show “SALTIMBANKO” : Chinese Balloons, Balloons, Russian Ropes",
+        "Fitness Trainer for Physical Fitness"
+      ]
+    },
+    "certificates": {
+      "heading": "Certificates"
+    },
+    "story": {
+      "heading": "My story",
+      "circus": {
+        "paragraph-one": "My life is full of adventures and unexpected twists. But I always try to make the most of every turn.",
+        "paragraph-two": "Whether it's «through hardships to the stars» in sports or overcoming shyness and fear while performing on the Cirque Du Soleil stage in front of thousands… Whether it's training during shows and preparing for fitness championships after performances… Whether it's returning to aerial performance after giving birth to two daughters… Or recovering and regaining athletic functionality after undergoing several complex spinal and hip surgeries."
+      },
+      "competitions": {
+        "paragraph-one": "All this life experience, gained not only theoretically but, most importantly, practically, I invest in creating my programs and courses.",
+        "paragraph-two": "The rehabilitative component, corrective approach, creative thinking, and deep knowledge of my field make my programs unique, engaging, and, most importantly, BENEFICIAL in many ways.",
+        "paragraph-three": "Training with me, you are in safe hands because I take care of everyone who has entrusted me with the most important thing you have — your health."
+      }
+    }
   }
 }

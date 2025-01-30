@@ -5,6 +5,7 @@ import { PurchaseCard } from "./_components/purchase-card";
 import { Overview } from "./_components/overview";
 import { getTranslations } from "next-intl/server";
 import { FaqAccordion } from "./_components/faq-accordion";
+import { getCurrentUser } from "@/utils/data/get-current-user";
 
 export default async function ProgramPage({
   params,
@@ -16,6 +17,7 @@ export default async function ProgramPage({
   const t = await getTranslations({ locale, namespace: "SingleProgramPage" });
 
   const product = await getProduct({ id: programId.toString(), locale });
+  const currentUser = await getCurrentUser();
 
   if (!product)
     return <p>Product not found or not available in the current locale</p>;
@@ -32,9 +34,9 @@ export default async function ProgramPage({
 
   return (
     <main className="mt-28">
-      <article className="mx-auto flex w-11/12 max-w-[1440px] justify-between">
-        <div className="flex w-2/3 flex-col">
-          <h1>{product?.title}</h1>
+      <article className="mx-auto flex w-11/12 max-w-[1440px] flex-col justify-between md:flex-row">
+        <div className="flex flex-col md:w-2/3">
+          <h1 className="text-purple-custom">{product?.title}</h1>
           <section className="relative mt-4 h-[440px] w-full">
             {imgSrc ? (
               <Image
@@ -51,6 +53,15 @@ export default async function ProgramPage({
               </div>
             )}
           </section>
+          <div className="mt-4 md:hidden">
+            <PurchaseCard
+              user={currentUser}
+              locale={locale}
+              product={product}
+              price={price}
+              recurring={price.recurring?.interval}
+            />
+          </div>
           <Overview
             for_whom={product?.for_whom}
             program={product?.program}
@@ -59,19 +70,18 @@ export default async function ProgramPage({
             contradictions={product?.contradictions}
           />
         </div>
-        <aside className="sticky top-24 w-1/4 self-start">
+        <aside className="sticky top-24 hidden w-1/4 self-start md:block">
           <PurchaseCard
-            duration={product?.duration}
-            intensity={product?.intensity}
-            fitness_level={product?.fitness_level}
-            description={product?.product_description}
+            user={currentUser}
+            locale={locale}
+            product={product}
             price={price}
             recurring={price.recurring?.interval}
           />
         </aside>
       </article>
       <article className="relative mt-20 overflow-hidden rounded-t-3xl bg-turquoise-light pb-20 pt-10">
-        <section className="flex flex-col items-center gap-y-8">
+        <section className="relative z-10 flex flex-col items-center gap-y-8">
           <h2 className="text-off-black">{t("faq_heading")}</h2>
           <FaqAccordion />
         </section>

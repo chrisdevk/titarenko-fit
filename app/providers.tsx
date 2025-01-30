@@ -18,8 +18,8 @@ export default async function Providers({
         <AuthProvider>
           <CartProvider>
             <Toaster />
+            {children}
           </CartProvider>
-          {children}
         </AuthProvider>
       </NextIntlClientProvider>
     </QueryProvider>

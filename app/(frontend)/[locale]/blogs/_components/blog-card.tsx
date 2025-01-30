@@ -15,7 +15,7 @@ export const BlogCard = ({ title, imgSrc, path }: BlogCardProps) => {
   const t = useTranslations();
 
   return (
-    <div className="flex w-[31%] flex-col gap-y-4 rounded-3xl bg-white shadow-md">
+    <div className="flex w-full flex-col gap-y-4 rounded-3xl bg-white shadow-md md:w-[31%]">
       <div className="relative h-[295px] w-full">
         <Image
           src={imgSrc}

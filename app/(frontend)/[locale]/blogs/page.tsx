@@ -24,8 +24,8 @@ export default async function BlogsPage({
     );
   } else {
     return (
-      <main className="relative w-screen">
-        <article className="mx-auto w-11/12 max-w-[1440px] py-28">
+      <main className="relative w-screen overflow-hidden">
+        <article className="relative z-10 mx-auto w-11/12 max-w-[1440px] py-28">
           <h1 className="max-w-[900px] normal-case">{t("heading")}</h1>
           <section
             className={cn(
@@ -52,10 +52,10 @@ export default async function BlogsPage({
             })}
           </section>
         </article>
-        <div className="absolute -right-[1.5%] top-16 h-[266px] w-[276px] rotate-90">
+        <div className="absolute -right-[8%] top-16 h-[266px] w-[276px] rotate-90 md:-right-[1.5%]">
           <Image src="/images/icons/lines-purple.svg" alt="lines blogs" fill />
         </div>
-        <div className="absolute -left-[2%] bottom-0.5 h-[266px] w-[276px] -rotate-90">
+        <div className="absolute -left-[8%] bottom-0.5 h-[266px] w-[276px] -rotate-90 md:-left-[2%]">
           <Image src="/images/icons/lines-purple.svg" alt="lines blogs" fill />
         </div>
       </main>

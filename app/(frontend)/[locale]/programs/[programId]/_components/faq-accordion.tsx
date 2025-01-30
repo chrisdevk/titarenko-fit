@@ -15,7 +15,7 @@ export const FaqAccordion = () => {
     <Accordion
       type="single"
       defaultValue="item-1"
-      className="w-[780px] rounded-3xl bg-white px-10 py-4"
+      className="w-full rounded-3xl bg-white px-10 py-4 md:w-[780px]"
     >
       {faqItems.map(
         (item: { question: string; answer: string }, index: number) => (

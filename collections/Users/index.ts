@@ -109,14 +109,6 @@ export const Users: CollectionConfig = {
                   type: "relationship",
                   relationTo: "products",
                 },
-                {
-                  name: "variantID",
-                  type: "text",
-                },
-                {
-                  name: "variant",
-                  type: "text",
-                },
               ],
             },
             {
