@@ -11,7 +11,7 @@ interface CartItem {
   id?: string;
 }
 
-export const POST: StripeWebhookHandler<{
+export const paymentSucceeded: StripeWebhookHandler<{
   data: {
     object: Stripe.PaymentIntent;
   };
