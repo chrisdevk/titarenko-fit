@@ -122,17 +122,18 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
         const { product } = item;
 
         if (!product || typeof product === "string") {
+          payload.logger.error("Invalid product ID.");
           return null;
         }
 
         if (isProduct(product)) {
           metadata.push({
-            product: product.title,
-            productId: product.id,
+            product: product.id,
             quantity: 1,
           });
 
-          total += item.unitPrice;
+          const itemPrice = item.unitPrice || 0;
+          total += itemPrice;
         }
 
         return null;
@@ -145,7 +146,7 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
       );
     }
 
-    console.log({ metadata });
+    console.log("Metadata: ", { metadata });
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,

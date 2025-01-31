@@ -247,5 +247,12 @@
         "paragraph-three": "Training with me, you are in safe hands because I take care of everyone who has entrusted me with the most important thing you have — your health."
       }
     }
+  },
+  "DashboardPage": {
+    "title": "Personal cabinet",
+    "logout": "Log out",
+    "Courses": "Courses",
+    "Progress": "Progress",
+    "no-courses": "You haven't bought any courses yet"
   }
 }

@@ -1,21 +1,15 @@
-import type { Product, User } from "@/payload-types";
+import type { CartItems, User } from "@/payload-types";
 import type { StripeWebhookHandler } from "@payloadcms/plugin-stripe/types";
 import type Stripe from "stripe";
 
 const logs = true;
-
-interface CartItem {
-  product: Product;
-  quantity: number;
-  unitPrice: number;
-  id?: string;
-}
 
 export const paymentSucceeded: StripeWebhookHandler<{
   data: {
     object: Stripe.PaymentIntent;
   };
 }> = async (args) => {
+  console.log("***payment succeeded***");
   const { event, payload } = args;
 
   const {
@@ -55,20 +49,24 @@ export const paymentSucceeded: StripeWebhookHandler<{
 
   try {
     if (logs) payload.logger.info(`- Creating order...`);
-    console.log("- Creating order...", cart);
+    console.log("***Creating order***", cart);
 
     await payload.create({
       collection: "orders",
       data: {
         ...(user && { orderedBy: user.id }),
         currency,
-        items: cart?.map((item: CartItem) => {
-          const { product: productID } = item;
+        items:
+          cart?.map((item: NonNullable<CartItems>[number]) => {
+            const { product: productId, quantity } = item;
 
-          return {
-            product: productID,
-          };
-        }),
+            console.log("***Item: ", item);
+
+            return {
+              product: productId,
+              quantity,
+            };
+          }) || [],
         stripePaymentIntentID,
         total: amount,
       },

@@ -14,6 +14,7 @@ export type CartItems =
   | {
       product?: (number | null) | Product;
       unitPrice: number;
+      stripeProductID?: string | null;
       quantity: number;
       url?: string | null;
       id?: string | null;
@@ -124,7 +125,6 @@ export interface Order {
   items?:
     | {
         product: number | Product;
-        variant?: string | null;
         quantity?: number | null;
         id?: string | null;
       }[]
@@ -389,6 +389,7 @@ export interface UsersSelect<T extends boolean = true> {
 export interface CartItemsSelect<T extends boolean = true> {
   product?: T;
   unitPrice?: T;
+  stripeProductID?: T;
   quantity?: T;
   url?: T;
   id?: T;
@@ -470,7 +471,6 @@ export interface OrdersSelect<T extends boolean = true> {
     | T
     | {
         product?: T;
-        variant?: T;
         quantity?: T;
         id?: T;
       };

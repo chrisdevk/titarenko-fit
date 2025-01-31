@@ -17,8 +17,7 @@ import { Users } from "./collections/Users";
 import { productsProxy } from "./endpoints/products";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
 import { Orders } from "./collections/Orders";
-import { paymentSucceeded } from "./stripe/webhooks/payment-succeded";
-
+import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
 
@@ -40,6 +39,7 @@ export default buildConfig({
       connectionString: process.env.DATABASE_URI || "",
     },
   }),
+  debug: true,
   sharp,
   email: nodemailerAdapter({
     defaultFromAddress: process.env.SMTP_USER || "",
@@ -75,10 +75,11 @@ export default buildConfig({
     payloadCloudPlugin(),
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
-      isTestKey: Boolean(process.env.PAYLOAD_PUBLIC_STRIPE_IS_TEST_KEY),
+      isTestKey: true,
       logs: true,
       rest: false,
-      stripeWebhooksEndpointSecret: process.env.STRIPE_WEBHOOKS_SIGNING_SECRET,
+      stripeWebhooksEndpointSecret:
+        "whsec_cfcef25c875b3461fe2af44ecc1046f4bc3a2cbaedab923d65000558bdbabd53",
       webhooks: {
         "payment_intent.succeeded": paymentSucceeded,
       },

@@ -15,8 +15,6 @@ export const Orders: CollectionConfig = {
   },
   admin: {
     defaultColumns: ["createdAt", "orderedBy"],
-    preview: (doc) =>
-      `${process.env.PAYLOAD_PUBLIC_SERVER_URL}/orders/${doc.id}`,
     useAsTitle: "createdAt",
   },
   fields: [
@@ -67,10 +65,6 @@ export const Orders: CollectionConfig = {
               type: "relationship",
               relationTo: "products",
               required: true,
-            },
-            {
-              name: "variant",
-              type: "text",
             },
           ],
         },

@@ -12,8 +12,9 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { useCart } from "@/context/cart";
+import { Order } from "@/payload-types";
 
-export const CheckoutForm: React.FC = () => {
+export const CheckoutForm = ({ locale }: { locale: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = React.useState<null | string>(null);
@@ -91,12 +92,11 @@ export const CheckoutForm: React.FC = () => {
                   method: "GET",
                 })
                   .then((res) => res.json())
-                  .then((data: Record<string, unknown>) => {
+                  .then((data: Order) => {
                     console.log("received", data, "for payment", paymentIntent);
 
-                    // const redirect = `/orders/${data.docs?.[0]?.id}?paymentId=${paymentIntent.id}`;
                     clearCart();
-                    // router.push(redirect);
+                    router.push(`/${locale}/dashboard`);
                   })
                   .catch((err: Error) => {
                     throw new Error(err?.message || "Something went wrong.");

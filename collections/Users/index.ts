@@ -120,6 +120,11 @@ export const Users: CollectionConfig = {
                   required: true,
                 },
                 {
+                  name: "stripeProductID",
+                  type: "text",
+                  label: "Stripe Product ID",
+                },
+                {
                   name: "quantity",
                   type: "number",
                   admin: {
