@@ -6,12 +6,12 @@ import { Story } from "./_components/story";
 
 export default function AboutPage() {
   return (
-    <main>
+    <>
       <Achievements />
       <Education />
       <Career />
       <Certificates />
       <Story />
-    </main>
+    </>
   );
 }

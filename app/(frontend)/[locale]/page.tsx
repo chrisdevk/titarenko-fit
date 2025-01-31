@@ -8,7 +8,7 @@ import { TrainingPreview } from "./_components/training-preview/training-preview
 
 export default function Home() {
   return (
-    <main>
+    <>
       <Hero />
       <Awards />
       <article className="bg-turquoise-dark">
@@ -20,6 +20,6 @@ export default function Home() {
       <TrainingPreview />
       <Categories />
       <Testimonials />
-    </main>
+    </>
   );
 }

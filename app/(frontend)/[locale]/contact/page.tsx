@@ -12,15 +12,15 @@ export default async function ContactPage({
   const currentUser = await getCurrentUser();
 
   return (
-    <section className="mx-auto mt-24 flex w-11/12 max-w-[1440px] flex-col gap-x-[86px] gap-y-4 rounded-3xl bg-baby-slate px-3 py-8 md:flex-row md:px-10 lg:mt-[120px]">
-      <div className="space-y-4 md:w-1/2">
+    <article className="mx-auto mt-24 flex w-11/12 max-w-[1440px] flex-col gap-x-[86px] gap-y-4 rounded-3xl bg-baby-slate px-3 py-8 md:flex-row md:px-10 lg:mt-[120px]">
+      <section className="space-y-4 md:w-1/2">
         <h2>{t("heading")}</h2>
         <p>{t("paragraph")}</p>
-      </div>
+      </section>
       <ContactForm
         user_name={currentUser?.name}
         user_email={currentUser?.email}
       />
-    </section>
+    </article>
   );
 }

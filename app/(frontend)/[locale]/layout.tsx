@@ -34,13 +34,13 @@ export default async function RootLayout({
     <html lang={locale}>
       <body
         className={cn(
-          "overflow-x-hidden bg-off-white font-sans text-off-black",
+          "flex min-h-screen flex-col overflow-x-hidden bg-off-white font-sans text-off-black",
           roboto.variable,
         )}
       >
         <Providers>
           <MainNavigation locale={locale} />
-          {children}
+          <main className="flex-1">{children}</main>
           <Footer locale={locale} />
         </Providers>
       </body>

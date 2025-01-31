@@ -11,6 +11,7 @@ import { CheckoutForm } from "@/components/forms/checkout-form";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
+import { useParams } from "next/navigation";
 
 const apiKey = `${process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY}`;
 const stripe = loadStripe(apiKey);
@@ -20,6 +21,8 @@ export default function CheckoutPage() {
   const [error, setError] = useState<null | string>(null);
   const [clientSecret, setClientSecret] = useState();
   const hasMadePaymentIntent = useRef(false);
+
+  const { locale }: { locale: string } = useParams();
 
   const { cart, cartIsEmpty, cartTotal, deleteItemFromCart } = useCart();
   const t = useTranslations("CheckoutPage");
@@ -74,7 +77,7 @@ export default function CheckoutPage() {
   if (!stripe) return null;
 
   return (
-    <main className="mx-auto flex h-screen w-11/12 max-w-[1440px] items-center">
+    <div className="mx-auto mb-24 mt-40 flex w-11/12 max-w-[1440px] items-center">
       <article className="flex w-full justify-between gap-x-8">
         <section className="flex h-fit w-2/3 flex-col gap-y-3 rounded-3xl bg-turquoise-light px-4 py-6">
           <h2 className="font-semibold">{t("h1")}</h2>
@@ -94,7 +97,7 @@ export default function CheckoutPage() {
                     },
                   }}
                 >
-                  <CheckoutForm />
+                  <CheckoutForm locale={locale} />
                 </Elements>
               </>
             )}
@@ -168,6 +171,6 @@ export default function CheckoutPage() {
           )}
         </aside>
       </article>
-    </main>
+    </div>
   );
 }

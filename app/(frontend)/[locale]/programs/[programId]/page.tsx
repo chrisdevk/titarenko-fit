@@ -33,7 +33,7 @@ export default async function ProgramPage({
   }
 
   return (
-    <main className="mt-28">
+    <div className="mt-28">
       <article className="mx-auto flex w-11/12 max-w-[1440px] flex-col justify-between md:flex-row">
         <div className="flex flex-col md:w-2/3">
           <h1 className="text-purple-custom">{product?.title}</h1>
@@ -92,6 +92,6 @@ export default async function ProgramPage({
           <Image src="/images/icons/lines.svg" alt="white lines" fill />
         </div>
       </article>
-    </main>
+    </div>
   );
 }
