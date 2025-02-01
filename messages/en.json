@@ -253,6 +253,15 @@
     "logout": "Log out",
     "Courses": "Courses",
     "Progress": "Progress",
-    "no-courses": "You haven't bought any courses yet"
+    "no-courses": "You haven't bought any courses yet",
+    "course-button": "Watch course",
+    "Payments": "Payments",
+    "payment-table": {
+      "order-id": "Order ID",
+      "createdAt": "Purchase date",
+      "status": "Status",
+      "price": "Price",
+      "paid": "Paid"
+    }
   }
 }

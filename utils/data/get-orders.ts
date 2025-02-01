@@ -4,7 +4,7 @@ import { getCurrentUser } from "./get-current-user";
 
 export const getOrders = async ({ locale }: { locale: string }) => {
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders?depth=1&draft=false&locale=${locale}`;
+    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders?depth=2&draft=false&locale=${locale}`;
 
     const { token } = await getCurrentUser();
 

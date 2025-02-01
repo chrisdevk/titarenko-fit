@@ -7,9 +7,11 @@ interface LogoutCompProps {
 
 export const LogoutComp = ({ user_name, button_text }: LogoutCompProps) => {
   return (
-    <div className="flex items-center justify-between rounded-xl bg-purple-custom px-4 py-6">
+    <div className="flex items-center justify-between rounded-3xl bg-purple-custom px-4 py-6">
       <h3 className="uppercase text-white">{user_name}</h3>
-      <Button variant="secondary">{button_text}</Button>
+      <Button variant="secondary" className="relative z-10">
+        {button_text}
+      </Button>
     </div>
   );
 };

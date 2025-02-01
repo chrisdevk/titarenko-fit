@@ -249,6 +249,15 @@
     "logout": "Выйти",
     "Courses": "Курсы",
     "Progress": "Прогресс",
-    "no-courses": "Вы еще не купили курсы"
+    "no-courses": "Вы еще не купили курсы",
+    "course-button": "Смотреть курс",
+    "Payments": "Платежи",
+    "payment-table": {
+      "order-id": "Номер заказа",
+      "createdAt": "Дата покупки",
+      "status": "Статус",
+      "price": "Стоимость",
+      "paid": "Оплачено"
+    }
   }
 }
