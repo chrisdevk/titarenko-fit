@@ -72,6 +72,7 @@ export const Orders: CollectionConfig = {
           name: "quantity",
           type: "number",
           min: 0,
+          max: 1,
         },
       ],
     },

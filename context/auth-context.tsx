@@ -94,7 +94,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({
   useEffect(() => {
     const fetchMe = async () => {
       try {
-        const user = await getCurrentUser();
+        const { user } = await getCurrentUser();
 
         if (user) {
           setUser(user || null);

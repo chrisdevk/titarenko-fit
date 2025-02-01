@@ -14,9 +14,9 @@ export default async function DashboardPage({
   const { locale } = await params;
 
   const t = await getTranslations({ locale, namespace: "DashboardPage" });
-  const currentUser = await getCurrentUser();
+  const { user } = await getCurrentUser();
 
-  if (!currentUser || !currentUser.name) {
+  if (!user || !user.name) {
     return (
       <main className="mx-auto mt-36 w-11/12 max-w-[1440px]">
         <p>Not logged in</p>
@@ -24,7 +24,9 @@ export default async function DashboardPage({
     );
   }
 
-  const orders: Order[] = await getOrders({ userId: currentUser.id, locale });
+  const orders: Order[] = await getOrders({
+    locale,
+  });
 
   return (
     <div className="mx-auto mt-28 w-11/12 max-w-[1440px]">
@@ -32,10 +34,7 @@ export default async function DashboardPage({
         <h1>{t("title")}</h1>
         <section className="grid grid-cols-5 gap-5">
           <div className="col-span-2 flex flex-col gap-y-5">
-            <LogoutComp
-              user_name={currentUser.name}
-              button_text={t("logout")}
-            />
+            <LogoutComp user_name={user.name} button_text={t("logout")} />
             <Progress />
           </div>
           <div className="col-span-3 flex flex-col gap-y-7 rounded-3xl bg-turquoise-light p-4">

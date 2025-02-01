@@ -17,7 +17,7 @@ export default async function ProgramPage({
   const t = await getTranslations({ locale, namespace: "SingleProgramPage" });
 
   const product = await getProduct({ id: programId.toString(), locale });
-  const currentUser = await getCurrentUser();
+  const { user } = await getCurrentUser();
 
   if (!product)
     return <p>Product not found or not available in the current locale</p>;
@@ -55,7 +55,7 @@ export default async function ProgramPage({
           </section>
           <div className="mt-4 md:hidden">
             <PurchaseCard
-              user={currentUser}
+              user={user}
               locale={locale}
               product={product}
               price={price}
@@ -72,7 +72,7 @@ export default async function ProgramPage({
         </div>
         <aside className="sticky top-24 hidden w-1/4 self-start md:block">
           <PurchaseCard
-            user={currentUser}
+            user={user}
             locale={locale}
             product={product}
             price={price}
