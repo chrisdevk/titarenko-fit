@@ -78,8 +78,7 @@ export default buildConfig({
       isTestKey: true,
       logs: true,
       rest: false,
-      stripeWebhooksEndpointSecret:
-        "whsec_cfcef25c875b3461fe2af44ecc1046f4bc3a2cbaedab923d65000558bdbabd53",
+      stripeWebhooksEndpointSecret: process.env.STRIPE_WEBHOOKS_SIGNIN_SECRET,
       webhooks: {
         "payment_intent.succeeded": paymentSucceeded,
       },

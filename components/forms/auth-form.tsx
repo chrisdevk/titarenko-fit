@@ -50,6 +50,7 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
     mutationFn: async (data: AuthFormValues) => {
       if (isSignup) {
         await create(data as SignupFormValues);
+        await login(data as LoginFormValues);
       } else {
         await login(data as LoginFormValues);
       }
