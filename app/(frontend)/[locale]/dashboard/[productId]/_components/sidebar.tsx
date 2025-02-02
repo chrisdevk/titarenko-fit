@@ -19,7 +19,7 @@ export const Sidebar = ({
 }: SidebarProps) => {
   return (
     <aside className="h-full w-1/3 rounded-3xl bg-turquoise-light p-4">
-      <ScrollArea className="h-full w-full">
+      <ScrollArea className="h-full w-full px-4">
         {Array.from({ length: videoCount }).map((_, index) => (
           <Button
             key={index}

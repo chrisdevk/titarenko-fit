@@ -14,7 +14,7 @@ export default async function CoursePage({
     return <p>Product not found or not available in the current locale</p>;
 
   return (
-    <article className="mx-auto mt-28 w-11/12 max-w-[1440px]">
+    <article className="mx-auto mt-28 w-11/12 max-w-[1440px] pb-16">
       <h1>{product?.title}</h1>
       <VideoInterface product={product} />
     </article>
