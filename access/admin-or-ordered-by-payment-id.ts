@@ -9,8 +9,12 @@ import { checkRole } from "./check-role";
  */
 export const adminsOrOrderedByOrPaymentId: Access = ({ req }) => {
   const typedUser = req.user as User | undefined;
+  const isAdmin = checkRole(["admin"], typedUser);
 
-  if (checkRole(["admin"], typedUser)) {
+  const referer = req.headers?.get("referer") || "";
+  const isAdminPanelRequest = referer.includes("/admin");
+
+  if (isAdmin && isAdminPanelRequest) {
     return true;
   }
 

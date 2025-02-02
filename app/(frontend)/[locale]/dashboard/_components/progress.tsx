@@ -15,7 +15,7 @@ export const Progress = ({ orders }: ProgressProps) => {
           typeof item.product !== "number" && (
             <div
               key={item.product.id}
-              className="flex w-full items-center justify-between gap-x-2"
+              className="flex w-full items-center justify-between gap-x-2 rounded-3xl bg-off-white p-2"
             >
               <p className="min-w-[105px] whitespace-nowrap text-sm font-semibold">
                 {item.product.title}

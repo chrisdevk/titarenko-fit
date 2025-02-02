@@ -30,7 +30,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
               <CourseCard
                 key={item.id}
                 title={item.product.title}
-                path={`/${locale}/dashboard/${item.product.slug}`}
+                path={`/${locale}/dashboard/${item.product.id}`}
                 imgSrc={imgSrc || "/images/no-image.jpg"}
                 course_btn_text={course_btn_text}
               />

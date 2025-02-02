@@ -17,7 +17,7 @@ export default async function ProgramsPage({
 
   return (
     <article className="relative h-full w-screen">
-      <section className="mx-auto mt-28 w-11/12 max-w-[1440px]">
+      <section className="relative z-10 mx-auto mt-28 w-11/12 max-w-[1440px]">
         <h1>{t("heading")}</h1>
         <ProgramTabs
           programs={programs}

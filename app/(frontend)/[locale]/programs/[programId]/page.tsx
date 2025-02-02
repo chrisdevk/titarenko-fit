@@ -10,13 +10,13 @@ import { getCurrentUser } from "@/utils/data/get-current-user";
 export default async function ProgramPage({
   params,
 }: {
-  params: Promise<{ programId: number; locale: string }>;
+  params: Promise<{ programId: string; locale: string }>;
 }) {
   const { programId, locale } = await params;
 
   const t = await getTranslations({ locale, namespace: "SingleProgramPage" });
 
-  const product = await getProduct({ id: programId.toString(), locale });
+  const product = await getProduct({ id: programId, locale });
   const { user } = await getCurrentUser();
 
   if (!product)

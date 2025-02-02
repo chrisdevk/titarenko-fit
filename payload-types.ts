@@ -223,6 +223,12 @@ export interface Product {
   };
   stripeProductID?: string | null;
   priceJSON?: string | null;
+  videos?:
+    | {
+        video_url: string;
+        id?: string | null;
+      }[]
+    | null;
   categories: number | Category;
   slug?: string | null;
   skipSync?: boolean | null;
@@ -443,6 +449,12 @@ export interface ProductsSelect<T extends boolean = true> {
   contradictions?: T;
   stripeProductID?: T;
   priceJSON?: T;
+  videos?:
+    | T
+    | {
+        video_url?: T;
+        id?: T;
+      };
   categories?: T;
   slug?: T;
   skipSync?: T;

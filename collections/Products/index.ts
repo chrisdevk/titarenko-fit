@@ -144,6 +144,25 @@ export const Products: CollectionConfig = {
             },
           ],
         },
+        {
+          label: "Product Videos",
+          fields: [
+            {
+              name: "videos",
+              type: "array",
+              label: "Videos",
+              minRows: 1,
+              fields: [
+                {
+                  name: "video_url",
+                  type: "text",
+                  label: "Video URL",
+                  required: true,
+                },
+              ],
+            },
+          ],
+        },
       ],
     },
     {
