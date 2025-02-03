@@ -34,10 +34,10 @@ export default async function ProgramPage({
 
   return (
     <div className="mt-28">
-      <article className="mx-auto flex w-11/12 max-w-[1440px] flex-col justify-between md:flex-row">
+      <article className="mx-auto flex w-11/12 max-w-[1440px] flex-col justify-between gap-x-4 md:flex-row lg:gap-x-0">
         <div className="flex flex-col md:w-2/3">
           <h1 className="text-purple-custom">{product?.title}</h1>
-          <section className="relative mt-4 h-[440px] w-full">
+          <section className="relative mt-4 h-[240px] w-full lg:h-[440px]">
             {imgSrc ? (
               <Image
                 src={imgSrc}
@@ -70,7 +70,7 @@ export default async function ProgramPage({
             contradictions={product?.contradictions}
           />
         </div>
-        <aside className="sticky top-24 hidden w-1/4 self-start md:block">
+        <aside className="sticky top-44 hidden w-1/4 self-start md:block md:w-1/3 lg:top-24 lg:w-1/4">
           <PurchaseCard
             user={user}
             locale={locale}

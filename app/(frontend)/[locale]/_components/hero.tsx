@@ -19,7 +19,7 @@ export const Hero = () => {
       const trimmedWord = word.trim();
       if (/^(stronger|сильнее)$/i.test(trimmedWord)) {
         return (
-          <span key={index} className="text-purple-custom lg:ml-[-16px]">
+          <span key={index} className="-ml-2 text-purple-custom lg:ml-[-16px]">
             {trimmedWord}
           </span>
         );
@@ -54,7 +54,9 @@ export const Hero = () => {
                 initial="initial"
                 animate={isInView ? "animate" : ""}
                 custom={i}
-                className={cn("pr-2 text-center text-off-black md:text-start")}
+                className={cn(
+                  "pr-1 text-center text-off-black md:pr-2 md:text-start",
+                )}
               >
                 {current == "" ? <span>&nbsp;</span> : current}
               </motion.h1>

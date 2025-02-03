@@ -20,7 +20,7 @@ const Hamburger = ({ isOpen, setIsOpen, setScrolled }: HamburgerProps) => {
     <button
       type="button"
       aria-label="Hamburger"
-      className="group relative z-50 flex h-12 w-12 flex-col items-center justify-center md:hidden"
+      className="group relative z-50 flex h-12 w-12 flex-col items-center justify-center lg:hidden"
       onClick={handleToggle}
     >
       <div

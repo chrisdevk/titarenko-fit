@@ -57,7 +57,7 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-4 rounded-3xl bg-white px-4 py-6 md:w-1/2 md:p-8"
+        className="space-y-4 rounded-3xl bg-off-white px-4 py-6 md:p-8 lg:w-1/2"
       >
         <FormField
           control={form.control}

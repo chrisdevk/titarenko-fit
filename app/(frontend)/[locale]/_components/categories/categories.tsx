@@ -49,7 +49,7 @@ export const Categories = () => {
                   imgSrc={`/images/${key}.png`}
                   title={card.title}
                   description={card.description}
-                  link={`/${locale}/programs/#${key}`}
+                  link={`/${locale}/programs`}
                 />
               </motion.div>
             ))}

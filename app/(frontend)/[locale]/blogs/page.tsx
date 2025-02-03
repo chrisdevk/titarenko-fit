@@ -30,7 +30,7 @@ export default async function BlogsPage({
           <section
             className={cn(
               "mt-10 flex flex-wrap justify-between gap-y-7",
-              blogs.length < 3 && "justify-normal gap-x-7",
+              blogs.length < 3 && "gap-x-7 md:gap-x-0 lg:justify-normal",
             )}
           >
             {blogs.map((blog: Blog) => {

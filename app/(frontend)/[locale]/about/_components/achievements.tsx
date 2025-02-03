@@ -7,7 +7,7 @@ export const Achievements = () => {
 
   return (
     <article className="bg-turquoise-light pb-16 pt-32">
-      <section className="mx-auto flex w-11/12 max-w-[1440px] flex-col items-stretch justify-between gap-x-10 gap-y-5 md:flex-row">
+      <section className="mx-auto flex w-11/12 max-w-[1440px] flex-col items-stretch justify-between gap-x-3 gap-y-5 md:flex-row lg:gap-x-10">
         <div className="relative h-[250px] w-full md:h-auto md:w-1/2">
           <Image
             src="/images/achievements-img.jpg"
@@ -15,7 +15,7 @@ export const Achievements = () => {
             fill
             className="z-10 rounded-3xl object-cover"
           />
-          <div className="absolute -bottom-6 -left-6 hidden h-full w-full rounded-3xl bg-turquoise-dark md:block" />
+          <div className="absolute -bottom-3 -left-3 hidden h-full w-full rounded-3xl bg-turquoise-dark md:block lg:-bottom-6 lg:-left-6" />
         </div>
         <div className="space-y-5 md:w-1/2">
           <h2 className="text-center md:text-start">{t("heading")}</h2>

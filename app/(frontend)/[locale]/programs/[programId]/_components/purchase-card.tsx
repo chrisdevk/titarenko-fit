@@ -27,32 +27,34 @@ export const PurchaseCard = ({
   const formattedPrice = `$${(price[0].unit_amount! / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`;
 
   return (
-    <div className="space-y-4 rounded-3xl bg-turquoise-light px-6 py-5 md:space-y-10">
+    <div className="space-y-4 rounded-3xl bg-turquoise-light p-3 lg:space-y-10 lg:px-6 lg:py-5">
       <h2>{t("details")}</h2>
-      <p className="text-xl text-grey-custom">{product.product_description}</p>
-      <ul className="space-y-4 text-lg font-medium">
-        <li className="flex items-center gap-x-3.5">
+      <p className="text-grey-custom lg:text-xl">
+        {product.product_description}
+      </p>
+      <ul className="space-y-4 font-medium lg:text-lg">
+        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
           <Clock4 className="text-purple-custom" />
           <span className="text-grey-custom">{t("duration")}:</span>
           <span>{product.duration}</span>
         </li>
-        <li className="flex items-center gap-x-3.5">
+        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
           <Flame className="text-purple-custom" />
           <span className="text-grey-custom">{t("intensity")}:</span>
           <span>{product.intensity}</span>
         </li>
-        <li className="flex items-center gap-x-3.5">
+        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
           <ChartNoAxesColumnIncreasing className="text-purple-custom" />
           <span className="text-grey-custom">{t("fitness level")}:</span>
           <span>{product.fitness_level}</span>
         </li>
       </ul>
       <div className="space-y-5">
-        <h2 className="font-semibold">{formattedPrice}</h2>
         {user ? (
           <AddToCart product={product} locale={locale} price={price} />
         ) : (
           <div className="space-y-2">
+            <h2 className="font-semibold">{formattedPrice}</h2>
             <p className="text-sm">{t("login-check")}</p>
             <Link
               href={`/${locale}/auth`}

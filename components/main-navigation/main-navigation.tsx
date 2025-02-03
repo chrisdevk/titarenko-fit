@@ -47,7 +47,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
         {pathname === `/${locale}` && (
           <div
             className={cn(
-              "absolute left-0 top-0 hidden w-full bg-turquoise-dark py-3.5 text-center text-white transition-all duration-300 md:block",
+              "absolute left-0 top-0 hidden w-full bg-turquoise-dark py-3.5 text-center text-white transition-all duration-300 lg:block",
               scrolled && "origin-top scale-y-0 opacity-0",
             )}
           >
@@ -57,7 +57,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
         <div
           className={cn(
             "w-full bg-turquoise-light py-4 transition-all duration-300",
-            pathname === `/${locale}` && !scrolled && "md:mt-12",
+            pathname === `/${locale}` && !scrolled && "lg:mt-12",
             scrolled && "mt-0",
           )}
         >
@@ -73,7 +73,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               setIsOpen={setIsOpen}
               setScrolled={setScrolled}
             />
-            <nav className="hidden md:block lg:absolute lg:left-1/2 lg:-translate-x-1/2">
+            <nav className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
               <ul className="flex items-center gap-2 lg:gap-4">
                 {navlinks.map((link) => (
                   <li key={link.text}>
@@ -82,7 +82,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 ))}
               </ul>
             </nav>
-            <div className="hidden items-center gap-x-1 md:flex lg:gap-x-4">
+            <div className="hidden items-center gap-x-1 lg:flex lg:gap-x-4">
               <Link href={`/${locale}/checkout`} className="relative">
                 <ShoppingBasket />
                 {cart?.items?.length !== 0 && (

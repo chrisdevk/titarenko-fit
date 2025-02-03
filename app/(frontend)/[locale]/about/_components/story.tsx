@@ -23,7 +23,7 @@ export const Story = () => {
               <p>{t("circus.paragraph-two")}</p>
             </div>
           </div>
-          <div className="flex flex-col-reverse items-stretch justify-between gap-x-12 gap-y-5">
+          <div className="flex flex-col-reverse items-stretch justify-between gap-x-12 gap-y-5 md:flex-row">
             <div className="w-full space-y-5 md:w-7/12">
               <p>{t("competitions.paragraph-one")}</p>
               <p>{t("competitions.paragraph-two")}</p>
