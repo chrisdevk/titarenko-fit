@@ -14,7 +14,7 @@ export const Certificates = () => {
             {certificates.map((item) => (
               <div
                 key={item.alt}
-                className="relative mx-auto h-[250px] w-full md:h-[151px] md:w-[31.5%] lg:h-[200px] lg:w-[245px]"
+                className="relative mx-auto h-[220px] w-full md:h-[151px] md:w-[31.5%] lg:h-[200px] lg:w-[245px]"
               >
                 <Image
                   src={item.src}

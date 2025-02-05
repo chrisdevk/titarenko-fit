@@ -5,6 +5,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Product } from "@/payload-types";
+import { ChevronDown } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 interface CategoryDropdownProps {
@@ -26,13 +27,16 @@ export const CategoryDropdown = ({
 
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex w-full items-center gap-x-2 rounded-3xl bg-purple-custom px-4 py-2 text-start text-lg text-white">
-        {currentCategory === "all" ? t("all") : currentCategory}
-        <span className="rounded-3xl bg-white px-1.5 text-xs text-purple-custom">
-          {currentCategory === "all"
-            ? programs.length
-            : filteredPrograms.length}
-        </span>
+      <DropdownMenuTrigger className="flex w-full items-center justify-between rounded-3xl bg-purple-custom px-4 py-2 text-start text-lg text-white">
+        <div className="flex items-center gap-x-2">
+          {currentCategory === "all" ? t("all") : currentCategory}
+          <span className="rounded-3xl bg-white px-1.5 text-xs text-purple-custom">
+            {currentCategory === "all"
+              ? programs.length
+              : filteredPrograms.length}
+          </span>
+        </div>
+        <ChevronDown />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="mx-auto w-screen max-w-[91%] rounded-3xl">
         <DropdownMenuItem onClick={() => setCurrentCategory("all")}>
