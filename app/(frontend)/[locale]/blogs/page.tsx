@@ -44,7 +44,7 @@ export default async function BlogsPage({
                   <BlogCard
                     key={blog.id}
                     title={blog.title}
-                    imgSrc={imgSrc!}
+                    imgSrc={imgSrc || "/images/no-image.jpg"}
                     path={`/${locale}/blogs/${blog.id}`}
                   />
                 )
