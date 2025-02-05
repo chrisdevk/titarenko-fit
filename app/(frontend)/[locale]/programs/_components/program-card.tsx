@@ -1,5 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { MoveUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
@@ -22,7 +23,7 @@ export const ProgramCard = ({
   const t = useTranslations("ProgramPage");
 
   return (
-    <div className="flex h-[500px] w-full flex-col gap-y-4 rounded-3xl bg-off-white shadow-md">
+    <div className="flex h-[470px] w-full flex-col gap-y-4 rounded-3xl bg-off-white shadow-md">
       <div className="relative h-[250px] w-full">
         <Image
           src={imgSrc}
@@ -34,7 +35,7 @@ export const ProgramCard = ({
       </div>
       <div className="flex h-1/2 flex-col justify-between px-4 pb-4">
         <h3>{title}</h3>
-        <div className="space-y-2.5">
+        <div className="flex h-1/2 flex-col justify-between">
           {question && (
             <p className="font-semibold leading-snug text-violet-600">
               {question}
@@ -47,6 +48,7 @@ export const ProgramCard = ({
           className={cn("z-10", buttonVariants({ variant: "default" }))}
         >
           {t("button")}
+          <MoveUpRight />
         </Link>
       </div>
     </div>

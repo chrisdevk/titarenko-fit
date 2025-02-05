@@ -260,5 +260,8 @@
       "price": "Стоимость",
       "paid": "Оплачено"
     }
+  },
+  "ViewProgramPage": {
+    "lesson": "Урок"
   }
 }

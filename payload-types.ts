@@ -125,6 +125,7 @@ export interface Order {
   items?:
     | {
         product: number | Product;
+        purchaseDate: string;
         quantity?: number | null;
         id?: string | null;
       }[]
@@ -143,6 +144,10 @@ export interface Product {
   product_question?: string | null;
   product_thumbnail?: (number | null) | Media;
   publishedOn?: string | null;
+  /**
+   * Number of days after purchase before the product expires.
+   */
+  expiryDuration: number;
   duration: string;
   intensity: string;
   fitness_level: string;
@@ -439,6 +444,7 @@ export interface ProductsSelect<T extends boolean = true> {
   product_question?: T;
   product_thumbnail?: T;
   publishedOn?: T;
+  expiryDuration?: T;
   duration?: T;
   intensity?: T;
   fitness_level?: T;
@@ -483,6 +489,7 @@ export interface OrdersSelect<T extends boolean = true> {
     | T
     | {
         product?: T;
+        purchaseDate?: T;
         quantity?: T;
         id?: T;
       };

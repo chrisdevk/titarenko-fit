@@ -13,7 +13,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
 
   return (
     <ScrollArea className="h-[275px] w-full rounded-md">
-      <div className="flex flex-col flex-wrap justify-between gap-y-2 md:flex-row">
+      <div className="grid grid-cols-6 gap-4">
         {products.map((item) => {
           let imgSrc;
 
@@ -28,7 +28,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
           return (
             typeof item.product !== "number" && (
               <CourseCard
-                key={item.id}
+                key={item.product.id}
                 title={item.product.title}
                 path={`/${locale}/dashboard/${item.product.id}`}
                 imgSrc={imgSrc || "/images/no-image.jpg"}

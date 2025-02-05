@@ -25,12 +25,12 @@ export default async function BlogsPage({
   } else {
     return (
       <div className="relative w-screen overflow-hidden">
-        <article className="relative z-10 mx-auto w-11/12 max-w-[1440px] py-28">
+        <article className="relative z-10 mx-auto w-11/12 max-w-[1440px] pb-14 pt-28">
           <h1 className="max-w-[900px] normal-case">{t("heading")}</h1>
           <section
             className={cn(
               "mt-10 flex flex-wrap justify-between gap-y-7",
-              blogs.length < 3 && "gap-x-7 md:gap-x-0 lg:justify-normal",
+              blogs.length < 3 && "md:gap-x-0 lg:justify-normal lg:gap-x-7",
             )}
           >
             {blogs.map((blog: Blog) => {

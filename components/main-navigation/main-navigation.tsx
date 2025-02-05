@@ -77,7 +77,12 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               <ul className="flex items-center gap-2 lg:gap-4">
                 {navlinks.map((link) => (
                   <li key={link.text}>
-                    <Link href={`/${locale}${link.path}`}>{t(link.text)}</Link>
+                    <Link
+                      href={`/${locale}${link.path}`}
+                      className="font-medium"
+                    >
+                      {t(link.text)}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -95,7 +100,10 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               {user ? (
                 <Link
                   href={`/${locale}/dashboard`}
-                  className={buttonVariants({ variant: "default" })}
+                  className={cn(
+                    "relative z-10",
+                    buttonVariants({ variant: "default" }),
+                  )}
                 >
                   {t("Dashboard")}
                 </Link>

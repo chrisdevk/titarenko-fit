@@ -65,6 +65,7 @@ export const paymentSucceeded: StripeWebhookHandler<{
             return {
               product: productId,
               quantity,
+              purchaseDate: new Date().toISOString(),
             };
           }) || [],
         stripePaymentIntentID,

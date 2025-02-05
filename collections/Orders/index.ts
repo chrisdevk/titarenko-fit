@@ -66,6 +66,11 @@ export const Orders: CollectionConfig = {
               relationTo: "products",
               required: true,
             },
+            {
+              name: "purchaseDate",
+              type: "date",
+              required: true,
+            },
           ],
         },
         {

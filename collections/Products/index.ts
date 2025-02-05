@@ -56,6 +56,17 @@ export const Products: CollectionConfig = {
       },
     },
     {
+      name: "expiryDuration",
+      type: "number",
+      required: true,
+      defaultValue: 45,
+      admin: {
+        position: "sidebar",
+        description:
+          "Number of days after purchase before the product expires.",
+      },
+    },
+    {
       name: "duration",
       label: "Duration",
       type: "text",

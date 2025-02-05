@@ -70,7 +70,7 @@ export default async function ProgramPage({
             contradictions={product?.contradictions}
           />
         </div>
-        <aside className="sticky top-44 hidden w-1/4 self-start md:block md:w-1/3 lg:top-24 lg:w-1/4">
+        <aside className="sticky top-44 hidden w-1/4 self-start md:block md:w-1/3 lg:top-24 lg:w-[32%] 2xl:w-1/4">
           <PurchaseCard
             user={user}
             locale={locale}

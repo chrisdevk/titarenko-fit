@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import Link from "next/link";
 import Stripe from "stripe";
 import { AddToCart } from "./add-to-cart";
+import Image from "next/image";
 
 interface PurchaseCardProps {
   user: User | null;
@@ -39,23 +40,23 @@ export const PurchaseCard = ({
   });
 
   return (
-    <div className="space-y-4 rounded-3xl bg-turquoise-light p-3 lg:space-y-10 lg:px-6 lg:py-5">
+    <div className="relative space-y-4 overflow-hidden rounded-3xl bg-turquoise-light p-3 lg:space-y-6 lg:py-5 2xl:px-6">
       <h2>{t("details")}</h2>
       <p className="text-grey-custom lg:text-xl">
         {product.product_description}
       </p>
       <ul className="space-y-4 font-medium lg:text-lg">
-        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
+        <li className="flex items-center gap-x-1 2xl:gap-x-3.5">
           <Clock4 className="text-purple-custom" />
           <span className="text-grey-custom">{t("duration")}:</span>
           <span>{product.duration}</span>
         </li>
-        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
+        <li className="flex items-center gap-x-1 2xl:gap-x-3.5">
           <Flame className="text-purple-custom" />
           <span className="text-grey-custom">{t("intensity")}:</span>
           <span>{product.intensity}</span>
         </li>
-        <li className="flex items-center gap-x-1 lg:gap-x-3.5">
+        <li className="flex items-center gap-x-1 2xl:gap-x-3.5">
           <ChartNoAxesColumnIncreasing className="text-purple-custom" />
           <span className="text-grey-custom">{t("fitness level")}:</span>
           <span>{product.fitness_level}</span>
@@ -63,7 +64,16 @@ export const PurchaseCard = ({
       </ul>
       <div className="space-y-5">
         {user ? (
-          <div className="space-y-2">
+          <div className="space-y-4">
+            <h2 className="font-semibold">{formattedPrice}</h2>
+
+            {hasPurchasedProduct ? (
+              <p className="text-center text-lg font-semibold text-purple-custom">
+                {t("alreadyPurchased")}
+              </p>
+            ) : (
+              <AddToCart product={product} locale={locale} price={price} />
+            )}
             <ol className="list-decimal space-y-1 pl-6 text-sm text-grey-custom">
               <li>Доступ 45/60 дней</li>
               <li>По истечении срока Курс самоудаляется</li>
@@ -76,13 +86,6 @@ export const PurchaseCard = ({
                 порядке
               </li>
             </ol>
-            {hasPurchasedProduct ? (
-              <p className="text-center text-lg font-semibold text-purple-custom">
-                {t("alreadyPurchased")}
-              </p>
-            ) : (
-              <AddToCart product={product} locale={locale} price={price} />
-            )}
           </div>
         ) : (
           <div className="space-y-2">
@@ -96,6 +99,9 @@ export const PurchaseCard = ({
             </Link>
           </div>
         )}
+      </div>
+      <div className="absolute -right-[5%] -top-[2%] h-[118px] w-[146px] rotate-90">
+        <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
       </div>
     </div>
   );

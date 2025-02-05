@@ -264,5 +264,8 @@
       "price": "Price",
       "paid": "Paid"
     }
+  },
+  "ViewProgramPage": {
+    "lesson": "Lesson"
   }
 }

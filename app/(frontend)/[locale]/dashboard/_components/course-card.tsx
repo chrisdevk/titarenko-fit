@@ -18,7 +18,7 @@ export const CourseCard = ({
   course_btn_text,
 }: CourseCardProps) => {
   return (
-    <div className="flex h-[275px] w-full flex-col items-center justify-between rounded-3xl bg-off-white p-2 md:w-[49%] lg:w-[32%]">
+    <div className="col-span-6 flex h-[275px] flex-col items-center justify-between rounded-3xl bg-off-white p-2 md:col-span-3 lg:col-span-2">
       <div className="relative h-[166px] w-full">
         <Image
           src={imgSrc}

@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { AudioLines, Check, CirclePlay } from "lucide-react";
 import React from "react";
 import { useProgress } from "@/context/progress-context";
+import { useTranslations } from "next-intl";
 
 interface SidebarProps {
   videoCount: number;
@@ -21,6 +22,8 @@ export const Sidebar = ({
   productId,
 }: SidebarProps) => {
   const { progress } = useProgress();
+
+  const t = useTranslations("ViewProgramPage");
 
   return (
     <aside className="h-full w-full rounded-3xl bg-turquoise-light py-4 lg:w-1/3">
@@ -42,7 +45,9 @@ export const Sidebar = ({
                 setVideo(index);
               }}
             >
-              <span>Lesson {index + 1}</span>
+              <span>
+                {t("lesson")} {index + 1}
+              </span>
               {index === currentVideo && !isCompleted && (
                 <AudioLines className="ml-2 !size-7 text-purple-custom" />
               )}

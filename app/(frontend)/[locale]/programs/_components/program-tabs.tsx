@@ -22,10 +22,12 @@ export const ProgramTabs = ({
 
   const t = useTranslations("ProgramPage");
 
+  const validPrograms = programs.filter((program) => program.title);
+
   const categoryProgramCounts = categories.map((category) => ({
     id: category.id,
     title: category.title,
-    count: programs.filter((program) => {
+    count: validPrograms.filter((program) => {
       if (typeof program.categories === "number") {
         return program.categories === category.id;
       }
@@ -36,18 +38,16 @@ export const ProgramTabs = ({
     }).length,
   }));
 
-  const filteredPrograms = programs.filter((program) => {
+  const filteredPrograms = validPrograms.filter((program) => {
     if (typeof program.categories === "number") {
       return (
         program.categories ===
         categories.find((c) => c.title === currentCategory)?.id
       );
     }
-
     if (typeof program.categories === "object") {
       return program.categories.title === currentCategory;
     }
-
     return false;
   });
 
@@ -72,7 +72,7 @@ export const ProgramTabs = ({
         >
           {t("all")}{" "}
           <span className="rounded-3xl bg-purple-custom px-1.5 text-xs text-white">
-            {programs.length}
+            {validPrograms.length}
           </span>
           {currentCategory === "all" && (
             <motion.div
@@ -109,47 +109,52 @@ export const ProgramTabs = ({
             <h2 className="flex items-center gap-x-2">
               {t("all")}{" "}
               <span className="w-11 rounded-3xl bg-purple-custom px-1.5 text-center text-xl text-white">
-                {programs.length}
+                {validPrograms.length}
               </span>
             </h2>
             <section className="flex flex-wrap justify-between gap-y-5">
-              {productRows.map((row, rowIndex) => (
-                <div
-                  key={rowIndex}
-                  className={`flex w-full flex-wrap gap-y-5 ${
-                    row.length === 3
-                      ? "justify-between"
-                      : "justify-start gap-x-5"
-                  }`}
-                >
-                  {row.map((program, index) => {
-                    const imgSrc =
-                      typeof program.product_thumbnail === "object" &&
-                      program.product_thumbnail?.url
-                        ? program.product_thumbnail.url
-                        : null;
-
-                    return (
-                      <motion.div
-                        key={program.id}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.3, delay: index * 0.1 }}
-                        className="w-[32.5%]"
-                      >
-                        <ProgramCard
-                          title={program.title}
-                          question={program.product_question}
-                          description={program.product_description!}
-                          imgSrc={imgSrc!}
-                          path={`/${locale}/programs/${program.id}`}
-                        />
-                      </motion.div>
-                    );
-                  })}
-                </div>
-              ))}
+              {validPrograms.length === 0 ? (
+                <p>{t("no-programs")}</p>
+              ) : (
+                productRows.map((row, rowIndex) => (
+                  <div
+                    key={rowIndex}
+                    className={`flex w-full flex-wrap gap-y-5 ${
+                      row.length === 3
+                        ? "justify-between"
+                        : "justify-start gap-x-5"
+                    }`}
+                  >
+                    {row.map((program, index) => {
+                      const imgSrc =
+                        typeof program.product_thumbnail === "object" &&
+                        program.product_thumbnail?.url
+                          ? program.product_thumbnail.url
+                          : null;
+                      if (program.title) {
+                        return (
+                          <motion.div
+                            key={program.id}
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            className="w-[32.5%]"
+                          >
+                            <ProgramCard
+                              title={program.title}
+                              question={program.product_question}
+                              description={program.product_description!}
+                              imgSrc={imgSrc!}
+                              path={`/${locale}/programs/${program.id}`}
+                            />
+                          </motion.div>
+                        );
+                      }
+                    })}
+                  </div>
+                ))
+              )}
             </section>
           </article>
         </TabsContent>
@@ -183,27 +188,29 @@ export const ProgramTabs = ({
                               ? program.product_thumbnail.url
                               : null;
 
-                          return (
-                            <motion.div
-                              key={program.id}
-                              initial={{ opacity: 0, y: 20 }}
-                              animate={{ opacity: 1, y: 0 }}
-                              viewport={{ once: true }}
-                              transition={{
-                                duration: 0.3,
-                                delay: index * 0.1,
-                              }}
-                              className="w-[32.5%]"
-                            >
-                              <ProgramCard
-                                title={program.title}
-                                question={program.product_question}
-                                description={program.product_description!}
-                                imgSrc={imgSrc!}
-                                path={`${locale}/programs/${program.slug}`}
-                              />
-                            </motion.div>
-                          );
+                          if (program.title) {
+                            return (
+                              <motion.div
+                                key={program.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{
+                                  duration: 0.3,
+                                  delay: index * 0.1,
+                                }}
+                                className="w-[32.5%]"
+                              >
+                                <ProgramCard
+                                  title={program.title}
+                                  question={program.product_question}
+                                  description={program.product_description!}
+                                  imgSrc={imgSrc!}
+                                  path={`/${locale}/programs/${program.id}`}
+                                />
+                              </motion.div>
+                            );
+                          }
                         })}
                       </div>
                     ))}
