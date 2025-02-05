@@ -19,7 +19,7 @@ export const Categories = () => {
   return (
     <article className="bg-off-white">
       <div className="relative rounded-t-3xl bg-purple-custom py-16">
-        <div className="mx-auto w-11/12 max-w-[1440px] space-y-10">
+        <div className="relative z-10 mx-auto w-11/12 max-w-[1440px] space-y-10">
           <div className="space-y-3">
             <span className="rounded-3xl bg-white px-3 py-2 text-off-black">
               {t("span")}
