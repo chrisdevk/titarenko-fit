@@ -26,10 +26,6 @@ export const PurchaseCard = ({
 
   const formattedPrice = `$${(price[0].unit_amount! / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`;
 
-  function isProduct(product: number | Product): product is Product {
-    return (product as Product).id !== undefined;
-  }
-
   const hasPurchasedProduct = user?.orders?.docs?.some((order) => {
     const typedOrder = order as Order;
     return typedOrder.items?.some((item) => {
