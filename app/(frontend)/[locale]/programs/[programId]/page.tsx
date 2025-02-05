@@ -37,7 +37,7 @@ export default async function ProgramPage({
       <article className="mx-auto flex w-11/12 max-w-[1440px] flex-col justify-between gap-x-4 md:flex-row lg:gap-x-0">
         <div className="flex flex-col md:w-2/3">
           <h1 className="text-purple-custom">{product?.title}</h1>
-          <section className="relative mt-4 h-[240px] w-full lg:h-[440px]">
+          <section className="relative mt-4 h-[240px] w-full overflow-hidden rounded-3xl lg:h-[440px]">
             {imgSrc ? (
               <Image
                 src={imgSrc}

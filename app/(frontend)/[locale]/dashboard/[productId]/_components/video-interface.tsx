@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState, useRef } from "react";
 import { Product } from "@/payload-types";
 import { Sidebar } from "./sidebar";
+import { useProgress } from "@/context/progress-context";
 import Player from "@vimeo/player";
 
 interface VideoInterfaceProps {
@@ -17,62 +18,44 @@ const extractVimeoId = (url: string) => {
 export const VideoInterface = ({ product }: VideoInterfaceProps) => {
   const videoCount = product.videos?.length ?? 0;
   const [currentVideoNum, setCurrentVideoNum] = useState(0);
-  const [unlockedVideos, setUnlockedVideos] = useState<number[]>([]);
-
-  useEffect(() => {
-    const savedProgress = JSON.parse(
-      localStorage.getItem("videoProgress") || "[]",
-    );
-    setUnlockedVideos(savedProgress.length > 0 ? savedProgress : [0]);
-  }, []);
-
-  useEffect(() => {
-    localStorage.setItem("videoProgress", JSON.stringify(unlockedVideos));
-  }, [unlockedVideos]);
-
-  useEffect(() => {
-    const iframe = document.getElementById("vimeo-player") as HTMLIFrameElement;
-    const player = new Player(iframe);
-
-    player.on("ended", () => {
-      unlockNextVideo();
-    });
-  }, [currentVideoNum]);
-
-  const unlockNextVideo = () => {
-    if (
-      !unlockedVideos.includes(currentVideoNum + 1) &&
-      currentVideoNum + 1 < videoCount
-    ) {
-      setUnlockedVideos((prev) => [...prev, currentVideoNum + 1]);
-    }
-  };
+  const { updateProgress } = useProgress();
+  const iframeRef = useRef<HTMLIFrameElement>(null);
 
   const videoUrl = product.videos?.[currentVideoNum]?.video_url;
   const videoId = videoUrl ? extractVimeoId(videoUrl) : null;
 
+  useEffect(() => {
+    if (!iframeRef.current || !videoId) return;
+
+    const player = new Player(iframeRef.current);
+
+    player.on("ended", () => {
+      updateProgress(product.id, videoCount, currentVideoNum);
+    });
+
+    return () => {
+      player.off("ended");
+    };
+  }, [videoId, product.id, videoCount, currentVideoNum, updateProgress]);
+
+  if (!product) return null;
+
   return (
-    <section className="mt-6 flex h-[550px] justify-between gap-x-5">
+    <section className="mt-6 flex flex-col justify-between gap-x-5 gap-y-5 lg:flex-row">
       <iframe
+        ref={iframeRef}
         id="vimeo-player"
-        src={
-          videoId
-            ? `https://player.vimeo.com/video/${videoId}?title=0&byline=0&portrait=0&badge=0&autopause=0&player_id=0&app_id=58479`
-            : ""
-        }
-        allow="autoplay; fullscreen; picture-in-picture"
-        className="aspect-video h-full w-2/3 rounded-3xl"
+        key={videoId}
+        src={videoId ? `https://player.vimeo.com/video/${videoId}` : ""}
+        allow="fullscreen"
+        className="aspect-video h-full w-full max-w-full flex-shrink-0 rounded-3xl lg:w-2/3"
         title={product?.title}
       />
       <Sidebar
         videoCount={videoCount}
         currentVideo={currentVideoNum}
-        setVideo={(num) => {
-          if (unlockedVideos.includes(num)) {
-            setCurrentVideoNum(num);
-          }
-        }}
-        unlockedVideos={unlockedVideos}
+        setVideo={setCurrentVideoNum}
+        productId={product.id}
       />
     </section>
   );

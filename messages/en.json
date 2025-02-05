@@ -182,7 +182,8 @@
         "question": "Is it possible to exercise during pregnancy or after childbirth?",
         "answer": "Most of the course exercises will be useful for both. But! This is not a SPECIALIZED course for pregnant women, as well as post-pregnancy recovery, so please consult your doctor first."
       }
-    ]
+    ],
+    "alreadyPurchased": "You have already purchased this course"
   },
   "CheckoutPage": {
     "h1": "Checkout",

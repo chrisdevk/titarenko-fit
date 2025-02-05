@@ -1,17 +1,19 @@
 import Link from "next/link";
 import { Separator } from "../ui/separator";
-import { cn } from "@/lib/utils";
 import { buttonVariants } from "../ui/button";
 import { useTranslations } from "next-intl";
 import { navlinks } from "@/utils/constants";
 import { LanguageSelect } from "./language-select";
+import { User } from "@/payload-types";
+import { cn } from "@/lib/utils";
 
 interface MobileMenuProps {
   locale: string;
   setOpen: (open: boolean) => void;
+  user: User | null | undefined;
 }
 
-export const MobileMenu = ({ locale, setOpen }: MobileMenuProps) => {
+export const MobileMenu = ({ locale, setOpen, user }: MobileMenuProps) => {
   const t = useTranslations("MainNavigation");
 
   return (
@@ -33,13 +35,23 @@ export const MobileMenu = ({ locale, setOpen }: MobileMenuProps) => {
         <LanguageSelect locale={locale} />
       </div>
       <Separator className="bg-off-black" />
-      <Link
-        href={`/${locale}/auth`}
-        onClick={() => setOpen(false)}
-        className={cn("w-full", buttonVariants({ variant: "default" }))}
-      >
-        {t("Log in")}
-      </Link>
+      {user ? (
+        <Link
+          href={`/${locale}/dashboard`}
+          className={cn("w-full", buttonVariants({ variant: "default" }))}
+          onClick={() => setOpen(false)}
+        >
+          {t("Dashboard")}
+        </Link>
+      ) : (
+        <Link
+          href={`/${locale}/auth`}
+          className={cn("w-full", buttonVariants({ variant: "default" }))}
+          onClick={() => setOpen(false)}
+        >
+          {t("Log in")}
+        </Link>
+      )}
     </nav>
   );
 };

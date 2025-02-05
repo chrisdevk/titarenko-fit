@@ -34,23 +34,31 @@ export default async function DashboardPage({
       <article className="space-y-10">
         <h1>{t("title")}</h1>
         <section className="grid grid-cols-5 gap-5">
-          <div className="col-span-2 flex flex-col gap-y-5">
+          <div className="col-span-5 flex flex-col gap-y-5 lg:col-span-2">
             <LogoutComp user_name={user.name} button_text={t("logout")} />
-            <div className="flex h-full flex-col items-stretch gap-y-7 rounded-3xl bg-turquoise-light p-4">
+            <div className="hidden h-full flex-col items-stretch gap-y-7 rounded-3xl bg-turquoise-light p-4 lg:flex">
               <h2>{t("Progress")}</h2>
               <Progress orders={orders} />
             </div>
           </div>
-          <div className="col-span-3 flex flex-col gap-y-7 rounded-3xl bg-turquoise-light p-4">
-            <h2>{t("Courses")}</h2>
-            {orders.length === 0 && <p>{t("no-courses")}</p>}
-            {orders.length >= 1 && (
-              <Orders
-                orders={orders}
-                locale={locale}
-                course_btn_text={t("course-button")}
-              />
-            )}
+          <div className="col-span-5 flex flex-col-reverse gap-x-5 gap-y-7 rounded-3xl md:flex-row md:justify-between lg:col-span-3 lg:flex-col lg:justify-normal lg:bg-turquoise-light lg:p-4">
+            <div className="flex h-full flex-col gap-y-7 rounded-3xl bg-turquoise-light p-4 md:w-5/12 lg:hidden">
+              <h2>{t("Progress")}</h2>
+              <Progress orders={orders} />
+            </div>
+            <div className="flex flex-col gap-y-7 rounded-3xl bg-turquoise-light p-4 md:w-7/12 lg:w-full lg:items-stretch">
+              <h2>{t("Courses")}</h2>
+              <div className="w-full">
+                {orders.length === 0 && <p>{t("no-courses")}</p>}
+                {orders.length >= 1 && (
+                  <Orders
+                    orders={orders}
+                    locale={locale}
+                    course_btn_text={t("course-button")}
+                  />
+                )}
+              </div>
+            </div>
           </div>
           <div className="col-span-5 space-y-7 rounded-3xl bg-purple-custom p-4">
             <h2 className="text-white">{t("Payments")}</h2>

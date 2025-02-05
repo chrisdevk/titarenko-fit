@@ -125,7 +125,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               exit={{ opacity: 0, y: -40 }}
               transition={{ delay: 0.2 }}
             >
-              <MobileMenu locale={locale} setOpen={setIsOpen} />
+              <MobileMenu locale={locale} setOpen={setIsOpen} user={user} />
             </motion.div>
           </motion.div>
         )}

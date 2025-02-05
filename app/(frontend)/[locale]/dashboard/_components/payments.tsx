@@ -47,7 +47,7 @@ export const Payments = ({
       <TableBody>
         {orders.map((order) => (
           <TableRow key={order.id} className="text-lg">
-            <TableCell className="font-medium">{order.id}</TableCell>
+            <TableCell className="font-medium">№{order.id}</TableCell>
             <TableCell>{formatDate(order.createdAt)}</TableCell>
             <TableCell>
               {order.stripePaymentIntentID && (

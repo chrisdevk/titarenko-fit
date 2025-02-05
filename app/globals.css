@@ -7,28 +7,27 @@
     --radius: 0.5rem;
   }
   h1 {
-    @apply uppercase font-semibold text-[2rem] md:text-5xl lg:text-[4rem] leading-tight;
+    @apply text-[2rem] font-semibold uppercase leading-tight md:text-5xl lg:text-[4rem];
   }
   h2 {
-    @apply text-xl md:text-2xl lg:text-3xl xl:text-4xl font-medium;
+    @apply text-xl font-medium md:text-2xl lg:text-3xl xl:text-4xl;
   }
   h3 {
-    @apply text-lg md:text-xl font-medium leading-[30px];
+    @apply text-lg font-medium leading-[30px] md:text-xl;
   }
   p {
     @apply md:text-lg;
   }
-}
 
-::-webkit-scrollbar {
-  width: 12px;
-}
+  ::-webkit-scrollbar {
+    @apply w-3;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.1);
-  border-radius: 32px;
-}
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-3xl bg-turquoise-dark;
+  }
 
-::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  ::-webkit-scrollbar-track {
+    @apply rounded-3xl;
+  }
 }

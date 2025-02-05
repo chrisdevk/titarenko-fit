@@ -13,7 +13,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
 
   return (
     <ScrollArea className="h-[275px] w-full rounded-md">
-      <div className="flex flex-row flex-wrap gap-4">
+      <div className="flex flex-col flex-wrap justify-between gap-y-2 md:flex-row">
         {products.map((item) => {
           let imgSrc;
 
@@ -37,7 +37,6 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
             )
           );
         })}
-        ,
       </div>
     </ScrollArea>
   );

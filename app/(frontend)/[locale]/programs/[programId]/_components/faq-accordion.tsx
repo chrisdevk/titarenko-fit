@@ -20,7 +20,9 @@ export const FaqAccordion = () => {
       {faqItems.map(
         (item: { question: string; answer: string }, index: number) => (
           <AccordionItem key={index} value={`item-${index + 1}`}>
-            <AccordionTrigger>{item.question}</AccordionTrigger>
+            <AccordionTrigger className="text-start">
+              {item.question}
+            </AccordionTrigger>
             <AccordionContent>{item.answer}</AccordionContent>
           </AccordionItem>
         ),

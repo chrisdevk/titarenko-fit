@@ -1,6 +1,6 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Product, User } from "@/payload-types";
+import { Order, Product, User } from "@/payload-types";
 import { ChartNoAxesColumnIncreasing, Clock4, Flame } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -25,6 +25,22 @@ export const PurchaseCard = ({
   const t = useTranslations("SingleProgramPage");
 
   const formattedPrice = `$${(price[0].unit_amount! / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`;
+
+  function isProduct(product: number | Product): product is Product {
+    return (product as Product).id !== undefined;
+  }
+
+  const hasPurchasedProduct = user?.orders?.docs?.some((order) => {
+    const typedOrder = order as Order;
+    return typedOrder.items?.some((item) => {
+      if (typeof item.product === "number") {
+        return item.product === product.id;
+      } else if (item.product && item.product.id) {
+        return item.product.id === product.id;
+      }
+      return false;
+    });
+  });
 
   return (
     <div className="space-y-4 rounded-3xl bg-turquoise-light p-3 lg:space-y-10 lg:px-6 lg:py-5">
@@ -51,7 +67,27 @@ export const PurchaseCard = ({
       </ul>
       <div className="space-y-5">
         {user ? (
-          <AddToCart product={product} locale={locale} price={price} />
+          <div className="space-y-2">
+            <ol className="list-decimal space-y-1 pl-6 text-sm text-grey-custom">
+              <li>Доступ 45/60 дней</li>
+              <li>По истечении срока Курс самоудаляется</li>
+              <li>
+                Автор и тренер Курса определяет порядок тренировок по
+                разработанной методике.
+              </li>
+              <li>
+                Но вы свободны в своем выборе и можете заниматься в удобном вам
+                порядке
+              </li>
+            </ol>
+            {hasPurchasedProduct ? (
+              <p className="text-center text-lg font-semibold text-purple-custom">
+                {t("alreadyPurchased")}
+              </p>
+            ) : (
+              <AddToCart product={product} locale={locale} price={price} />
+            )}
+          </div>
         ) : (
           <div className="space-y-2">
             <h2 className="font-semibold">{formattedPrice}</h2>

@@ -63,7 +63,7 @@ export const ProgramTabs = ({
   const filteredProductsRows = splitIntoRows(filteredPrograms, 3);
 
   return (
-    <Tabs defaultValue="all" className="mt-10 w-full">
+    <Tabs defaultValue="all" className="mt-10 hidden w-full lg:block">
       <TabsList className="w-full justify-between rounded-none border-b-2 border-b-turquoise-dark bg-transparent">
         <TabsTrigger
           value="all"
