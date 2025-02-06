@@ -42,10 +42,10 @@ export const Hero = () => {
   const isInView = useInView(ref, { once: true });
 
   return (
-    <section className="relative mt-20 h-fit bg-[#DCDCDC] px-2.5 py-9 md:bg-transparent md:px-0 md:py-9 md:pt-20 lg:mt-0 lg:flex lg:h-screen lg:items-center lg:px-8 lg:pb-8 lg:pt-40">
-      <div className="mx-auto flex w-11/12 max-w-[1440px] flex-col gap-y-20 md:gap-y-44 lg:gap-y-24">
+    <section className="relative mt-20 h-fit bg-[#DCDCDC] py-9 md:bg-transparent md:px-0 md:py-9 md:pt-20 lg:mt-0 lg:flex lg:h-screen lg:items-center lg:px-8 lg:pb-8 lg:pt-40">
+      <div className="mx-auto flex max-w-[1440px] flex-col gap-y-6 md:w-11/12 md:gap-y-44 lg:gap-y-24">
         <div className="flex max-w-[692px] flex-col gap-y-6 md:gap-y-10">
-          <div className="flex flex-wrap justify-center md:justify-start">
+          <div className="mx-auto flex w-11/12 flex-wrap justify-center px-2.5 md:mx-0 md:w-full md:justify-start md:px-0">
             {heading.map((current, i) => (
               <motion.h1
                 key={i}
@@ -62,12 +62,22 @@ export const Hero = () => {
               </motion.h1>
             ))}
           </div>
+          <div className="relative h-[320px] w-full md:hidden">
+            <Image
+              src="/images/hero-mobile.jpg"
+              alt="Hero image"
+              fill
+              quality={100}
+              priority
+              className="overflow-hidden object-cover object-bottom"
+            />
+          </div>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="max-w-[480px] text-center text-lg md:text-start md:text-xl"
+            className="mx-auto w-11/12 max-w-[480px] text-center md:mx-0 md:w-full md:text-start md:text-xl"
           >
             {t("paragraph")}
           </motion.p>
