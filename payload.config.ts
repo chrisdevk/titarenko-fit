@@ -8,6 +8,7 @@ import { fileURLToPath } from "url";
 import sharp from "sharp";
 import { stripePlugin } from "@payloadcms/plugin-stripe";
 import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
 
 import { Media } from "./collections/Media";
 import { Blogs } from "./collections/Blogs";
@@ -18,8 +19,18 @@ import { productsProxy } from "./endpoints/products";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
 import { Orders } from "./collections/Orders";
 import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
+import { cloudinaryAdapter } from "./cloudinary-adapter";
+
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
+
+const storageAdapter = cloudinaryAdapter({
+  config: {
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  },
+});
 
 export default buildConfig({
   admin: {
@@ -73,6 +84,14 @@ export default buildConfig({
   ],
   plugins: [
     payloadCloudPlugin(),
+    cloudStoragePlugin({
+      enabled: true,
+      collections: {
+        media: {
+          adapter: storageAdapter,
+        },
+      },
+    }),
     stripePlugin({
       stripeSecretKey: process.env.STRIPE_SECRET_KEY || "",
       isTestKey: true,

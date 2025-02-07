@@ -110,7 +110,10 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               ) : (
                 <Link
                   href={`/${locale}/auth`}
-                  className={buttonVariants({ variant: "default" })}
+                  className={cn(
+                    "relative z-10",
+                    buttonVariants({ variant: "default" }),
+                  )}
                 >
                   {t("Log in")}
                 </Link>
