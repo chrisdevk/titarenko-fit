@@ -17,7 +17,7 @@ export const Hero = () => {
     .split(/(\s+)/)
     .map((word, index) => {
       const trimmedWord = word.trim();
-      if (/^(stronger|сильнее)$/i.test(trimmedWord)) {
+      if (/^(stronger|сильнее,)$/i.test(trimmedWord)) {
         return (
           <span key={index} className="-ml-2 text-purple-custom lg:ml-[-16px]">
             {trimmedWord}

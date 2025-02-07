@@ -2,14 +2,18 @@
 
 import Image from "next/image";
 import { ProgramListTablet } from "./program-list-tablet";
-import { listItems } from "@/utils/constants";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 
 export const ProgramList = () => {
+  const t = useTranslations("HomePage");
+
+  const listItems = t.raw("list-items") as string[];
+
   return (
     <section className="mx-auto mt-16 w-11/12 max-w-[1440px] space-y-2">
       <div className="flex w-full flex-col justify-center gap-4 md:hidden lg:flex lg:flex-row lg:flex-wrap">
-        {listItems.map((item, index) => (
+        {listItems.map((text, index) => (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -24,7 +28,7 @@ export const ProgramList = () => {
               width={44}
               height={44}
             />
-            <p>{item}</p>
+            <p>{text}</p>
           </motion.div>
         ))}
       </div>

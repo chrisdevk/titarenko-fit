@@ -27,13 +27,24 @@
     },
     "reasons": {
       "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
-      "cardio_programs": "Because we have time for everyone in the family except for us!",
-      "thematic_programs": "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
-      "marathons": "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
-      "zone_training": "All programs are different in time and content",
-      "intensives": "Trainer's room in your house with full body training",
-      "programs_of_the_day": "We train in quality and safety"
+      "cards": [
+        "Because we have time for everyone in the family except for us!",
+        "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
+        "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
+        "All programs are different in time and content",
+        "Trainer's room in your house with full body training",
+        "We train in quality and safety"
+      ]
     },
+    "list-items": [
+      "Different fitness levels are taken into account",
+      "Adapted for Home Fitness",
+      "Diverse and uniquely designed",
+      "Comprehensive",
+      "I explain possible mistakes and how to avoid them",
+      "Unique in exercise selection",
+      "You don’t need to come up with anything! I’ve done it for you."
+    ],
     "training-preview": {
       "heading": "Course samples"
     },
