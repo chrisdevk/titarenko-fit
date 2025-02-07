@@ -34,7 +34,7 @@ export const ProgramCard = ({
         />
       </div>
       <div className="flex h-1/2 flex-col justify-between px-4 pb-4">
-        <h3>{title}</h3>
+        <h3 className="uppercase">{title}</h3>
         <div className="flex h-1/2 flex-col justify-between">
           {question && (
             <p className="font-semibold leading-snug text-violet-600">

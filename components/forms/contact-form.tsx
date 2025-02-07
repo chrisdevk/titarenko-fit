@@ -133,7 +133,12 @@ export const ContactForm = ({ user_name, user_email }: ContactFormProps) => {
             <CircleCheck className="size-5 text-indigo-custom" />
           </div>
         ) : (
-          <Button type="submit" disabled={isLoading} className="z-10 w-full">
+          <Button
+            type="submit"
+            disabled={isLoading}
+            size="lg"
+            className="z-10 w-full"
+          >
             {isLoading ? (
               <>
                 <svg

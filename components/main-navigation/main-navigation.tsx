@@ -47,7 +47,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
         {pathname === `/${locale}` && (
           <div
             className={cn(
-              "absolute left-0 top-0 hidden w-full bg-turquoise-dark py-3.5 text-center text-white transition-all duration-300 lg:block",
+              "absolute left-0 top-0 hidden w-full bg-turquoise-dark py-3.5 text-center uppercase text-white transition-all duration-300 lg:block",
               scrolled && "origin-top scale-y-0 opacity-0",
             )}
           >
