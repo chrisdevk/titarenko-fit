@@ -9,8 +9,8 @@ export const Story = () => {
       <section className="relative rounded-t-3xl bg-turquoise-light py-16">
         <div className="relative z-10 mx-auto w-11/12 space-y-10 md:max-w-[980px]">
           <h2 className="text-center">{t("heading")}</h2>
-          <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row">
-            <div className="relative h-[250px] w-full md:h-auto md:w-5/12">
+          <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
+            <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
               <Image
                 src="/images/circus.jpg"
                 alt="circus"
@@ -23,19 +23,31 @@ export const Story = () => {
               <p>{t("circus.paragraph-two")}</p>
             </div>
           </div>
-          <div className="flex flex-col-reverse items-stretch justify-between gap-x-12 gap-y-5 md:flex-row">
+          <div className="flex flex-col-reverse items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
             <div className="w-full space-y-5 md:w-7/12">
               <p>{t("competitions.paragraph-one")}</p>
               <p>{t("competitions.paragraph-two")}</p>
-              <p>{t("competitions.paragraph-three")}</p>
             </div>
-            <div className="relative h-[250px] w-full md:h-auto md:w-5/12">
+            <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
               <Image
                 src="/images/competition.jpg"
                 alt="circus"
                 fill
                 className="rounded-3xl object-cover object-top"
               />
+            </div>
+          </div>
+          <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
+            <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
+              <Image
+                src="/images/transformation.jpg"
+                alt="circus"
+                fill
+                className="rounded-3xl object-cover object-top md:object-center"
+              />
+            </div>
+            <div className="w-full space-y-5 md:w-7/12">
+              <p>{t("competitions.paragraph-three")}</p>
             </div>
           </div>
         </div>
