@@ -1,5 +1,7 @@
 "use server";
 
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
 import { Product } from "@/payload-types";
 
 export const getProduct = async ({
@@ -7,25 +9,18 @@ export const getProduct = async ({
   locale,
 }: {
   id: string;
-  locale: string;
-}) => {
+  locale: "all" | "en" | "ru";
+}): Promise<Product | null> => {
+  const payload = await getPayload({ config: configPromise });
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products/${id}?depth=1&draft=false&locale=${locale}`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const product = await payload.findByID({
+      collection: "products",
+      id,
+      depth: 1,
+      locale: locale,
+    });
 
-    if (!response.ok) {
-      console.error("Failed to fetch product");
-      return null;
-    }
-
-    const data: Product = await response.json();
-
-    return data || null;
+    return product;
   } catch (error) {
     console.error("Error fetching product:", error);
     return null;

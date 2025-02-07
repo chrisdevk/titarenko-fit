@@ -1,21 +1,23 @@
-export const getCategories = async ({ locale }: { locale: string }) => {
+"use server";
+
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
+
+export const getCategories = async ({
+  locale,
+}: {
+  locale: "all" | "en" | "ru";
+}) => {
+  const payload = await getPayload({ config: configPromise });
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/categories?locale=${locale}&fallback-locale=none`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const categories = await payload.find({
+      collection: "categories",
+      depth: 1,
+      overrideAccess: false,
+      locale: locale,
+    });
 
-    if (!response.ok) {
-      console.error("Failed to fetch categories");
-      return null;
-    }
-
-    const data = await response.json();
-
-    return data.docs || [];
+    return categories.docs || [];
   } catch (error) {
     console.error("Error fetching categories:", error);
     return null;

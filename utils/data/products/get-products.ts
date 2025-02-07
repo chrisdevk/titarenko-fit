@@ -1,25 +1,26 @@
 "use server";
 
-export const getProducts = async ({ locale }: { locale: string }) => {
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
+
+export const getProducts = async ({
+  locale,
+}: {
+  locale: "all" | "en" | "ru";
+}) => {
+  const payload = await getPayload({ config: configPromise });
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/products?locale=${locale}&fallback-locale=none`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const products = await payload.find({
+      collection: "products",
+      depth: 2,
+      limit: 10,
+      overrideAccess: false,
+      locale: locale,
+    });
 
-    if (!response.ok) {
-      console.error("Failed to fetch programs");
-      return null;
-    }
-
-    const data = await response.json();
-
-    return data.docs || [];
+    return products.docs || [];
   } catch (error) {
-    console.error("Error fetching programs:", error);
+    console.error("Error fetching products:", error);
     return null;
   }
 };

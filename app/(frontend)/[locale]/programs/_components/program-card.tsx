@@ -24,13 +24,14 @@ export const ProgramCard = ({
 
   return (
     <div className="flex h-[470px] w-full flex-col gap-y-4 rounded-3xl bg-white shadow-md">
-      <div className="relative h-[250px] w-full">
+      <div className="relative h-[250px] w-full overflow-hidden">
         <Image
           src={imgSrc}
           alt={title}
           fill
           className="rounded-3xl object-cover"
           quality={100}
+          loading="lazy"
         />
       </div>
       <div className="flex h-1/2 flex-col justify-between px-4 pb-4">

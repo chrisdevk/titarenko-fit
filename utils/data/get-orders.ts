@@ -2,27 +2,25 @@
 
 import { Order } from "@/payload-types";
 import { getCurrentUser } from "./get-current-user";
+import { getPayload } from "payload";
+import configPromise from "@payload-config";
 
-export const getOrders = async ({ locale }: { locale: string }) => {
+export const getOrders = async ({
+  locale,
+}: {
+  locale: "all" | "en" | "ru";
+}) => {
+  const payload = await getPayload({ config: configPromise });
+
   try {
-    const url = `${process.env.NEXT_PUBLIC_SERVER_URL}/api/orders?depth=2&draft=false&locale=${locale}`;
-    const { token } = await getCurrentUser();
+    const { user } = await getCurrentUser();
+    if (!user) return null;
 
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        Authorization: `JWT ${token}`,
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
+    const orders = await payload.find({
+      collection: "orders",
+      depth: 2,
+      locale: locale,
     });
-
-    if (!response.ok) {
-      console.error("Failed to fetch orders");
-      return null;
-    }
-
-    const data = await response.json();
 
     const isExpired = (purchaseDate: string, expiryDuration: number) => {
       const purchaseDateObj = new Date(purchaseDate);
@@ -32,27 +30,22 @@ export const getOrders = async ({ locale }: { locale: string }) => {
       return new Date() > expiryDate;
     };
 
-    const validOrders = data.docs.map((order: Order) => {
+    const validOrders = orders.docs.map((order: Order) => {
       const validItems = order.items?.filter((item) => {
         const { purchaseDate, product } = item;
-        let expiryDuration;
+        let expiryDuration = 45;
 
-        if (typeof product !== "number")
-          expiryDuration = product?.expiryDuration || 45;
+        if (typeof product !== "number") {
+          expiryDuration = product?.expiryDuration || expiryDuration;
+        }
 
-        if (expiryDuration) return !isExpired(purchaseDate, expiryDuration);
-
-        return null;
+        return !isExpired(purchaseDate, expiryDuration);
       });
 
       return { ...order, items: validItems };
     });
 
-    const filteredOrders = validOrders.filter(
-      (order: Order) => order.items && order.items.length > 0,
-    );
-
-    return filteredOrders;
+    return validOrders.filter((order) => order.items && order.items.length > 0);
   } catch (error) {
     console.error("Error fetching orders:", error);
     return null;

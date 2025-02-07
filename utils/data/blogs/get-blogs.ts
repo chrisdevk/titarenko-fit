@@ -1,21 +1,18 @@
-export const getBlogs = async ({ locale }: { locale: string }) => {
+"use server";
+
+import configPromise from "@payload-config";
+import { getPayload } from "payload";
+
+export const getBlogs = async ({ locale }: { locale: "all" | "en" | "ru" }) => {
+  const payload = await getPayload({ config: configPromise });
+
   try {
-    const response = await fetch(
-      `${process.env.NEXT_PUBLIC_SERVER_URL}/api/blogs?locale=${locale}&fallback-locale=none`,
-      {
-        method: "GET",
-        headers: { "Content-Type": "application/json" },
-      }
-    );
+    const blogs = await payload.find({
+      collection: "blogs",
+      locale: locale,
+    });
 
-    if (!response.ok) {
-      console.error("Failed to fetch blogs");
-      return null;
-    }
-
-    const data = await response.json();
-
-    return data.docs || [];
+    return blogs.docs || [];
   } catch (error) {
     console.error("Error fetching blogs:", error);
     return null;
