@@ -4,7 +4,7 @@ import { VideoInterface } from "./_components/video-interface";
 export default async function CoursePage({
   params,
 }: {
-  params: Promise<{ productId: string; locale: string }>;
+  params: Promise<{ productId: string; locale: "en" | "ru" }>;
 }) {
   const { productId, locale } = await params;
 

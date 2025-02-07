@@ -8,13 +8,15 @@ import { ProgramsMobile } from "./_components/programs-mobile";
 export default async function ProgramsPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
 
   const t = await getTranslations({ locale, namespace: "ProgramPage" });
   const programs = await getProducts({ locale });
   const categories = await getCategories({ locale });
+
+  if (!programs || !categories) return <p>Something went wrong</p>;
 
   return (
     <article className="relative h-full w-screen">

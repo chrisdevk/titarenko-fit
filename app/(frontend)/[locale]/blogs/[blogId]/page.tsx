@@ -5,11 +5,11 @@ import { RichText } from "@payloadcms/richtext-lexical/react";
 export default async function BlogPage({
   params,
 }: {
-  params: Promise<{ blogId: string; locale: string }>;
+  params: Promise<{ blogId: string; locale: "en" | "ru" }>;
 }) {
   const { blogId, locale } = await params;
 
-  const blog: Blog = await getBlog({ id: blogId, locale: locale });
+  const blog: Blog | null = await getBlog({ id: blogId, locale: locale });
 
   if (!blog) {
     return (

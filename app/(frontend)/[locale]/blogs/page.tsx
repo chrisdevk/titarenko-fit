@@ -8,7 +8,7 @@ import Image from "next/image";
 export default async function BlogsPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "BlogsPage" });

@@ -10,7 +10,7 @@ import { Payments } from "./_components/payments";
 export default async function DashboardPage({
   params,
 }: {
-  params: Promise<{ locale: string }>;
+  params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
 
@@ -25,9 +25,11 @@ export default async function DashboardPage({
     );
   }
 
-  const orders: Order[] = await getOrders({
+  const orders: Order[] | null = await getOrders({
     locale,
   });
+
+  if (!orders) return <p>Something went wrong</p>;
 
   return (
     <div className="mx-auto mt-28 w-11/12 max-w-[1440px] pb-16">

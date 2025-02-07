@@ -10,7 +10,7 @@ import { getCurrentUser } from "@/utils/data/get-current-user";
 export default async function ProgramPage({
   params,
 }: {
-  params: Promise<{ programId: string; locale: string }>;
+  params: Promise<{ programId: string; locale: "en" | "ru" }>;
 }) {
   const { programId, locale } = await params;
 
