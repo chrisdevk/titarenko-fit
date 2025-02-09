@@ -17,9 +17,19 @@ export const Hero = () => {
     .split(/(\s+)/)
     .map((word, index) => {
       const trimmedWord = word.trim();
-      if (/^(stronger|сильнее,)$/i.test(trimmedWord)) {
+      if (/^(сильнее,)$/i.test(trimmedWord)) {
         return (
-          <span key={index} className="-ml-2 text-purple-custom lg:ml-[-16px]">
+          <span
+            key={index}
+            className="-ml-2 text-purple-custom lg:ml-[-16px] lg:pr-16"
+          >
+            {trimmedWord}
+          </span>
+        );
+      }
+      if (/^(stronger)$/i.test(trimmedWord)) {
+        return (
+          <span key={index} className="-ml-2 text-purple-custom">
             {trimmedWord}
           </span>
         );
@@ -44,7 +54,7 @@ export const Hero = () => {
   return (
     <section className="relative mt-20 h-fit bg-[#DCDCDC] py-9 md:bg-transparent md:px-0 md:py-9 md:pt-20 lg:mt-0 lg:flex lg:h-screen lg:items-center lg:px-8 lg:pb-8 lg:pt-40">
       <div className="mx-auto flex max-w-[1440px] flex-col gap-y-6 md:w-11/12 md:gap-y-44 lg:gap-y-24">
-        <div className="flex max-w-[692px] flex-col gap-y-6 md:gap-y-10">
+        <div className="flex max-w-[632px] flex-col gap-y-6 md:gap-y-10">
           <div className="mx-auto flex w-11/12 flex-wrap justify-center px-2.5 md:mx-0 md:w-full md:justify-start md:px-0">
             {heading.map((current, i) => (
               <motion.h1

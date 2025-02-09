@@ -1,3 +1,4 @@
+import { InfiniteMovingCards } from "@/components/ui/infinite-cards";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
@@ -7,7 +8,8 @@ export const Story = () => {
   return (
     <article className="overflow-hidden bg-purple-custom">
       <section className="relative rounded-t-3xl bg-turquoise-light py-16">
-        <div className="relative z-10 mx-auto w-11/12 space-y-10 md:max-w-[980px]">
+        <InfiniteMovingCards />
+        <div className="relative z-10 mx-auto mt-16 w-11/12 space-y-10 md:max-w-[980px]">
           <h2 className="text-center">{t("heading")}</h2>
           <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
             <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
