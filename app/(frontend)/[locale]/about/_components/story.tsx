@@ -8,7 +8,7 @@ export const Story = ({ locale }: { locale: string }) => {
   return (
     <article className="overflow-hidden bg-purple-custom">
       <section className="relative rounded-t-3xl bg-turquoise-light py-16">
-        <InfiniteMovingCards />
+        <InfiniteMovingCards speed="normal" />
         <div className="relative z-10 mx-auto mt-16 w-11/12 space-y-10 md:max-w-[980px]">
           <h2 className="text-center">{t("heading")}</h2>
           <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">

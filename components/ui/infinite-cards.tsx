@@ -80,13 +80,13 @@ export const InfiniteMovingCards = ({
           pauseOnHover && "hover:[animation-play-state:paused]",
         )}
       >
-        {Array.from({ length: 6 }).map((_, idx) => (
+        {Array.from({ length: 14 }).map((_, idx) => (
           <li
             className="relative h-[350px] w-[350px] max-w-full overflow-hidden rounded-3xl md:w-[450px]"
             key={idx}
           >
             <Image
-              src={`/images/celeb-${idx + 1}.jpg`}
+              src={`/images/infinite-${idx + 1}.jpg`}
               alt="selfie with celebrity"
               fill
               className="rounded-3xl object-cover object-top"
