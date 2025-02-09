@@ -2,7 +2,7 @@ import { InfiniteMovingCards } from "@/components/ui/infinite-cards";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-export const Story = () => {
+export const Story = ({ locale }: { locale: string }) => {
   const t = useTranslations("AboutPage.story");
 
   return (
@@ -41,12 +41,21 @@ export const Story = () => {
           </div>
           <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
             <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
-              <Image
-                src="/images/transformation.jpg"
-                alt="circus"
-                fill
-                className="rounded-3xl object-cover object-top md:object-center"
-              />
+              {locale === "en" ? (
+                <Image
+                  src="/images/transformation-en.jpg"
+                  alt="circus"
+                  fill
+                  className="rounded-3xl object-cover object-top"
+                />
+              ) : (
+                <Image
+                  src="/images/transformation.jpg"
+                  alt="circus"
+                  fill
+                  className="rounded-3xl object-cover object-top"
+                />
+              )}
             </div>
             <div className="w-full space-y-5 md:w-7/12">
               <p>{t("competitions.paragraph-three")}</p>

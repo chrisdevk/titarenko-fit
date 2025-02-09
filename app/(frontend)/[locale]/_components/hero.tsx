@@ -72,7 +72,7 @@ export const Hero = () => {
               </motion.h1>
             ))}
           </div>
-          <div className="relative h-[320px] w-full md:hidden">
+          <div className="relative h-[360px] w-full md:hidden">
             <Image
               src="/images/hero-mobile.jpg"
               alt="Hero image"
