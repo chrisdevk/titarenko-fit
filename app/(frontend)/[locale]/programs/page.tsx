@@ -19,8 +19,8 @@ export default async function ProgramsPage({
   if (!programs || !categories) return <p>Something went wrong</p>;
 
   return (
-    <article className="relative h-full w-screen">
-      <section className="relative z-10 mx-auto mt-28 w-11/12 max-w-[1440px] pb-14">
+    <article className="relative h-full w-screen bg-turquoise-light">
+      <section className="relative z-10 mx-auto w-11/12 max-w-[1440px] pb-14 pt-28">
         <h1>{t("heading")}</h1>
         <ProgramTabs
           programs={programs}
