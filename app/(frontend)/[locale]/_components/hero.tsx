@@ -29,7 +29,7 @@ export const Hero = () => {
       }
       if (/^(stronger)$/i.test(trimmedWord)) {
         return (
-          <span key={index} className="-ml-2 text-purple-custom">
+          <span key={index} className="text-purple-custom lg:-ml-2">
             {trimmedWord}
           </span>
         );
