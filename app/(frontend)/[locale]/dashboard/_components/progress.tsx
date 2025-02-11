@@ -7,8 +7,6 @@ export const Progress = ({ orders }: { orders: Order[] }) => {
   const { progress } = useProgress();
   const products = orders.flatMap((order) => order.items || []);
 
-  console.log(progress);
-
   return (
     <div className="space-y-2">
       {products.map(

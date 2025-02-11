@@ -20,6 +20,11 @@ export const getOrders = async ({
       collection: "orders",
       depth: 2,
       locale: locale,
+      where: {
+        orderedBy: {
+          equals: user.id,
+        },
+      },
     });
 
     const isExpired = (purchaseDate: string, expiryDuration: number) => {
