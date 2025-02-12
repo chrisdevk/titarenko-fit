@@ -4,8 +4,12 @@ import Image from "next/image";
 import { PurchaseCard } from "./_components/purchase-card";
 import { Overview } from "./_components/overview";
 import { getTranslations } from "next-intl/server";
-import { FaqAccordion } from "./_components/faq-accordion";
 import { getCurrentUser } from "@/utils/data/get-current-user";
+import dynamic from "next/dynamic";
+
+const FaqAccordion = dynamic(() =>
+  import("./_components/faq-accordion").then((mod) => mod.FaqAccordion),
+);
 
 export default async function ProgramPage({
   params,
@@ -16,8 +20,12 @@ export default async function ProgramPage({
 
   const t = await getTranslations({ locale, namespace: "SingleProgramPage" });
 
-  const product = await getProduct({ id: programId, locale });
-  const { user } = await getCurrentUser();
+  const [product, userData] = await Promise.all([
+    getProduct({ id: programId, locale }),
+    getCurrentUser(),
+  ]);
+
+  const { user } = userData;
 
   if (!product)
     return <p>Product not found or not available in the current locale</p>;

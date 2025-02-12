@@ -1,9 +1,16 @@
 import { getTranslations } from "next-intl/server";
-import { ProgramTabs } from "./_components/program-tabs";
 import { getProducts } from "@/utils/data/products/get-products";
 import { getCategories } from "@/utils/data/get-categories";
 import Image from "next/image";
-import { ProgramsMobile } from "./_components/programs-mobile";
+import dynamic from "next/dynamic";
+
+const ProgramTabs = dynamic(() =>
+  import("./_components/program-tabs").then((mod) => mod.ProgramTabs),
+);
+
+const ProgramsMobile = dynamic(() =>
+  import("./_components/programs-mobile").then((mod) => mod.ProgramsMobile),
+);
 
 export default async function ProgramsPage({
   params,

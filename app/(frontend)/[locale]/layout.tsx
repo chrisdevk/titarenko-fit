@@ -6,6 +6,8 @@ import Providers from "@/app/providers";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
 import { Footer } from "@/components/footer";
+import { Suspense } from "react";
+import Loading from "./loading";
 
 export const metadata: Metadata = {
   title: "Alya Titarenko",
@@ -40,7 +42,9 @@ export default async function RootLayout({
       >
         <Providers>
           <MainNavigation locale={locale} />
-          <main className="flex-1">{children}</main>
+          <Suspense fallback={<Loading />}>
+            <main className="flex-1">{children}</main>
+          </Suspense>
           <Footer locale={locale} />
         </Providers>
       </body>

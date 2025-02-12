@@ -24,7 +24,7 @@ export default async function BlogsPage({
     );
   } else {
     return (
-      <div className="relative w-screen overflow-hidden">
+      <div className="relative h-full w-screen overflow-hidden">
         <article className="relative z-10 mx-auto w-11/12 max-w-[1440px] pb-14 pt-28">
           <h1 className="max-w-[900px] normal-case">{t("heading")}</h1>
           <section

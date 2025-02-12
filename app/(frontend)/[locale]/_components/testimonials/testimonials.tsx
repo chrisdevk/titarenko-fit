@@ -1,6 +1,10 @@
 import React from "react";
-import { TestimonialCarousel } from "./testimonial-carousel";
 import { useTranslations } from "next-intl";
+import dynamic from "next/dynamic";
+
+const TestimonialCarousel = dynamic(() =>
+  import("./testimonial-carousel").then((mod) => mod.TestimonialCarousel),
+);
 
 export const Testimonials = () => {
   const t = useTranslations("HomePage.testimonials");
