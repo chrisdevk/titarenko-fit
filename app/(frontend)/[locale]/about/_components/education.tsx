@@ -34,7 +34,7 @@ export const Education = () => {
           </div>
           <div className="relative h-[250px] w-full items-stretch md:h-auto md:w-1/2">
             <Image
-              src="/images/education-img.jpg"
+              src="/images/education-img.webp"
               alt="education"
               fill
               className="rounded-3xl object-cover"
@@ -42,10 +42,10 @@ export const Education = () => {
           </div>
         </div>
         <div className="absolute -right-[11%] -top-[4%] h-[365px] w-[277px] rotate-90 md:-right-[5%] md:-top-[6%] lg:-right-[2.5%]">
-          <Image src="/images/icons/lines.svg" alt="white lines" fill />
+          <Image src="/icons/lines.svg" alt="white lines" fill />
         </div>
         <div className="absolute -bottom-[4%] -left-[11%] h-[365px] w-[277px] -rotate-90 md:-bottom-[6%] md:-left-[2.5%]">
-          <Image src="/images/icons/lines.svg" alt="white lines" fill />
+          <Image src="/icons/lines.svg" alt="white lines" fill />
         </div>
       </section>
     </article>

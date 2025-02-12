@@ -12,12 +12,7 @@ export const ProgramListTablet = () => {
       <div className="flex flex-col gap-y-3">
         {listItems.slice(0, 4).map((text, index) => (
           <div key={index} className="flex items-center gap-x-4">
-            <Image
-              src="/images/icons/check.svg"
-              alt="check"
-              width={44}
-              height={44}
-            />
+            <Image src="/icons/check.svg" alt="check" width={44} height={44} />
             <p>{text}</p>
           </div>
         ))}
@@ -25,12 +20,7 @@ export const ProgramListTablet = () => {
       <div className="flex flex-col gap-y-3">
         {listItems.slice(4, 7).map((text, index) => (
           <div key={index} className="flex max-w-[346px] items-center gap-x-4">
-            <Image
-              src="/images/icons/check.svg"
-              alt="check"
-              width={44}
-              height={44}
-            />
+            <Image src="/icons/check.svg" alt="check" width={44} height={44} />
             <p>{text}</p>
           </div>
         ))}

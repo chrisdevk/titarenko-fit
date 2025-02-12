@@ -46,7 +46,7 @@ export const Categories = () => {
               >
                 <CategoryCard
                   key={key}
-                  imgSrc={`/images/${key}.png`}
+                  imgSrc={`/images/${key}.webp`}
                   title={card.title}
                   description={card.description}
                   link={`/${locale}/programs`}
@@ -56,11 +56,7 @@ export const Categories = () => {
           </section>
         </div>
         <div className="absolute right-0 top-0 h-[332px] w-[720px]">
-          <Image
-            src="/images/icons/lines-turquoise.svg"
-            alt="turquoise lines"
-            fill
-          />
+          <Image src="/icons/lines-turquoise.svg" alt="turquoise lines" fill />
         </div>
       </div>
     </article>

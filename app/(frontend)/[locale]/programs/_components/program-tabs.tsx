@@ -145,7 +145,7 @@ export const ProgramTabs = ({
                               title={program.title}
                               question={program.product_question}
                               description={program.product_description!}
-                              imgSrc={imgSrc || "/images/no-image.jpg"}
+                              imgSrc={imgSrc || "/images/no-image.webp"}
                               path={`/${locale}/programs/${program.id}`}
                             />
                           </motion.div>
@@ -205,7 +205,7 @@ export const ProgramTabs = ({
                                   title={program.title}
                                   question={program.product_question}
                                   description={program.product_description!}
-                                  imgSrc={imgSrc || "/images/no-image.jpg"}
+                                  imgSrc={imgSrc || "/images/no-image.webp"}
                                   path={`/${locale}/programs/${program.id}`}
                                 />
                               </motion.div>

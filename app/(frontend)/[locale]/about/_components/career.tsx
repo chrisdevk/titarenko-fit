@@ -23,7 +23,7 @@ export const Career = () => {
           </ul>
         </div>
         <div className="absolute -bottom-[6%] right-0 h-[270px] w-[205px] rotate-180 md:-bottom-[12%]">
-          <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+          <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
         </div>
       </section>
     </article>

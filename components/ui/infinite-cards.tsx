@@ -86,7 +86,7 @@ export const InfiniteMovingCards = ({
             key={idx}
           >
             <Image
-              src={`/images/infinite-${idx + 1}.jpg`}
+              src={`/images/infinite-${idx + 1}.webp`}
               alt="selfie with celebrity"
               fill
               className="rounded-3xl object-cover object-top"

@@ -23,7 +23,7 @@ export const TestimonialCarousel = () => {
             <div className="relative flex h-full flex-col gap-y-2 rounded-3xl bg-white px-7 pb-5 pt-8 md:px-6 lg:gap-y-3 lg:pb-10 lg:pt-20">
               <div className="absolute left-1/2 top-0 h-[29px] w-[194px] -translate-x-1/2">
                 <Image
-                  src="/images/icons/card-decoration.svg"
+                  src="/icons/card-decoration.svg"
                   alt="card decoration"
                   fill
                 />
@@ -38,13 +38,13 @@ export const TestimonialCarousel = () => {
               </div>
               <div className="flex justify-between">
                 <Image
-                  src="/images/icons/stars.svg"
+                  src="/icons/stars.svg"
                   alt="5 star rating"
                   width={116}
                   height={20}
                 />
                 <Image
-                  src="/images/icons/quote.svg"
+                  src="/icons/quote.svg"
                   alt="quote"
                   width={44}
                   height={36}

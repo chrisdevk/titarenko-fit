@@ -101,7 +101,7 @@ export const PurchaseCard = ({
         )}
       </div>
       <div className="absolute -right-[5%] -top-[2%] h-[118px] w-[146px] rotate-90">
-        <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+        <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
       </div>
     </div>
   );

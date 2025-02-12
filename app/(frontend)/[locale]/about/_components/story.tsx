@@ -14,7 +14,7 @@ export const Story = ({ locale }: { locale: string }) => {
           <div className="flex flex-col items-stretch justify-between gap-x-12 gap-y-5 md:flex-row md:items-center">
             <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
               <Image
-                src="/images/circus.jpg"
+                src="/images/circus.webp"
                 alt="circus"
                 fill
                 className="rounded-3xl object-cover object-top md:object-center"
@@ -32,7 +32,7 @@ export const Story = ({ locale }: { locale: string }) => {
             </div>
             <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
               <Image
-                src="/images/competition.jpg"
+                src="/images/competition.webp"
                 alt="circus"
                 fill
                 className="rounded-3xl object-cover object-top"
@@ -43,14 +43,14 @@ export const Story = ({ locale }: { locale: string }) => {
             <div className="relative h-[250px] w-full md:h-auto md:min-h-[350px] md:w-5/12">
               {locale === "en" ? (
                 <Image
-                  src="/images/transformation-en.jpg"
+                  src="/images/transformation-en.webp"
                   alt="circus"
                   fill
                   className="rounded-3xl object-cover object-top"
                 />
               ) : (
                 <Image
-                  src="/images/transformation.jpg"
+                  src="/images/transformation.webp"
                   alt="circus"
                   fill
                   className="rounded-3xl object-cover object-top"
@@ -63,10 +63,10 @@ export const Story = ({ locale }: { locale: string }) => {
           </div>
         </div>
         <div className="absolute -top-[9%] left-0 h-[338px] w-[257px]">
-          <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+          <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
         </div>
         <div className="absolute -bottom-[9%] right-0 h-[338px] w-[257px] rotate-180">
-          <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+          <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
         </div>
       </section>
     </article>

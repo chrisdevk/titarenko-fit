@@ -86,10 +86,10 @@ export default async function ProgramPage({
           <FaqAccordion />
         </section>
         <div className="absolute -right-[5%] top-0 h-[400px] w-[500px] rotate-90">
-          <Image src="/images/icons/lines.svg" alt="white lines" fill />
+          <Image src="/icons/lines.svg" alt="white lines" fill />
         </div>
         <div className="absolute -left-[5%] bottom-0 h-[423px] w-[522px] -rotate-90">
-          <Image src="/images/icons/lines.svg" alt="white lines" fill />
+          <Image src="/icons/lines.svg" alt="white lines" fill />
         </div>
       </article>
     </div>

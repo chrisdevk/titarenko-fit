@@ -17,7 +17,7 @@ export default function AuthPage() {
     <div className="mx-auto flex h-screen w-11/12 max-w-[1296px] flex-col items-center justify-center gap-x-20 md:h-[70vh] lg:h-screen lg:flex-row lg:justify-normal">
       <div className="relative hidden h-full lg:block lg:w-1/2">
         <Image
-          src="/images/auth-image.png"
+          src="/images/auth-image.webp"
           alt="Gymnastic auth"
           fill
           className="object-contain"

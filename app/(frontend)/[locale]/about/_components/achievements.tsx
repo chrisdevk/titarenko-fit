@@ -10,7 +10,7 @@ export const Achievements = () => {
       <section className="mx-auto flex w-11/12 max-w-[1440px] flex-col items-stretch justify-between gap-x-3 gap-y-5 md:flex-row lg:gap-x-10">
         <div className="relative h-[250px] w-full md:h-auto md:w-1/2">
           <Image
-            src="/images/achievements-img.jpg"
+            src="/images/achievements-img.webp"
             alt="achievements"
             fill
             className="z-10 rounded-3xl object-cover"

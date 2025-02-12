@@ -22,7 +22,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
               typeof item.product.product_thumbnail === "object" &&
               item.product.product_thumbnail?.url
                 ? item.product.product_thumbnail?.url
-                : "/images/no-image.jpg";
+                : "/images/no-image.webp";
           }
 
           return (
@@ -31,7 +31,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
                 key={item.product.id}
                 title={item.product.title}
                 path={`/${locale}/dashboard/${item.product.id}`}
-                imgSrc={imgSrc || "/images/no-image.jpg"}
+                imgSrc={imgSrc || "/images/no-image.webp"}
                 course_btn_text={course_btn_text}
               />
             )

@@ -1,14 +1,11 @@
 "use client";
 
-// import type { Order } from "@/payload-types";
-
 import { Button } from "@/components/ui/button";
 import {
   PaymentElement,
   useElements,
   useStripe,
 } from "@stripe/react-stripe-js";
-// import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { useCart } from "@/context/cart";

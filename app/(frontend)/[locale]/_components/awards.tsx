@@ -54,10 +54,10 @@ export const Awards = () => {
           </Link>
         </div>
         <div className="absolute left-0 top-0 h-[160px] w-[226px]">
-          <Image src="/images/icons/lines.svg" alt="lines" fill />
+          <Image src="/icons/lines.svg" alt="lines" fill />
         </div>
         <div className="absolute bottom-0 right-0 h-[160px] w-[226px] rotate-180">
-          <Image src="/images/icons/lines.svg" alt="lines" fill />
+          <Image src="/icons/lines.svg" alt="lines" fill />
         </div>
       </div>
     </section>

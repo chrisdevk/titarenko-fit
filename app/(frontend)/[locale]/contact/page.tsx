@@ -21,7 +21,7 @@ export default async function ContactPage({
         </div>
         <div className="relative h-2/3 w-full">
           <Image
-            src="/images/contact-img.jpg"
+            src="/images/contact-img.webp"
             alt="contact"
             fill
             className="rounded-3xl object-cover"

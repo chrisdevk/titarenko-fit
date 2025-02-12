@@ -34,7 +34,7 @@ export default async function ProgramsPage({
         />
       </section>
       <div className="absolute -bottom-[40%] -right-[2%] rotate-180 md:h-[231px] md:w-[320px] lg:bottom-0 lg:right-0 lg:h-[340px] lg:w-[470px]">
-        <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+        <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
       </div>
     </article>
   );

@@ -44,7 +44,7 @@ export default async function BlogsPage({
                   <BlogCard
                     key={blog.id}
                     title={blog.title}
-                    imgSrc={imgSrc || "/images/no-image.jpg"}
+                    imgSrc={imgSrc || "/images/no-image.webp"}
                     path={`/${locale}/blogs/${blog.id}`}
                   />
                 )
@@ -53,10 +53,10 @@ export default async function BlogsPage({
           </section>
         </article>
         <div className="absolute -right-[8%] top-16 h-[266px] w-[276px] rotate-90 md:-right-[1.5%]">
-          <Image src="/images/icons/lines-purple.svg" alt="lines blogs" fill />
+          <Image src="/icons/lines-purple.svg" alt="lines blogs" fill />
         </div>
         <div className="absolute -left-[8%] bottom-0.5 h-[266px] w-[276px] -rotate-90 md:-left-[2%]">
-          <Image src="/images/icons/lines-purple.svg" alt="lines blogs" fill />
+          <Image src="/icons/lines-purple.svg" alt="lines blogs" fill />
         </div>
       </div>
     );

@@ -74,7 +74,7 @@ export const Hero = () => {
           </div>
           <div className="relative h-[360px] w-full md:hidden">
             <Image
-              src="/images/hero-mobile.jpg"
+              src="/images/hero-mobile.webp"
               alt="Hero image"
               fill
               quality={100}
@@ -123,7 +123,7 @@ export const Hero = () => {
       </div>
       <div className="absolute left-0 top-0 -z-10 hidden size-full md:block lg:hidden">
         <Image
-          src="/images/hero-tablet.png"
+          src="/images/hero-tablet.webp"
           alt="Hero image"
           fill
           quality={100}

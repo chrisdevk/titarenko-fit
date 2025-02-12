@@ -13,7 +13,7 @@ export const TrainingPreview = () => {
           <Videos />
         </div>
         <div className="absolute left-0 top-0 h-[184px] w-[244px]">
-          <Image src="/images/icons/lines-purple.svg" alt="purple lines" fill />
+          <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
         </div>
       </section>
     </article>

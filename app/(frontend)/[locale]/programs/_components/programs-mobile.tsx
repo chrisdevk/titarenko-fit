@@ -76,7 +76,7 @@ export const ProgramsMobile = ({
                   title={program.title}
                   question={program.product_question}
                   description={program.product_description}
-                  imgSrc={imgSrc || "/images/no-image.jpg"}
+                  imgSrc={imgSrc || "/images/no-image.webp"}
                   path={`/${locale}/programs/${program.id}`}
                 />
               </div>
@@ -96,7 +96,7 @@ export const ProgramsMobile = ({
                   title={program.title}
                   question={program.product_question}
                   description={program.product_description}
-                  imgSrc={imgSrc || "/images/no-image.jpg"}
+                  imgSrc={imgSrc || "/images/no-image.webp"}
                   path={`/${locale}/programs/${program.id}`}
                 />
               </div>

@@ -71,13 +71,13 @@ export const carouselItems = [
     name: "Татьяна Ромах",
     review:
       "Мне очень понравился весь пакет коротких занятий – именно то, что нужно для начинающих. В зависимости от наличия времени, можно пройти одно или несколько занятий сразу либо сделать круговую тренировку. Благодарю и с нетерпением жду следующий более продвинутый курс!",
-    avatar: "/images/person-1.png",
+    avatar: "/images/person-1.webp",
   },
   {
     name: "Инна Кариакина",
     review:
       "Аля, то, что вы делаете, – очень ценно! Я уделяю тренировкам, как правило 30 минут в день, и результат уже виден не только в зеркале, но и на весах. С минимальными усилиями похудеть на 6 кг за три недели – это очень хороший результат, я считаю. А самое главное – с Вами очень приятно заниматься!",
-    avatar: "/images/person-2.png",
+    avatar: "/images/person-2.webp",
   },
   {
     name: "Оксана Ткаченко",
@@ -108,42 +108,42 @@ export const carouselItems = [
 export const certificates = [
   {
     alt: "certificate-1",
-    src: "/images/International-Personal-Trainer-2025-1-1024x793.jpg",
+    src: "/images/International-Personal-Trainer-2025-1-1024x793.webp",
   },
   {
     alt: "certificate-2",
-    src: "/images/image.jpg",
+    src: "/images/image.webp",
   },
   {
     alt: "certificate-3",
-    src: "/images/image-1.jpg",
+    src: "/images/image-1.webp",
   },
   {
     alt: "certificate-4",
-    src: "/images/image-2.jpg",
+    src: "/images/image-2.webp",
   },
   {
     alt: "certificate-5",
-    src: "/images/image-3.jpg",
+    src: "/images/image-3.webp",
   },
   {
     alt: "certificate-6",
-    src: "/images/image-4.jpg",
+    src: "/images/image-4.webp",
   },
   {
     alt: "certificate-7",
-    src: "/images/image-5.jpg",
+    src: "/images/image-5.webp",
   },
   {
     alt: "certificate-8",
-    src: "/images/image-6.jpg",
+    src: "/images/image-6.webp",
   },
   {
     alt: "certificate-9",
-    src: "/images/image-7.jpg",
+    src: "/images/image-7.webp",
   },
   {
     alt: "certificate-10",
-    src: "/images/image-8.jpg",
+    src: "/images/image-8.webp",
   },
 ];
