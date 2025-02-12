@@ -20,8 +20,6 @@ export const ProgramTabs = ({
 }: ProgramTabsProps) => {
   const [currentCategory, setCurrentCategory] = useState("all");
 
-  const t = useTranslations("ProgramPage");
-
   const validPrograms = programs.filter((program) => program.title);
 
   const categoryProgramCounts = categories.map((category) => ({
