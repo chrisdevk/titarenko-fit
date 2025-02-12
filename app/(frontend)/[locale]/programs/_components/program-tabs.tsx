@@ -2,7 +2,6 @@
 
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import type { Category, Product } from "@/payload-types";
-import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { TabTrigger } from "./tab-trigger";
 import { FilteredProgramsContent } from "./filtered-programs-content";
