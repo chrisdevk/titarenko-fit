@@ -115,7 +115,7 @@ export const CheckoutForm = ({ locale }: { locale: string }) => {
         }
       }
     },
-    [stripe, elements, clearCart, router],
+    [stripe, elements, clearCart, router, locale],
   );
 
   return (

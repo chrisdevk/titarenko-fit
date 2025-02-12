@@ -1,11 +1,9 @@
 "use client";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList } from "@/components/ui/tabs";
 import type { Category, Product } from "@/payload-types";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
-import { AnimatePresence, motion } from "motion/react";
-import { ProgramCard } from "./program-card";
 import { TabTrigger } from "./tab-trigger";
 import { FilteredProgramsContent } from "./filtered-programs-content";
 
