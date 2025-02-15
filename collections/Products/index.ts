@@ -108,13 +108,6 @@ export const Products: CollectionConfig = {
               required: true,
             },
             {
-              name: "lessons",
-              label: "Lessons",
-              type: "richText",
-              localized: true,
-              required: true,
-            },
-            {
               name: "equipment",
               label: "Equipment",
               type: "richText",

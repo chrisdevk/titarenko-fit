@@ -161,9 +161,8 @@
     "month": "мес.",
     "overview": {
       "for_whom": "Для кого",
-      "program": "Программа",
-      "lessons": "Занятия",
-      "equipment": "Оборудование",
+      "program": "ЧТО В ПРОГРАММЕ",
+      "equipment": "Инвентарь",
       "contradictions": "Противопоказания"
     },
     "faq_heading": "Часто задаваемые вопросы",

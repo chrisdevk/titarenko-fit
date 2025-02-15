@@ -181,21 +181,6 @@ export interface Product {
     };
     [k: string]: unknown;
   };
-  lessons: {
-    root: {
-      type: string;
-      children: {
-        type: string;
-        version: number;
-        [k: string]: unknown;
-      }[];
-      direction: ('ltr' | 'rtl') | null;
-      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
-      indent: number;
-      version: number;
-    };
-    [k: string]: unknown;
-  };
   equipment: {
     root: {
       type: string;
@@ -450,7 +435,6 @@ export interface ProductsSelect<T extends boolean = true> {
   fitness_level?: T;
   for_whom?: T;
   program?: T;
-  lessons?: T;
   equipment?: T;
   contradictions?: T;
   stripeProductID?: T;

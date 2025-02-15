@@ -73,7 +73,6 @@ export default async function ProgramPage({
           <Overview
             for_whom={product?.for_whom}
             program={product?.program}
-            lessons={product?.lessons}
             equipment={product?.equipment}
             contradictions={product?.contradictions}
           />
