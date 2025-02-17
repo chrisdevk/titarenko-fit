@@ -19,7 +19,7 @@ export const FilteredProgramsContent = ({
   return (
     <article className="space-y-5">
       <h2 className="flex items-center gap-x-2">
-        {t(categoryName)}
+        {categoryName === "all" ? t('all') : categoryName}
         <span className="w-11 rounded-3xl bg-purple-custom px-1.5 text-center text-xl text-white">
           {filteredPrograms.length}
         </span>

@@ -36,8 +36,8 @@ export default async function ProgramPage({
   try {
     price = JSON.parse(product.priceJSON ?? "{}");
   } catch (error) {
-    console.error("Error parsing price JSON:", error);
-    price = {};
+      console.error("Error parsing price JSON:", error);
+      price = {};
   }
 
   return (

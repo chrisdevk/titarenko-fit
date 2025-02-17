@@ -4,7 +4,7 @@ import { anyone } from "../../access/anyone";
 import { admins } from "../../access/admins";
 import { checkRole } from "../../access/check-role";
 import { ensureFirstUserIsAdmin } from "./hooks/ensure-first-user-is-admin";
-import { resolveDuplicatePurchases } from "./hooks/resolve-duplicate-purchases";
+// import { resolveDuplicatePurchases } from "./hooks/resolve-duplicate-purchases";
 import { createStripeCustomer } from "./hooks/create-stripe-customer";
 import { loginAfterCreate } from "./hooks/login-after-create";
 import { customerProxy } from "./endpoints/customer";

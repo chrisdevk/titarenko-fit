@@ -20,7 +20,7 @@ export const AddToCart = ({ product, locale, price }: AddToCartProps) => {
 
   const productUrl = `/${locale}/programs/${product.slug}`;
 
-  const unitPrice = price[0].unit_amount!;
+  const unitPrice = price && price[0] && price[0].unit_amount !== null ? price[0].unit_amount : 0;
 
   const handleAddToCart = useCallback(() => {
     addItemToCart({
