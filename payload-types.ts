@@ -220,6 +220,9 @@ export interface Product {
       }[]
     | null;
   categories: number | Category;
+  metadata_title?: string | null;
+  metadata_description?: string | null;
+  metadata_keywords?: string | null;
   slug?: string | null;
   skipSync?: boolean | null;
   updatedAt: string;
@@ -277,6 +280,9 @@ export interface Blog {
     };
     [k: string]: unknown;
   };
+  metadata_title?: string | null;
+  metadata_description?: string | null;
+  metadata_keywords?: string | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -416,6 +422,9 @@ export interface BlogsSelect<T extends boolean = true> {
   title?: T;
   thumbnail?: T;
   body?: T;
+  metadata_title?: T;
+  metadata_description?: T;
+  metadata_keywords?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -446,6 +455,9 @@ export interface ProductsSelect<T extends boolean = true> {
         id?: T;
       };
   categories?: T;
+  metadata_title?: T;
+  metadata_description?: T;
+  metadata_keywords?: T;
   slug?: T;
   skipSync?: T;
   updatedAt?: T;

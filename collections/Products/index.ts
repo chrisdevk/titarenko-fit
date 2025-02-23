@@ -179,6 +179,30 @@ export const Products: CollectionConfig = {
         position: "sidebar",
       },
     },
+    {
+      name: "metadata_title",
+      type: "text",
+      label: "Metadata Title",
+      admin: {
+        position: "sidebar"
+      }
+    },
+    {
+      name: "metadata_description",
+      type: "textarea",
+      label: "Metadata Description",
+      admin: {
+        position: "sidebar"
+      }
+    },
+    {
+      name: "metadata_keywords",
+      type: "textarea",
+      label: "Metadata Keywords",
+      admin: {
+        position: "sidebar"
+      }
+    },
     slugField(),
     {
       name: "skipSync",

@@ -42,6 +42,10 @@ export default buildConfig({
       url: process.env.NEXT_PUBLIC_SERVER_URL,
       collections: ["blogs", "products"],
     },
+    meta: {
+      title: "Admin panel",
+      description: "Admin panel for titarenko.fit"
+    }
   },
   collections: [Users, Media, Blogs, Products, Categories, Orders],
   editor: lexicalEditor(),

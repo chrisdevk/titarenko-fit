@@ -97,7 +97,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 )}
               </Link>
               <LanguageSelect locale={locale} />
-              {user ? (
+              {user?.id ? (
                 <Link
                   href={`/${locale}/dashboard`}
                   className={cn(

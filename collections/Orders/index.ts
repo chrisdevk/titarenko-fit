@@ -21,10 +21,10 @@ export const Orders: CollectionConfig = {
     {
       name: "orderedBy",
       type: "relationship",
+      relationTo: "users",
       hooks: {
         beforeChange: [populateOrderedBy],
       },
-      relationTo: "users",
     },
     {
       name: "stripePaymentIntentID",

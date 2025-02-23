@@ -79,6 +79,7 @@ export const Users: CollectionConfig = {
       name: "orders",
       type: "join",
       collection: "orders",
+      hasMany:true,
       on: "orderedBy",
       admin: {
         allowCreate: false,
