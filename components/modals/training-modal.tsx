@@ -13,7 +13,7 @@ export const TrainingModal = ({ onClose, open }: TrainingModalProps) => {
   const params = useParams();
   const locale = params.locale;
 
-  let videoId = locale === "ru" ? "874917554" : "875365587";
+  const videoId = locale === "ru" ? "874917554" : "875365587";
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
