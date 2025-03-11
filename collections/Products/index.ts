@@ -3,6 +3,7 @@ import type { CollectionConfig } from "payload";
 import { beforeProductChange } from "./hooks/before-change";
 import { slugField } from "@/fields/slug";
 import { admins } from "../../access/admins";
+import { revalidateTag } from "next/cache";
 
 export const Products: CollectionConfig = {
   slug: "products",
@@ -12,6 +13,12 @@ export const Products: CollectionConfig = {
   },
   hooks: {
     beforeChange: [beforeProductChange],
+    afterChange: [
+      async ({ doc }) => {
+        console.log(`Revalidating cache for product: ${doc.id}`);
+        revalidateTag("products"); 
+      },
+    ],
   },
   access: {
     read: () => true,

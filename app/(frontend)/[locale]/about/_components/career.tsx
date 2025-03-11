@@ -9,7 +9,7 @@ export const Career = () => {
   return (
     <article className="bg-turquoise-dark">
       <section className="relative space-y-10 rounded-t-3xl bg-off-white py-16">
-        <h2 className="text-center uppercase">{t("heading")}</h2>
+        <h2 className="text-center uppercase font-semibold">{t("heading")}</h2>
         <div className="relative z-10 mx-auto flex w-11/12 max-w-[1054px] flex-col justify-between gap-x-10 gap-y-5 md:flex-row">
           <ul className="list-disc rounded-3xl bg-turquoise-light p-10 md:w-[500px]">
             {cardOneList.map((item: string) => (

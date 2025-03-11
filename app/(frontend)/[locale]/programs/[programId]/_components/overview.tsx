@@ -24,7 +24,7 @@ export const Overview = ({
       <div className="space-y-3 rounded-3xl bg-white shadow-md">
         <div className="flex w-full items-center space-x-2.5 rounded-t-3xl bg-turquoise-dark px-5 py-3 text-white">
           <CircleHelp size={24} />
-          <h2 className="uppercase">{t("for_whom")}</h2>
+          <h2>{t("for_whom")}</h2>
         </div>
         <div className="py-4 pl-16">
           <RichText data={for_whom} />
@@ -33,7 +33,7 @@ export const Overview = ({
       <div className="space-y-3 rounded-3xl bg-white shadow-md">
         <div className="flex w-full items-center space-x-2.5 rounded-t-3xl bg-turquoise-dark px-5 py-3 text-white">
           <BookOpen size={24} />
-          <h2 className="uppercase">{t("program")}</h2>
+          <h2>{t("program")}</h2>
         </div>
         <div className="py-4 pl-16">
           <RichText data={program} />
@@ -42,7 +42,7 @@ export const Overview = ({
       <div className="space-y-3 rounded-3xl bg-white shadow-md">
         <div className="flex w-full items-center space-x-2.5 rounded-t-3xl bg-turquoise-dark px-5 py-3 text-white">
           <ListChecks size={24} />{" "}
-          <h2 className="uppercase">{t("equipment")}</h2>
+          <h2>{t("equipment")}</h2>
         </div>
         <div className="py-4 pl-16">
           <RichText data={equipment} />
@@ -51,7 +51,7 @@ export const Overview = ({
       <div className="space-y-3 rounded-3xl bg-white shadow-md">
         <div className="flex w-full items-center space-x-2.5 rounded-t-3xl bg-turquoise-dark px-5 py-3 text-white">
           <TriangleAlert size={24} />{" "}
-          <h2 className="uppercase">{t("contradictions")}</h2>
+          <h2>{t("contradictions")}</h2>
         </div>
         <div className="py-4 pl-16">
           <RichText data={contradictions} />

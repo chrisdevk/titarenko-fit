@@ -28,7 +28,7 @@ export default async function ProgramsPage({
   return (
     <article className="relative h-full w-screen bg-turquoise-light">
       <section className="relative z-10 mx-auto w-11/12 max-w-[1440px] pb-14 pt-28">
-        <h1>{t("heading")}</h1>
+        <h1 className="text-xl font-medium md:text-2xl lg:text-3xl xl:text-4xl">{t("heading")}</h1>
         <ProgramTabs
           programs={programs}
           categories={categories}

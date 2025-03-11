@@ -18,7 +18,7 @@ export default async function BlogsPage({
   if (!blogs) {
     return (
       <main className="mx-auto mt-36 w-11/12 max-w-[1440px]">
-        <h1 className="normal-case">{t("heading")}</h1>
+        <h1 className="normal-case text-xl font-medium md:text-2xl lg:text-3xl xl:text-4xl">{t("heading")}</h1>
         <p>No blogs found...</p>
       </main>
     );
@@ -26,7 +26,7 @@ export default async function BlogsPage({
     return (
       <div className="relative h-full w-screen overflow-hidden">
         <article className="relative z-10 mx-auto w-11/12 max-w-[1440px] pb-14 pt-28">
-          <h1 className="max-w-[900px] normal-case">{t("heading")}</h1>
+          <h1 className="max-w-[900px] normal-case text-xl font-medium md:text-2xl lg:text-3xl xl:text-4xl">{t("heading")}</h1>
           <section
             className={cn(
               "mt-10 flex flex-wrap justify-between gap-y-7",

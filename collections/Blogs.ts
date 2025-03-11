@@ -1,4 +1,5 @@
 import type { CollectionConfig } from "payload";
+import { revalidateTag } from "next/cache";
 import { admins } from "../access/admins";
 
 export const Blogs: CollectionConfig = {
@@ -53,4 +54,12 @@ export const Blogs: CollectionConfig = {
       }
     }
   ],
+  hooks: {
+    afterChange: [
+      async ({ doc }) => {
+        console.log(`Revalidating cache for blog: ${doc.id}`);
+        revalidateTag("blogs"); 
+      },
+    ],
+  },
 };
