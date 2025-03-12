@@ -6,6 +6,7 @@ import { getOrders } from "@/utils/data/get-orders";
 import { Order } from "@/payload-types";
 import { Orders } from "./_components/orders";
 import { Payments } from "./_components/payments";
+import { getProducts } from "@/utils/data/products/get-products";
 
 export default async function DashboardPage({
   params,
@@ -25,9 +26,27 @@ export default async function DashboardPage({
     );
   }
 
-  const orders: Order[] | null = await getOrders({
+  let orders: Order[] | null = await getOrders({
     locale,
   });
+
+  if (user.roles?.includes("admin")) {
+    const allProducts = await getProducts({ locale });
+    orders =
+      allProducts?.map((product) => ({
+        id: product.id,
+        items: [
+          {
+            product: product,
+            purchaseDate: new Date().toISOString(),
+          },
+        ],
+        total: JSON.parse(product.priceJSON!) ?? 0,
+        currency: "USD",
+        updatedAt: new Date().toISOString(),
+        createdAt: new Date().toISOString(),
+      })) ?? [];
+  }
 
   if (!orders) return <p>Something went wrong</p>;
 
