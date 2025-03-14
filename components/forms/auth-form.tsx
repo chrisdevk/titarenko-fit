@@ -19,6 +19,7 @@ import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useAuth } from "@/context/auth-context";
+import Link from "next/link";
 
 type SignupFormValues = z.infer<typeof signupSchema>;
 type LoginFormValues = z.infer<typeof loginSchema>;
@@ -27,7 +28,12 @@ type AuthFormValues = SignupFormValues | LoginFormValues;
 const isSignupVariant = (variant: string): variant is "signup" =>
   variant === "signup";
 
-export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
+interface AuthFormProps {
+  variant: "signup" | "login";
+  locale: "en" | "ru";
+}
+
+export const AuthForm = ({ variant, locale }: AuthFormProps) => {
   const isSignup = isSignupVariant(variant);
   const authSchema = isSignup ? signupSchema : loginSchema;
 
@@ -137,7 +143,17 @@ export const AuthForm = ({ variant }: { variant: "signup" | "login" }) => {
         />
         <Button type="submit" className="h-fit w-full py-3 text-xl">
           {isSignup ? t("signup.button") : t("login.button")}
-        </Button>
+        </Button>{" "}
+        {!isSignup && (
+          <div>
+            <Link
+              href={`/${locale}/forgot-password`}
+              className="text-black transition-colors hover:text-purple-custom hover:underline"
+            >
+              {t("login.forgotPassword")}
+            </Link>
+          </div>
+        )}
       </form>
     </Form>
   );

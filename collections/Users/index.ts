@@ -1,4 +1,4 @@
-import type { CollectionConfig } from "payload";
+import type { CollectionConfig, User } from "payload";
 import adminsAndUser from "../../access/admins-and-user";
 import { anyone } from "../../access/anyone";
 import { admins } from "../../access/admins";
@@ -16,11 +16,35 @@ export const Users: CollectionConfig = {
     defaultColumns: ["name", "email"],
   },
   auth: {
-    tokenExpiration: 28800,
+    tokenExpiration: 259200,
     cookies: {
       sameSite: "None",
       secure: true,
       domain: process.env.COOKIE_DOMAIN,
+    },
+    forgotPassword: {
+      generateEmailHTML: (args) => {
+        const req = args?.req;
+        const token = args?.token;
+        const user = req?.user;
+        const locale = req?.locale;
+
+        const resetPasswordURL = `${process.env.NEXT_PUBLIC_SERVER_URL}/${locale}/reset-password?token=${token}`;
+        const email = (user as User)?.email!;
+        return `
+        <!doctype html>
+        <html>
+          <body>
+            <h1>Password reset request!</h1>
+            <p>Hello, ${email}!</p>
+            <p>Click below to reset your password.</p>
+            <p>
+              <a href="${resetPasswordURL}">${resetPasswordURL}</a>
+            </p>
+          </body>
+        </html>
+      `;
+      },
     },
   },
   access: {
@@ -79,7 +103,7 @@ export const Users: CollectionConfig = {
       name: "orders",
       type: "join",
       collection: "orders",
-      hasMany:true,
+      hasMany: true,
       on: "orderedBy",
       admin: {
         allowCreate: false,

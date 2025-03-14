@@ -119,7 +119,8 @@
       "heading": "Welcome back",
       "email": "Email",
       "password": "Password",
-      "button": "Log in"
+      "button": "Log in",
+      "forgotPassword": "Forgot password?"
     },
     "signup": {
       "heading": "Welcome!",
@@ -127,6 +128,19 @@
       "email": "Email",
       "password": "Password",
       "button": "Sign up"
+    },
+    "forgotPassword": {
+      "heading": "Reset password",
+      "email": "Email",
+      "button": "Reset password",
+      "sending": "Sending..."
+    },
+    "resetPassword": {
+      "heading": "Reset password",
+      "newPassword": "New password",
+      "button": "Reset password",
+      "resetting": "Resetting...",
+      "placeholder": "Enter new password"
     },
     "loginTab": "Log in",
     "signupTab": "Sign up"

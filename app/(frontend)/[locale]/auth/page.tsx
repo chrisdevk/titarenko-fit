@@ -7,9 +7,12 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 
 export default function AuthPage() {
   const [variant, setVariant] = useState<"signup" | "login">("login");
+
+  const params = useParams<{ locale: "en" | "ru" }>();
 
   const t = useTranslations("AuthPage");
 
@@ -66,7 +69,7 @@ export default function AuthPage() {
               )}
             </Button>
           </div>
-          <AuthForm variant={variant} />
+          <AuthForm variant={variant} locale={params.locale} />
         </div>
       </div>
     </div>
