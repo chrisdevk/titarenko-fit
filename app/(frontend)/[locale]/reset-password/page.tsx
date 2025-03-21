@@ -28,10 +28,6 @@ export default function ResetPasswordPage() {
   const token = searchParams.get("token");
   const router = useRouter();
 
-  if (!token) {
-    return <p className="text-red-500">Invalid or missing reset token.</p>;
-  }
-
   const form = useForm({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: { password: "" },
@@ -39,7 +35,7 @@ export default function ResetPasswordPage() {
 
   const mutation = useMutation({
     mutationFn: async (data: { password: string }) => {
-      return resetPassword({ token, password: data.password });
+      return resetPassword({ token: token!, password: data.password });
     },
     onSuccess: () => {
       toast.success("Password reset successfully!");
@@ -53,6 +49,14 @@ export default function ResetPasswordPage() {
   const onSubmit = (data: { password: string }) => {
     mutation.mutate(data);
   };
+
+  if (!token) {
+    return (
+      <div className="mx-auto mt-10 flex h-screen max-w-lg flex-col justify-center rounded-lg">
+        <p className="text-red-500">Invalid or missing reset token.</p>
+      </div>
+    );
+  }
 
   return (
     <div className="mx-auto mt-10 flex h-screen max-w-lg flex-col justify-center rounded-lg">
