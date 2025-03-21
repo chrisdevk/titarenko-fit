@@ -217,26 +217,29 @@
   "AboutPage": {
     "achievements": {
       "heading": "Achievements",
-      "achievement-subheading": "Sport excellence",
+      "achievement-subheading": "Sports achievements",
       "award-subheading": "Awards",
-      "achievement-paragraph": "Master of sport in bodybuilding • Master of sport in international class of gymnastics • Order of Honor of manhood III degree, Ukraine • PRO-fitness sportsman",
-      "award-paragraph": "2-time World Champion in Sports Acrobatics • 2-time Absolute World Champion in Fitness • 2-time Absolute Champion of Arnold Classic in Fitness • Absolute European Champion in Fitness • European Champion in Sports Acrobatics • World Games Champion in Fitness"
+      "achievement-paragraph": "Honored Master of Sport in Bodybuilding. • Master of Sports International Class in Sport Acrobatics •  Medal “For Courage” awarded by President of Ukraine • PRO Fitness Athlete",
+      "award-paragraph": "2x World Champion in Sport Acrobatics • 2x Absolute World Fitness Champion • 2x Arnold Classic Absolute Fitness Champion • Absolute European Fitness Champion • European Champion in Sport Acrobatics • World Games Champion in Fitness"
     },
     "education": {
       "heading": "Education",
-      "card-one": "Ukrainian State University of Physical Education and Sports (Sports Acrobatics / Olympic Sports). Bachelor's Degree.",
-      "card-two-paragraph": "American National Academy of Sports Medicine. Specialist:",
+      "card-one": "Bachelor Degree Ukrainian State University of Sports and Physical Education (Sports Acrobatics, Olympic Sports)",
+      "card-two-paragraph": "Certificates of Specialist (NASM):",
       "card-two-list": [
+        "National Academy of Sports Medicine USA (NASM)",
         "International Certified Personal Trainer",
-        "Rehabilitation",
-        "Professional sport",
-        "Women's fitness",
-        "Post-Operative Rehabilitation",
-        "Fitness for the elderly generation",
-        "Certified Trainer for Nutrition"
+        "Corrective Exercise Specialist",
+        "Women’s Fitness Specialist",
+        "Senior Fitness Specialist",
+        "Performance Enhancement Specialist ",
+        "Postpartum Corrective Exercise Specialist",
+        "Certified Nutrition Coach",
+        "PELVIS PRO Specialist",
+        "Adult/Pediatric First Aid"
       ],
-      "card-three-paragraph": "College of East Nevada. Foreign languages:",
-      "card-three-list": ["English", "German", "French"]
+      "card-three-paragraph": "College of Southern Nevada (CSN):",
+      "card-three-list": ["German language", "French language"]
     },
     "career": {
       "heading": "Career. SHOW BUSINESS CIRQUE DU SOLEIL",
@@ -263,13 +266,13 @@
     "story": {
       "heading": "My story",
       "circus": {
-        "paragraph-one": "My life is full of adventures and unexpected twists. But I always try to make the most of every turn.",
-        "paragraph-two": "Whether it's «through hardships to the stars» in sports or overcoming shyness and fear while performing on the Cirque Du Soleil stage in front of thousands… Whether it's training during shows and preparing for fitness championships after performances… Whether it's returning to aerial performance after giving birth to two daughters… Or recovering and regaining athletic functionality after undergoing several complex spinal and hip surgeries."
+        "paragraph-one": "My life is full of adventures and unexpected turns. But I always try to make the most of every twist and turn.",
+        "paragraph-two": "Whether it’s “through the thorns to the stars” in sports, or “overcoming shyness and fear”, I put my best foot forward on the Cirque Du SOLEIL stage in front of thousands of spectators. Whether it’s training during performances and preparing for Fitness Championships after the show. Or, having given birth to two daughters to return to the stage in the air. Or, having undergone several complex surgeries on the spine and hip joints, to recover and regain sports functionality."
       },
       "competitions": {
-        "paragraph-one": "All this life experience, gained not only theoretically but, most importantly, practically, I invest in creating my programs and courses.",
-        "paragraph-two": "The rehabilitative component, corrective approach, creative thinking, and deep knowledge of my field make my programs unique, engaging, and, most importantly, BENEFICIAL in many ways.",
-        "paragraph-three": "Training with me, you are in safe hands because I take care of everyone who has entrusted me with the most important thing you have — your health."
+        "paragraph-one": "I put all of this life experience, not only in theory, but most importantly in practice, into the creation of my programs and courses.",
+        "paragraph-two": "Rehabilitation component, corrective approach, creative thinking and knowledge of my subject, make my programs unique, interesting and most importantly – useful in many ways.",
+        "paragraph-three": "Training with me, you are safe, as I take care of everyone who entrusted me with the most important thing you have – your health."
       }
     }
   },

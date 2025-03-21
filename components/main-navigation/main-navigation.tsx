@@ -63,7 +63,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
         >
           <div className="relative ml-auto flex w-full max-w-[1440px] items-center justify-end md:mx-auto md:w-11/12 md:justify-between">
             <Link
-              href="/"
+              href={`/${locale}`}
               className="absolute left-1/2 -translate-x-1/2 text-xl font-bold md:static md:translate-x-0"
             >
               ALYA TITARENKO

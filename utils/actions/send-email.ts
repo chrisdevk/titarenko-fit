@@ -36,8 +36,6 @@ export async function sendEmail({
       html: emailHtml,
     });
 
-    console.log("Email sent successfully");
-
     return { success: true, message: "Email sent successfully!" };
   } catch (error) {
     console.error("Error sending email:", error);
