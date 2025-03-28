@@ -9,7 +9,6 @@ import {
 import { useRouter } from "next/navigation";
 import React, { useCallback } from "react";
 import { useCart } from "@/context/cart";
-import { Order } from "@/payload-types";
 
 export const CheckoutForm = ({ locale }: { locale: string }) => {
   const stripe = useStripe();
@@ -89,7 +88,7 @@ export const CheckoutForm = ({ locale }: { locale: string }) => {
                   method: "GET",
                 })
                   .then((res) => res.json())
-                  .then((data: Order) => {
+                  .then(() => {
                     clearCart();
                     router.push(`/${locale}/dashboard`);
                   })
