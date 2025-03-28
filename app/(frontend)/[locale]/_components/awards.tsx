@@ -46,7 +46,7 @@ export const Awards = () => {
             ))}
           </div>
           <Link
-            href={`/${locale}/awards`}
+            href={`/${locale}/about`}
             className={cn("z-10", buttonVariants({ size: "lg" }))}
           >
             {t("button")}

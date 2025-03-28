@@ -25,12 +25,10 @@ export const PurchaseCard = ({
 }: PurchaseCardProps) => {
   const t = useTranslations("SingleProgramPage");
 
-  console.log("Price:", price)
-
-  const formattedPrice = price && price[0]?.unit_amount
-    ? `$${(price[0].unit_amount / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`
-    : "N/A";
-  
+  const formattedPrice =
+    price && price[0]?.unit_amount
+      ? `$${(price[0].unit_amount / 100).toFixed(2)}${recurring ? `/${t(recurring)}` : ""}`
+      : "N/A";
 
   const hasPurchasedProduct = user?.orders?.docs?.some((order) => {
     const typedOrder = order as Order;

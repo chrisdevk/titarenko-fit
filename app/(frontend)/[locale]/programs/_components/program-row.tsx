@@ -11,8 +11,6 @@ interface ProgramRowProps {
 export const ProgramRow = ({ programs, locale }: ProgramRowProps) => {
   const localizedPrograms = programs.filter((program) => program.title?.trim());
 
-  console.log("programs:", programs);
-
   return (
     <div
       className={cn(

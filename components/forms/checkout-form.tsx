@@ -90,8 +90,6 @@ export const CheckoutForm = ({ locale }: { locale: string }) => {
                 })
                   .then((res) => res.json())
                   .then((data: Order) => {
-                    console.log("received", data, "for payment", paymentIntent);
-
                     clearCart();
                     router.push(`/${locale}/dashboard`);
                   })

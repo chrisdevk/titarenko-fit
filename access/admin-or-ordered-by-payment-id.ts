@@ -8,8 +8,6 @@ export const adminsOrOrderedByOrPaymentId: Access = ({ req }) => {
   const typedUser = req.user as User | undefined;
   const isAdmin = checkRole(["admin"], typedUser);
 
-  console.log("user:", typedUser)
-
   const referer = req.headers?.get("referer") || "";
   const isAdminPanelRequest = referer.includes("/admin");
 
@@ -20,23 +18,21 @@ export const adminsOrOrderedByOrPaymentId: Access = ({ req }) => {
   const searchParams = req.searchParams;
   const where = searchParams.get("where");
 
-  console.log("search params:", searchParams)
-
   const query = where ? qs.parse(where) : {};
   const paymentIntentID = (query.stripePaymentIntentID as qs.ParsedQs)
     ?.equals as string | undefined;
 
-    if (paymentIntentID) {
-      return {
-        and: [
-          {
-            stripePaymentIntentID: {
-              equals: paymentIntentID,
-            },
+  if (paymentIntentID) {
+    return {
+      and: [
+        {
+          stripePaymentIntentID: {
+            equals: paymentIntentID,
           },
-        ],
-      };
-    }
+        },
+      ],
+    };
+  }
 
   if (!typedUser?.id) {
     return false;

@@ -11,14 +11,7 @@ export const Progress = ({ orders }: { orders: Order[] }) => {
     <div className="space-y-2">
       {products.map(
         (item) =>
-          typeof item.product !== "number" &&
-          (console.log(
-            "Progress for ",
-            item.product.id,
-            "is",
-            progress[item.product.id],
-          ),
-          (
+          typeof item.product !== "number" && (
             <div
               key={item.product.id}
               className="flex w-full flex-col gap-2 rounded-2xl bg-off-white p-2 lg:flex-row lg:items-center lg:rounded-3xl"
@@ -40,7 +33,7 @@ export const Progress = ({ orders }: { orders: Order[] }) => {
                 </p>
               </div>
             </div>
-          )),
+          ),
       )}
     </div>
   );

@@ -49,7 +49,7 @@ export const Categories = () => {
                   imgSrc={`/images/${key}.webp`}
                   title={card.title}
                   description={card.description}
-                  link={`/${locale}/programs`}
+                  link={`/${locale}/programs#${card.title.toLowerCase()}`}
                 />
               </motion.div>
             ))}

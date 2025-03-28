@@ -2,7 +2,7 @@
 
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import type { Category, Product } from "@/payload-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TabTrigger } from "./tab-trigger";
 import { FilteredProgramsContent } from "./filtered-programs-content";
 
@@ -18,6 +18,22 @@ export const ProgramTabs = ({
   locale,
 }: ProgramTabsProps) => {
   const [currentCategory, setCurrentCategory] = useState("all");
+
+  const categoryFromUrl = window.location.hash;
+
+  useEffect(() => {
+    if (categoryFromUrl) {
+      const decodedCategory = decodeURIComponent(
+        categoryFromUrl.replace("#", ""),
+      );
+
+      const formattedCategory =
+        decodedCategory.charAt(0).toUpperCase() +
+        decodedCategory.slice(1).toLowerCase();
+
+      setCurrentCategory(formattedCategory);
+    }
+  }, [categoryFromUrl]);
 
   const validPrograms = programs.filter((program) => program.title);
 

@@ -16,11 +16,13 @@ interface AddToCartProps {
 export const AddToCart = ({ product, locale, price }: AddToCartProps) => {
   const { addItemToCart } = useCart();
   const t = useTranslations("SingleProgramPage");
-  console.log(addItemToCart);
 
   const productUrl = `/${locale}/programs/${product.slug}`;
 
-  const unitPrice = price && price[0] && price[0].unit_amount !== null ? price[0].unit_amount : 0;
+  const unitPrice =
+    price && price[0] && price[0].unit_amount !== null
+      ? price[0].unit_amount
+      : 0;
 
   const handleAddToCart = useCallback(() => {
     addItemToCart({
