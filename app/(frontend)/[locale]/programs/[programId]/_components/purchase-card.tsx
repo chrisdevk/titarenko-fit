@@ -78,16 +78,12 @@ export const PurchaseCard = ({
               <AddToCart product={product} locale={locale} price={price} />
             )}
             <ol className="list-decimal space-y-1 pl-6 text-sm text-grey-custom">
-              <li>Доступ 45/60 дней</li>
-              <li>По истечении срока Курс самоудаляется</li>
               <li>
-                Автор и тренер Курса определяет порядок тренировок по
-                разработанной методике.
+                {t("access") + " " + product.expiryDuration + " " + t("days")}
               </li>
-              <li>
-                Но вы свободны в своем выборе и можете заниматься в удобном вам
-                порядке
-              </li>
+              <li>{t("warning_item2")}</li>
+              <li>{t("warning_item3")}</li>
+              <li>{t("warning_item4")}</li>
             </ol>
           </div>
         ) : (
