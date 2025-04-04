@@ -12,7 +12,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
   const products = orders.flatMap((order) => order.items || []);
 
   return (
-    <ScrollArea className="h-[275px] w-full rounded-md">
+    <ScrollArea className="h-[275px] w-full rounded-md pr-4" type="auto">
       <div className="grid grid-cols-6 gap-4">
         {products.map((item) => {
           let imgSrc;
