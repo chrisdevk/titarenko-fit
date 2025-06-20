@@ -1,20 +1,19 @@
 "use client";
 
-import Link from "next/link";
-import { buttonVariants } from "../ui/button";
-import { LanguageSelect } from "./language-select";
-import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useAuth } from "@/context/auth-context";
+import { useCart } from "@/context/cart";
 import { cn } from "@/lib/utils";
 import { navlinks } from "@/utils/constants";
-import Hamburger from "./hamburger";
-import { AnimatePresence } from "motion/react";
-import { motion } from "motion/react";
-import { MobileMenu } from "./mobile-menu";
-import { usePathname } from "next/navigation";
-import { useAuth } from "@/context/auth-context";
 import { ShoppingBasket } from "lucide-react";
-import { useCart } from "@/context/cart";
+import { AnimatePresence, motion } from "motion/react";
+import { useTranslations } from "next-intl";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { buttonVariants } from "../ui/button";
+import Hamburger from "./hamburger";
+import { LanguageSelect } from "./language-select";
+import { MobileMenu } from "./mobile-menu";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -68,11 +67,21 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
             >
               ALYA TITARENKO
             </Link>
-            <Hamburger
-              isOpen={isOpen}
-              setIsOpen={setIsOpen}
-              setScrolled={setScrolled}
-            />
+            <div className="flex items-center gap-x-2 md:hidden">
+              <Link href={`/${locale}/checkout`} className="relative">
+                <ShoppingBasket />
+                {cart?.items?.length !== 0 && (
+                  <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
+                    {cart?.items?.length}
+                  </span>
+                )}
+              </Link>
+              <Hamburger
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                setScrolled={setScrolled}
+              />
+            </div>
             <nav className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
               <ul className="flex items-center gap-2 lg:gap-4">
                 {navlinks.map((link) => (
