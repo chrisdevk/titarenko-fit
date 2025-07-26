@@ -28,28 +28,22 @@ export default function CheckoutPage() {
   const t = useTranslations("CheckoutPage");
 
   useEffect(() => {
-    if (cart && user && hasMadePaymentIntent.current === false) {
+    if (cart && user && user.id && hasMadePaymentIntent.current === false) {
       hasMadePaymentIntent.current = true;
 
       const makeIntent = async () => {
         try {
-          const body = !user
-            ? {
-                cart,
-              }
-            : undefined;
+          const body = {
+            cart,
+          };
 
           const paymentReq = await fetch(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/api/create-payment-intent`,
             {
-              ...(body
-                ? {
-                    body: JSON.stringify(body),
-                    headers: {
-                      "Content-Type": "application/json",
-                    },
-                  }
-                : {}),
+              body: JSON.stringify(body),
+              headers: {
+                "Content-Type": "application/json",
+              },
               credentials: "include",
               method: "POST",
             },

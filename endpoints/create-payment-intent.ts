@@ -1,10 +1,9 @@
-import type { Product, User } from "@/payload-types";
+import type { User } from "@/payload-types";
 import type { PayloadHandler } from "payload";
 
 import { addDataAndFileToRequest } from "payload";
 import Stripe from "stripe";
 
-import type { CartItems } from "@/payload-types";
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2022-08-01",
@@ -38,13 +37,15 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
     });
   }
 
-  const cart =
-    fullUser?.cart?.items || (cartFromRequest as { items: CartItems }).items;
+  // Use cart from request if user's cart is empty, otherwise use user's cart
+  const cart = (fullUser?.cart?.items && fullUser.cart.items.length > 0) 
+    ? fullUser.cart.items 
+    : (cartFromRequest?.items || cartFromRequest);
 
   if (!cart || cart.length === 0) {
     return Response.json(
       { error: "Please provide a cart either directly or from the user." },
-      { status: 401 },
+      { status: 400 },
     );
   }
 
@@ -112,29 +113,36 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
 
     const metadata: any[] = [];
 
-    function isProduct(product: number | Product): product is Product {
-      return typeof product !== "number";
-    }
-
     // for each item in cart, lookup the product in Stripe and add its price to the total
     await Promise.all(
-      cart?.map(async (item) => {
+      cart?.map(async (item: any) => {
         const { product } = item;
 
-        if (!product || typeof product === "string") {
+        if (!product) {
           payload.logger.error("Invalid product ID.");
           return null;
         }
 
-        if (isProduct(product)) {
-          metadata.push({
-            product: product.id,
-            quantity: 1,
-          });
+        let productId: number;
+        let itemPrice: number;
 
-          const itemPrice = item.unitPrice || 0;
-          total += itemPrice;
+        if (typeof product === "number") {
+          productId = product;
+          itemPrice = item.unitPrice || 0;
+        } else if (typeof product === "object" && product.id) {
+          productId = product.id;
+          itemPrice = item.unitPrice || 0;
+        } else {
+          payload.logger.error("Invalid product structure:", product);
+          return null;
         }
+
+        metadata.push({
+          product: productId,
+          quantity: item.quantity || 1,
+        });
+
+        total += itemPrice;
 
         return null;
       }),
@@ -146,7 +154,7 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
       );
     }
 
-    console.log("Metadata: ", { metadata });
+
 
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
@@ -164,8 +172,8 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
     );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    payload.logger.error(message);
+    payload.logger.error("Payment intent creation error:", error);
 
-    return Response.json({ error: message }, { status: 401 });
+    return Response.json({ error: message }, { status: 400 });
   }
 };
