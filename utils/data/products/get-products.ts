@@ -1,7 +1,7 @@
 "use server";
 
-import { getPayload } from "payload";
 import configPromise from "@payload-config";
+import { getPayload } from "payload";
 
 export const getProducts = async ({
   locale,
@@ -16,6 +16,7 @@ export const getProducts = async ({
       limit: 10,
       overrideAccess: false,
       locale: locale,
+      fallbackLocale: false,
     });
 
     return products.docs || [];
