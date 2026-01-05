@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
-import "../../globals.css";
-import { cn, roboto } from "@/lib/utils";
-import { MainNavigation } from "@/components/main-navigation/main-navigation";
 import Providers from "@/app/providers";
-import { notFound } from "next/navigation";
-import { routing } from "@/i18n/routing";
 import { Footer } from "@/components/footer";
+import { MainNavigation } from "@/components/main-navigation/main-navigation";
+import { routing } from "@/i18n/routing";
+import { cn, roboto } from "@/lib/utils";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { Suspense } from "react";
+import "../../globals.css";
 import Loading from "./loading";
 
 export const metadata: Metadata = {
@@ -19,7 +19,7 @@ export const metadata: Metadata = {
 
 interface RootLayoutProps {
   children: React.ReactNode;
-  params: { locale: "en" | "ru" };
+  params: Promise<{ locale: string }>;
 }
 
 export default async function RootLayout({
@@ -28,7 +28,7 @@ export default async function RootLayout({
 }: Readonly<RootLayoutProps>) {
   const { locale } = await params;
 
-  if (!routing.locales.includes(locale)) {
+  if (!routing.locales.includes(locale as "en" | "ru")) {
     notFound();
   }
 

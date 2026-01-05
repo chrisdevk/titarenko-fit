@@ -172,7 +172,7 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
     );
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
-    payload.logger.error("Payment intent creation error:", error);
+    payload.logger.error(`Payment intent creation error: ${message}`);
 
     return Response.json({ error: message }, { status: 400 });
   }

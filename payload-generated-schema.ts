@@ -6,6 +6,7 @@
  * and re-run `payload generate:db-schema` to regenerate this file.
  */
 
+import type {} from "@payloadcms/db-postgres";
 import {
   pgTable,
   index,
@@ -15,8 +16,8 @@ import {
   serial,
   varchar,
   numeric,
-  boolean,
   timestamp,
+  boolean,
   jsonb,
   pgEnum,
 } from "@payloadcms/db-postgres/drizzle/pg-core";
@@ -35,15 +36,15 @@ export const users_roles = pgTable(
     value: enum_users_roles("value"),
     id: serial("id").primaryKey(),
   },
-  (columns) => ({
-    orderIdx: index("users_roles_order_idx").on(columns.order),
-    parentIdx: index("users_roles_parent_idx").on(columns.parent),
-    parentFk: foreignKey({
+  (columns) => [
+    index("users_roles_order_idx").on(columns.order),
+    index("users_roles_parent_idx").on(columns.parent),
+    foreignKey({
       columns: [columns["parent"]],
       foreignColumns: [users.id],
       name: "users_roles_parent_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const users_cart_items = pgTable(
@@ -55,23 +56,49 @@ export const users_cart_items = pgTable(
     product: integer("product_id").references(() => products.id, {
       onDelete: "set null",
     }),
-    unitPrice: numeric("unit_price").notNull(),
+    unitPrice: numeric("unit_price", { mode: "number" }).notNull(),
     stripeProductID: varchar("stripe_product_i_d"),
-    quantity: numeric("quantity").notNull(),
+    quantity: numeric("quantity", { mode: "number" }).notNull(),
     url: varchar("url"),
   },
-  (columns) => ({
-    _orderIdx: index("users_cart_items_order_idx").on(columns._order),
-    _parentIDIdx: index("users_cart_items_parent_id_idx").on(columns._parentID),
-    users_cart_items_product_idx: index("users_cart_items_product_idx").on(
-      columns.product,
-    ),
-    _parentIDFk: foreignKey({
+  (columns) => [
+    index("users_cart_items_order_idx").on(columns._order),
+    index("users_cart_items_parent_id_idx").on(columns._parentID),
+    index("users_cart_items_product_idx").on(columns.product),
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [users.id],
       name: "users_cart_items_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
+);
+
+export const users_sessions = pgTable(
+  "users_sessions",
+  {
+    _order: integer("_order").notNull(),
+    _parentID: integer("_parent_id").notNull(),
+    id: varchar("id").primaryKey(),
+    createdAt: timestamp("created_at", {
+      mode: "string",
+      withTimezone: true,
+      precision: 3,
+    }),
+    expiresAt: timestamp("expires_at", {
+      mode: "string",
+      withTimezone: true,
+      precision: 3,
+    }).notNull(),
+  },
+  (columns) => [
+    index("users_sessions_order_idx").on(columns._order),
+    index("users_sessions_parent_id_idx").on(columns._parentID),
+    foreignKey({
+      columns: [columns["_parentID"]],
+      foreignColumns: [users.id],
+      name: "users_sessions_parent_id_fk",
+    }).onDelete("cascade"),
+  ],
 );
 
 export const users = pgTable(
@@ -104,18 +131,18 @@ export const users = pgTable(
     }),
     salt: varchar("salt"),
     hash: varchar("hash"),
-    loginAttempts: numeric("login_attempts").default("0"),
+    loginAttempts: numeric("login_attempts", { mode: "number" }).default(0),
     lockUntil: timestamp("lock_until", {
       mode: "string",
       withTimezone: true,
       precision: 3,
     }),
   },
-  (columns) => ({
-    users_updated_at_idx: index("users_updated_at_idx").on(columns.updatedAt),
-    users_created_at_idx: index("users_created_at_idx").on(columns.createdAt),
-    users_email_idx: uniqueIndex("users_email_idx").on(columns.email),
-  }),
+  (columns) => [
+    index("users_updated_at_idx").on(columns.updatedAt),
+    index("users_created_at_idx").on(columns.createdAt),
+    uniqueIndex("users_email_idx").on(columns.email),
+  ],
 );
 
 export const media = pgTable(
@@ -141,17 +168,17 @@ export const media = pgTable(
     thumbnailURL: varchar("thumbnail_u_r_l"),
     filename: varchar("filename"),
     mimeType: varchar("mime_type"),
-    filesize: numeric("filesize"),
-    width: numeric("width"),
-    height: numeric("height"),
-    focalX: numeric("focal_x"),
-    focalY: numeric("focal_y"),
+    filesize: numeric("filesize", { mode: "number" }),
+    width: numeric("width", { mode: "number" }),
+    height: numeric("height", { mode: "number" }),
+    focalX: numeric("focal_x", { mode: "number" }),
+    focalY: numeric("focal_y", { mode: "number" }),
   },
-  (columns) => ({
-    media_updated_at_idx: index("media_updated_at_idx").on(columns.updatedAt),
-    media_created_at_idx: index("media_created_at_idx").on(columns.createdAt),
-    media_filename_idx: uniqueIndex("media_filename_idx").on(columns.filename),
-  }),
+  (columns) => [
+    index("media_updated_at_idx").on(columns.updatedAt),
+    index("media_created_at_idx").on(columns.createdAt),
+    uniqueIndex("media_filename_idx").on(columns.filename),
+  ],
 );
 
 export const blogs = pgTable(
@@ -163,6 +190,9 @@ export const blogs = pgTable(
       .references(() => media.id, {
         onDelete: "set null",
       }),
+    metadata_title: varchar("metadata_title"),
+    metadata_description: varchar("metadata_description"),
+    metadata_keywords: varchar("metadata_keywords"),
     updatedAt: timestamp("updated_at", {
       mode: "string",
       withTimezone: true,
@@ -178,11 +208,11 @@ export const blogs = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    blogs_thumbnail_idx: index("blogs_thumbnail_idx").on(columns.thumbnail),
-    blogs_updated_at_idx: index("blogs_updated_at_idx").on(columns.updatedAt),
-    blogs_created_at_idx: index("blogs_created_at_idx").on(columns.createdAt),
-  }),
+  (columns) => [
+    index("blogs_thumbnail_idx").on(columns.thumbnail),
+    index("blogs_updated_at_idx").on(columns.updatedAt),
+    index("blogs_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const blogs_locales = pgTable(
@@ -194,17 +224,17 @@ export const blogs_locales = pgTable(
     _locale: enum__locales("_locale").notNull(),
     _parentID: integer("_parent_id").notNull(),
   },
-  (columns) => ({
-    _localeParent: uniqueIndex("blogs_locales_locale_parent_id_unique").on(
+  (columns) => [
+    uniqueIndex("blogs_locales_locale_parent_id_unique").on(
       columns._locale,
       columns._parentID,
     ),
-    _parentIdFk: foreignKey({
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [blogs.id],
       name: "blogs_locales_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const products_videos = pgTable(
@@ -215,15 +245,15 @@ export const products_videos = pgTable(
     id: varchar("id").primaryKey(),
     video_url: varchar("video_url").notNull(),
   },
-  (columns) => ({
-    _orderIdx: index("products_videos_order_idx").on(columns._order),
-    _parentIDIdx: index("products_videos_parent_id_idx").on(columns._parentID),
-    _parentIDFk: foreignKey({
+  (columns) => [
+    index("products_videos_order_idx").on(columns._order),
+    index("products_videos_parent_id_idx").on(columns._parentID),
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [products.id],
       name: "products_videos_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const products = pgTable(
@@ -241,7 +271,9 @@ export const products = pgTable(
       withTimezone: true,
       precision: 3,
     }),
-    expiryDuration: numeric("expiry_duration").notNull().default("45"),
+    expiryDuration: numeric("expiry_duration", { mode: "number" })
+      .notNull()
+      .default(45),
     stripeProductID: varchar("stripe_product_i_d"),
     priceJSON: varchar("price_j_s_o_n"),
     categories: integer("categories_id")
@@ -249,6 +281,9 @@ export const products = pgTable(
       .references(() => categories.id, {
         onDelete: "set null",
       }),
+    metadata_title: varchar("metadata_title"),
+    metadata_description: varchar("metadata_description"),
+    metadata_keywords: varchar("metadata_keywords"),
     slug: varchar("slug"),
     skipSync: boolean("skip_sync"),
     updatedAt: timestamp("updated_at", {
@@ -266,21 +301,13 @@ export const products = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    products_product_thumbnail_idx: index("products_product_thumbnail_idx").on(
-      columns.product_thumbnail,
-    ),
-    products_categories_idx: index("products_categories_idx").on(
-      columns.categories,
-    ),
-    products_slug_idx: index("products_slug_idx").on(columns.slug),
-    products_updated_at_idx: index("products_updated_at_idx").on(
-      columns.updatedAt,
-    ),
-    products_created_at_idx: index("products_created_at_idx").on(
-      columns.createdAt,
-    ),
-  }),
+  (columns) => [
+    index("products_product_thumbnail_idx").on(columns.product_thumbnail),
+    index("products_categories_idx").on(columns.categories),
+    index("products_slug_idx").on(columns.slug),
+    index("products_updated_at_idx").on(columns.updatedAt),
+    index("products_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const products_locales = pgTable(
@@ -300,17 +327,17 @@ export const products_locales = pgTable(
     _locale: enum__locales("_locale").notNull(),
     _parentID: integer("_parent_id").notNull(),
   },
-  (columns) => ({
-    _localeParent: uniqueIndex("products_locales_locale_parent_id_unique").on(
+  (columns) => [
+    uniqueIndex("products_locales_locale_parent_id_unique").on(
       columns._locale,
       columns._parentID,
     ),
-    _parentIdFk: foreignKey({
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [products.id],
       name: "products_locales_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const categories = pgTable(
@@ -332,14 +359,10 @@ export const categories = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    categories_updated_at_idx: index("categories_updated_at_idx").on(
-      columns.updatedAt,
-    ),
-    categories_created_at_idx: index("categories_created_at_idx").on(
-      columns.createdAt,
-    ),
-  }),
+  (columns) => [
+    index("categories_updated_at_idx").on(columns.updatedAt),
+    index("categories_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const categories_locales = pgTable(
@@ -350,17 +373,17 @@ export const categories_locales = pgTable(
     _locale: enum__locales("_locale").notNull(),
     _parentID: integer("_parent_id").notNull(),
   },
-  (columns) => ({
-    _localeParent: uniqueIndex("categories_locales_locale_parent_id_unique").on(
+  (columns) => [
+    uniqueIndex("categories_locales_locale_parent_id_unique").on(
       columns._locale,
       columns._parentID,
     ),
-    _parentIdFk: foreignKey({
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [categories.id],
       name: "categories_locales_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const orders_items = pgTable(
@@ -379,20 +402,18 @@ export const orders_items = pgTable(
       withTimezone: true,
       precision: 3,
     }).notNull(),
-    quantity: numeric("quantity"),
+    quantity: numeric("quantity", { mode: "number" }),
   },
-  (columns) => ({
-    _orderIdx: index("orders_items_order_idx").on(columns._order),
-    _parentIDIdx: index("orders_items_parent_id_idx").on(columns._parentID),
-    orders_items_product_idx: index("orders_items_product_idx").on(
-      columns.product,
-    ),
-    _parentIDFk: foreignKey({
+  (columns) => [
+    index("orders_items_order_idx").on(columns._order),
+    index("orders_items_parent_id_idx").on(columns._parentID),
+    index("orders_items_product_idx").on(columns.product),
+    foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [orders.id],
       name: "orders_items_parent_id_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const orders = pgTable(
@@ -403,7 +424,7 @@ export const orders = pgTable(
       onDelete: "set null",
     }),
     stripePaymentIntentID: varchar("stripe_payment_intent_i_d"),
-    total: numeric("total").notNull(),
+    total: numeric("total", { mode: "number" }).notNull(),
     currency: varchar("currency").notNull(),
     updatedAt: timestamp("updated_at", {
       mode: "string",
@@ -420,11 +441,21 @@ export const orders = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    orders_ordered_by_idx: index("orders_ordered_by_idx").on(columns.orderedBy),
-    orders_updated_at_idx: index("orders_updated_at_idx").on(columns.updatedAt),
-    orders_created_at_idx: index("orders_created_at_idx").on(columns.createdAt),
-  }),
+  (columns) => [
+    index("orders_ordered_by_idx").on(columns.orderedBy),
+    index("orders_updated_at_idx").on(columns.updatedAt),
+    index("orders_created_at_idx").on(columns.createdAt),
+  ],
+);
+
+export const payload_kv = pgTable(
+  "payload_kv",
+  {
+    id: serial("id").primaryKey(),
+    key: varchar("key").notNull(),
+    data: jsonb("data").notNull(),
+  },
+  (columns) => [uniqueIndex("payload_kv_key_idx").on(columns.key)],
 );
 
 export const payload_locked_documents = pgTable(
@@ -447,17 +478,11 @@ export const payload_locked_documents = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    payload_locked_documents_global_slug_idx: index(
-      "payload_locked_documents_global_slug_idx",
-    ).on(columns.globalSlug),
-    payload_locked_documents_updated_at_idx: index(
-      "payload_locked_documents_updated_at_idx",
-    ).on(columns.updatedAt),
-    payload_locked_documents_created_at_idx: index(
-      "payload_locked_documents_created_at_idx",
-    ).on(columns.createdAt),
-  }),
+  (columns) => [
+    index("payload_locked_documents_global_slug_idx").on(columns.globalSlug),
+    index("payload_locked_documents_updated_at_idx").on(columns.updatedAt),
+    index("payload_locked_documents_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const payload_locked_documents_rels = pgTable(
@@ -474,66 +499,56 @@ export const payload_locked_documents_rels = pgTable(
     categoriesID: integer("categories_id"),
     ordersID: integer("orders_id"),
   },
-  (columns) => ({
-    order: index("payload_locked_documents_rels_order_idx").on(columns.order),
-    parentIdx: index("payload_locked_documents_rels_parent_idx").on(
-      columns.parent,
+  (columns) => [
+    index("payload_locked_documents_rels_order_idx").on(columns.order),
+    index("payload_locked_documents_rels_parent_idx").on(columns.parent),
+    index("payload_locked_documents_rels_path_idx").on(columns.path),
+    index("payload_locked_documents_rels_users_id_idx").on(columns.usersID),
+    index("payload_locked_documents_rels_media_id_idx").on(columns.mediaID),
+    index("payload_locked_documents_rels_blogs_id_idx").on(columns.blogsID),
+    index("payload_locked_documents_rels_products_id_idx").on(
+      columns.productsID,
     ),
-    pathIdx: index("payload_locked_documents_rels_path_idx").on(columns.path),
-    payload_locked_documents_rels_users_id_idx: index(
-      "payload_locked_documents_rels_users_id_idx",
-    ).on(columns.usersID),
-    payload_locked_documents_rels_media_id_idx: index(
-      "payload_locked_documents_rels_media_id_idx",
-    ).on(columns.mediaID),
-    payload_locked_documents_rels_blogs_id_idx: index(
-      "payload_locked_documents_rels_blogs_id_idx",
-    ).on(columns.blogsID),
-    payload_locked_documents_rels_products_id_idx: index(
-      "payload_locked_documents_rels_products_id_idx",
-    ).on(columns.productsID),
-    payload_locked_documents_rels_categories_id_idx: index(
-      "payload_locked_documents_rels_categories_id_idx",
-    ).on(columns.categoriesID),
-    payload_locked_documents_rels_orders_id_idx: index(
-      "payload_locked_documents_rels_orders_id_idx",
-    ).on(columns.ordersID),
-    parentFk: foreignKey({
+    index("payload_locked_documents_rels_categories_id_idx").on(
+      columns.categoriesID,
+    ),
+    index("payload_locked_documents_rels_orders_id_idx").on(columns.ordersID),
+    foreignKey({
       columns: [columns["parent"]],
       foreignColumns: [payload_locked_documents.id],
       name: "payload_locked_documents_rels_parent_fk",
     }).onDelete("cascade"),
-    usersIdFk: foreignKey({
+    foreignKey({
       columns: [columns["usersID"]],
       foreignColumns: [users.id],
       name: "payload_locked_documents_rels_users_fk",
     }).onDelete("cascade"),
-    mediaIdFk: foreignKey({
+    foreignKey({
       columns: [columns["mediaID"]],
       foreignColumns: [media.id],
       name: "payload_locked_documents_rels_media_fk",
     }).onDelete("cascade"),
-    blogsIdFk: foreignKey({
+    foreignKey({
       columns: [columns["blogsID"]],
       foreignColumns: [blogs.id],
       name: "payload_locked_documents_rels_blogs_fk",
     }).onDelete("cascade"),
-    productsIdFk: foreignKey({
+    foreignKey({
       columns: [columns["productsID"]],
       foreignColumns: [products.id],
       name: "payload_locked_documents_rels_products_fk",
     }).onDelete("cascade"),
-    categoriesIdFk: foreignKey({
+    foreignKey({
       columns: [columns["categoriesID"]],
       foreignColumns: [categories.id],
       name: "payload_locked_documents_rels_categories_fk",
     }).onDelete("cascade"),
-    ordersIdFk: foreignKey({
+    foreignKey({
       columns: [columns["ordersID"]],
       foreignColumns: [orders.id],
       name: "payload_locked_documents_rels_orders_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const payload_preferences = pgTable(
@@ -557,17 +572,11 @@ export const payload_preferences = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    payload_preferences_key_idx: index("payload_preferences_key_idx").on(
-      columns.key,
-    ),
-    payload_preferences_updated_at_idx: index(
-      "payload_preferences_updated_at_idx",
-    ).on(columns.updatedAt),
-    payload_preferences_created_at_idx: index(
-      "payload_preferences_created_at_idx",
-    ).on(columns.createdAt),
-  }),
+  (columns) => [
+    index("payload_preferences_key_idx").on(columns.key),
+    index("payload_preferences_updated_at_idx").on(columns.updatedAt),
+    index("payload_preferences_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const payload_preferences_rels = pgTable(
@@ -579,24 +588,22 @@ export const payload_preferences_rels = pgTable(
     path: varchar("path").notNull(),
     usersID: integer("users_id"),
   },
-  (columns) => ({
-    order: index("payload_preferences_rels_order_idx").on(columns.order),
-    parentIdx: index("payload_preferences_rels_parent_idx").on(columns.parent),
-    pathIdx: index("payload_preferences_rels_path_idx").on(columns.path),
-    payload_preferences_rels_users_id_idx: index(
-      "payload_preferences_rels_users_id_idx",
-    ).on(columns.usersID),
-    parentFk: foreignKey({
+  (columns) => [
+    index("payload_preferences_rels_order_idx").on(columns.order),
+    index("payload_preferences_rels_parent_idx").on(columns.parent),
+    index("payload_preferences_rels_path_idx").on(columns.path),
+    index("payload_preferences_rels_users_id_idx").on(columns.usersID),
+    foreignKey({
       columns: [columns["parent"]],
       foreignColumns: [payload_preferences.id],
       name: "payload_preferences_rels_parent_fk",
     }).onDelete("cascade"),
-    usersIdFk: foreignKey({
+    foreignKey({
       columns: [columns["usersID"]],
       foreignColumns: [users.id],
       name: "payload_preferences_rels_users_fk",
     }).onDelete("cascade"),
-  }),
+  ],
 );
 
 export const payload_migrations = pgTable(
@@ -604,7 +611,7 @@ export const payload_migrations = pgTable(
   {
     id: serial("id").primaryKey(),
     name: varchar("name"),
-    batch: numeric("batch"),
+    batch: numeric("batch", { mode: "number" }),
     updatedAt: timestamp("updated_at", {
       mode: "string",
       withTimezone: true,
@@ -620,14 +627,10 @@ export const payload_migrations = pgTable(
       .defaultNow()
       .notNull(),
   },
-  (columns) => ({
-    payload_migrations_updated_at_idx: index(
-      "payload_migrations_updated_at_idx",
-    ).on(columns.updatedAt),
-    payload_migrations_created_at_idx: index(
-      "payload_migrations_created_at_idx",
-    ).on(columns.createdAt),
-  }),
+  (columns) => [
+    index("payload_migrations_updated_at_idx").on(columns.updatedAt),
+    index("payload_migrations_created_at_idx").on(columns.createdAt),
+  ],
 );
 
 export const relations_users_roles = relations(users_roles, ({ one }) => ({
@@ -652,12 +655,25 @@ export const relations_users_cart_items = relations(
     }),
   }),
 );
+export const relations_users_sessions = relations(
+  users_sessions,
+  ({ one }) => ({
+    _parentID: one(users, {
+      fields: [users_sessions._parentID],
+      references: [users.id],
+      relationName: "sessions",
+    }),
+  }),
+);
 export const relations_users = relations(users, ({ many }) => ({
   roles: many(users_roles, {
     relationName: "roles",
   }),
   cart_items: many(users_cart_items, {
     relationName: "cart_items",
+  }),
+  sessions: many(users_sessions, {
+    relationName: "sessions",
   }),
 }));
 export const relations_media = relations(media, () => ({}));
@@ -753,6 +769,7 @@ export const relations_orders = relations(orders, ({ one, many }) => ({
     relationName: "items",
   }),
 }));
+export const relations_payload_kv = relations(payload_kv, () => ({}));
 export const relations_payload_locked_documents_rels = relations(
   payload_locked_documents_rels,
   ({ one }) => ({
@@ -834,6 +851,7 @@ type DatabaseSchema = {
   enum_users_roles: typeof enum_users_roles;
   users_roles: typeof users_roles;
   users_cart_items: typeof users_cart_items;
+  users_sessions: typeof users_sessions;
   users: typeof users;
   media: typeof media;
   blogs: typeof blogs;
@@ -845,6 +863,7 @@ type DatabaseSchema = {
   categories_locales: typeof categories_locales;
   orders_items: typeof orders_items;
   orders: typeof orders;
+  payload_kv: typeof payload_kv;
   payload_locked_documents: typeof payload_locked_documents;
   payload_locked_documents_rels: typeof payload_locked_documents_rels;
   payload_preferences: typeof payload_preferences;
@@ -852,6 +871,7 @@ type DatabaseSchema = {
   payload_migrations: typeof payload_migrations;
   relations_users_roles: typeof relations_users_roles;
   relations_users_cart_items: typeof relations_users_cart_items;
+  relations_users_sessions: typeof relations_users_sessions;
   relations_users: typeof relations_users;
   relations_media: typeof relations_media;
   relations_blogs_locales: typeof relations_blogs_locales;
@@ -863,6 +883,7 @@ type DatabaseSchema = {
   relations_categories: typeof relations_categories;
   relations_orders_items: typeof relations_orders_items;
   relations_orders: typeof relations_orders;
+  relations_payload_kv: typeof relations_payload_kv;
   relations_payload_locked_documents_rels: typeof relations_payload_locked_documents_rels;
   relations_payload_locked_documents: typeof relations_payload_locked_documents;
   relations_payload_preferences_rels: typeof relations_payload_preferences_rels;
@@ -870,7 +891,7 @@ type DatabaseSchema = {
   relations_payload_migrations: typeof relations_payload_migrations;
 };
 
-declare module "@payloadcms/db-postgres/types" {
+declare module "@payloadcms/db-postgres" {
   export interface GeneratedDatabaseSchema {
     schema: DatabaseSchema;
   }
