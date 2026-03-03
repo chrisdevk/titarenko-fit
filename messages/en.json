@@ -6,7 +6,9 @@
     "Contact": "Contact",
     "Dashboard": "Client area",
     "Log in": "Log in",
-    "header-text": "The best training in the comfort of your home."
+    "header-text": "The best training in the comfort of your home.",
+    "Terms of Service": "Terms of Service",
+    "Privacy Policy": "Privacy Policy"
   },
   "HomePage": {
     "hero": {
@@ -299,5 +301,182 @@
   },
   "ViewProgramPage": {
     "lesson": "Lesson"
+  },
+  "TermsPage": {
+    "title": "TERMS & CONDITIONS",
+    "effectiveDate": "Last updated: Feb.20, 2026",
+    "intro": [
+      "Welcome to AT Body by Design LLC company, owned and operated by Alevtyna Titarenko. By accessing or purchasing from www.titarenko.fit, you agree to these Terms & Conditions."
+    ],
+    "sections": [
+      {
+        "title": "1. Use of Programs",
+        "paragraphs": [
+          "All fitness programs, classes, videos, and materials provided on this website are for educational and informational purposes only.",
+          "By purchasing or using our programs, you confirm that:"
+        ],
+        "list": [
+          "You are at least 18 years old, or have parental consent",
+          "You will use the programs at your own risk",
+          "You will follow instructions responsibly and stop if discomfort occurs"
+        ]
+      },
+      {
+        "title": "2. Health Disclaimer & Assumption of Risk",
+        "paragraphs": [
+          "You understand and acknowledge that:",
+          "Physical exercise involves inherent risks, including but not limited to injury, illness, falls, abnormal blood pressure, heart complications, or death.",
+          "You voluntarily assume full responsibility for any risks, injuries, or damages arising from participation.",
+          "You affirm that you are physically able and medically cleared to participate.",
+          "By using our programs, you agree that AT Body by Design LLC and Alevtyna Titarenko are not responsible for any injuries or health problems that may occur."
+        ]
+      },
+      {
+        "title": "3. Not Medical Advice",
+        "paragraphs": [
+          "All content provided is not medical advice and does not substitute consultation with a physician or qualified healthcare provider.",
+          "Consult your doctor before beginning any exercise program, especially if you:"
+        ],
+        "list": [
+          "are pregnant or recently postpartum",
+          "have any medical condition",
+          "have a history of injury",
+          "experience dizziness, chest pain, or discomfort"
+        ]
+      },
+      {
+        "title": "4. Waiver & Release of Liability",
+        "paragraphs": [
+          "To the fullest extent permitted by Nevada law and applicable international laws, you hereby:",
+          "waive, release, discharge, and covenant not to sue AT Body by Design LLC, Alevtyna Titarenko, and all affiliates, instructors, employees, and representatives from any and all claims, liabilities, damages, losses, or causes of action arising out of or related to your participation in any program or use of the website."
+        ]
+      },
+      {
+        "title": "5. Results Disclaimer",
+        "paragraphs": [
+          "Individual results vary.",
+          "We make no guarantees regarding weight loss, fitness level, body composition, or health outcomes. Results depend on many factors including consistency, nutrition, sleep, lifestyle, and individual physiology."
+        ]
+      },
+      {
+        "title": "6. Payments & Refund Policy",
+        "paragraphs": [
+          "All purchases are one-time payments.",
+          "All prices are listed in USD unless otherwise stated.",
+          "Due to the digital nature of our products, ALL SALES ARE FINAL. NO REFUNDS.",
+          "We reserve the right to modify pricing at any time."
+        ]
+      },
+      {
+        "title": "7. Intellectual Property",
+        "paragraphs": [
+          "All content on this website — including programs, videos, graphics, logos, text, and materials — is the exclusive property of AT Body by Design LLC.",
+          "You may not copy, reproduce, share, screen-record, resell, or distribute any content without prior written permission.",
+          "Unauthorized sharing will result in termination of access and possible legal action."
+        ]
+      },
+      {
+        "title": "8. International Users",
+        "paragraphs": [
+          "This website is operated from the United States. By using our services from outside the U.S., you agree that:",
+          "You are responsible for compliance with your local laws.",
+          "You use the programs at your own risk.",
+          "Any disputes will be governed by Nevada law (see below)."
+        ]
+      },
+      {
+        "title": "9. Limitation of Liability",
+        "paragraphs": [
+          "To the maximum extent permitted by law, AT Body by Design LLC and Alevtyna Titarenko shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from use of the website or programs."
+        ]
+      },
+      {
+        "title": "10. Governing Law",
+        "paragraphs": [
+          "These Terms shall be governed by and construed in accordance with the laws of the State of Nevada, United States, without regard to conflict of law principles."
+        ]
+      },
+      {
+        "title": "11. Contact Information",
+        "paragraphs": [
+          "AT Body by Design LLC",
+          "Owner: Alevtyna Titarenko",
+          "Email: atbodybydesign@gmail.com",
+          "Website: www.titarenko.fit"
+        ]
+      }
+    ],
+    "contacts": {
+      "emailLabel": "Email",
+      "email": "atbodybydesign@gmail.com",
+      "siteLabel": "Website",
+      "site": "www.titarenko.fit"
+    }
+  },
+  "PrivacyPage": {
+    "title": "PRIVACY POLICY",
+    "effectiveDate": "Last updated: Feb.20, 2026",
+    "sections": [
+      {
+        "title": "What data we collect",
+        "paragraphs": ["We may collect:"],
+        "list": [
+          "name;",
+          "email address;",
+          "payment data (processed by third-party payment processors);",
+          "website usage data (cookies, analytics)."
+        ]
+      },
+      {
+        "title": "How we use information",
+        "paragraphs": ["We use the data to:"],
+        "list": [
+          "provide the programs you purchased;",
+          "process payments;",
+          "communicate with you;",
+          "send marketing emails (you can unsubscribe at any time);",
+          "improve the website."
+        ]
+      },
+      {
+        "title": "Data sharing",
+        "paragraphs": [
+          "We do not sell your personal data.",
+          "Information may be shared with trusted third parties (payment processors, email services, analytics providers)."
+        ]
+      },
+      {
+        "title": "Cookies",
+        "paragraphs": [
+          "The website may use cookies to improve user experience and analyze traffic.",
+          "You can disable cookies in your browser settings."
+        ]
+      },
+      {
+        "title": "Data security",
+        "paragraphs": [
+          "We apply reasonable security measures; however, no method of data transmission over the internet is 100% secure."
+        ]
+      },
+      {
+        "title": "Your rights",
+        "paragraphs": ["Depending on your jurisdiction, you may request:"],
+        "list": ["access to your data;", "correction;", "deletion."]
+      },
+      {
+        "title": "Children's privacy",
+        "paragraphs": [
+          "Our services are not intended for children under 13 years of age."
+        ]
+      },
+      {
+        "title": "Contact",
+        "paragraphs": [
+          "AT Body by Design LLC",
+          "Email: atbodybydesign@gmail.com",
+          "Website: www.titarenko.fit"
+        ]
+      }
+    ]
   }
 }
