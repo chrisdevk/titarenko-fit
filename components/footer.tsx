@@ -25,9 +25,10 @@ export const Footer = ({ locale }: { locale: string }) => {
       </div>
       <div className="mx-auto flex w-11/12 max-w-[1440px] flex-col-reverse items-center justify-between gap-y-7 md:flex-row">
         <p className="text-xs text-white md:text-sm">
-          ALYA TITARENKO © Copyright 2025. All rights reserved.
+          ALYA TITARENKO © Copyright {new Date().getFullYear()}. All rights
+          reserved.
         </p>
-        <ul className="flex items-center gap-x-5 text-white">
+        <ul className="flex flex-wrap items-center gap-x-5 text-center text-white lg:items-start lg:text-start">
           {navlinks.map((link) => (
             <li key={link.text}>
               <Link href={`/${locale}${link.path}`}>{t(link.text)}</Link>

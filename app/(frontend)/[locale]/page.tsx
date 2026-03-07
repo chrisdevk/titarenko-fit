@@ -5,8 +5,14 @@ import { ProgramList } from "./_components/program-list/program-list";
 import { Reasons } from "./_components/reasons/reasons";
 import { Testimonials } from "./_components/testimonials/testimonials";
 import { TrainingPreview } from "./_components/training-preview/training-preview";
+import { TrainingType } from "./_components/training-type/training-type";
 
-export default function Home() {
+export default async function Home({
+  params,
+}: {
+  params: Promise<{ locale: "en" | "ru" }>;
+}) {
+  const { locale } = await params;
   return (
     <>
       <Hero />
@@ -18,6 +24,7 @@ export default function Home() {
         </section>
       </article>
       <TrainingPreview />
+      <TrainingType locale={locale} />
       <Categories />
       <Testimonials />
     </>

@@ -7,12 +7,21 @@ import Image from "next/image";
 import { motion } from "motion/react";
 import { useState } from "react";
 import { useTranslations } from "next-intl";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
+import { useEffect } from "react";
 
 export default function AuthPage() {
-  const [variant, setVariant] = useState<"signup" | "login">("login");
+  const searchParams = useSearchParams();
+  const tab = searchParams.get("tab");
+  const [variant, setVariant] = useState<"signup" | "login">(
+    tab === "signup" ? "signup" : "login",
+  );
 
   const params = useParams<{ locale: "en" | "ru" }>();
+
+  useEffect(() => {
+    if (tab === "signup") setVariant("signup");
+  }, [tab]);
 
   const t = useTranslations("AuthPage");
 

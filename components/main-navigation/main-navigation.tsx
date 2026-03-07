@@ -4,16 +4,15 @@ import { useAuth } from "@/context/auth-context";
 import { useCart } from "@/context/cart";
 import { cn } from "@/lib/utils";
 import { navlinks } from "@/utils/constants";
-import { ShoppingBasket } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { buttonVariants } from "../ui/button";
+import { Button } from "../ui/button";
 import Hamburger from "./hamburger";
-import { LanguageSelect } from "./language-select";
 import { MobileMenu } from "./mobile-menu";
+import { UserMenuDropdown } from "./user-menu-dropdown";
 
 export const MainNavigation = ({ locale }: { locale: string }) => {
   const [scrolled, setScrolled] = useState(false);
@@ -61,72 +60,43 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
           )}
         >
           <div className="relative ml-auto flex w-full max-w-[1440px] items-center justify-end md:mx-auto md:w-11/12 md:justify-between">
-            <Link
-              href={`/${locale}`}
-              className="absolute left-1/2 -translate-x-1/2 text-xl font-bold md:static md:translate-x-0"
-            >
-              ALYA TITARENKO
-            </Link>
-            <div className="flex items-center gap-x-2 md:hidden">
-              <Link href={`/${locale}/checkout`} className="relative">
-                <ShoppingBasket />
-                {cart?.items?.length !== 0 && (
-                  <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
-                    {cart?.items?.length}
-                  </span>
-                )}
+            <div className="flex items-center justify-between gap-x-2 lg:justify-start">
+              <Link
+                href={`/${locale}`}
+                className="absolute left-1/2 -translate-x-1/2 text-xl font-bold md:static md:translate-x-0"
+              >
+                ALYA TITARENKO
               </Link>
-              <Hamburger
-                isOpen={isOpen}
-                setIsOpen={setIsOpen}
-                setScrolled={setScrolled}
-              />
+              <div className="flex items-center gap-x-2 md:hidden">
+                <Hamburger
+                  isOpen={isOpen}
+                  setIsOpen={setIsOpen}
+                  setScrolled={setScrolled}
+                />
+              </div>
+              <nav className="hidden lg:ml-8 lg:block">
+                <ul className="flex items-center gap-2 lg:gap-4">
+                  {navlinks.map((link) => (
+                    <li key={link.text}>
+                      <Link
+                        href={`/${locale}${link.path}`}
+                        className="font-medium"
+                      >
+                        {t(link.text)}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
             </div>
-            <nav className="hidden lg:absolute lg:left-1/2 lg:block lg:-translate-x-1/2">
-              <ul className="flex items-center gap-2 lg:gap-4">
-                {navlinks.map((link) => (
-                  <li key={link.text}>
-                    <Link
-                      href={`/${locale}${link.path}`}
-                      className="font-medium"
-                    >
-                      {t(link.text)}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </nav>
-            <div className="hidden items-center gap-x-1 lg:flex lg:gap-x-4">
-              <Link href={`/${locale}/checkout`} className="relative">
-                <ShoppingBasket />
-                {cart?.items?.length !== 0 && (
-                  <span className="absolute -bottom-1 -right-1 flex size-4 items-center justify-center rounded-full bg-purple-custom text-xs text-white">
-                    {cart?.items?.length}
-                  </span>
-                )}
-              </Link>
-              <LanguageSelect locale={locale} />
-              {user?.id ? (
-                <Link
-                  href={`/${locale}/dashboard`}
-                  className={cn(
-                    "relative z-10",
-                    buttonVariants({ variant: "default" }),
-                  )}
-                >
-                  {t("Dashboard")}
-                </Link>
-              ) : (
-                <Link
-                  href={`/${locale}/auth`}
-                  className={cn(
-                    "relative z-10",
-                    buttonVariants({ variant: "default" }),
-                  )}
-                >
-                  {t("Log in")}
-                </Link>
-              )}
+            <div className="hidden items-center gap-x-5 lg:flex">
+              <Button variant="secondary" asChild>
+                <Link href={`/${locale}/programs`}>{t("Programs")}</Link>
+              </Button>
+              <Button variant="default" asChild>
+                <Link href={`/${locale}/club`}>{t("Club")}</Link>
+              </Button>
+              <UserMenuDropdown locale={locale} />
             </div>
           </div>
         </div>
@@ -145,7 +115,12 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               exit={{ opacity: 0, y: -40 }}
               transition={{ delay: 0.2 }}
             >
-              <MobileMenu locale={locale} setOpen={setIsOpen} user={user} />
+              <MobileMenu
+                locale={locale}
+                setOpen={setIsOpen}
+                user={user}
+                cartCount={cart?.items?.length ?? 0}
+              />
             </motion.div>
           </motion.div>
         )}

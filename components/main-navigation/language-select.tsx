@@ -1,38 +1,32 @@
 "use client";
 
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-} from "@/components/ui/select";
-
-import { Globe } from "lucide-react";
-import { useState } from "react";
+import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "next/navigation";
 
 export const LanguageSelect = ({ locale }: { locale: string }) => {
-  const [selectedLocale, setSelectedLocale] = useState(locale);
-
   const router = useRouter();
   const pathname = usePathname();
 
-  const onSelectChange = (value: string) => {
-    setSelectedLocale(value);
-
-    const newPathname = pathname.replace(`/${locale}`, `/${value}`);
-    router.replace(newPathname);
-  };
-
   return (
-    <Select value={selectedLocale} onValueChange={onSelectChange}>
-      <SelectTrigger className="flex items-center gap-x-1">
-        <Globe /> <span>{locale.toUpperCase()}</span>
-      </SelectTrigger>
-      <SelectContent className="w-fit">
-        <SelectItem value="en">English</SelectItem>
-        <SelectItem value="ru">Русский</SelectItem>
-      </SelectContent>
-    </Select>
+    <div className="flex gap-0 rounded-3xl border border-purple-custom">
+      {(["ru", "en"] as const).map((loc) => (
+        <button
+          key={loc}
+          type="button"
+          onClick={() => {
+            const newPath = pathname.replace(`/${locale}`, `/${loc}`);
+            router.replace(newPath);
+          }}
+          className={cn(
+            "min-w-16 flex-1 rounded-3xl px-1 py-1 font-medium transition-colors",
+            locale === loc
+              ? "bg-purple-custom text-white"
+              : "text-neutral-700 hover:bg-purple-custom/10",
+          )}
+        >
+          {loc.toUpperCase()}
+        </button>
+      ))}
+    </div>
   );
 };

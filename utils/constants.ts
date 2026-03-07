@@ -3,13 +3,16 @@ import {
   Dumbbell,
   Heart,
   House,
+  LayoutList,
+  Mail,
   Notebook,
   Shield,
+  UserSquare,
 } from "lucide-react";
 
 import {
-  FaInstagram,
   FaFacebook,
+  FaInstagram,
   FaTelegram,
   FaTiktok,
   FaYoutube,
@@ -19,18 +22,17 @@ export const navlinks = [
   {
     text: "About me",
     path: "/about",
-  },
-  {
-    text: "Programs",
-    path: "/programs",
+    icon: UserSquare,
   },
   {
     text: "Blogs",
     path: "/blogs",
+    icon: LayoutList,
   },
   {
     text: "Contact",
     path: "/contact",
+    icon: Mail,
   },
 ];
 

@@ -4,15 +4,18 @@
     "Programs": "Programs",
     "Blogs": "Blogs",
     "Contact": "Contact",
+    "Club": "Women's Fitness Club",
     "Dashboard": "Client area",
     "Log in": "Log in",
-    "header-text": "The best training in the comfort of your home.",
+    "Sign up": "Sign up",
+    "Cart": "Cart",
+    "header-text": "Fitness for women online — Ladies First",
     "Terms of Service": "Terms of Service",
     "Privacy Policy": "Privacy Policy"
   },
   "HomePage": {
     "hero": {
-      "heading": "You are stronger than you think",
+      "heading": "Train at Home. Feel Strong. Be Your Best.",
       "paragraph": "FIT – it's about being in shape via your health. My trainings will get you to your goal using exactly this path – being FIT and feeling great!",
       "button": "Test training"
     },
@@ -30,12 +33,12 @@
     "reasons": {
       "heading": "My programs directions Women's Fitness online I created for us, beautiful women! WHY?",
       "cards": [
-        "Because we have time for everyone in the family except for us!",
-        "You don't need to go anywhere, we will train in the cozy environment of your home, in a convenient for you time.",
-        "It's time to love yourself and dedicate yourself to your health 10-40 minutes a day",
-        "All programs are different in time and content",
-        "Trainer's room in your house with full body training",
-        "We train in quality and safety"
+        "Because we often find time for everyone else — except ourselves.",
+        "Train comfortably at home, whenever it fits your schedule",
+        "Just 10–45 minutes a day is enough to support your health, strength, and energy.",
+        "Each program offers different formats and training styles, choose what fits you best",
+        "Fitness programs designed for women of every generation",
+        "Full-body workouts for women — from the comfort of home."
       ]
     },
     "list-items": [
@@ -48,37 +51,55 @@
       "You don’t need to come up with anything! I’ve done it for you."
     ],
     "training-preview": {
-      "heading": "Course samples"
+      "heading": "Workout Preview"
+    },
+    "training-type": {
+      "heading": "Now you have a choice",
+      "cards": [
+        {
+          "title": "Women's Fit Club",
+          "features": [
+            "Access to all Club workouts.",
+            "New programs every month.",
+            "31-day workout calendar.",
+            "Workouts from 10 to 60 minutes.",
+            "Support and care."
+          ],
+          "button": "Learn more"
+        },
+        {
+          "title": "Author's Classes",
+          "features": [
+            "Author's programs for women.",
+            "Technique control and correction.",
+            "Workouts for all fitness areas.",
+            "Effective transformation and stable progress.",
+            "For beginners and fitness enthusiasts."
+          ],
+          "button": "Learn more"
+        }
+      ]
     },
     "categories": {
-      "heading": "I offer you 6 training categories",
+      "heading": "Fitness Program options",
       "span": "Program categories",
       "button": "Learn more",
       "cards": {
         "cardio_programs": {
-          "title": "CARDIO programs",
-          "description": "2 courses of cardio training, stimulating the heart and lungs. Smooth and not too heavy. Training for the heart and lungs, the heart and lungs, the heart and lungs"
+          "title": "Ageless Fitness Course",
+          "description": "Designed specifically for women 55+. Full details available in the Programs section."
         },
         "thematic_programs": {
-          "title": "THEMATIC training",
-          "description": "Several creative thematic complex training, which your body receives new stimulation. Positive changes in your body are guaranteed"
+          "title": "Quick Fix Course",
+          "description": "Designed for beginners and those who don’t have much time. More details in the Programs section."
         },
         "marathons": {
-          "title": "MARATHONS",
-          "description": "2 courses of round training for the whole body. Level 1 and level 2. All training are absolutely different, all around, entertaining and effective. You get a lot of good and pleasure from training"
+          "title": "Training of the Day Course",
+          "description": "Advanced-level program with 45–60 minute home workouts. Details in Programs"
         },
-        "zone_training": {
-          "title": "Rehabilitaion & specialized",
-          "description": "Training course, in which the muscles are divided into zones. Each training is directed to the specific zone. More deep work of each group of muscles"
-        },
-        "intensives": {
-          "title": "INTENSIVE TRAINING",
-          "description": "6 most important topics, uncovered in the educational format. These intensive trainings provide you with a huge amount of rehabilitation information and exercises"
-        },
-        "programs_of_the_day": {
-          "title": "DAY PROGRAMS",
-          "description": "2 courses of training programs ideal for those who want to start exercising and gradually move to the next level of complexity. With detailed explanations of the technique of execution."
-        }
+        "zone_training": null,
+        "intensives": null,
+        "programs_of_the_day": null
       }
     },
     "testimonials": {

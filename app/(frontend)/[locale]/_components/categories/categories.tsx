@@ -1,23 +1,26 @@
 "use client";
 
-import { useTranslations } from "next-intl";
-import { CategoryCard } from "./category-card";
 import { cn } from "@/lib/utils";
-import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
+import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { CategoryCard } from "./category-card";
 
 export const Categories = () => {
   const t = useTranslations("HomePage.categories");
-  const cards = t.raw("cards") as {
-    [key: string]: { title: string; description: string };
-  };
-
   const pathname = usePathname();
-  const locale = pathname.split("/")[1];
+  const locale = pathname.split("/")[1] as "en" | "ru";
+  const cards = t.raw("cards") as {
+    [key: string]: { title: string; description: string } | null;
+  };
+  const cardEntries = Object.entries(cards).filter(
+    (entry): entry is [string, { title: string; description: string }] =>
+      entry[1] != null,
+  );
 
   return (
-    <article className="bg-off-white">
+    <article className="bg-turquoise-dark">
       <div className="relative rounded-t-3xl bg-purple-custom py-16">
         <div className="relative z-10 mx-auto w-11/12 max-w-[1440px] space-y-10">
           <div className="space-y-3">
@@ -27,7 +30,7 @@ export const Categories = () => {
             <h2 className="text-white">{t("heading")}</h2>
           </div>
           <section className="flex flex-wrap justify-between gap-y-3 md:gap-x-2.5 lg:gap-x-0">
-            {Object.entries(cards).map(([key, card], index) => (
+            {cardEntries.map(([key, card], index) => (
               <motion.div
                 key={key}
                 initial={{ opacity: 0, y: 40 }}
@@ -46,7 +49,7 @@ export const Categories = () => {
               >
                 <CategoryCard
                   key={key}
-                  imgSrc={`/images/${key}.webp`}
+                  imgSrc={`/images/${locale === "ru" ? key : `${key}_en`}.jpg`}
                   title={card.title}
                   description={card.description}
                   link={`/${locale}/programs#${card.title.toLowerCase()}`}
