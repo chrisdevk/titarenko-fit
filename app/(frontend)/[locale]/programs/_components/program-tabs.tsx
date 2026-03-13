@@ -3,8 +3,8 @@
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import type { Category, Product } from "@/payload-types";
 import { useEffect, useState } from "react";
-import { TabTrigger } from "./tab-trigger";
 import { FilteredProgramsContent } from "./filtered-programs-content";
+import { TabTrigger } from "./tab-trigger";
 
 interface ProgramTabsProps {
   programs: Product[];
@@ -65,7 +65,7 @@ export const ProgramTabs = ({
   });
 
   return (
-    <Tabs defaultValue="all" className="mt-10 hidden w-full lg:block">
+    <Tabs defaultValue="all" className="mt-10 hidden w-full xl:block">
       <TabsList className="w-full justify-between rounded-none border-b-2 border-b-turquoise-dark bg-transparent">
         <TabTrigger
           value="all"

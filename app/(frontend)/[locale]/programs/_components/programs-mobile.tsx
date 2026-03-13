@@ -1,10 +1,10 @@
 "use client";
 
+import { Category, Product } from "@/payload-types";
+import { useTranslations } from "next-intl";
 import { useState } from "react";
 import { CategoryDropdown } from "./category-dropdown";
-import { Category, Product } from "@/payload-types";
 import { ProgramCard } from "./program-card";
-import { useTranslations } from "next-intl";
 
 interface ProgramsMobileProps {
   locale: string;
@@ -51,7 +51,7 @@ export const ProgramsMobile = ({
   }));
 
   return (
-    <div className="mt-8 space-y-8 lg:hidden">
+    <div className="mt-8 space-y-8 xl:hidden">
       <CategoryDropdown
         categories={categoryProgramCounts}
         currentCategory={currentCategory}
