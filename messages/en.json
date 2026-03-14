@@ -434,6 +434,37 @@
       "site": "www.titarenko.fit"
     }
   },
+  "ClubPage": {
+    "heading": "Women's Fitness Club",
+    "howItWorks": "How it works",
+    "monthLabel": "Month {number}",
+    "pills": [
+      "Choose any training month",
+      "Each month is unique — workouts don't repeat",
+      "Pay for the selected month",
+      "All workouts unlock immediately after payment",
+      "Access to materials is available for 45 days"
+    ],
+    "days": {
+      "sun": "Sun",
+      "mon": "Mon",
+      "tue": "Tue",
+      "wed": "Wed",
+      "thu": "Thu",
+      "fri": "Fri",
+      "sat": "Sat"
+    },
+    "rest": "Rest",
+    "start": "Start",
+    "finish": "Finish",
+    "pageTitle": "WOMEN'S FIT CLUB \u00ABLadies First\u00BB",
+    "equipment": "Required Equipment",
+    "notes": "NOTES",
+    "howToIncrease": "HOW TO INCREASE LOAD?",
+    "min": "min",
+    "selectMonth": "Select month",
+    "backToMonths": "All months"
+  },
   "PrivacyPage": {
     "title": "PRIVACY POLICY",
     "effectiveDate": "Last updated: Feb.20, 2026",

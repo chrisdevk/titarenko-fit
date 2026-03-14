@@ -18,6 +18,7 @@ import { Users } from "./collections/Users";
 import { productsProxy } from "./endpoints/products";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
 import { Orders } from "./collections/Orders";
+import { ClubMonths } from "./collections/ClubMonths";
 import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
 import { cloudinaryAdapter } from "./cloudinary-adapter";
 
@@ -47,7 +48,7 @@ export default buildConfig({
       description: "Admin panel for titarenko.fit"
     }
   },
-  collections: [Users, Media, Blogs, Products, Categories, Orders],
+  collections: [Users, Media, Blogs, Products, Categories, Orders, ClubMonths],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
