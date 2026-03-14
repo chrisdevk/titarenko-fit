@@ -12,6 +12,8 @@ const ProgramsMobile = dynamic(() =>
   import("./_components/programs-mobile").then((mod) => mod.ProgramsMobile),
 );
 
+export const revalidate = 3600;
+
 export default async function ProgramsPage({
   params,
 }: {

@@ -1,6 +1,6 @@
-import { getTranslations } from "next-intl/server";
-import { getClubMonths } from "@/utils/data/club-months/get-club-months";
 import { ClubMonth } from "@/payload-types";
+import { getClubMonths } from "@/utils/data/club-months/get-club-months";
+import { getTranslations } from "next-intl/server";
 import { MonthCard } from "./_components/month-card";
 
 export default async function ClubMonthPage({
@@ -9,7 +9,7 @@ export default async function ClubMonthPage({
   params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "ClubPage" });
+  const t = await getTranslations({ locale, namespace: "ClubMonthPage" });
 
   const months = await getClubMonths({ locale });
 

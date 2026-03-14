@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import type { ClubMonth } from "@/payload-types";
+import { useTranslations } from "next-intl";
 
 type Day = NonNullable<ClubMonth["days"]>[number];
 
@@ -17,7 +17,7 @@ export const CalendarDayCell = ({
   day,
   onClick,
 }: CalendarDayCellProps) => {
-  const t = useTranslations("ClubPage");
+  const t = useTranslations("ClubMonthPage");
 
   const isWorkout = day?.dayType === "workout";
   const hasVideo = isWorkout && !!day?.videoUrl;

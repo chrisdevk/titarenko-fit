@@ -1,7 +1,5 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
 import {
   Select,
   SelectContent,
@@ -9,6 +7,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 
 interface MonthSelectorProps {
   currentMonth: number;
@@ -22,7 +22,7 @@ export const MonthSelector = ({
   locale,
 }: MonthSelectorProps) => {
   const router = useRouter();
-  const t = useTranslations("ClubPage");
+  const t = useTranslations("ClubMonthPage");
 
   return (
     <Select

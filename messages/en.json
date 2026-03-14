@@ -435,6 +435,107 @@
     }
   },
   "ClubPage": {
+    "hero": {
+      "heading": "WOMEN'S FIT CLUB «Ladies First»",
+      "paragraph": "An Online Fitness Club with workouts for every taste! No pressure. No comparison. With care for your body, health, and mood.",
+      "paragraph-emphasis": "And it's all — for us, WOMEN.",
+      "button": "Join the Club"
+    },
+    "intro": {
+      "heading-1": "Women's Club «Ladies First»",
+      "heading-2": "now on the site!",
+      "description": "For 2 years the Club has been helping women achieve results. Now — even more convenient: train individually on your own schedule. Join and move toward your goal at a comfortable pace. I'm with you every step of the way.",
+      "cards": [
+        {
+          "title": "The Club format is exclusive.",
+          "description": "Individual courses are available on the site, but full access to unique workouts — only in the Club."
+        },
+        {
+          "title": "Club Membership",
+          "description": "45-day subscription — no commitment. Programs are updated every month. New month — new results."
+        },
+        {
+          "title": "Workout Calendar",
+          "description": "A 31-day plan. Required equipment is listed. Just tune in."
+        },
+        {
+          "title": "Balanced Training Load",
+          "description": "5 workouts per week. Flexible format — 10–60 minutes. You control your time."
+        }
+      ]
+    },
+    "no-thinking": {
+      "heading": "You don't need to think about what to do and when.",
+      "description": "I create everything for you. You just press play and train with me."
+    },
+    "workout-variety": {
+      "heading": "A huge variety of high-quality workouts",
+      "description": "High-quality training programs designed for different goals.",
+      "types": [
+        "Rehabilitation",
+        "Strength",
+        "Cardio",
+        "Yoga",
+        "MFR",
+        "Gentle Stretching",
+        "Compound Exercises",
+        "Abs & Glutes",
+        "Body Toning & More"
+      ]
+    },
+    "subscription": {
+      "heading": "Subscription «Ladies First»",
+      "cost-label": "Subscription cost",
+      "cost-description": "An investment in yourself, your health, and inner balance.",
+      "price": "$50",
+      "period": "/45 days",
+      "button": "Join the Club",
+      "benefits": [
+        "Access to all Club workouts",
+        "New programs every month",
+        "31-day workout calendar",
+        "Workouts from 10 to 60 minutes",
+        "Support and care"
+      ]
+    },
+    "why": {
+      "badge": "2 years of successful work",
+      "heading": "Why «Ladies First»?",
+      "paragraphs": [
+        "When I was pregnant with my second daughter, I wanted to create a Club where women truly come first — a space for strength, care, and inspiration.",
+        "The name found me on its own. And now, 8 years later, my Women's Fitness Club «Ladies First» begins a new life — for you, for us, for every woman."
+      ],
+      "cta-text": "Join us!",
+      "button": "Join the Club"
+    },
+    "duration": {
+      "heading": "Flexible workout duration",
+      "description": "Workouts range from 10–15–30–45–60 minutes. Choose the duration that fits your schedule today! Give yourself the gift of time.",
+      "items": [
+        {
+          "minutes": "10-15",
+          "label": "Minutes",
+          "description": "Quick and effective workouts"
+        },
+        {
+          "minutes": "30-45",
+          "label": "Minutes",
+          "description": "Thematic / Full-body workouts"
+        },
+        {
+          "minutes": "45-60",
+          "label": "Minutes",
+          "description": "Programs / Courses / Master classes"
+        }
+      ]
+    },
+    "cta": {
+      "heading": "Ready? Turn on and go!",
+      "paragraph": "Join Ladies First Women's Fitness Club and turn every day into a fitness pleasure!",
+      "button": "Join the Club"
+    }
+  },
+  "ClubMonthPage": {
     "heading": "Women's Fitness Club",
     "howItWorks": "How it works",
     "monthLabel": "Month {number}",

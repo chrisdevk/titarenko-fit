@@ -1,8 +1,8 @@
 "use client";
 
+import { useTranslations } from "next-intl";
 import Image from "next/image";
 import Link from "next/link";
-import { useTranslations } from "next-intl";
 
 interface MonthCardProps {
   title: string;
@@ -17,7 +17,7 @@ export const MonthCard = ({
   imgSrc,
   locale,
 }: MonthCardProps) => {
-  const t = useTranslations("ClubPage");
+  const t = useTranslations("ClubMonthPage");
 
   return (
     <Link

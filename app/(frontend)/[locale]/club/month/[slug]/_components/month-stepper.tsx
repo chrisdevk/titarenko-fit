@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 interface MonthStepperProps {
   currentMonth: number;
@@ -24,7 +24,9 @@ export const MonthStepper = ({
   return (
     <div className="flex h-auto w-[150px] items-center justify-center gap-[18px] overflow-hidden rounded-[20px] bg-[#e2e8ff] px-[14px] py-3">
       <button
-        onClick={() => hasPrev && router.push(`/${locale}/club/month/${currentMonth - 1}`)}
+        onClick={() =>
+          hasPrev && router.push(`/${locale}/club/month/${currentMonth - 1}`)
+        }
         disabled={!hasPrev}
         className="shrink-0 text-off-black disabled:opacity-30"
         aria-label="Previous month"
@@ -35,7 +37,9 @@ export const MonthStepper = ({
         {currentLabel}
       </span>
       <button
-        onClick={() => hasNext && router.push(`/${locale}/club/month/${currentMonth + 1}`)}
+        onClick={() =>
+          hasNext && router.push(`/${locale}/club/month/${currentMonth + 1}`)
+        }
         disabled={!hasNext}
         className="shrink-0 text-off-black disabled:opacity-30"
         aria-label="Next month"

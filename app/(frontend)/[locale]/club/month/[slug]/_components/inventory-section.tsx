@@ -1,7 +1,7 @@
 "use client";
 
-import { useTranslations } from "next-intl";
 import type { ClubMonth } from "@/payload-types";
+import { useTranslations } from "next-intl";
 
 type Equipment = NonNullable<ClubMonth["equipment"]>;
 
@@ -10,15 +10,13 @@ interface InventorySectionProps {
 }
 
 export const InventorySection = ({ equipment }: InventorySectionProps) => {
-  const t = useTranslations("ClubPage");
+  const t = useTranslations("ClubMonthPage");
 
-  // Distribute items into 4 columns (column-first order like Figma)
   const columnCount = 4;
   const rowsPerCol = Math.ceil(equipment.length / columnCount);
-  const columns: Equipment[] = [];
-  for (let col = 0; col < columnCount; col++) {
-    columns.push(equipment.slice(col * rowsPerCol, (col + 1) * rowsPerCol));
-  }
+  const columns: Equipment[] = Array.from({ length: columnCount }, (_, col) =>
+    equipment.slice(col * rowsPerCol, (col + 1) * rowsPerCol),
+  );
 
   return (
     <div className="overflow-hidden rounded-[20px] bg-turquoise-light px-9 py-10">

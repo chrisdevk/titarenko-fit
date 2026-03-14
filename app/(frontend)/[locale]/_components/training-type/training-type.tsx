@@ -1,9 +1,9 @@
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Check, MoveUpRight } from "lucide-react";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import Link from "next/link";
-import { getTranslations } from "next-intl/server";
 
 type CardData = {
   title: string;
@@ -11,11 +11,7 @@ type CardData = {
   button: string;
 };
 
-export const TrainingType = async ({
-  locale,
-}: {
-  locale: "en" | "ru";
-}) => {
+export const TrainingType = async ({ locale }: { locale: "en" | "ru" }) => {
   const t = await getTranslations({ locale, namespace: "HomePage" });
   const cards = t.raw("training-type.cards") as CardData[];
 
@@ -65,7 +61,7 @@ export const TrainingType = async ({
                 <Link
                   href={`/${locale}/programs`}
                   className={cn(
-                    "flex w-full items-center justify-center gap-2 rounded-2xl py-3",
+                    "z-10 py-3",
                     buttonVariants({ variant: "default", size: "lg" }),
                   )}
                 >

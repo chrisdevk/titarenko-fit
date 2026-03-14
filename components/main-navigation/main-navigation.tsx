@@ -90,10 +90,10 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
               </nav>
             </div>
             <div className="hidden items-center gap-x-5 lg:flex">
-              <Button variant="secondary" asChild>
+              <Button variant="secondary" asChild className="z-10">
                 <Link href={`/${locale}/programs`}>{t("Programs")}</Link>
               </Button>
-              <Button variant="default" asChild>
+              <Button variant="default" asChild className="z-10">
                 <Link href={`/${locale}/club`}>{t("Club")}</Link>
               </Button>
               <UserMenuDropdown locale={locale} />

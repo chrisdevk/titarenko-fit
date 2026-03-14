@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import type { ClubMonth } from "@/payload-types";
 import { useTranslations } from "next-intl";
+import { useState } from "react";
 import { CalendarDayCell } from "./calendar-day-cell";
 import { LessonModal } from "./lesson-modal";
-import type { ClubMonth } from "@/payload-types";
 
 type Day = NonNullable<ClubMonth["days"]>[number];
 
@@ -14,8 +14,12 @@ interface CalendarProps {
   totalDays: number;
 }
 
-export const Calendar = ({ days, startDayOfWeek, totalDays }: CalendarProps) => {
-  const t = useTranslations("ClubPage");
+export const Calendar = ({
+  days,
+  startDayOfWeek,
+  totalDays,
+}: CalendarProps) => {
+  const t = useTranslations("ClubMonthPage");
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
 
   const dayHeaders = [

@@ -43,7 +43,7 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
     notFound();
   }
 
-  const t = await getTranslations({ locale, namespace: "ClubPage" });
+  const t = await getTranslations({ locale, namespace: "ClubMonthPage" });
 
   const monthOptions = (allMonths || []).map((m) => ({
     value: m.monthNumber,

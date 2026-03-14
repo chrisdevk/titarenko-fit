@@ -26,6 +26,7 @@ export default {
         "baby-slate": "#F6F6FF",
         "turquoise-dark": "#179CAF",
         "turquoise-light": "#C1EAF1",
+        "cyan-light": "#ddfcff",
         "purple-custom": "#5E60CE",
       },
       fontFamily: {
