@@ -17,6 +17,11 @@ export const getProducts = async ({
       overrideAccess: false,
       locale: locale,
       fallbackLocale: false,
+      where: {
+        stripeProductID: {
+          not_equals: "prod_PR1le2udElCzeo",
+        },
+      },
     });
 
     return products.docs || [];
