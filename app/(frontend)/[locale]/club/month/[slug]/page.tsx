@@ -1,8 +1,10 @@
 import { getClubMonth } from "@/utils/data/club-months/get-club-month";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
+import { checkClubAccess } from "@/utils/data/check-club-access";
+import { updateClubProgress } from "@/utils/actions/update-club-progress";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 import { Calendar } from "./_components/calendar";
 import { InfoCard } from "./_components/info-card";
 import { InventorySection } from "./_components/inventory-section";
@@ -28,6 +30,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 export default async function ClubMonthCalendarPage({ params }: Props) {
   const { locale, slug } = await params;
+
+  const { hasAccess, user } = await checkClubAccess();
+  if (!hasAccess) {
+    redirect(`/${locale}/club${user ? "?expired=true" : ""}`);
+  }
+
   const monthNumber = parseInt(slug, 10);
 
   if (isNaN(monthNumber) || monthNumber < 1 || monthNumber > 12) {
@@ -42,6 +50,8 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
   if (!month) {
     notFound();
   }
+
+  await updateClubProgress(monthNumber);
 
   const t = await getTranslations({ locale, namespace: "ClubMonthPage" });
 

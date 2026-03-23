@@ -17,9 +17,12 @@ export function middleware(request: NextRequest) {
 
   const pathname = request.nextUrl.pathname;
 
-  const isDashboard = /^\/(en|de)\/dashboard(\/|$)/.test(pathname);
-  if (isDashboard && !token) {
-    return NextResponse.redirect(new URL("/auth", request.url));
+  const isDashboard = /^\/(en|ru)\/dashboard(\/|$)/.test(pathname);
+  const isClubMonth = /^\/(en|ru)\/club\/month(\/|$)/.test(pathname);
+
+  if ((isDashboard || isClubMonth) && !token) {
+    const locale = pathname.match(/^\/(en|ru)/)?.[1] || "ru";
+    return NextResponse.redirect(new URL(`/${locale}/auth`, request.url));
   }
 
   return NextResponse.next();

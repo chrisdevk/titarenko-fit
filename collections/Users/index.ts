@@ -172,6 +172,31 @@ export const Users: CollectionConfig = {
       label: "Cart",
     },
     {
+      name: "clubProgress",
+      type: "group",
+      label: "Club Progress",
+      fields: [
+        {
+          name: "clubLastMonth",
+          type: "number",
+          min: 1,
+          max: 12,
+          admin: {
+            description: "Last month the user was viewing in the club",
+          },
+        },
+        {
+          name: "clubLastDay",
+          type: "number",
+          min: 1,
+          max: 35,
+          admin: {
+            description: "Last day the user was viewing in the club",
+          },
+        },
+      ],
+    },
+    {
       name: "skipSync",
       type: "checkbox",
       admin: {

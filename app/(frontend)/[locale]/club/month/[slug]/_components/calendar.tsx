@@ -1,7 +1,9 @@
 "use client";
 
 import type { ClubMonth } from "@/payload-types";
+import { updateClubProgress } from "@/utils/actions/update-club-progress";
 import { useTranslations } from "next-intl";
+import { useParams } from "next/navigation";
 import { useState } from "react";
 import { CalendarDayCell } from "./calendar-day-cell";
 import { LessonModal } from "./lesson-modal";
@@ -20,6 +22,8 @@ export const Calendar = ({
   totalDays,
 }: CalendarProps) => {
   const t = useTranslations("ClubMonthPage");
+  const { slug } = useParams<{ slug: string }>();
+  const monthNumber = parseInt(slug, 10);
   const [selectedDay, setSelectedDay] = useState<Day | null>(null);
 
   const dayHeaders = [
@@ -44,6 +48,7 @@ export const Calendar = ({
   const handleDayClick = (day?: Day) => {
     if (day?.dayType === "workout" && day.videoUrl) {
       setSelectedDay(day);
+      updateClubProgress(monthNumber, day.dayNumber);
     }
   };
 

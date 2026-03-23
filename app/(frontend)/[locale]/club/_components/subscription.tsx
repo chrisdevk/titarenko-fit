@@ -1,15 +1,49 @@
 "use client";
 
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
+import { useAuth } from "@/context/auth-context";
+import { useCart } from "@/context/cart";
 import { Check, Dumbbell, MoveUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
-import Link from "next/link";
+import { useParams, useRouter } from "next/navigation";
 
-export const Subscription = () => {
+type SubscriptionProps = {
+  clubProductId: number | null;
+  clubUnitPrice: number;
+  clubStripeProductId: string | null;
+};
+
+export const Subscription = ({
+  clubProductId,
+  clubUnitPrice,
+  clubStripeProductId,
+}: SubscriptionProps) => {
   const t = useTranslations("ClubPage.subscription");
   const benefits = t.raw("benefits") as string[];
+  const { user } = useAuth();
+  const { addItemToCart } = useCart();
+  const router = useRouter();
+  const { locale } = useParams<{ locale: string }>();
+
+  const handleJoinClub = () => {
+    if (!user) {
+      router.push(`/${locale}/auth`);
+      return;
+    }
+
+    if (!clubProductId || !clubStripeProductId) return;
+
+    addItemToCart({
+      product: clubProductId,
+      unitPrice: clubUnitPrice,
+      stripeProductID: clubStripeProductId,
+      quantity: 1,
+    });
+
+    localStorage.setItem("postCheckoutRedirect", `/${locale}/club/month`);
+    router.push(`/${locale}/checkout`);
+  };
 
   return (
     <section id="subscription" className="bg-cyan-light py-20">
@@ -61,16 +95,15 @@ export const Subscription = () => {
                 </div>
               </div>
             </div>
-            <Link
-              href="#subscription"
-              className={cn(
-                buttonVariants({ variant: "secondary", size: "lg" }),
-                "z-10",
-              )}
+            <Button
+              variant="secondary"
+              size="lg"
+              className="z-10"
+              onClick={handleJoinClub}
             >
               {t("button")}
               <MoveUpRight className="size-5" />
-            </Link>
+            </Button>
           </div>
 
           <div className="flex flex-col gap-4 bg-baby-slate p-8 pt-10">

@@ -89,8 +89,13 @@ export const CheckoutForm = ({ locale }: { locale: string }) => {
                 })
                   .then((res) => res.json())
                   .then(() => {
+                    const postCheckoutRedirect =
+                      localStorage.getItem("postCheckoutRedirect");
+                    localStorage.removeItem("postCheckoutRedirect");
                     clearCart();
-                    router.push(`/${locale}/dashboard`);
+                    router.push(
+                      postCheckoutRedirect || `/${locale}/dashboard`,
+                    );
                   })
                   .catch((err: Error) => {
                     throw new Error(err?.message || "Something went wrong.");

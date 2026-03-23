@@ -533,6 +533,9 @@
       "heading": "Ready? Turn on and go!",
       "paragraph": "Join Ladies First Women's Fitness Club and turn every day into a fitness pleasure!",
       "button": "Join the Club"
+    },
+    "access": {
+      "expired": "Your club access has expired. Purchase again to continue where you left off!"
     }
   },
   "ClubMonthPage": {

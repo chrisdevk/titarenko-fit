@@ -1,6 +1,8 @@
 import { ClubMonth } from "@/payload-types";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
+import { checkClubAccess } from "@/utils/data/check-club-access";
 import { getTranslations } from "next-intl/server";
+import { redirect } from "next/navigation";
 import { MonthCard } from "./_components/month-card";
 
 export default async function ClubMonthPage({
@@ -9,6 +11,12 @@ export default async function ClubMonthPage({
   params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
+
+  const { hasAccess, user } = await checkClubAccess();
+  if (!hasAccess) {
+    redirect(`/${locale}/club${user ? "?expired=true" : ""}`);
+  }
+
   const t = await getTranslations({ locale, namespace: "ClubMonthPage" });
 
   const months = await getClubMonths({ locale });

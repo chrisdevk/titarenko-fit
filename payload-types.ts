@@ -161,6 +161,16 @@ export interface User {
   cart?: {
     items?: CartItems;
   };
+  clubProgress?: {
+    /**
+     * Last month the user was viewing in the club
+     */
+    clubLastMonth?: number | null;
+    /**
+     * Last day the user was viewing in the club
+     */
+    clubLastDay?: number | null;
+  };
   skipSync?: boolean | null;
   updatedAt: string;
   createdAt: string;
@@ -528,6 +538,12 @@ export interface UsersSelect<T extends boolean = true> {
     | T
     | {
         items?: T | CartItemsSelect<T>;
+      };
+  clubProgress?:
+    | T
+    | {
+        clubLastMonth?: T;
+        clubLastDay?: T;
       };
   skipSync?: T;
   updatedAt?: T;
