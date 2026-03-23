@@ -180,7 +180,7 @@ export const Products: CollectionConfig = {
       name: "categories",
       type: "relationship",
       relationTo: "categories",
-      required: true,
+      required: false,
       hasMany: false,
       admin: {
         position: "sidebar",

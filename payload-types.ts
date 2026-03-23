@@ -297,7 +297,7 @@ export interface Product {
         id?: string | null;
       }[]
     | null;
-  categories: number | Category;
+  categories?: (number | null) | Category;
   metadata_title?: string | null;
   metadata_description?: string | null;
   metadata_keywords?: string | null;
