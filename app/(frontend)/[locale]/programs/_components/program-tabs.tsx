@@ -45,7 +45,7 @@ export const ProgramTabs = ({
         return program.categories === category.id;
       }
       if (typeof program.categories === "object") {
-        return program.categories.title === category.title;
+        return program.categories?.title === category.title;
       }
       return false;
     }).length,
@@ -59,7 +59,7 @@ export const ProgramTabs = ({
       );
     }
     if (typeof program.categories === "object") {
-      return program.categories.title === currentCategory;
+      return program.categories?.title === currentCategory;
     }
     return false;
   });

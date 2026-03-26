@@ -30,7 +30,7 @@ export const ProgramsMobile = ({
     }
 
     if (typeof program.categories === "object") {
-      return program.categories.title === currentCategory;
+      return program.categories?.title === currentCategory;
     }
 
     return false;
@@ -44,7 +44,7 @@ export const ProgramsMobile = ({
         return program.categories === category.id;
       }
       if (typeof program.categories === "object") {
-        return program.categories.title === category.title;
+        return program.categories?.title === category.title;
       }
       return false;
     }).length,

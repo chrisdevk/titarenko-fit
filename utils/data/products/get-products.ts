@@ -13,7 +13,7 @@ export const getProducts = async ({
     const products = await payload.find({
       collection: "products",
       depth: 2,
-      limit: 10,
+      limit: 100,
       overrideAccess: false,
       locale: locale,
       fallbackLocale: false,

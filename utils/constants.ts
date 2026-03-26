@@ -2,6 +2,7 @@ import {
   Clock11,
   Dumbbell,
   Heart,
+  Home,
   House,
   LayoutList,
   Mail,
@@ -19,6 +20,11 @@ import {
 } from "react-icons/fa";
 
 export const navlinks = [
+  {
+    text: "Home",
+    path: "/",
+    icon: Home,
+  },
   {
     text: "About me",
     path: "/about",
