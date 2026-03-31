@@ -49,7 +49,7 @@ export const Categories = () => {
               >
                 <CategoryCard
                   key={key}
-                  imgSrc={`/images/${locale === "ru" ? key : `${key}_en`}.jpg`}
+                  imgSrc={`/images/${locale === "ru" ? key : `${key}_en`}.${locale === "ru" ? "webp" : "jpg"}`}
                   title={card.title}
                   description={card.description}
                   link={`/${locale}/programs#${card.title.toLowerCase()}`}
