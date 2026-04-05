@@ -32,9 +32,16 @@ No test framework is configured.
 
 Defined in `collections/`: Users, Products, Orders, Blogs, Categories, Media. Access control policies live in `access/`. Custom fields in `fields/`. Custom API endpoints in `endpoints/`. Config root: `payload.config.ts`. Generated types: `payload-types.ts`.
 
+Collection hooks live in `collections/{Collection}/hooks/` and follow Payload's `beforeChange`/`afterChange` lifecycle. Key patterns:
+- `Products/hooks/before-change.ts` — syncs Stripe product data into Payload before save
+- `Orders/hooks/clear-user-cart.ts` — clears the buyer's cart after an order is created
+- `Users/hooks/` — auto-login after signup, create Stripe customer on first save, populate `orderedBy` via field hook
+
+Custom REST endpoints are defined per-collection in `collections/{Collection}/endpoints/` and registered in the collection config's `endpoints` array. Global custom endpoints (`/api/create-payment-intent`, `/api/stripe/products`) are registered directly in `payload.config.ts`.
+
 ### Key Integrations
 
-- **Stripe**: Payment intents for checkout. Webhook handlers in `stripe/`. Plugin auto-syncs products. User signup creates Stripe customer via hooks.
+- **Stripe**: Payment intents for checkout. Webhook handlers in `stripe/webhooks/`. The `payment-succeeded` webhook creates Orders in Payload using cart metadata embedded in the payment intent and looks up the user via Stripe customer ID. Plugin auto-syncs products. User signup creates Stripe customer via hooks.
 - **Cloudinary**: Custom storage adapter in `cloudinary-adapter/`. Used by Media collection.
 - **i18n (next-intl)**: Default locale is `ru`. Translation files in `messages/en.json` and `messages/ru.json`. Routing config in `i18n/`.
 
@@ -42,7 +49,7 @@ Defined in `collections/`: Users, Products, Orders, Blogs, Categories, Media. Ac
 
 - **React Context** (`context/`): AuthProvider, CartProvider, ProgressProvider
 - **TanStack React Query**: Server state caching, configured in `app/providers.tsx`
-- **Cart**: Persists to localStorage for guests, syncs to Payload when user logs in
+- **Cart**: Persists to localStorage for guests. On login, `MERGE_CART` action syncs local cart → user's Payload cart via `PATCH /api/users/{id}`. A `flattenCart` utility normalizes the structure before merging. Cart is cleared server-side by an `afterChange` hook on Orders.
 
 ### UI Layer
 
@@ -53,15 +60,16 @@ Defined in `collections/`: Users, Products, Orders, Blogs, Categories, Media. Ac
 
 ### Data Flow
 
-- Client mutations use server actions in `utils/actions/` (`"use server"` directive)
+- Client mutations use server actions in `utils/actions/` (`"use server"` directive). These are thin wrappers that call Payload's REST API (e.g., `POST /api/users/login`) rather than direct DB mutations.
 - Data fetching utilities in `utils/data/`
 - Cache invalidation via `revalidateTag()`
 
 ### Auth
 
 - Payload native auth with JWT in `payload-token` cookie
-- Roles: `admin`, `customer`
+- Roles: `admin`, `customer`. First user to register is auto-promoted to admin via an `ensureFirstUserIsAdmin` field hook.
 - Access control functions in `access/` (e.g., `admins.ts`, `admins-or-loggedin.ts`)
+- Middleware guards `/dashboard` and `/club/month` routes — redirects to auth if `payload-token` cookie is absent
 
 ## Conventions
 

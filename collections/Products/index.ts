@@ -16,7 +16,7 @@ export const Products: CollectionConfig = {
     afterChange: [
       async ({ doc }) => {
         console.log(`Revalidating cache for product: ${doc.id}`);
-        revalidateTag("products"); 
+        revalidateTag("products", "default"); 
       },
     ],
   },

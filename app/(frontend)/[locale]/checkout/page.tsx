@@ -65,6 +65,8 @@ export default function CheckoutPage() {
     }
   }, [cart, user]);
 
+  console.log("[CheckoutPage] cart", cart);
+
   if (!stripe) return null;
 
   return (

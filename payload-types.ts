@@ -118,9 +118,10 @@ export interface Config {
   globals: {};
   globalsSelect: {};
   locale: 'en' | 'ru';
-  user: User & {
-    collection: 'users';
+  widgets: {
+    collections: CollectionsWidget;
   };
+  user: User;
   jobs: {
     tasks: unknown;
     workflows: unknown;
@@ -189,6 +190,7 @@ export interface User {
       }[]
     | null;
   password?: string | null;
+  collection: 'users';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -202,7 +204,11 @@ export interface Order {
   currency: string;
   items?:
     | {
-        product: number | Product;
+        product?: (number | null) | Product;
+        /**
+         * Used for club month purchases that are not tied to a Products entry.
+         */
+        stripeProductID?: string | null;
         purchaseDate: string;
         quantity?: number | null;
         id?: string | null;
@@ -372,6 +378,14 @@ export interface ClubMonth {
   id: number;
   title: string;
   monthNumber: number;
+  /**
+   * The Stripe product ID (e.g. prod_xxx) users must purchase to unlock this month.
+   */
+  stripeProductID?: string | null;
+  /**
+   * Price in cents (e.g. 4900 = $49.00).
+   */
+  priceInCents?: number | null;
   coverImage: number | Media;
   startDayOfWeek: '0' | '1' | '2' | '3' | '4' | '5' | '6';
   totalDays: number;
@@ -664,6 +678,7 @@ export interface OrdersSelect<T extends boolean = true> {
     | T
     | {
         product?: T;
+        stripeProductID?: T;
         purchaseDate?: T;
         quantity?: T;
         id?: T;
@@ -678,6 +693,8 @@ export interface OrdersSelect<T extends boolean = true> {
 export interface ClubMonthsSelect<T extends boolean = true> {
   title?: T;
   monthNumber?: T;
+  stripeProductID?: T;
+  priceInCents?: T;
   coverImage?: T;
   startDayOfWeek?: T;
   totalDays?: T;
@@ -742,6 +759,16 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
   batch?: T;
   updatedAt?: T;
   createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+  data?: {
+    [k: string]: unknown;
+  };
+  width: 'full';
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema

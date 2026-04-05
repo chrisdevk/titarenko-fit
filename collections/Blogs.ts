@@ -58,7 +58,7 @@ export const Blogs: CollectionConfig = {
     afterChange: [
       async ({ doc }) => {
         console.log(`Revalidating cache for blog: ${doc.id}`);
-        revalidateTag("blogs"); 
+        revalidateTag("blogs", "default"); 
       },
     ],
   },

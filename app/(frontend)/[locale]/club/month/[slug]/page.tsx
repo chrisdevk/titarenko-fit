@@ -1,6 +1,7 @@
 import { getClubMonth } from "@/utils/data/club-months/get-club-month";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
-import { checkClubAccess } from "@/utils/data/check-club-access";
+import { getCurrentUser } from "@/utils/data/get-current-user";
+import { getUserAccessibleMonths } from "@/utils/data/get-user-month-access";
 import { updateClubProgress } from "@/utils/actions/update-club-progress";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
@@ -31,15 +32,20 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function ClubMonthCalendarPage({ params }: Props) {
   const { locale, slug } = await params;
 
-  const { hasAccess, user } = await checkClubAccess();
-  if (!hasAccess) {
-    redirect(`/${locale}/club${user ? "?expired=true" : ""}`);
-  }
-
   const monthNumber = parseInt(slug, 10);
 
   if (isNaN(monthNumber) || monthNumber < 1 || monthNumber > 12) {
     notFound();
+  }
+
+  const { user } = await getCurrentUser();
+  if (!user) {
+    redirect(`/${locale}/auth`);
+  }
+
+  const accessibleMonths = await getUserAccessibleMonths();
+  if (!accessibleMonths.has(monthNumber)) {
+    redirect(`/${locale}/club/month`);
   }
 
   const [month, allMonths] = await Promise.all([

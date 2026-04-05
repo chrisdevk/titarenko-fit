@@ -3,7 +3,6 @@ import { User } from "@/payload-types";
 import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import React from "react";
 
 interface CartSummaryProps {
   cart: User["cart"];
@@ -23,65 +22,92 @@ export const CartSummary = ({
       <h2 className="font-semibold">{t("cart")}</h2>
       <div className="space-y-3">
         {cart?.items?.map((item) => {
-          if (!item.product) return null;
+          const isClubMonth = !item.product && !!item.stripeProductID;
 
-          if (typeof item.product === "number") return null;
+          if (!isClubMonth && !item.product) return null;
+          if (!isClubMonth && typeof item.product === "number") return null;
 
-          const {
-            product: { product_thumbnail, title },
-            unitPrice,
-          } = item;
+          const formattedPrice = `$${(item.unitPrice / 100).toFixed(2)}`;
 
-          const thumbnail =
-            typeof product_thumbnail === "object" && product_thumbnail?.url
-              ? product_thumbnail?.url
-              : null;
-
-          const formattedPrice = `$${(unitPrice / 100).toFixed(2)}`;
-
-          return (
-            <div
-              key={item.id}
-              className="w-full rounded-xl bg-off-white md:p-1"
-            >
-              {item.product && (
+          if (isClubMonth) {
+            return (
+              <div key={item.id} className="w-full rounded-xl bg-off-white md:p-1">
                 <div className="flex w-full md:items-end md:justify-between">
-                  <div className="flex w-full flex-col items-center gap-x-2.5 md:flex-row">
-                    {thumbnail && (
-                      <div className="relative h-[120px] w-full lg:w-[140px]">
-                        <Image
-                          src={thumbnail}
-                          alt={title}
-                          fill
-                          className="size-full rounded-t-xl object-cover md:rounded-xl"
-                        />
-                      </div>
-                    )}
-                    <div className="w-full space-y-5 px-3 py-2">
-                      <h3 className="uppercase">{title}</h3>
-                      <div className="flex items-center justify-between gap-x-2">
-                        <p className="w-fit text-2xl font-semibold text-purple-custom">
-                          {formattedPrice}
-                        </p>
-                        <Button
-                          size="icon"
-                          onClick={() => onDelete(item.id || "")}
-                          className="bg-transparent p-0 hover:bg-transparent md:hidden"
-                        >
-                          <Trash2 className="!size-6 text-off-black transition-colors group-hover:text-red-500" />
-                        </Button>
-                      </div>
+                  <div className="w-full space-y-5 px-3 py-2">
+                    <h3 className="uppercase">{t("clubMonth")}</h3>
+                    <div className="flex items-center justify-between gap-x-2">
+                      <p className="w-fit text-2xl font-semibold text-purple-custom">
+                        {formattedPrice}
+                      </p>
+                      <Button
+                        onClick={() => onDelete(item.id || "")}
+                        className="bg-transparent p-0 hover:bg-transparent md:hidden"
+                      >
+                        <Trash2 className="!size-6 text-off-black transition-colors group-hover:text-red-500" />
+                      </Button>
                     </div>
                   </div>
                   <Button
-                    size="icon"
                     onClick={() => onDelete(item.id || "")}
                     className="mb-4 hidden bg-transparent p-0 hover:bg-transparent md:block"
                   >
                     <Trash2 className="!size-6 text-off-black transition-colors group-hover:text-red-500" />
                   </Button>
                 </div>
-              )}
+              </div>
+            );
+          }
+
+          const { product: { product_thumbnail, title }, unitPrice } = item as typeof item & {
+            product: { product_thumbnail: unknown; title: string };
+          };
+
+          const thumbnail =
+            typeof product_thumbnail === "object" &&
+            product_thumbnail !== null &&
+            "url" in product_thumbnail
+              ? (product_thumbnail as { url: string }).url
+              : null;
+
+          return (
+            <div
+              key={item.id}
+              className="w-full rounded-xl bg-off-white md:p-1"
+            >
+              <div className="flex w-full md:items-end md:justify-between">
+                <div className="flex w-full flex-col items-center gap-x-2.5 md:flex-row">
+                  {thumbnail && (
+                    <div className="relative h-[120px] w-full lg:w-[140px]">
+                      <Image
+                        src={thumbnail}
+                        alt={title}
+                        fill
+                        className="size-full rounded-t-xl object-cover md:rounded-xl"
+                      />
+                    </div>
+                  )}
+                  <div className="w-full space-y-5 px-3 py-2">
+                    <h3 className="uppercase">{title}</h3>
+                    <div className="flex items-center justify-between gap-x-2">
+                      <p className="w-fit text-2xl font-semibold text-purple-custom">
+                        {`$${(unitPrice / 100).toFixed(2)}`}
+                      </p>
+                      <Button
+                        onClick={() => onDelete(item.id || "")}
+                        className="bg-transparent p-0 hover:bg-transparent md:hidden"
+                      >
+                        <Trash2 className="!size-6 text-off-black transition-colors group-hover:text-red-500" />
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+                <Button
+                  onClick={() => onDelete(item.id || "")}
+                  className="mb-4 hidden bg-transparent p-0 hover:bg-transparent md:block"
+                >
+                  <Trash2 className="!size-6 text-off-black transition-colors group-hover:text-red-500" />
+                </Button>
+              </div>
             </div>
           );
         })}

@@ -57,13 +57,11 @@ export const paymentSucceeded: StripeWebhookHandler<{
         ...(user && { orderedBy: user.id }),
         currency,
         items:
-          cart?.map((item: NonNullable<CartItems>[number]) => {
-            const { product: productId, quantity } = item;
-
-            console.log("***Item: ", item);
-
+          cart?.map((item: any) => {
+            const { product: productId, stripeProductID, quantity } = item;
             return {
-              product: productId,
+              ...(productId ? { product: productId } : {}),
+              ...(stripeProductID ? { stripeProductID } : {}),
               quantity,
               purchaseDate: new Date().toISOString(),
             };

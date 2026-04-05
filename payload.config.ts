@@ -1,26 +1,26 @@
 // storage-adapter-import-placeholder
 import { postgresAdapter } from "@payloadcms/db-postgres";
+import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
 import { payloadCloudPlugin } from "@payloadcms/payload-cloud";
+import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { stripePlugin } from "@payloadcms/plugin-stripe";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import path from "path";
 import { buildConfig } from "payload";
-import { fileURLToPath } from "url";
 import sharp from "sharp";
-import { stripePlugin } from "@payloadcms/plugin-stripe";
-import { nodemailerAdapter } from "@payloadcms/email-nodemailer";
-import { cloudStoragePlugin } from "@payloadcms/plugin-cloud-storage";
+import { fileURLToPath } from "url";
 
-import { Media } from "./collections/Media";
-import { Blogs } from "./collections/Blogs";
-import { Products } from "./collections/Products";
-import { Categories } from "./collections/Categories";
-import { Users } from "./collections/Users";
-import { productsProxy } from "./endpoints/products";
-import { createPaymentIntent } from "./endpoints/create-payment-intent";
-import { Orders } from "./collections/Orders";
-import { ClubMonths } from "./collections/ClubMonths";
-import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
 import { cloudinaryAdapter } from "./cloudinary-adapter";
+import { Blogs } from "./collections/Blogs";
+import { Categories } from "./collections/Categories";
+import { ClubMonths } from "./collections/ClubMonths";
+import { Media } from "./collections/Media";
+import { Orders } from "./collections/Orders";
+import { Products } from "./collections/Products";
+import { Users } from "./collections/Users";
+import { createPaymentIntent } from "./endpoints/create-payment-intent";
+import { productsProxy } from "./endpoints/products";
+import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
 
 const filename = fileURLToPath(import.meta.url);
 const dirname = path.dirname(filename);
@@ -45,8 +45,8 @@ export default buildConfig({
     },
     meta: {
       title: "Admin panel",
-      description: "Admin panel for titarenko.fit"
-    }
+      description: "Admin panel for titarenko.fit",
+    },
   },
   collections: [Users, Media, Blogs, Products, Categories, Orders, ClubMonths],
   editor: lexicalEditor(),
@@ -58,14 +58,13 @@ export default buildConfig({
     pool: {
       connectionString: process.env.DATABASE_URI || "",
     },
-    migrationDir: "./migrations"
+    migrationDir: "./migrations",
   }),
   debug: true,
   sharp,
   email: nodemailerAdapter({
     // TEMP: debug SMTP envs
-    // eslint-disable-next-line no-console
-    ...(console.log("SMTP_USER", process.env.SMTP_USER, "SMTP_PASS length", process.env.SMTP_PASS?.length), {}),
+
     defaultFromAddress: process.env.SMTP_USER || "",
     defaultFromName: "Titarenko Fit Website",
     transportOptions: {

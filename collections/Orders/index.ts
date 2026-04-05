@@ -64,7 +64,13 @@ export const Orders: CollectionConfig = {
               name: "product",
               type: "relationship",
               relationTo: "products",
-              required: true,
+            },
+            {
+              name: "stripeProductID",
+              type: "text",
+              admin: {
+                description: "Used for club month purchases that are not tied to a Products entry.",
+              },
             },
             {
               name: "purchaseDate",

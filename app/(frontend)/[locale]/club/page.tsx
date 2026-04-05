@@ -1,4 +1,3 @@
-import { getClubProduct } from "@/utils/data/get-club-product";
 import { Suspense } from "react";
 import { Duration } from "./_components/duration";
 import { ExpiredToast } from "./_components/expired-toast";
@@ -14,8 +13,6 @@ import { WorkoutVariety } from "./_components/workout-variety";
 export const revalidate = 3600;
 
 export default async function ClubPage() {
-  const { product, unitPrice } = await getClubProduct();
-
   return (
     <>
       <Suspense>
@@ -32,11 +29,7 @@ export default async function ClubPage() {
 
       <ClubGallery />
 
-      <Subscription
-        clubProductId={product?.id ?? null}
-        clubUnitPrice={unitPrice}
-        clubStripeProductId={product?.stripeProductID ?? null}
-      />
+      <Subscription />
 
       <WhySection />
 

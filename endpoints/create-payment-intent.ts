@@ -116,34 +116,29 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
     // for each item in cart, lookup the product in Stripe and add its price to the total
     await Promise.all(
       cart?.map(async (item: any) => {
-        const { product } = item;
+        const { product, stripeProductID } = item;
+        const itemPrice: number = item.unitPrice || 0;
 
-        if (!product) {
-          payload.logger.error("Invalid product ID.");
-          return null;
-        }
-
-        let productId: number;
-        let itemPrice: number;
-
-        if (typeof product === "number") {
-          productId = product;
-          itemPrice = item.unitPrice || 0;
-        } else if (typeof product === "object" && product.id) {
-          productId = product.id;
-          itemPrice = item.unitPrice || 0;
+        if (product) {
+          let productId: number;
+          if (typeof product === "number") {
+            productId = product;
+          } else if (typeof product === "object" && product.id) {
+            productId = product.id;
+          } else {
+            payload.logger.error("Invalid product structure:", product);
+            return null;
+          }
+          metadata.push({ product: productId, quantity: item.quantity || 1 });
+        } else if (stripeProductID) {
+          // Club month purchase — no Products collection entry needed
+          metadata.push({ stripeProductID, quantity: item.quantity || 1 });
         } else {
-          payload.logger.error("Invalid product structure:", product);
+          payload.logger.error("Cart item has neither product nor stripeProductID.");
           return null;
         }
-
-        metadata.push({
-          product: productId,
-          quantity: item.quantity || 1,
-        });
 
         total += itemPrice;
-
         return null;
       }),
     );

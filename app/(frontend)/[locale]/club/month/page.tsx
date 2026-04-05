@@ -1,8 +1,7 @@
 import { ClubMonth } from "@/payload-types";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
-import { checkClubAccess } from "@/utils/data/check-club-access";
+import { getUserAccessibleMonths } from "@/utils/data/get-user-month-access";
 import { getTranslations } from "next-intl/server";
-import { redirect } from "next/navigation";
 import { MonthCard } from "./_components/month-card";
 
 export default async function ClubMonthPage({
@@ -12,14 +11,12 @@ export default async function ClubMonthPage({
 }) {
   const { locale } = await params;
 
-  const { hasAccess, user } = await checkClubAccess();
-  if (!hasAccess) {
-    redirect(`/${locale}/club${user ? "?expired=true" : ""}`);
-  }
-
   const t = await getTranslations({ locale, namespace: "ClubMonthPage" });
 
-  const months = await getClubMonths({ locale });
+  const [months, accessibleMonths] = await Promise.all([
+    getClubMonths({ locale }),
+    getUserAccessibleMonths(),
+  ]);
 
   return (
     <main className="pb-14 pt-28">
@@ -67,6 +64,12 @@ export default async function ClubMonthPage({
                 ? month.coverImage.url
                 : "/images/no-image.webp";
 
+            const isLocked = !accessibleMonths.has(month.monthNumber);
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const anyMonth = month as any;
+            const stripeProductID = anyMonth.stripeProductID as string | undefined;
+            const priceInCents = (anyMonth.priceInCents as number | undefined) ?? 0;
+
             return (
               <MonthCard
                 key={month.id}
@@ -74,6 +77,9 @@ export default async function ClubMonthPage({
                 monthNumber={month.monthNumber}
                 imgSrc={imgSrc}
                 locale={locale}
+                isLocked={isLocked}
+                stripeProductID={stripeProductID}
+                priceInCents={priceInCents}
               />
             );
           })}

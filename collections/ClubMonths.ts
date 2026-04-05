@@ -29,6 +29,24 @@ export const ClubMonths: CollectionConfig = {
       },
     },
     {
+      name: "stripeProductID",
+      type: "text",
+      label: "Stripe Product ID",
+      admin: {
+        position: "sidebar",
+        description: "The Stripe product ID (e.g. prod_xxx) users must purchase to unlock this month.",
+      },
+    },
+    {
+      name: "priceInCents",
+      type: "number",
+      label: "Price (in cents)",
+      admin: {
+        position: "sidebar",
+        description: "Price in cents (e.g. 4900 = $49.00).",
+      },
+    },
+    {
       name: "coverImage",
       type: "upload",
       required: true,
@@ -163,7 +181,7 @@ export const ClubMonths: CollectionConfig = {
     afterChange: [
       async ({ doc }) => {
         console.log(`Revalidating cache for club month: ${doc.id}`);
-        revalidateTag("club-months");
+        revalidateTag("club-months", "default");
       },
     ],
   },

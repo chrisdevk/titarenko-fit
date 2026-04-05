@@ -1,48 +1,19 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { useAuth } from "@/context/auth-context";
-import { useCart } from "@/context/cart";
 import { Check, Dumbbell, MoveUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import { useParams, useRouter } from "next/navigation";
 
-type SubscriptionProps = {
-  clubProductId: number | null;
-  clubUnitPrice: number;
-  clubStripeProductId: string | null;
-};
-
-export const Subscription = ({
-  clubProductId,
-  clubUnitPrice,
-  clubStripeProductId,
-}: SubscriptionProps) => {
+export const Subscription = () => {
   const t = useTranslations("ClubPage.subscription");
   const benefits = t.raw("benefits") as string[];
-  const { user } = useAuth();
-  const { addItemToCart } = useCart();
   const router = useRouter();
   const { locale } = useParams<{ locale: string }>();
 
   const handleJoinClub = () => {
-    if (!user) {
-      router.push(`/${locale}/auth`);
-      return;
-    }
-
-    if (!clubProductId || !clubStripeProductId) return;
-
-    addItemToCart({
-      product: clubProductId,
-      unitPrice: clubUnitPrice,
-      stripeProductID: clubStripeProductId,
-      quantity: 1,
-    });
-
-    localStorage.setItem("postCheckoutRedirect", `/${locale}/club/month`);
-    router.push(`/${locale}/checkout`);
+    router.push(`/${locale}/club/month`);
   };
 
   return (

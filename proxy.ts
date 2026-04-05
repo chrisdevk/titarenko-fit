@@ -1,5 +1,5 @@
-import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 
 import createMiddleware from "next-intl/middleware";
 import { routing } from "./i18n/routing";
@@ -7,7 +7,7 @@ import { routing } from "./i18n/routing";
 // Create the internationalization middleware
 const intlMiddleware = createMiddleware(routing);
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   const response = intlMiddleware(request);
   if (response) {
     return response;
@@ -18,9 +18,8 @@ export function middleware(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
 
   const isDashboard = /^\/(en|ru)\/dashboard(\/|$)/.test(pathname);
-  const isClubMonth = /^\/(en|ru)\/club\/month(\/|$)/.test(pathname);
 
-  if ((isDashboard || isClubMonth) && !token) {
+  if (isDashboard && !token) {
     const locale = pathname.match(/^\/(en|ru)/)?.[1] || "ru";
     return NextResponse.redirect(new URL(`/${locale}/auth`, request.url));
   }

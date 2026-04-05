@@ -28,7 +28,6 @@
         "achievement_three": "Artist of Cirque Du SOLEIL (22 years)",
         "achievement_four": "Stunt Actress SAG Award"
       },
-
       "button": "Learn more"
     },
     "reasons": {
@@ -241,7 +240,8 @@
   "CheckoutPage": {
     "h1": "Checkout",
     "cartIsEmpty": "Cart is empty",
-    "cart": "Cart"
+    "cart": "Cart",
+    "clubMonth": "Club Month"
   },
   "AboutPage": {
     "achievements": {
@@ -268,7 +268,10 @@
         "Adult/Pediatric First Aid"
       ],
       "card-three-paragraph": "College of Southern Nevada (CSN):",
-      "card-three-list": ["German language", "French language"]
+      "card-three-list": [
+        "German language",
+        "French language"
+      ]
     },
     "career": {
       "heading": "Career. SHOW BUSINESS CIRQUE DU SOLEIL",
@@ -562,7 +565,7 @@
     "rest": "Rest",
     "start": "Start",
     "finish": "Finish",
-    "pageTitle": "WOMEN'S FIT CLUB \u00ABLadies First\u00BB",
+    "pageTitle": "WOMEN'S FIT CLUB «Ladies First»",
     "equipment": "Required Equipment",
     "notes": "NOTES",
     "howToIncrease": "HOW TO INCREASE LOAD?",
@@ -576,7 +579,9 @@
     "sections": [
       {
         "title": "What data we collect",
-        "paragraphs": ["We may collect:"],
+        "paragraphs": [
+          "We may collect:"
+        ],
         "list": [
           "name;",
           "email address;",
@@ -586,7 +591,9 @@
       },
       {
         "title": "How we use information",
-        "paragraphs": ["We use the data to:"],
+        "paragraphs": [
+          "We use the data to:"
+        ],
         "list": [
           "provide the programs you purchased;",
           "process payments;",
@@ -617,8 +624,14 @@
       },
       {
         "title": "Your rights",
-        "paragraphs": ["Depending on your jurisdiction, you may request:"],
-        "list": ["access to your data;", "correction;", "deletion."]
+        "paragraphs": [
+          "Depending on your jurisdiction, you may request:"
+        ],
+        "list": [
+          "access to your data;",
+          "correction;",
+          "deletion."
+        ]
       },
       {
         "title": "Children's privacy",
