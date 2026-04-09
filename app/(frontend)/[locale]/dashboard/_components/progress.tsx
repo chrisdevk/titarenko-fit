@@ -13,7 +13,7 @@ export const Progress = ({ orders }: { orders: Order[] }) => {
       <div className="flex flex-col gap-2">
         {products.map(
           (item) =>
-            typeof item.product !== "number" && (
+            item.product != null && typeof item.product !== "number" && (
               <div
                 key={item.product.id}
                 className="flex w-full flex-col gap-2 rounded-2xl bg-off-white p-2 lg:rounded-xl"

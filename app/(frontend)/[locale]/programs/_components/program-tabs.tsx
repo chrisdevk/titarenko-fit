@@ -19,9 +19,8 @@ export const ProgramTabs = ({
 }: ProgramTabsProps) => {
   const [currentCategory, setCurrentCategory] = useState("all");
 
-  const categoryFromUrl = window.location.hash;
-
   useEffect(() => {
+    const categoryFromUrl = window.location.hash;
     if (categoryFromUrl) {
       const decodedCategory = decodeURIComponent(
         categoryFromUrl.replace("#", ""),
@@ -33,7 +32,7 @@ export const ProgramTabs = ({
 
       setCurrentCategory(formattedCategory);
     }
-  }, [categoryFromUrl]);
+  }, []);
 
   const validPrograms = programs.filter((program) => program.title);
 

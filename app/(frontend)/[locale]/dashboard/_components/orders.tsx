@@ -17,7 +17,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
         {products.map((item) => {
           let imgSrc;
 
-          if (typeof item.product !== "number") {
+          if (item.product != null && typeof item.product !== "number") {
             imgSrc =
               typeof item.product.product_thumbnail === "object" &&
               item.product.product_thumbnail?.url
@@ -26,7 +26,7 @@ export const Orders = ({ orders, course_btn_text, locale }: OrdersProps) => {
           }
 
           return (
-            typeof item.product !== "number" && (
+            item.product != null && typeof item.product !== "number" && (
               <CourseCard
                 key={item.product.id}
                 title={item.product.title}

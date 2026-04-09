@@ -63,8 +63,6 @@ export default buildConfig({
   debug: true,
   sharp,
   email: nodemailerAdapter({
-    // TEMP: debug SMTP envs
-
     defaultFromAddress: process.env.SMTP_USER || "",
     defaultFromName: "Titarenko Fit Website",
     transportOptions: {

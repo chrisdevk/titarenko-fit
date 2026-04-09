@@ -30,8 +30,8 @@ export async function sendEmail({
     `;
 
     await payload.sendEmail({
-      from,
-      to: process.env.SMTP_USER,
+      from: process.env.SMTP_USER || "",
+      to: process.env.NOTIFY_EMAIL,
       subject,
       html: emailHtml,
     });
