@@ -16,6 +16,7 @@ interface MonthCardProps {
   isLocked: boolean;
   stripeProductID?: string;
   priceInCents: number;
+  description?: string;
 }
 
 export const MonthCard = ({
@@ -26,6 +27,7 @@ export const MonthCard = ({
   isLocked,
   stripeProductID,
   priceInCents,
+  description,
 }: MonthCardProps) => {
   const t = useTranslations("ClubMonthPage");
   const router = useRouter();
@@ -51,25 +53,33 @@ export const MonthCard = ({
   };
 
   const inner = (
-    <>
-      <Image
-        src={imgSrc}
-        alt={title}
-        fill
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
-      />
-      <div className="absolute inset-0 rounded-[14px] bg-black/60 transition-colors duration-300 group-hover:bg-black/50" />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <span className="text-[32px] font-medium text-off-white">
-          {t("monthLabel", { number: monthNumber })}
-        </span>
+    <div className="flex flex-col rounded-2xl bg-white">
+      <div className="relative h-[191px] w-full overflow-hidden rounded-2xl">
+        <Image
+          src={imgSrc}
+          alt={title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+
+        <div className="absolute inset-0 rounded-[14px] bg-black/60 transition-colors duration-300 group-hover:bg-black/50" />
+        <div className="absolute inset-0 flex items-center justify-center">
+          <span className="text-[32px] font-medium text-off-white">
+            {t("monthLabel", { number: monthNumber })}
+          </span>
+        </div>
+        {isLocked && (
+          <div className="absolute right-3 top-3 rounded-full bg-black/40 p-1.5">
+            <Lock className="size-4 text-off-white" />
+          </div>
+        )}
       </div>
-      {isLocked && (
-        <div className="absolute right-3 top-3 rounded-full bg-black/40 p-1.5">
-          <Lock className="size-4 text-off-white" />
+      {description && (
+        <div className="p-4">
+          <p className="text-left text-base text-off-black">{description}</p>
         </div>
       )}
-    </>
+    </div>
   );
 
   if (isLocked) {
@@ -77,7 +87,7 @@ export const MonthCard = ({
       <button
         type="button"
         onClick={handleLockedClick}
-        className="group relative h-[191px] w-full overflow-hidden rounded-[14px]"
+        className="group relative w-full overflow-hidden rounded-[14px]"
       >
         {inner}
       </button>
@@ -87,7 +97,7 @@ export const MonthCard = ({
   return (
     <Link
       href={`/${locale}/club/month/${monthNumber}`}
-      className="group relative h-[191px] overflow-hidden rounded-[14px]"
+      className="group relative overflow-hidden rounded-[14px]"
     >
       {inner}
     </Link>

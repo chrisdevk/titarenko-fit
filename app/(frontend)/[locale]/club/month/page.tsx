@@ -69,6 +69,7 @@ export default async function ClubMonthPage({
             const anyMonth = month as any;
             const stripeProductID = anyMonth.stripeProductID as string | undefined;
             const priceInCents = (anyMonth.priceInCents as number | undefined) ?? 0;
+            const description = anyMonth.description as string | undefined;
 
             return (
               <MonthCard
@@ -80,6 +81,7 @@ export default async function ClubMonthPage({
                 isLocked={isLocked}
                 stripeProductID={stripeProductID}
                 priceInCents={priceInCents}
+                description={description}
               />
             );
           })}

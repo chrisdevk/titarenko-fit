@@ -12,30 +12,20 @@ interface InventorySectionProps {
 export const InventorySection = ({ equipment }: InventorySectionProps) => {
   const t = useTranslations("ClubMonthPage");
 
-  const columnCount = 4;
-  const rowsPerCol = Math.ceil(equipment.length / columnCount);
-  const columns: Equipment[] = Array.from({ length: columnCount }, (_, col) =>
-    equipment.slice(col * rowsPerCol, (col + 1) * rowsPerCol),
-  );
-
   return (
-    <div className="overflow-hidden rounded-[20px] bg-turquoise-light px-9 py-10">
-      <h2 className="text-[22px] font-medium text-off-black">
+    <div className="overflow-hidden rounded-[20px] bg-turquoise-light px-4 py-6 md:px-9 md:py-10">
+      <h2 className="text-lg font-medium text-off-black md:text-[22px]">
         {t("equipment")}
       </h2>
-      <div className="mt-10 flex items-start justify-between">
-        {columns.map((col, colIndex) => (
-          <div key={colIndex} className="flex flex-col gap-5">
-            {col.map((eq, index) => (
-              <div
-                key={index}
-                className="flex h-[42px] w-[266px] items-center overflow-hidden rounded-[40px] bg-white py-[10px] pl-5 pr-[10px]"
-              >
-                <span className="whitespace-nowrap text-base text-off-black">
-                  {eq.item}
-                </span>
-              </div>
-            ))}
+      <div className="mt-6 grid grid-cols-2 gap-3 md:mt-10 md:grid-cols-4">
+        {equipment.map((eq, index) => (
+          <div
+            key={index}
+            className="flex h-[42px] items-center overflow-hidden rounded-[40px] bg-white py-[10px] pl-5 pr-[10px]"
+          >
+            <span className="truncate text-sm text-off-black md:text-base">
+              {eq.item}
+            </span>
           </div>
         ))}
       </div>

@@ -54,36 +54,9 @@ export const Calendar = ({
 
   return (
     <>
-      <div className="flex w-full flex-col">
-        {/* Day-of-week header */}
-        <div className="flex h-[60px] items-center justify-between rounded-t-[20px] bg-purple-custom px-[90px]">
-          {dayHeaders.map((header) => (
-            <span
-              key={header}
-              className="text-center text-lg font-medium text-off-white"
-            >
-              {header}
-            </span>
-          ))}
-        </div>
-
-        {/* Calendar grid */}
-        <div
-          className="grid gap-2 overflow-hidden rounded-b-[20px] bg-purple-custom p-2"
-          style={{
-            gridTemplateColumns: "repeat(7, 1fr)",
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
-          }}
-        >
-          {/* Empty offset cells */}
-          {Array.from({ length: startDayOfWeek }, (_, i) => (
-            <div
-              key={`empty-${i}`}
-              className="h-[132px] rounded-lg bg-white/10"
-            />
-          ))}
-
-          {/* Day cells */}
+      {/* Mobile: 4-column grid, no weekday header, no offset */}
+      <div className="block md:hidden">
+        <div className="grid grid-cols-3 gap-1 overflow-hidden rounded-[20px] bg-purple-custom p-1">
           {dayCells.map((dayNum) => {
             const day = dayMap.get(dayNum);
             return (
@@ -92,6 +65,49 @@ export const Calendar = ({
                 dayNumber={dayNum}
                 day={day}
                 onClick={() => handleDayClick(day)}
+                variant="mobile"
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop: 7-column grid with weekday header and offset */}
+      <div className="hidden md:flex md:w-full md:flex-col">
+        <div className="flex h-[60px] items-center justify-between rounded-t-[20px] bg-purple-custom px-[90px]">
+          {dayHeaders.map((header) => (
+            <span
+              key={header}
+              className="w-full text-center text-lg font-medium text-off-white"
+            >
+              {header}
+            </span>
+          ))}
+        </div>
+
+        <div
+          className="grid gap-2 overflow-hidden rounded-b-[20px] bg-purple-custom p-2"
+          style={{
+            gridTemplateColumns: "repeat(7, 1fr)",
+            gridTemplateRows: `repeat(${rows}, 1fr)`,
+          }}
+        >
+          {Array.from({ length: startDayOfWeek }, (_, i) => (
+            <div
+              key={`empty-${i}`}
+              className="h-[132px] rounded-lg bg-white/10"
+            />
+          ))}
+
+          {dayCells.map((dayNum) => {
+            const day = dayMap.get(dayNum);
+            return (
+              <CalendarDayCell
+                key={dayNum}
+                dayNumber={dayNum}
+                day={day}
+                onClick={() => handleDayClick(day)}
+                variant="desktop"
               />
             );
           })}

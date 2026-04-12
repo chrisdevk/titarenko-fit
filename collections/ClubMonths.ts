@@ -1,5 +1,5 @@
-import type { CollectionConfig } from "payload";
 import { revalidateTag } from "next/cache";
+import type { CollectionConfig } from "payload";
 import { admins } from "../access/admins";
 
 export const ClubMonths: CollectionConfig = {
@@ -34,7 +34,8 @@ export const ClubMonths: CollectionConfig = {
       label: "Stripe Product ID",
       admin: {
         position: "sidebar",
-        description: "The Stripe product ID (e.g. prod_xxx) users must purchase to unlock this month.",
+        description:
+          "The Stripe product ID (e.g. prod_xxx) users must purchase to unlock this month.",
       },
     },
     {
@@ -51,6 +52,11 @@ export const ClubMonths: CollectionConfig = {
       type: "upload",
       required: true,
       relationTo: "media",
+    },
+    {
+      name: "description",
+      type: "text",
+      localized: true,
     },
     {
       type: "tabs",

@@ -31,7 +31,7 @@ export const MonthSelector = ({
         router.push(`/${locale}/club/month/${value}`);
       }}
     >
-      <SelectTrigger className="h-auto w-[150px] rounded-[20px] border-off-black/50 px-5 py-3 text-base text-off-black">
+      <SelectTrigger className="h-auto w-full min-w-[120px] rounded-[20px] border-off-black/50 px-3 py-3 text-sm text-off-black md:w-[150px] md:px-5 md:text-base">
         <SelectValue placeholder={t("selectMonth")} />
       </SelectTrigger>
       <SelectContent>

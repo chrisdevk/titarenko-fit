@@ -22,7 +22,7 @@ export const MonthStepper = ({
   const hasNext = currentMonth < totalMonths;
 
   return (
-    <div className="flex h-auto w-[150px] items-center justify-center gap-[18px] overflow-hidden rounded-[20px] bg-[#e2e8ff] px-[14px] py-3">
+    <div className="flex h-auto w-full min-w-[120px] items-center justify-center gap-3 overflow-hidden rounded-[20px] bg-[#e2e8ff] px-3 py-3 md:w-[150px] md:gap-[18px] md:px-[14px]">
       <button
         onClick={() =>
           hasPrev && router.push(`/${locale}/club/month/${currentMonth - 1}`)

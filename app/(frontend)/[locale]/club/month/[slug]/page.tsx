@@ -71,15 +71,15 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
   return (
     <main className="bg-[#f9feff] pb-0 pt-28">
       {/* Heading */}
-      <div className="mx-auto flex max-w-[803px] flex-col items-center gap-4 text-center">
-        <h1 className="text-[48px] font-semibold text-off-black">
+      <div className="mx-auto flex max-w-[803px] flex-col items-center gap-4 px-4 text-center">
+        <h1 className="text-3xl font-semibold text-off-black md:text-[48px]">
           {t("pageTitle")}
         </h1>
-        <p className="text-[22px] font-medium text-off-black">{month.title}</p>
+        <p className="text-lg font-medium text-off-black md:text-[22px]">{month.title}</p>
       </div>
 
       {/* Month Controls */}
-      <div className="mx-auto mt-10 flex max-w-[1440px] items-center gap-4 px-10">
+      <div className="mx-auto mt-10 flex max-w-[1440px] items-center gap-4 px-4 md:px-10">
         <MonthSelector
           currentMonth={monthNumber}
           months={monthOptions}
@@ -94,7 +94,7 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
       </div>
 
       {/* Calendar */}
-      <div className="mx-auto mt-6 max-w-[1440px] px-10">
+      <div className="mx-auto mt-6 max-w-[1440px] px-2 md:px-10">
         <Calendar
           days={month.days || []}
           startDayOfWeek={parseInt(month.startDayOfWeek, 10)}
@@ -104,22 +104,22 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
 
       {/* Equipment */}
       {month.equipment && month.equipment.length > 0 && (
-        <div className="mx-auto mt-10 max-w-[1440px] px-10">
+        <div className="mx-auto mt-10 max-w-[1440px] px-4 md:px-10">
           <InventorySection equipment={month.equipment} />
         </div>
       )}
 
       {/* Notes & How to Increase Load */}
       {(month.notes || month.howToIncreaseLoad) && (
-        <div className="mt-10 bg-[#199aad] px-[115px] py-[104px]">
-          <div className="mx-auto flex max-w-[1210px] items-start gap-[42px]">
-            <div className="flex flex-1 flex-col gap-[21px]">
+        <div className="mt-10 bg-[#199aad] px-6 py-16 md:px-[115px] md:py-[104px]">
+          <div className="mx-auto flex max-w-[1210px] flex-col items-start gap-6 md:flex-row md:gap-[42px]">
+            <div className="flex w-full flex-1 flex-col gap-[21px]">
               {month.notes && (
                 <InfoCard title={t("notes")} content={month.notes} />
               )}
             </div>
             {month.howToIncreaseLoad && (
-              <div className="flex-1">
+              <div className="w-full flex-1">
                 <InfoCard
                   title={t("howToIncrease")}
                   content={month.howToIncreaseLoad}

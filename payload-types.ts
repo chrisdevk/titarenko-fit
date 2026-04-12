@@ -387,6 +387,7 @@ export interface ClubMonth {
    */
   priceInCents?: number | null;
   coverImage: number | Media;
+  description?: string | null;
   startDayOfWeek: '0' | '1' | '2' | '3' | '4' | '5' | '6';
   totalDays: number;
   days?:
@@ -696,6 +697,7 @@ export interface ClubMonthsSelect<T extends boolean = true> {
   stripeProductID?: T;
   priceInCents?: T;
   coverImage?: T;
+  description?: T;
   startDayOfWeek?: T;
   totalDays?: T;
   days?:
