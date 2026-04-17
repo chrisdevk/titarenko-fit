@@ -5,35 +5,33 @@ import type { ClubMonth } from "@/payload-types";
 import { useTranslations } from "next-intl";
 
 type Day = NonNullable<ClubMonth["days"]>[number];
+type Lesson = NonNullable<Day["lessons"]>[number];
 
 interface CalendarDayCellProps {
   dayNumber: number;
   day?: Day;
-  onClick: () => void;
+  onLessonClick: (lesson: Lesson) => void;
   variant?: "mobile" | "desktop";
 }
 
 export const CalendarDayCell = ({
   dayNumber,
   day,
-  onClick,
+  onLessonClick,
   variant = "desktop",
 }: CalendarDayCellProps) => {
   const t = useTranslations("ClubMonthPage");
 
   const isWorkout = day?.dayType === "workout";
-  const hasVideo = isWorkout && !!day?.videoUrl;
   const badge = day?.badge && day.badge !== "none" ? day.badge : null;
   const isMobile = variant === "mobile";
+  const lessons = day?.lessons ?? [];
 
   return (
     <div
-      onClick={hasVideo ? onClick : undefined}
       className={cn(
         "flex flex-col rounded-lg bg-white",
-        isMobile ? "min-h-[110px] gap-1.5 p-2" : "h-[132px] gap-[10px] p-3",
-        hasVideo &&
-          "cursor-pointer transition-shadow hover:shadow-md hover:ring-2 hover:ring-purple-custom/30",
+        isMobile ? "min-h-[110px] gap-1.5 p-2" : "h-auto min-h-[132px] gap-[10px] p-3",
       )}
     >
       {/* Day number + badge */}
@@ -62,35 +60,36 @@ export const CalendarDayCell = ({
       </div>
 
       {/* Content */}
-      <div className="mt-auto">
+      <div className="mt-auto flex flex-col gap-1">
         {isWorkout ? (
-          <div
-            className={cn(
-              "rounded-[10px] bg-[rgba(155,116,255,0.1)]",
-              isMobile ? "p-1" : "p-[5px]",
-            )}
-          >
-            {day?.lessonName && (
-              <p
+          lessons.map((lesson) => {
+            const hasVideo = !!lesson.videoUrl;
+            return (
+              <div
+                key={lesson.id ?? lesson.lessonName}
+                onClick={hasVideo ? () => onLessonClick(lesson) : undefined}
                 className={cn(
-                  "text-off-black",
-                  isMobile ? "line-clamp-2 text-[10px] leading-tight" : "text-base",
+                  "rounded-[10px] bg-[rgba(155,116,255,0.1)]",
+                  isMobile ? "p-1" : "p-[5px]",
+                  hasVideo &&
+                    "cursor-pointer transition-shadow hover:shadow-md hover:ring-2 hover:ring-purple-custom/30",
                 )}
               >
-                {day.lessonName}
-              </p>
-            )}
-            {day?.duration && (
-              <p
-                className={cn(
-                  "text-off-black",
-                  isMobile ? "text-[9px]" : "text-base",
+                {lesson.lessonName && (
+                  <p
+                    className={cn(
+                      "text-off-black",
+                      isMobile
+                        ? "line-clamp-2 text-[10px] leading-tight"
+                        : "line-clamp-3 text-sm",
+                    )}
+                  >
+                    {lesson.lessonName}
+                  </p>
                 )}
-              >
-                {day.duration}
-              </p>
-            )}
-          </div>
+              </div>
+            );
+          })
         ) : (
           <div
             className={cn(

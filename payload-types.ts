@@ -394,15 +394,20 @@ export interface ClubMonth {
     | {
         dayNumber: number;
         dayType: 'workout' | 'rest';
-        lessonName?: string | null;
-        /**
-         * Duration in minutes
-         */
-        duration?: number | null;
-        /**
-         * Vimeo video URL
-         */
-        videoUrl?: string | null;
+        lessons?:
+          | {
+              lessonName: string;
+              /**
+               * Duration in minutes
+               */
+              duration?: number | null;
+              /**
+               * Vimeo video URL
+               */
+              videoUrl?: string | null;
+              id?: string | null;
+            }[]
+          | null;
         badge?: ('none' | 'start' | 'finish') | null;
         id?: string | null;
       }[]
@@ -705,9 +710,14 @@ export interface ClubMonthsSelect<T extends boolean = true> {
     | {
         dayNumber?: T;
         dayType?: T;
-        lessonName?: T;
-        duration?: T;
-        videoUrl?: T;
+        lessons?:
+          | T
+          | {
+              lessonName?: T;
+              duration?: T;
+              videoUrl?: T;
+              id?: T;
+            };
         badge?: T;
         id?: T;
       };

@@ -9,6 +9,7 @@ import { CalendarDayCell } from "./calendar-day-cell";
 import { LessonModal } from "./lesson-modal";
 
 type Day = NonNullable<ClubMonth["days"]>[number];
+type Lesson = NonNullable<Day["lessons"]>[number];
 
 interface CalendarProps {
   days: Day[];
@@ -24,7 +25,7 @@ export const Calendar = ({
   const t = useTranslations("ClubMonthPage");
   const { slug } = useParams<{ slug: string }>();
   const monthNumber = parseInt(slug, 10);
-  const [selectedDay, setSelectedDay] = useState<Day | null>(null);
+  const [selectedLesson, setSelectedLesson] = useState<Lesson | null>(null);
 
   const dayHeaders = [
     t("days.sun"),
@@ -45,18 +46,17 @@ export const Calendar = ({
   const totalCells = startDayOfWeek + totalDays;
   const rows = Math.ceil(totalCells / 7);
 
-  const handleDayClick = (day?: Day) => {
-    if (day?.dayType === "workout" && day.videoUrl) {
-      setSelectedDay(day);
-      updateClubProgress(monthNumber, day.dayNumber);
-    }
+  const handleLessonClick = (day: Day, lesson: Lesson) => {
+    if (!lesson.videoUrl) return;
+    setSelectedLesson(lesson);
+    updateClubProgress(monthNumber, day.dayNumber);
   };
 
   return (
     <>
-      {/* Mobile: 4-column grid, no weekday header, no offset */}
+      {/* Mobile: 3-column grid, no weekday header, no offset */}
       <div className="block md:hidden">
-        <div className="grid grid-cols-3 gap-1 overflow-hidden rounded-[20px] bg-purple-custom p-1">
+        <div className="grid grid-cols-3 gap-1 overflow-hidden rounded-xl bg-purple-custom p-1 lg:rounded-[20px]">
           {dayCells.map((dayNum) => {
             const day = dayMap.get(dayNum);
             return (
@@ -64,7 +64,7 @@ export const Calendar = ({
                 key={dayNum}
                 dayNumber={dayNum}
                 day={day}
-                onClick={() => handleDayClick(day)}
+                onLessonClick={(lesson) => handleLessonClick(day!, lesson)}
                 variant="mobile"
               />
             );
@@ -89,13 +89,13 @@ export const Calendar = ({
           className="grid gap-2 overflow-hidden rounded-b-[20px] bg-purple-custom p-2"
           style={{
             gridTemplateColumns: "repeat(7, 1fr)",
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
+            gridTemplateRows: `repeat(${rows}, auto)`,
           }}
         >
           {Array.from({ length: startDayOfWeek }, (_, i) => (
             <div
               key={`empty-${i}`}
-              className="h-[132px] rounded-lg bg-white/10"
+              className="min-h-[132px] rounded-lg bg-white/10"
             />
           ))}
 
@@ -106,7 +106,7 @@ export const Calendar = ({
                 key={dayNum}
                 dayNumber={dayNum}
                 day={day}
-                onClick={() => handleDayClick(day)}
+                onLessonClick={(lesson) => handleLessonClick(day!, lesson)}
                 variant="desktop"
               />
             );
@@ -115,12 +115,12 @@ export const Calendar = ({
       </div>
 
       {/* Video Modal */}
-      {selectedDay?.videoUrl && selectedDay.lessonName && (
+      {selectedLesson?.videoUrl && (
         <LessonModal
-          open={!!selectedDay}
-          onClose={() => setSelectedDay(null)}
-          videoUrl={selectedDay.videoUrl}
-          lessonName={selectedDay.lessonName}
+          open={!!selectedLesson}
+          onClose={() => setSelectedLesson(null)}
+          videoUrl={selectedLesson.videoUrl}
+          lessonName={selectedLesson.lessonName ?? ""}
         />
       )}
     </>

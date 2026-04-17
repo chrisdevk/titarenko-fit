@@ -111,33 +111,33 @@ export const ClubMonths: CollectionConfig = {
                   ],
                 },
                 {
-                  name: "lessonName",
-                  type: "text",
-                  localized: true,
+                  name: "lessons",
+                  type: "array",
+                  minRows: 1,
+                  maxRows: 2,
                   admin: {
                     condition: (_, siblingData) =>
                       siblingData?.dayType === "workout",
                   },
-                },
-                {
-                  name: "duration",
-                  type: "number",
-                  min: 1,
-                  admin: {
-                    description: "Duration in minutes",
-                    condition: (_, siblingData) =>
-                      siblingData?.dayType === "workout",
-                  },
-                },
-                {
-                  name: "videoUrl",
-                  type: "text",
-                  label: "Video URL",
-                  admin: {
-                    description: "Vimeo video URL",
-                    condition: (_, siblingData) =>
-                      siblingData?.dayType === "workout",
-                  },
+                  fields: [
+                    {
+                      name: "lessonName",
+                      type: "text",
+                      required: true,
+                    },
+                    {
+                      name: "duration",
+                      type: "number",
+                      min: 1,
+                      admin: { description: "Duration in minutes" },
+                    },
+                    {
+                      name: "videoUrl",
+                      type: "text",
+                      label: "Video URL",
+                      admin: { description: "Vimeo video URL" },
+                    },
+                  ],
                 },
                 {
                   name: "badge",
