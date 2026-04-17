@@ -13,7 +13,7 @@ export const FinalCta = () => {
 
   return (
     <section className="relative overflow-hidden bg-cyan-light py-20">
-      <div className="mx-auto flex w-11/12 max-w-[1100px] flex-col items-center justify-between lg:flex-row">
+      <div className="mx-auto flex w-11/12 max-w-[1100px] flex-col items-center justify-between gap-y-10 lg:flex-row lg:gap-0">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -45,15 +45,15 @@ export const Subscription = () => {
           <div className="flex flex-col gap-[18px] bg-turquoise-dark p-[30px]">
             <div className="flex flex-col gap-[18px]">
               <div className="flex flex-col gap-[18px]">
-                <p className="text-center text-[32px] font-medium text-baby-slate">
+                <p className="text-lg font-medium text-baby-slate lg:text-center lg:text-[32px]">
                   {t("cost-label")}
                 </p>
-                <p className="text-lg text-[#e7e7e7]">
+                <p className="text-[#e7e7e7] lg:text-lg">
                   {t("cost-description")}
                 </p>
               </div>
               <div className="flex items-end gap-1.5 text-baby-slate">
-                <span className="text-[64px] font-semibold leading-none">
+                <span className="text-[54px] font-semibold leading-none lg:text-[64px]">
                   {t("price")}
                 </span>
                 <div className="flex items-end">

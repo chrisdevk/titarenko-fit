@@ -14,7 +14,7 @@ export const NoThinking = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="mx-auto flex h-[224px] w-full max-w-[990px] flex-col items-center justify-center gap-5 rounded-[14px] bg-turquoise-dark p-[30px] shadow-[0px_2px_2px_0px_rgba(0,0,0,0.25)]"
+        className="mx-auto flex w-full max-w-[990px] flex-col items-center justify-center gap-5 rounded-[14px] bg-turquoise-dark p-[30px] shadow-[0px_2px_2px_0px_rgba(0,0,0,0.25)] lg:h-[224px]"
       >
         <div className="flex flex-col items-center">
           <AudioLines color="#fff" size={80} />
