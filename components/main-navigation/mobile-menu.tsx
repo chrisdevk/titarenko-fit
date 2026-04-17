@@ -14,6 +14,7 @@ interface MobileMenuProps {
   setOpen: (open: boolean) => void;
   user: User | null | undefined;
   cartCount: number;
+  hasMonthAccess: boolean;
 }
 
 export const MobileMenu = ({
@@ -21,6 +22,7 @@ export const MobileMenu = ({
   setOpen,
   user,
   cartCount,
+  hasMonthAccess,
 }: MobileMenuProps) => {
   const t = useTranslations("MainNavigation");
 
@@ -42,7 +44,7 @@ export const MobileMenu = ({
       </ul>
       <Separator className="bg-off-black" />
       <Link
-        href={`/${locale}/club`}
+        href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}
         onClick={() => setOpen(false)}
         className="flex items-center gap-x-2 rounded-sm p-1 text-lg font-semibold text-off-black transition-all hover:bg-baby-slate"
       >

@@ -3,6 +3,7 @@ import { Footer } from "@/components/footer";
 import { MainNavigation } from "@/components/main-navigation/main-navigation";
 import { routing } from "@/i18n/routing";
 import { cn, roboto } from "@/lib/utils";
+import { getUserAccessibleMonths } from "@/utils/data/get-user-month-access";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Suspense } from "react";
@@ -32,6 +33,9 @@ export default async function RootLayout({
     notFound();
   }
 
+  const accessibleMonths = await getUserAccessibleMonths();
+  const hasMonthAccess = accessibleMonths.size > 0;
+
   return (
     <html lang={locale}>
       <body
@@ -41,7 +45,7 @@ export default async function RootLayout({
         )}
       >
         <Providers>
-          <MainNavigation locale={locale} />
+          <MainNavigation locale={locale} hasMonthAccess={hasMonthAccess} />
           <Suspense fallback={<Loading />}>
             <main className="flex-1">{children}</main>
           </Suspense>

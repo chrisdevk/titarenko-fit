@@ -14,7 +14,13 @@ import Hamburger from "./hamburger";
 import { MobileMenu } from "./mobile-menu";
 import { UserMenuDropdown } from "./user-menu-dropdown";
 
-export const MainNavigation = ({ locale }: { locale: string }) => {
+export const MainNavigation = ({
+  locale,
+  hasMonthAccess,
+}: {
+  locale: string;
+  hasMonthAccess: boolean;
+}) => {
   const [scrolled, setScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -94,7 +100,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 <Link href={`/${locale}/programs`}>{t("Programs")}</Link>
               </Button>
               <Button variant="default" asChild className="z-10">
-                <Link href={`/${locale}/club`}>{t("Club")}</Link>
+                <Link href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}>{t("Club")}</Link>
               </Button>
               <UserMenuDropdown locale={locale} />
             </div>
@@ -120,6 +126,7 @@ export const MainNavigation = ({ locale }: { locale: string }) => {
                 setOpen={setIsOpen}
                 user={user}
                 cartCount={cart?.items?.length ?? 0}
+                hasMonthAccess={hasMonthAccess}
               />
             </motion.div>
           </motion.div>
