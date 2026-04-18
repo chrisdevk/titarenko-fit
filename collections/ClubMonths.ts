@@ -124,6 +124,7 @@ export const ClubMonths: CollectionConfig = {
                       name: "lessonName",
                       type: "text",
                       required: true,
+                      localized: true,
                     },
                     {
                       name: "duration",
