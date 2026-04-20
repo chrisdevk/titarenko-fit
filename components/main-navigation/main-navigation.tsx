@@ -4,6 +4,7 @@ import { useAuth } from "@/context/auth-context";
 import { useCart } from "@/context/cart";
 import { cn } from "@/lib/utils";
 import { navlinks } from "@/utils/constants";
+import { Computer, Layers } from "lucide-react";
 import { AnimatePresence, motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
@@ -97,10 +98,16 @@ export const MainNavigation = ({
             </div>
             <div className="hidden items-center gap-x-5 lg:flex">
               <Button variant="secondary" asChild className="z-10">
-                <Link href={`/${locale}/programs`}>{t("Programs")}</Link>
+                <Link href={`/${locale}/programs`}>
+                  <Computer size={24} className="text-purple-custom" />
+                  {t("Programs")}
+                </Link>
               </Button>
               <Button variant="default" asChild className="z-10">
-                <Link href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}>{t("Club")}</Link>
+                <Link href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}>
+                  <Layers color="#fff" size={24} />
+                  {t("Club")}
+                </Link>
               </Button>
               <UserMenuDropdown locale={locale} />
             </div>

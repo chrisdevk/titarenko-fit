@@ -2,6 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import type { ClubMonth } from "@/payload-types";
+import { Play } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 type Day = NonNullable<ClubMonth["days"]>[number];
@@ -31,7 +32,9 @@ export const CalendarDayCell = ({
     <div
       className={cn(
         "flex flex-col rounded-lg bg-white",
-        isMobile ? "min-h-[110px] gap-1.5 p-2" : "h-auto min-h-[132px] gap-[10px] p-3",
+        isMobile
+          ? "min-h-[110px] gap-1.5 p-2"
+          : "h-auto min-h-[132px] gap-[10px] p-3",
       )}
     >
       {/* Day number + badge */}
@@ -48,9 +51,7 @@ export const CalendarDayCell = ({
           <span
             className={cn(
               "rounded-[20px] text-center text-off-black",
-              isMobile
-                ? "px-1 py-px text-[9px]"
-                : "px-1.5 py-0.5 text-[11px]",
+              isMobile ? "px-1 py-px text-[9px]" : "px-1.5 py-0.5 text-[11px]",
               badge === "start" ? "bg-[#dfffd6]" : "bg-[#ffa69e]",
             )}
           >
@@ -76,16 +77,19 @@ export const CalendarDayCell = ({
                 )}
               >
                 {lesson.lessonName && (
-                  <p
-                    className={cn(
-                      "text-off-black",
-                      isMobile
-                        ? "line-clamp-2 text-[10px] leading-tight"
-                        : "line-clamp-3 text-sm",
-                    )}
-                  >
-                    {lesson.lessonName}
-                  </p>
+                  <div className="flex items-center gap-x-1">
+                    <Play color="#000" size={16} />
+                    <p
+                      className={cn(
+                        "font-bold text-off-black",
+                        isMobile
+                          ? "line-clamp-2 text-[10px] leading-tight"
+                          : "line-clamp-3 text-sm",
+                      )}
+                    >
+                      {lesson.lessonName}
+                    </p>
+                  </div>
                 )}
               </div>
             );

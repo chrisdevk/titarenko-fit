@@ -1,8 +1,8 @@
+import { updateClubProgress } from "@/utils/actions/update-club-progress";
 import { getClubMonth } from "@/utils/data/club-months/get-club-month";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
 import { getCurrentUser } from "@/utils/data/get-current-user";
 import { getUserAccessibleMonths } from "@/utils/data/get-user-month-access";
-import { updateClubProgress } from "@/utils/actions/update-club-progress";
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { notFound, redirect } from "next/navigation";
@@ -72,10 +72,12 @@ export default async function ClubMonthCalendarPage({ params }: Props) {
     <main className="bg-[#f9feff] pb-0 pt-28">
       {/* Heading */}
       <div className="mx-auto flex max-w-[803px] flex-col items-center gap-4 px-4 text-center">
-        <h1 className="text-3xl font-semibold text-off-black md:text-[48px]">
-          {t("pageTitle")}
+        <h1 className="text-3xl font-semibold leading-none text-off-black md:text-[48px]">
+          <span dangerouslySetInnerHTML={{ __html: t("pageTitle") }} />
         </h1>
-        <p className="text-lg font-medium text-off-black md:text-[22px]">{month.title}</p>
+        <p className="text-lg font-medium text-off-black md:text-[22px]">
+          {month.title}
+        </p>
       </div>
 
       {/* Month Controls */}
