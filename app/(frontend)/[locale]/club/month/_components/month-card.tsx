@@ -2,6 +2,8 @@
 
 import { useAuth } from "@/context/auth-context";
 import { useCart } from "@/context/cart";
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
+import { RichText } from "@payloadcms/richtext-lexical/react";
 import { Lock } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
@@ -16,7 +18,7 @@ interface MonthCardProps {
   isLocked: boolean;
   stripeProductID?: string;
   priceInCents: number;
-  description?: string;
+  description?: SerializedEditorState;
 }
 
 export const MonthCard = ({
@@ -76,7 +78,9 @@ export const MonthCard = ({
       </div>
       {description && (
         <div className="p-4">
-          <p className="text-left text-base text-off-black">{description}</p>
+          <div className="prose prose-base max-w-none text-left text-base text-off-black">
+            <RichText data={description} />
+          </div>
         </div>
       )}
     </div>

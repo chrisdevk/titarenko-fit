@@ -55,7 +55,7 @@ export const ClubMonths: CollectionConfig = {
     },
     {
       name: "description",
-      type: "text",
+      type: "richText",
       localized: true,
     },
     {

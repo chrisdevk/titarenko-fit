@@ -1,3 +1,4 @@
+import type { SerializedEditorState } from "@payloadcms/richtext-lexical/lexical";
 import { ClubMonth } from "@/payload-types";
 import { getClubMonths } from "@/utils/data/club-months/get-club-months";
 import { getUserAccessibleMonths } from "@/utils/data/get-user-month-access";
@@ -73,7 +74,7 @@ export default async function ClubMonthPage({
               | undefined;
             const priceInCents =
               (anyMonth.priceInCents as number | undefined) ?? 0;
-            const description = anyMonth.description as string | undefined;
+            const description = anyMonth.description as SerializedEditorState | undefined;
 
             return (
               <MonthCard
