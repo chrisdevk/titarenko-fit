@@ -77,8 +77,12 @@ export const CalendarDayCell = ({
                 )}
               >
                 {lesson.lessonName && (
-                  <div className="flex items-center gap-x-1">
-                    <Play color="#000" size={16} />
+                  <div className="flex items-start gap-x-1">
+                    <Play
+                      color="#000"
+                      size={isMobile ? 12 : 16}
+                      className={cn("mt-px shrink-0", isMobile ? "min-h-3 min-w-3" : "min-h-4 min-w-4")}
+                    />
                     <p
                       className={cn(
                         "font-bold text-off-black",
