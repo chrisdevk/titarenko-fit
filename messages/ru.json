@@ -246,7 +246,16 @@
     "h1": "ОПЛАТА",
     "cartIsEmpty": "Корзина пуста",
     "cart": "Корзина",
-    "clubMonth": "Месяц клуба"
+    "clubMonth": "Месяц клуба",
+    "couponPlaceholder": "Введите код купона",
+    "applyCoupon": "Применить",
+    "couponApplied": "Купон применён",
+    "removeCoupon": "Удалить",
+    "subtotal": "Подытог",
+    "discount": "Скидка",
+    "proceedToPayment": "Перейти к оплате",
+    "freeOrder": "Получить бесплатно",
+    "processing": "Обработка..."
   },
   "AboutPage": {
     "achievements": {

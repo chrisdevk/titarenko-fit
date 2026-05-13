@@ -88,6 +88,7 @@ export interface Config {
     categories: Category;
     orders: Order;
     'club-months': ClubMonth;
+    coupons: Coupon;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -106,6 +107,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     orders: OrdersSelect<false> | OrdersSelect<true>;
     'club-months': ClubMonthsSelect<false> | ClubMonthsSelect<true>;
+    coupons: CouponsSelect<false> | CouponsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -467,6 +469,44 @@ export interface ClubMonth {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coupons".
+ */
+export interface Coupon {
+  id: number;
+  /**
+   * The coupon code users enter at checkout (stored and matched as uppercase).
+   */
+  code: string;
+  discountType: 'percentage' | 'fixed';
+  /**
+   * For percentage: 0–100. For fixed: amount in cents (e.g. 2000 = $20.00).
+   */
+  discountValue: number;
+  /**
+   * Restrict this coupon to specific products. Leave empty to apply to everything.
+   */
+  products?: (number | Product)[] | null;
+  /**
+   * Restrict this coupon to specific club months. Leave empty to apply to everything.
+   */
+  clubMonths?: (number | ClubMonth)[] | null;
+  /**
+   * Optional expiry date. Leave empty for no expiry.
+   */
+  expiresAt?: string | null;
+  /**
+   * Maximum redemptions. Leave empty for unlimited.
+   */
+  usageLimit?: number | null;
+  /**
+   * How many times this coupon has been used.
+   */
+  usageCount?: number | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -516,6 +556,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'club-months';
         value: number | ClubMonth;
+      } | null)
+    | ({
+        relationTo: 'coupons';
+        value: number | Coupon;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -743,6 +787,22 @@ export interface ClubMonthsSelect<T extends boolean = true> {
       };
   notes?: T;
   howToIncreaseLoad?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coupons_select".
+ */
+export interface CouponsSelect<T extends boolean = true> {
+  code?: T;
+  discountType?: T;
+  discountValue?: T;
+  products?: T;
+  clubMonths?: T;
+  expiresAt?: T;
+  usageLimit?: T;
+  usageCount?: T;
   updatedAt?: T;
   createdAt?: T;
 }

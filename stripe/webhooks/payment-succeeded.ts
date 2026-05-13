@@ -1,15 +1,13 @@
 import type { User } from "@/payload-types";
 import type { StripeWebhookHandler } from "@payloadcms/plugin-stripe/types";
 import type Stripe from "stripe";
-
-const logs = true;
+import { incrementCouponUsage, resolveCoupon } from "@/utils/server/resolve-coupon";
 
 export const paymentSucceeded: StripeWebhookHandler<{
   data: {
     object: Stripe.PaymentIntent;
   };
 }> = async (args) => {
-  console.log("***payment succeeded***");
   const { event, payload } = args;
 
   const {
@@ -42,14 +40,12 @@ export const paymentSucceeded: StripeWebhookHandler<{
     }
   }
 
-  if (logs)
-    payload.logger.info(
-      `Syncing Stripe product with ID: ${stripePaymentIntentID} to Payload...`,
-    );
+  payload.logger.info(
+    `Syncing Stripe payment intent ${stripePaymentIntentID} to Payload...`,
+  );
 
   try {
-    if (logs) payload.logger.info(`- Creating order...`);
-    console.log("***Creating order***", cart);
+    payload.logger.info(`- Creating order...`);
 
     await payload.create({
       collection: "orders",
@@ -71,7 +67,33 @@ export const paymentSucceeded: StripeWebhookHandler<{
       },
     });
 
-    if (logs) payload.logger.info(`✅ Successfully created order for payment.`);
+    payload.logger.info(`✅ Successfully created order for payment.`);
+
+    // Increment coupon usage now that payment has actually succeeded.
+    if (metadataFromObject.couponCode) {
+      try {
+        const couponResult = await resolveCoupon(
+          metadataFromObject.couponCode,
+          [],
+          payload,
+          { skipCartCheck: true },
+        );
+        if (!("error" in couponResult)) {
+          await incrementCouponUsage(
+            couponResult.id,
+            couponResult.usageCount,
+            payload,
+            couponResult.usageLimit,
+          );
+        } else {
+          payload.logger.error(
+            `Could not resolve coupon "${metadataFromObject.couponCode}" in payment-succeeded: ${couponResult.error}`,
+          );
+        }
+      } catch (couponError: unknown) {
+        payload.logger.error(`Failed to increment coupon usage after payment: ${couponError}`);
+      }
+    }
 
     const itemList =
       cart

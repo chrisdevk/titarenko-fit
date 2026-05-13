@@ -241,7 +241,16 @@
     "h1": "Checkout",
     "cartIsEmpty": "Cart is empty",
     "cart": "Cart",
-    "clubMonth": "Club Month"
+    "clubMonth": "Club Month",
+    "couponPlaceholder": "Enter coupon code",
+    "applyCoupon": "Apply",
+    "couponApplied": "Coupon applied",
+    "removeCoupon": "Remove",
+    "subtotal": "Subtotal",
+    "discount": "Discount",
+    "proceedToPayment": "Proceed to Payment",
+    "freeOrder": "Get for Free",
+    "processing": "Processing..."
   },
   "AboutPage": {
     "achievements": {

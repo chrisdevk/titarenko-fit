@@ -1,18 +1,14 @@
 import type { User } from "@/payload-types";
 import type { PayloadHandler } from "payload";
 
+import { computeDiscountAmount, resolveCoupon } from "@/utils/server/resolve-coupon";
 import { addDataAndFileToRequest } from "payload";
 import Stripe from "stripe";
-
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY || "", {
   apiVersion: "2022-08-01",
 });
 
-// this endpoint creates an `Invoice` with the items in the cart
-// to do this, we loop through the items in the cart and lookup the product in Stripe
-// we then add the price of the product to the total
-// once completed, we pass the `client_secret` of the `PaymentIntent` back to the client which can process the payment
 export const createPaymentIntent: PayloadHandler = async (req) => {
   const { payload, user } = req;
 
@@ -20,6 +16,7 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
 
   const cartFromRequest = req.data?.cart;
   const emailFromRequest = req.data?.email;
+  const couponCode = req.data?.couponCode as string | undefined;
 
   if (!user && !emailFromRequest) {
     return Response.json(
@@ -38,8 +35,8 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
   }
 
   // Use cart from request if user's cart is empty, otherwise use user's cart
-  const cart = (fullUser?.cart?.items && fullUser.cart.items.length > 0) 
-    ? fullUser.cart.items 
+  const cart = (fullUser?.cart?.items && fullUser.cart.items.length > 0)
+    ? fullUser.cart.items
     : (cartFromRequest?.items || cartFromRequest);
 
   if (!cart || cart.length === 0) {
@@ -53,26 +50,18 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
     let stripeCustomerID = fullUser?.stripeCustomerID;
     let stripeCustomer: Stripe.Customer | undefined;
 
-    // If the user is logged in and has a Stripe Customer ID, use that
     if (fullUser) {
       if (!stripeCustomerID) {
-        // lookup user in Stripe and create one if not found
-
         const customer = (
-          await stripe.customers.list({
-            email: fullUser.email,
-          })
+          await stripe.customers.list({ email: fullUser.email })
         ).data?.[0];
 
-        // Create a new customer if one is not found
         if (!customer) {
-          // lookup user in Stripe and create one if not found
-          const customer = await stripe.customers.create({
+          const newCustomer = await stripe.customers.create({
             name: fullUser?.name || fullUser.email,
             email: fullUser.email,
           });
-
-          stripeCustomerID = customer.id;
+          stripeCustomerID = newCustomer.id;
         } else {
           stripeCustomerID = customer.id;
         }
@@ -81,67 +70,87 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
           await payload.update({
             id: user.id,
             collection: "users",
-            data: {
-              stripeCustomerID,
-            },
+            data: { stripeCustomerID },
           });
       }
-      // Otherwise use the email from the request to lookup the user in Stripe
     } else {
-      // lookup user in Stripe and create one if not found
       const customer = (
-        await stripe.customers.list({
-          email: emailFromRequest as string,
-        })
+        await stripe.customers.list({ email: emailFromRequest as string })
       ).data?.[0];
 
-      // Create a new customer if one is not found
       if (!customer) {
-        const customer = await stripe.customers.create({
+        const newCustomer = await stripe.customers.create({
           email: emailFromRequest as string,
         });
-
-        stripeCustomer = customer;
-        stripeCustomerID = customer.id;
+        stripeCustomer = newCustomer;
+        stripeCustomerID = newCustomer.id;
       } else {
         stripeCustomer = customer;
         stripeCustomerID = customer.id;
       }
     }
 
+    // Suppress unused-variable warning — stripeCustomer may be used by callers
+    void stripeCustomer;
+
     let total = 0;
+    const metadata: Array<{ product?: number; stripeProductID?: string; quantity: number }> = [];
+    const enrichedItems: Array<{ product?: unknown; stripeProductID?: string | null; unitPrice: number; quantity?: number }> = [];
 
-    const metadata: any[] = [];
+    // Fetch server-side prices — never trust client-supplied unitPrice.
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const payloadAny = payload as any;
 
-    // for each item in cart, lookup the product in Stripe and add its price to the total
-    await Promise.all(
-      cart?.map(async (item: any) => {
-        const { product, stripeProductID } = item;
-        const itemPrice: number = item.unitPrice || 0;
+    for (const item of cart as Array<{
+      product?: unknown;
+      stripeProductID?: string | null;
+      quantity?: number;
+    }>) {
+      const { product, stripeProductID } = item;
+      let itemPrice = 0;
 
-        if (product) {
-          let productId: number;
-          if (typeof product === "number") {
-            productId = product;
-          } else if (typeof product === "object" && product.id) {
-            productId = product.id;
-          } else {
-            payload.logger.error("Invalid product structure:", product);
-            return null;
-          }
-          metadata.push({ product: productId, quantity: item.quantity || 1 });
-        } else if (stripeProductID) {
-          // Club month purchase — no Products collection entry needed
-          metadata.push({ stripeProductID, quantity: item.quantity || 1 });
+      if (product) {
+        let productId: number;
+        if (typeof product === "number") {
+          productId = product;
+        } else if (typeof product === "object" && product !== null && "id" in product) {
+          productId = (product as { id: number }).id;
         } else {
-          payload.logger.error("Cart item has neither product nor stripeProductID.");
-          return null;
+          payload.logger.error(`Invalid product structure in cart: ${JSON.stringify(product)}`);
+          continue;
         }
 
-        total += itemPrice;
-        return null;
-      }),
-    );
+        const productDoc = await payloadAny.findByID({ collection: "products", id: productId });
+        if (productDoc?.priceJSON) {
+          try {
+            const prices = JSON.parse(productDoc.priceJSON as string) as Array<{
+              unit_amount: number | null;
+              active: boolean;
+            }>;
+            const activePrice = prices.find((p) => p.active) ?? prices[0];
+            itemPrice = activePrice?.unit_amount ?? 0;
+          } catch {
+            payload.logger.error(`Failed to parse priceJSON for product ${productId}`);
+          }
+        }
+
+        metadata.push({ product: productId, quantity: item.quantity ?? 1 });
+      } else if (stripeProductID) {
+        const clubMonthResult = await payloadAny.find({
+          collection: "club-months",
+          where: { stripeProductID: { equals: stripeProductID } },
+          limit: 1,
+        });
+        itemPrice = (clubMonthResult?.docs?.[0]?.priceInCents as number) ?? 0;
+        metadata.push({ stripeProductID, quantity: item.quantity ?? 1 });
+      } else {
+        payload.logger.error("Cart item has neither product nor stripeProductID.");
+        continue;
+      }
+
+      total += itemPrice;
+      enrichedItems.push({ ...item, unitPrice: itemPrice });
+    }
 
     if (total === 0) {
       throw new Error(
@@ -149,14 +158,34 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
       );
     }
 
+    // Apply coupon discount if provided
+    let appliedCouponCode: string | undefined;
+    if (couponCode) {
+      const couponResult = await resolveCoupon(couponCode, enrichedItems, payload);
+      if ("error" in couponResult) {
+        return Response.json({ error: couponResult.error }, { status: 400 });
+      }
+      const discountAmount = computeDiscountAmount(couponResult, enrichedItems, total);
+      total = Math.max(0, total - discountAmount);
+      appliedCouponCode = couponResult.code;
 
+      if (total === 0) {
+        return Response.json(
+          { error: "Total is $0 after discount — use the free order endpoint instead." },
+          { status: 400 },
+        );
+      }
+    }
 
+    // Coupon usage is intentionally NOT incremented here — only in the
+    // payment-succeeded webhook so abandoned checkouts don't consume slots.
     const paymentIntent = await stripe.paymentIntents.create({
       amount: total,
       currency: "usd",
       customer: stripeCustomerID,
       metadata: {
         cart: JSON.stringify(metadata),
+        ...(appliedCouponCode ? { couponCode: appliedCouponCode } : {}),
       },
       payment_method_types: ["card"],
     });
@@ -168,7 +197,6 @@ export const createPaymentIntent: PayloadHandler = async (req) => {
   } catch (error: unknown) {
     const message = error instanceof Error ? error.message : "Unknown error";
     payload.logger.error(`Payment intent creation error: ${message}`);
-
     return Response.json({ error: message }, { status: 400 });
   }
 };

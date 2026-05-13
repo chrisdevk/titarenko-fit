@@ -3,19 +3,41 @@ import { User } from "@/payload-types";
 import { Trash2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
+import { CouponInput } from "./coupon-input";
+
+interface AppliedCoupon {
+  code: string;
+  discountType: "percentage" | "fixed";
+  discountValue: number;
+  discountAmount: number;
+}
 
 interface CartSummaryProps {
   cart: User["cart"];
   cartTotal: number;
   onDelete: (id: string) => void;
+  appliedCoupon: AppliedCoupon | null;
+  couponError: string | null;
+  couponLoading: boolean;
+  onApplyCoupon: (code: string) => Promise<void>;
+  onRemoveCoupon: () => void;
 }
 
 export const CartSummary = ({
   cart,
   cartTotal,
   onDelete,
+  appliedCoupon,
+  couponError,
+  couponLoading,
+  onApplyCoupon,
+  onRemoveCoupon,
 }: CartSummaryProps) => {
   const t = useTranslations("CheckoutPage");
+
+  const discountedTotal = appliedCoupon
+    ? Math.max(0, cartTotal - appliedCoupon.discountAmount)
+    : cartTotal;
 
   return (
     <div className="flex flex-col gap-y-7">
@@ -112,9 +134,36 @@ export const CartSummary = ({
           );
         })}
       </div>
-      <h3 className="flex justify-between text-2xl">
-        Total: <span>${cartTotal / 100}</span>
-      </h3>
+
+      <CouponInput
+        onApply={onApplyCoupon}
+        onRemove={onRemoveCoupon}
+        isApplied={!!appliedCoupon}
+        appliedCode={appliedCoupon?.code ?? null}
+        error={couponError}
+        loading={couponLoading}
+      />
+
+      <div className="space-y-1">
+        {appliedCoupon && (
+          <>
+            <p className="flex justify-between text-sm text-gray-500">
+              <span>{t("subtotal")}</span>
+              <span>${(cartTotal / 100).toFixed(2)}</span>
+            </p>
+            <p className="flex justify-between text-sm text-green-600">
+              <span>{t("discount")}</span>
+              <span>-${(appliedCoupon.discountAmount / 100).toFixed(2)}</span>
+            </p>
+          </>
+        )}
+        <h3 className="flex justify-between pt-1 text-2xl">
+          Total:{" "}
+          <span className={appliedCoupon ? "text-purple-custom font-semibold" : ""}>
+            ${(discountedTotal / 100).toFixed(2)}
+          </span>
+        </h3>
+      </div>
     </div>
   );
 };

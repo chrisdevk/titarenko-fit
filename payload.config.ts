@@ -14,12 +14,15 @@ import { cloudinaryAdapter } from "./cloudinary-adapter";
 import { Blogs } from "./collections/Blogs";
 import { Categories } from "./collections/Categories";
 import { ClubMonths } from "./collections/ClubMonths";
+import { Coupons } from "./collections/Coupons";
 import { Media } from "./collections/Media";
 import { Orders } from "./collections/Orders";
 import { Products } from "./collections/Products";
 import { Users } from "./collections/Users";
+import { createFreeOrder } from "./endpoints/create-free-order";
 import { createPaymentIntent } from "./endpoints/create-payment-intent";
 import { productsProxy } from "./endpoints/products";
+import { validateCoupon } from "./endpoints/validate-coupon";
 import { paymentSucceeded } from "./stripe/webhooks/payment-succeeded";
 
 const filename = fileURLToPath(import.meta.url);
@@ -48,7 +51,7 @@ export default buildConfig({
       description: "Admin panel for titarenko.fit",
     },
   },
-  collections: [Users, Media, Blogs, Products, Categories, Orders, ClubMonths],
+  collections: [Users, Media, Blogs, Products, Categories, Orders, ClubMonths, Coupons],
   editor: lexicalEditor(),
   secret: process.env.PAYLOAD_SECRET || "",
   typescript: {
@@ -84,6 +87,16 @@ export default buildConfig({
       handler: createPaymentIntent,
       method: "post",
       path: "/create-payment-intent",
+    },
+    {
+      handler: validateCoupon,
+      method: "post",
+      path: "/validate-coupon",
+    },
+    {
+      handler: createFreeOrder,
+      method: "post",
+      path: "/create-free-order",
     },
     /*
     {
