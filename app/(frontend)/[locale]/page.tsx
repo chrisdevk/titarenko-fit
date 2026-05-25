@@ -6,6 +6,7 @@ import { Reasons } from "./_components/reasons/reasons";
 import { Testimonials } from "./_components/testimonials/testimonials";
 import { TrainingPreview } from "./_components/training-preview/training-preview";
 import { TrainingType } from "./_components/training-type/training-type";
+import { getCategories } from "@/utils/data/get-categories";
 
 export default async function Home({
   params,
@@ -13,6 +14,8 @@ export default async function Home({
   params: Promise<{ locale: "en" | "ru" }>;
 }) {
   const { locale } = await params;
+  const categories = await getCategories({ locale });
+
   return (
     <>
       <Hero />
@@ -25,7 +28,7 @@ export default async function Home({
       </article>
       <TrainingPreview />
       <TrainingType locale={locale} />
-      <Categories />
+      <Categories locale={locale} categories={categories ?? []} />
       <Testimonials />
     </>
   );

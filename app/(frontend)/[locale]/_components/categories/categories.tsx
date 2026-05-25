@@ -1,16 +1,19 @@
 "use client";
 
+import { Category } from "@/payload-types";
 import { cn } from "@/lib/utils";
 import { motion } from "motion/react";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 import { CategoryCard } from "./category-card";
 
-export const Categories = () => {
+interface CategoriesProps {
+  locale: string;
+  categories: Category[];
+}
+
+export const Categories = ({ locale, categories }: CategoriesProps) => {
   const t = useTranslations("HomePage.categories");
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1] as "en" | "ru";
   const cards = t.raw("cards") as {
     [key: string]: { title: string; description: string } | null;
   };
@@ -18,6 +21,15 @@ export const Categories = () => {
     (entry): entry is [string, { title: string; description: string }] =>
       entry[1] != null,
   );
+
+  const getCategoryLink = (cardTitle: string) => {
+    const normalized = cardTitle.trim().toLowerCase();
+    const match = categories.find(
+      (c) => c.title?.trim().toLowerCase() === normalized,
+    );
+    if (match) return `/${locale}/programs?category=${match.id}`;
+    return `/${locale}/programs`;
+  };
 
   return (
     <article className="bg-turquoise-dark">
@@ -52,7 +64,7 @@ export const Categories = () => {
                   imgSrc={`/images/${locale === "ru" ? key : `${key}_en`}.${locale === "ru" ? "webp" : "jpg"}`}
                   title={card.title}
                   description={card.description}
-                  link={`/${locale}/programs#${card.title.toLowerCase()}`}
+                  link={getCategoryLink(card.title)}
                 />
               </motion.div>
             ))}

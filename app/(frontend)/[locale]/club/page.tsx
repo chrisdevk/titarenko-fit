@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import { notFound } from "next/navigation";
 import { Duration } from "./_components/duration";
 import { ExpiredToast } from "./_components/expired-toast";
 import { FinalCta } from "./_components/final-cta";
@@ -12,7 +13,13 @@ import { WorkoutVariety } from "./_components/workout-variety";
 
 export const revalidate = 3600;
 
-export default async function ClubPage() {
+export default async function ClubPage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  if (locale !== "ru") notFound();
   return (
     <>
       <Suspense>

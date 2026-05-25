@@ -103,12 +103,14 @@ export const MainNavigation = ({
                   {t("Programs")}
                 </Link>
               </Button>
-              <Button variant="default" asChild className="z-10">
-                <Link href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}>
-                  <Layers color="#fff" size={24} />
-                  {t("Club")}
-                </Link>
-              </Button>
+              {locale === "ru" && (
+                <Button variant="default" asChild className="z-10">
+                  <Link href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}>
+                    <Layers color="#fff" size={24} />
+                    {t("Club")}
+                  </Link>
+                </Button>
+              )}
               <UserMenuDropdown locale={locale} />
             </div>
           </div>

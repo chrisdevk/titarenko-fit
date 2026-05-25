@@ -13,7 +13,8 @@ export async function up({ db, payload, req }: MigrateUpArgs): Promise<void> {
   
   ALTER TABLE "club_months_days_locales" DISABLE ROW LEVEL SECURITY;
   DROP TABLE "club_months_days_locales" CASCADE;
-  ALTER TABLE "club_months_locales" ALTER COLUMN "description" SET DATA TYPE jsonb;
+  UPDATE "club_months_locales" SET "description" = NULL;
+  ALTER TABLE "club_months_locales" ALTER COLUMN "description" SET DATA TYPE jsonb USING NULL;
   ALTER TABLE "club_months_days_lessons" ADD CONSTRAINT "club_months_days_lessons_parent_id_fk" FOREIGN KEY ("_parent_id") REFERENCES "public"."club_months_days"("id") ON DELETE cascade ON UPDATE no action;
   CREATE INDEX "club_months_days_lessons_order_idx" ON "club_months_days_lessons" USING btree ("_order");
   CREATE INDEX "club_months_days_lessons_parent_id_idx" ON "club_months_days_lessons" USING btree ("_parent_id");

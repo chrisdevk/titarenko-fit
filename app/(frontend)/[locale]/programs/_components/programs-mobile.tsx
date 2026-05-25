@@ -1,8 +1,9 @@
 "use client";
 
 import { Category, Product } from "@/payload-types";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CategoryDropdown } from "./category-dropdown";
 import { ProgramCard } from "./program-card";
 
@@ -17,7 +18,16 @@ export const ProgramsMobile = ({
   categories,
   programs,
 }: ProgramsMobileProps) => {
+  const searchParams = useSearchParams();
   const [currentCategory, setCurrentCategory] = useState("all");
+
+  useEffect(() => {
+    const categoryId = searchParams.get("category");
+    if (categoryId) {
+      const matched = categories.find((c) => String(c.id) === categoryId);
+      if (matched?.title) setCurrentCategory(matched.title);
+    }
+  }, [searchParams, categories]);
 
   const t = useTranslations("ProgramPage");
 

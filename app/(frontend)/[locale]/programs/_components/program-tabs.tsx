@@ -2,6 +2,7 @@
 
 import { Tabs, TabsList } from "@/components/ui/tabs";
 import type { Category, Product } from "@/payload-types";
+import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FilteredProgramsContent } from "./filtered-programs-content";
 import { TabTrigger } from "./tab-trigger";
@@ -17,22 +18,16 @@ export const ProgramTabs = ({
   categories,
   locale,
 }: ProgramTabsProps) => {
+  const searchParams = useSearchParams();
   const [currentCategory, setCurrentCategory] = useState("all");
 
   useEffect(() => {
-    const categoryFromUrl = window.location.hash;
-    if (categoryFromUrl) {
-      const decodedCategory = decodeURIComponent(
-        categoryFromUrl.replace("#", ""),
-      );
-
-      const formattedCategory =
-        decodedCategory.charAt(0).toUpperCase() +
-        decodedCategory.slice(1).toLowerCase();
-
-      setCurrentCategory(formattedCategory);
+    const categoryId = searchParams.get("category");
+    if (categoryId) {
+      const matched = categories.find((c) => String(c.id) === categoryId);
+      if (matched?.title) setCurrentCategory(matched.title);
     }
-  }, []);
+  }, [searchParams, categories]);
 
   const validPrograms = programs.filter((program) => program.title);
 

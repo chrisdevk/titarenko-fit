@@ -43,14 +43,16 @@ export const MobileMenu = ({
         ))}
       </ul>
       <Separator className="bg-off-black" />
-      <Link
-        href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}
-        onClick={() => setOpen(false)}
-        className="flex items-center gap-x-2 rounded-sm p-1 text-lg font-semibold text-off-black transition-all hover:bg-baby-slate"
-      >
-        <Layers color="#B683F3" size={24} />
-        {t("Club")}
-      </Link>
+      {locale === "ru" && (
+        <Link
+          href={`/${locale}/club${hasMonthAccess ? "/month" : ""}`}
+          onClick={() => setOpen(false)}
+          className="flex items-center gap-x-2 rounded-sm p-1 text-lg font-semibold text-off-black transition-all hover:bg-baby-slate"
+        >
+          <Layers color="#B683F3" size={24} />
+          {t("Club")}
+        </Link>
+      )}
       <Link
         href={`/${locale}/programs`}
         onClick={() => setOpen(false)}

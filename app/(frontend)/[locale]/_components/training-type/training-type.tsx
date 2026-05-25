@@ -12,6 +12,8 @@ type CardData = {
 };
 
 export const TrainingType = async ({ locale }: { locale: "en" | "ru" }) => {
+  if (locale !== "ru") return null;
+
   const t = await getTranslations({ locale, namespace: "HomePage" });
   const cards = t.raw("training-type.cards") as CardData[];
 
