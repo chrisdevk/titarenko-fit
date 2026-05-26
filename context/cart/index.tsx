@@ -220,12 +220,13 @@ export const CartProvider = ({ children }: { children: React.ReactNode }) => {
 
     const newTotal =
       cart?.items?.reduce((acc, item) => {
-        if (typeof item.product === "string" || !item.product) return acc;
+        const isClubMonth = !item.product && !!item.stripeProductID;
 
-        let itemCost = 0;
-        itemCost = item.unitPrice;
+        // Skip items that are neither a resolved product nor a club month.
+        if (!isClubMonth && (typeof item.product === "string" || !item.product))
+          return acc;
 
-        return acc + itemCost;
+        return acc + (item.unitPrice ?? 0);
       }, 0) || 0;
 
     setTotal({
