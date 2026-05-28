@@ -15,9 +15,10 @@ export const getCategories = async ({
       depth: 1,
       overrideAccess: false,
       locale: locale,
+      fallbackLocale: false,
     });
 
-    return categories.docs || [];
+    return (categories.docs || []).filter((c) => !!c.title);
   } catch (error) {
     console.error("Error fetching categories:", error);
     return null;
