@@ -37,6 +37,16 @@ const storageAdapter = cloudinaryAdapter({
 });
 
 export default buildConfig({
+  cors: [
+    process.env.NEXT_PUBLIC_SERVER_URL,
+    "https://titarenko.fit",
+    "https://www.titarenko.fit",
+  ].filter(Boolean) as string[],
+  csrf: [
+    process.env.NEXT_PUBLIC_SERVER_URL,
+    "https://titarenko.fit",
+    "https://www.titarenko.fit",
+  ].filter(Boolean) as string[],
   admin: {
     user: Users.slug,
     importMap: {
