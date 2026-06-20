@@ -77,14 +77,6 @@ export const PurchaseCard = ({
             ) : (
               <AddToCart product={product} locale={locale} price={price} />
             )}
-            <ol className="list-decimal space-y-1 pl-6 text-sm text-grey-custom">
-              <li>
-                {t("access") + " " + product.expiryDuration + " " + t("days")}
-              </li>
-              <li>{t("warning_item2")}</li>
-              <li>{t("warning_item3")}</li>
-              <li>{t("warning_item4")}</li>
-            </ol>
           </div>
         ) : (
           <div className="space-y-2">
@@ -98,6 +90,14 @@ export const PurchaseCard = ({
             </Link>
           </div>
         )}
+        <ol className="list-decimal space-y-1 pl-6 text-sm text-grey-custom">
+          <li>
+            {t("access") + " " + product.expiryDuration + " " + t("days")}
+          </li>
+          <li>{t("warning_item2")}</li>
+          <li>{t("warning_item3")}</li>
+          <li>{t("warning_item4")}</li>
+        </ol>
       </div>
       <div className="absolute -right-[5%] -top-[2%] h-[118px] w-[146px] rotate-90">
         <Image src="/icons/lines-purple.svg" alt="purple lines" fill />
